@@ -1,48 +1,85 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#e61919'
-    },
-    containerLogo: {
-      flex: 2,
-      backgroundColor: '#e61919',
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
-    containerForm: {
-      flex: 1,
-      backgroundColor: '#FFF',
-      borderTopLeftRadius: 25,
-      borderTopRightRadius: 25,
-      paddingStart: '5%',
-      paddingEnd: '5%'
-    },
-    title: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      marginTop: 28,
-      marginBottom: 12
-    },
-    text: {
-      color: '#a1a1a1'
-    },
-    buttonAcessar: {
-      position: 'absolute',
-      backgroundColor: '#e61919',
-      borderRadius: 50,
-      paddingVertical: 8,
-      width: '60%',
-      alignSelf: 'center',
-      bottom: '30%',
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-    buttonText: {
-      fontSize: 18,
-      color: '#FFF',
-      fontWeight: 'bold'
-    }
-  })
+  container: {
+    flex: 1,
+    backgroundColor: '#e61919',
+  },
   
+  postContainer: {
+    margin: 10,
+    backgroundColor: '#f9f9f9',
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  postHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  avatarContainer: {
+    marginRight: 10,
+  },
+  avatar: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#ccc',
+  },
+  username: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  postTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  postContent: {
+    fontSize: 16,
+    color: '#333',
+    marginBottom: 10,
+  },
+  postActions: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+  actionIconContainer: {
+    marginRight: 10,
+  },
+  saveIconContainer: {
+    alignSelf: 'flex-end',
+  },
+  searchBarContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+    paddingTop: 40,
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    backgroundColor: '#fff',
+  },
+  searchInput: {
+    flex: 1,
+    height: 40,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+  },
+  searchIconContainer: {
+    marginLeft: 10,
+  },
+});
