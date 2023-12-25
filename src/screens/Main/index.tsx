@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppRoutes } from '../../routes/tabStack';
+import { AppRoutes } from '../../routes/NavigationTab';
 
 
 export default function Home() {

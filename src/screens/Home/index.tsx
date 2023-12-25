@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 import { styles } from './styles';
-import { StackTypes } from '../../routes/stack';
+import { StackTypes } from '../../routes/NavigationStack';
 
 export default function Home() {
 

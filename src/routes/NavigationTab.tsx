@@ -3,8 +3,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 
-import Mapa from "../screens/Mapa";
-import Consulta from "../screens/Consulta";
+import Mapa from "../screens/Map";
+import Consulta from "../screens/Query";
 import Feed from "../screens/Feed";
 
 const { Navigator, Screen } = createBottomTabNavigator();

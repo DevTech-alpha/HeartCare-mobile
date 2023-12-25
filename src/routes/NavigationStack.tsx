@@ -3,11 +3,11 @@ import { createNativeStackNavigator,
    NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import Home from '../screens/Home';
-import Login from '../screens/Login';
-import Mapa from '../screens/Mapa';
-import Cadastrar from '../screens/Cadastro';
-import Consulta from '../screens/Consulta';
-import Principal from '../screens/Principal'
+import Login from '../screens/SignIn';
+import Mapa from '../screens/Map';
+import Cadastrar from '../screens/SignUp';
+import Consulta from '../screens/Query';
+import Principal from '../screens/Main'
 
 const Stack = createNativeStackNavigator();
 
@@ -20,11 +20,10 @@ type StackNavigation= {
   Principal:undefined;
 };
 
-// Define StackNavigationProp type
+
 export type StackTypes = NativeStackNavigationProp<StackNavigation>;
 
 
-// Component function
 export default function StackComponent() {
   return (
     <Stack.Navigator>
