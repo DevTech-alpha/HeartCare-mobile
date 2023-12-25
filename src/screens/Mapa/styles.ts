@@ -2,8 +2,8 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     containerHeader: {
-        marginTop: '14%',
-        marginBottom: '8%',
+        marginTop: '15%',
+        marginBottom: '10%',
         paddingStart: '5%',
     },
     message: {
@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     },
     mapaPequeno: {
         width: 500,
-        height: 650,
+        height: '100%',
     },
     mapaExpandido: {
         flex: 1,

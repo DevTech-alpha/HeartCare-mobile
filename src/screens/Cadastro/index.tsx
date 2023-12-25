@@ -6,14 +6,10 @@ import { styles } from './styles';
 
 export default function Login() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
 
+  
   const togglePasswordVisibility = () => {
     setIsPasswordVisible((prev) => !prev);
-  };
-
-  const toggleConfirmPasswordVisibility = () => {
-    setIsConfirmPasswordVisible((prev) => !prev);
   };
 
   return (
@@ -38,21 +34,7 @@ export default function Login() {
             {isPasswordVisible ? 'Ocultar Senha' : 'Mostrar Senha'}
           </Text>
         </TouchableOpacity>
-        <Text style={styles.title}>Confirmar Senha</Text>
-        <TextInput
-          placeholder="Confirme sua senha"
-          style={styles.input}
-          secureTextEntry={!isConfirmPasswordVisible}
-        />
-        <TouchableOpacity
-          onPress={toggleConfirmPasswordVisibility}
-          style={styles.togglePasswordButton}
-        >
-          <Text style={styles.togglePasswordButtonText}>
-            {isConfirmPasswordVisible ? 'Ocultar Senha' : 'Mostrar Senha'}
-          </Text>
-        </TouchableOpacity>
-
+    
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Cadastrar</Text>
         </TouchableOpacity>

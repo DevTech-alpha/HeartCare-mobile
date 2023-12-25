@@ -28,17 +28,28 @@ export const styles = StyleSheet.create({
     text: {
       color: '#a1a1a1'
     },
-    buttonAcessar: {
+    buttonMapa: {
       position: 'absolute',
       backgroundColor: '#e61919',
       borderRadius: 50,
       paddingVertical: 8,
       width: '60%',
       alignSelf: 'center',
-      bottom: '30%',
+      bottom: '15%',
       alignItems: 'center',
       justifyContent: 'center'
     },
+    buttonTarefas: {
+        position: 'absolute',
+        backgroundColor: '#e61919',
+        borderRadius: 50,
+        paddingVertical: 8,
+        width: '60%',
+        alignSelf: 'center',
+        bottom: '30%',
+        alignItems: 'center',
+        justifyContent: 'center'
+      },
     buttonText: {
       fontSize: 18,
       color: '#FFF',

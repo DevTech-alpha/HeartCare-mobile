@@ -4,11 +4,10 @@ export const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#e61919',
-      padding: 20,
     },
     containerHeader: {
-      marginTop: '14%',
-      marginBottom: '8%',
+      marginTop: '15%',
+      marginBottom: '10%',
       paddingStart: '5%',
     },
     message: {

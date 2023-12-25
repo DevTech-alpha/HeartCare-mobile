@@ -28,9 +28,6 @@ export default function Home() {
         <TouchableOpacity style={styles.buttonAcessar} onPress={() => navigation.navigate('Login')}>
           <Text style={styles.buttonText}>Acessar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonMapa} onPress={() => navigation.navigate('Mapa')}>
-          <Text style={styles.buttonText}>Ver Mapa</Text>
-        </TouchableOpacity>
       </Animatable.View>
     </View>
   );

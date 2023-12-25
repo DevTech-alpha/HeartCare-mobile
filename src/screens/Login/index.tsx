@@ -38,7 +38,7 @@ const Login = () => {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Tarefas')}
+          onPress={() => navigation.navigate('Principal')}
         >
           <Text style={styles.buttonText}>Acessar</Text>
         </TouchableOpacity>

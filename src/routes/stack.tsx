@@ -6,7 +6,8 @@ import Home from '../screens/Home';
 import Login from '../screens/Login';
 import Mapa from '../screens/Mapa';
 import Cadastrar from '../screens/Cadastro';
-import Tarefas from '../screens/Tarefas';
+import Consulta from '../screens/Consulta';
+import Principal from '../screens/Principal'
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +16,8 @@ type StackNavigation= {
   Login: undefined;
   Cadastrar: undefined;
   Mapa: undefined;
-  Tarefas: undefined;
+  Consulta: undefined;
+  Principal:undefined;
 };
 
 // Define StackNavigationProp type
@@ -47,8 +49,13 @@ export default function StackComponent() {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="Tarefas"
-        component={Tarefas}
+        name="Consulta"
+        component={Consulta}
+        options={{ headerShown: false }}
+      />
+        <Stack.Screen
+        name="Principal"
+        component={Principal}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
