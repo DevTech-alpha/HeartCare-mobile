@@ -11,40 +11,74 @@ const { Navigator, Screen } = createBottomTabNavigator();
 
 export function AppRoutes() {
   return (
-    <Navigator screenOptions={{ headerShown: false }}>
+    <Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: '#FFF', // Cor de fundo da barra inferior
+        },
+      }}
+    >
       <Screen
         name="Feed"
         component={Feed}
         options={{
-          tabBarIcon: () => {
-            return <Feather name="home" size={25} color="#000" />;
-          },
+          tabBarIcon: ({ focused, color, size }) => (
+            <Feather
+              name="home"
+              size={focused ? size + 5 : size} // Aumenta o tamanho quando focado
+              color={focused ? 'red' : color} // Muda a cor para vermelho quando focado
+            />
+          ),
+          tabBarLabel: () => null,
         }}
       />
       <Screen
         name="Mapa"
         component={Mapa}
         options={{
-          tabBarIcon: () => {
-            return <Feather name="map" size={25} color="#000" />;
-          },
+          tabBarIcon: ({ focused, color, size }) => (
+            <Feather
+              name="map"
+              size={focused ? size + 5 : size}
+              color={focused ? 'red' : color}
+            />
+          ),
+          tabBarLabel: () => null,
         }}
       />
       <Screen
         name="Consulta"
         component={Consulta}
         options={{
-          tabBarIcon: () => {
-            return <Feather name="search" size={25} color="#000" />;
-          },
+          tabBarIcon: ({ focused, color, size }) => (
+            <Feather
+              name="list"
+              size={focused ? size + 5 : size}
+              color={focused ? 'red' : color}
+            />
+          ),
+          tabBarLabel: () => null,
         }}
       />
-
+       <Screen
+        name="Perfil"
+        component={Consulta}
+        options={{
+          tabBarIcon: ({ focused, color, size }) => (
+            <Feather
+              name="user"
+              size={focused ? size + 5 : size}
+              color={focused ? 'red' : color}
+            />
+          ),
+          tabBarLabel: () => null,
+        }}
+      />
     </Navigator>
   );
 }
 
-// Wrap the entire application with NavigationContainer
 export default function App() {
   return (
     <NavigationContainer>

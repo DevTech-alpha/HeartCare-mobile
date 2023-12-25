@@ -5,7 +5,16 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#e61919',
   },
-  
+  commentContainer: {
+    marginTop: 10,
+    padding: 10,
+    backgroundColor: '#eee',
+    borderRadius: 8,
+  },
+  commentText: {
+    fontSize: 16,
+    color: '#333',
+  },
   postContainer: {
     margin: 10,
     backgroundColor: '#f9f9f9',
@@ -21,6 +30,13 @@ export const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
+  userPhoto: {
+    width: 50,
+    height: 50,
+    borderRadius: 25, 
+    marginRight: 10, 
+  },
+
   postHeader: {
     flexDirection: 'row',
     alignItems: 'center',
