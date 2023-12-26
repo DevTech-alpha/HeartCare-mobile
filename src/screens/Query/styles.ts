@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
       paddingStart: '5%',
     },
     message: {
-      fontSize: 28,
+      fontSize: 30,
       fontWeight: 'bold',
       color: '#FFF',
     },
@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
       paddingTop: 0,
     },
     label: {
-      fontSize: 16,
+      fontSize: 15,
       marginTop: 12,
     },
     input: {

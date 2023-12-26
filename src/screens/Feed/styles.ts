@@ -33,8 +33,8 @@ export const styles = StyleSheet.create({
   userPhoto: {
     width: 50,
     height: 50,
-    borderRadius: 25, 
-    marginRight: 10, 
+    borderRadius: 25,
+    marginRight: 10,
   },
 
   postHeader: {
@@ -67,7 +67,7 @@ export const styles = StyleSheet.create({
   },
   postActions: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     marginBottom: 10,
   },
   actionIconContainer: {
@@ -76,26 +76,14 @@ export const styles = StyleSheet.create({
   saveIconContainer: {
     alignSelf: 'flex-end',
   },
-  searchBarContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 15,
-    paddingTop: 40,
-    paddingBottom: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-    backgroundColor: '#fff',
+  containerHeader: {
+    marginTop: '14%',
+    marginBottom: 5,
+    paddingStart: '5%',
   },
-  searchInput: {
-    flex: 1,
-    height: 40,
-    paddingHorizontal: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-  },
-  searchIconContainer: {
-    marginLeft: 10,
+  message: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#FFF',
   },
 });

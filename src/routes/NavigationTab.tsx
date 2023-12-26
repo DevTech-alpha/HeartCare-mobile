@@ -6,6 +6,7 @@ import { Feather } from "@expo/vector-icons";
 import Mapa from "../screens/Map";
 import Consulta from "../screens/Query";
 import Feed from "../screens/Feed";
+import FAQScreen from "../screens/FAQ/Index";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -48,8 +49,8 @@ export function AppRoutes() {
         }}
       />
       <Screen
-        name="Consulta"
-        component={Consulta}
+        name="FAQ"
+        component={FAQScreen}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <Feather
@@ -67,7 +68,7 @@ export function AppRoutes() {
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <Feather
-              name="user"
+              name="edit"
               size={focused ? size + 5 : size}
               color={focused ? 'red' : color}
             />

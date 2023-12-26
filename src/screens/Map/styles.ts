@@ -1,23 +1,13 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    containerHeader: {
-        marginTop: '15%',
-        marginBottom: '10%',
-        paddingStart: '5%',
-    },
-    message: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        color: '#FFF',
-    },
+ 
     containerForm: {
         flex: 1,
         backgroundColor: '#FFF',
-        borderTopLeftRadius: 25,
-        borderTopRightRadius: 25,
         paddingStart: '5%',
         paddingEnd: '5%',
+        position: 'relative', 
     },
     container: {
         flex: 1,
@@ -28,13 +18,23 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    mapaPequeno: {
-        width: 500,
+    mapa: {
+        borderTopLeftRadius: 25,
+        borderTopRightRadius: 25,
+        width: '115%',
         height: '100%',
     },
     mapaExpandido: {
         flex: 1,
     },
+    alertButton: {
+        position: 'absolute',
+        bottom: 20,
+        right: 20,
+        backgroundColor: '#e61919',
+        borderRadius: 30,
+        padding: 15,
+      },
 });
 
 

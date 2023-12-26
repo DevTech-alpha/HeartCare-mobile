@@ -57,6 +57,7 @@ export default function StackComponent() {
         component={Principal}
         options={{ headerShown: false }}
       />
+       
       
     </Stack.Navigator>
   );
