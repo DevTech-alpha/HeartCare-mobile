@@ -100,9 +100,6 @@ export default function PressaoArterial() {
     const sistolicaValue = parseInt(medicao.sistolica, 10);
     const diastolicaValue = parseInt(medicao.diastolica, 10);
     const pulsoValue = parseInt(medicao.pulso, 10);
-
-    // Lógica para verificar se a medição está dentro do intervalo desejado
-    // Você pode ajustar esses valores conforme necessário
     const sistolicaInRange = sistolicaValue >= 90 && sistolicaValue <= 120;
     const diastolicaInRange = diastolicaValue >= 60 && diastolicaValue <= 80;
     const pulsoInRange = pulsoValue >= 60 && pulsoValue <= 100;

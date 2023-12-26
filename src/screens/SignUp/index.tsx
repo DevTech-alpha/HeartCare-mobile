@@ -58,8 +58,8 @@ export default function Login() {
   };
 
   const handleSignUp = () => {
-    // Adicione aqui a lógica de cadastro, por exemplo, validações e chamada à API
-    console.log(data); // Para visualizar os dados no console (use apenas para depuração)
+   
+    console.log(data); 
   };
 
   return (

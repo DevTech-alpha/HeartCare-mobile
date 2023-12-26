@@ -1,19 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import MapView, { Marker } from 'react-native-maps';
-import { View, Text, TouchableOpacity, Alert } from 'react-native';
+import { View, TouchableOpacity, Alert, Linking } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { Ionicons } from '@expo/vector-icons';
 
 import { styles } from './styles';
 
 const Mapa = () => {
-  
-  const showAlert = () => {
-    Alert.alert(
-      'Atenção',
-      'Locais de Tratamento ',
-      [{ }]
-    );
+
+  const callEmergencyNumber = () => {
+    Linking.openURL('tel:192');
   };
 
   return (
@@ -29,7 +25,6 @@ const Mapa = () => {
               longitudeDelta: 0.1,
             }}
           >
-            {/* Marcadores para pontos de tratamento */}
             <Marker
               coordinate={{ latitude: -23.116540594377856, longitude: -46.543083335249825 }}
               title="Hospital Novo"
@@ -46,13 +41,11 @@ const Mapa = () => {
               description="Ponto de tratamento"
             />
           </MapView>
-          
-          {/* Botão de alerta sobreposto ao mapa */}
           <TouchableOpacity
             style={styles.alertButton}
-            onPress={showAlert}
+            onPress={callEmergencyNumber}
           >
-            <Ionicons name="ios-alert-circle" size={30} color="#fff" />
+            <Ionicons name="ios-call" size={30} color="#fff" />
           </TouchableOpacity>
         </TouchableOpacity>
       </Animatable.View>

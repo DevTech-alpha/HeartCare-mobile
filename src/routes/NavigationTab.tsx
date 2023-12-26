@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 
+
 import Mapa from "../screens/Map";
 import Consulta from "../screens/Query";
 import Feed from "../screens/Feed";
@@ -16,7 +17,7 @@ export function AppRoutes() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: '#FFF', // Cor de fundo da barra inferior
+          backgroundColor: '#FFF', 
         },
       }}
     >
@@ -27,8 +28,8 @@ export function AppRoutes() {
           tabBarIcon: ({ focused, color, size }) => (
             <Feather
               name="home"
-              size={focused ? size + 5 : size} // Aumenta o tamanho quando focado
-              color={focused ? 'red' : color} // Muda a cor para vermelho quando focado
+              size={focused ? size + 5 : size} 
+              color={focused ? 'red' : color} 
             />
           ),
           tabBarLabel: () => null,

@@ -9,7 +9,7 @@ import Post, { data } from '../../model/Post';
 interface FeedProps {}
 
 const Feed: React.FC<FeedProps> = () => {
-  const [searchText, setSearchText] = useState('');
+  
   const [likedPosts, setLikedPosts] = useState<string[]>([]);
 
   const toggleLike = (postId: string) => {

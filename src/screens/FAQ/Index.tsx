@@ -6,7 +6,7 @@ import { styles } from './styles';
 import * as Animatable from 'react-native-animatable';
 
 const FAQScreen = () => {
-  const [questions, setQuestions] = useState([
+  const [questions] = useState([
     { id: 1, question: 'O que é um transplante cardíaco?', answer: 'Um transplante cardíaco é a substituição de um coração doente por um coração saudável de um doador. Esse procedimento é realizado para tratar condições graves do coração, como insuficiência cardíaca avançada ou danos irreparáveis.' },
     { id: 2, question: 'Quem pode ser um candidato para um transplante cardíaco?', answer: 'Os candidatos para um transplante cardíaco são geralmente pacientes com insuficiência cardíaca grave que não respondem adequadamente a outras formas de tratamento. Avaliações médicas detalhadas são realizadas para determinar a elegibilidade.' },
     { id: 3, question: 'Quais são os riscos associados ao transplante cardíaco?', answer: 'O transplante cardíaco envolve alguns riscos, como rejeição do órgão transplantado, infecções, complicações cirúrgicas, e efeitos colaterais dos medicamentos imunossupressores. A equipe médica monitora de perto o paciente para mitigar esses riscos.' },

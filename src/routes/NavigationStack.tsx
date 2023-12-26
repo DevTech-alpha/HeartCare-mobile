@@ -1,6 +1,8 @@
 import React from 'react';
-import { createNativeStackNavigator,
-   NativeStackNavigationProp } from '@react-navigation/native-stack';
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp
+} from '@react-navigation/native-stack';
 
 import Home from '../screens/Home';
 import Login from '../screens/SignIn';
@@ -9,16 +11,17 @@ import Cadastrar from '../screens/SignUp';
 import Consulta from '../screens/Query';
 import Principal from '../screens/Main'
 
+
 const Stack = createNativeStackNavigator();
 
-type StackNavigation= {
+type StackNavigation = {
   Home: undefined;
   Login: undefined;
   Cadastrar: undefined;
   Mapa: undefined;
   Consulta: undefined;
-  Principal:undefined;
-};
+  Principal: undefined;
+}
 
 
 export type StackTypes = NativeStackNavigationProp<StackNavigation>;
@@ -52,13 +55,13 @@ export default function StackComponent() {
         component={Consulta}
         options={{ headerShown: false }}
       />
-        <Stack.Screen
+      <Stack.Screen
         name="Principal"
         component={Principal}
         options={{ headerShown: false }}
       />
-       
-      
+  
+
     </Stack.Navigator>
   );
 }
