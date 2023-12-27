@@ -14,14 +14,7 @@ import * as Animatable from 'react-native-animatable';
 
 import { styles } from './styles';
 
-interface Medicao {
-  id: number;
-  sistolica: string;
-  diastolica: string;
-  pulso: string;
-  horario: string;
-  data: string;
-}
+import Medicao from '../../model/Medicao';
 
 export default function PressaoArterial() {
   const [sistolica, setSistolica] = useState('');
