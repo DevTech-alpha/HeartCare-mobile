@@ -1,65 +1,28 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 import { styles } from './styles';
+import { criar } from '../../../firebase';
 
 export default function Login() {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible((prev) => !prev);
   };
 
-  const [data, setData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirm_password: '',
-    check_textInputChange: false,
-    secureTextEntry: true,
-    confirm_secureTextEntry: true,
-  });
-
-  const textInputChange = (val: string) => {
-    setData({
-      ...data,
-      username: val,
-      check_textInputChange: val.length !== 0,
-    });
-  };
-
-  const handlePasswordChange = (val: string) => {
-    setData({
-      ...data,
-      password: val,
-    });
-  };
-
-  const handleConfirmPasswordChange = (val: string) => {
-    setData({
-      ...data,
-      confirm_password: val,
-    });
-  };
-
-  const updateSecureTextEntry = () => {
-    setData({
-      ...data,
-      secureTextEntry: !data.secureTextEntry,
-    });
-  };
-
-  const updateConfirmSecureTextEntry = () => {
-    setData({
-      ...data,
-      confirm_secureTextEntry: !data.confirm_secureTextEntry,
-    });
-  };
-
   const handleSignUp = () => {
-   
-    console.log(data); 
+    criar(email, password)
+      .then((userCredentials) => {
+        const user = userCredentials.user;
+        alert('Cadastro efetuado com sucesso!');
+      })
+      .catch((error) => alert(error.message));
   };
 
   return (
@@ -69,26 +32,21 @@ export default function Login() {
       </Animatable.View>
 
       <Animatable.View animation="fadeInUp" style={styles.containerForm}>
-        <Text style={styles.title}>Usuário</Text>
-        <TextInput
-          placeholder="Digite seu Usuário"
-          style={styles.input}
-          onChangeText={(val) => textInputChange(val)}
-        />
-
         <Text style={styles.title}>Email</Text>
         <TextInput
-          placeholder="Digite um email"
+          placeholder="Digite seu Email"
           style={styles.input}
-          onChangeText={(val) => setData({ ...data, email: val })}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
         />
 
         <Text style={styles.title}>Senha</Text>
         <TextInput
           placeholder="Digite sua senha"
           style={styles.input}
+          value={password}
           secureTextEntry={!isPasswordVisible}
-          onChangeText={(val) => handlePasswordChange(val)}
+          onChangeText={(text) => setPassword(text)}
         />
         <TouchableOpacity onPress={togglePasswordVisibility} style={styles.togglePasswordButton}>
           <Text style={styles.togglePasswordButtonText}>
@@ -96,13 +54,6 @@ export default function Login() {
           </Text>
         </TouchableOpacity>
 
-        <Text style={styles.title}>Confirmar Senha</Text>
-        <TextInput
-          placeholder="Confirme sua senha"
-          style={styles.input}
-          secureTextEntry={!isPasswordVisible}
-          onChangeText={(val) => handleConfirmPasswordChange(val)}
-        />
 
         <TouchableOpacity style={styles.button} onPress={handleSignUp}>
           <Text style={styles.buttonText}>Cadastrar</Text>

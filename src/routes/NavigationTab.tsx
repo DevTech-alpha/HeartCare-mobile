@@ -8,6 +8,7 @@ import Mapa from "../screens/Map";
 import Consulta from "../screens/Query";
 import Feed from "../screens/Feed";
 import FAQScreen from "../screens/FAQ/Index";
+import Perfil from "../screens/Perfil";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -64,12 +65,26 @@ export function AppRoutes() {
         }}
       />
        <Screen
-        name="Perfil"
+        name="Consulta"
         component={Consulta}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <Feather
               name="edit"
+              size={focused ? size + 5 : size}
+              color={focused ? 'red' : color}
+            />
+          ),
+          tabBarLabel: () => null,
+        }}
+      />
+      <Screen
+        name="Perfil"
+        component={Perfil}
+        options={{
+          tabBarIcon: ({ focused, color, size }) => (
+            <Feather
+              name="user"
               size={focused ? size + 5 : size}
               color={focused ? 'red' : color}
             />
