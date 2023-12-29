@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 import { styles } from './styles';
-import { criar } from '../../../firebase';
+import { criar } from '../../components/firebase';
 
 export default function Login() {
 

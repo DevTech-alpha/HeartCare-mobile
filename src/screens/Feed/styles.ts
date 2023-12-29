@@ -5,6 +5,38 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#e61919',
   },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', /* Semi-transparent black background */
+    padding: 20
+  },
+  input: {
+    height: 40,
+    width: '80%',
+    borderColor: '#e61919',
+    borderWidth: 1,
+    marginBottom: 16,
+    paddingHorizontal: 8,
+    borderRadius: 4,
+  },
+  addButton: {
+    position: 'absolute',
+    bottom: 16,
+    right: 16,
+    backgroundColor: '#e61919',
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 4,
+  },
+  addButtonText: {
+    fontSize: 24,
+    color: '#fff',
+  },
   commentContainer: {
     marginTop: 10,
     padding: 10,

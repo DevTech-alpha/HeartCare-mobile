@@ -11,9 +11,22 @@ export const styles = StyleSheet.create({
       paddingStart: '5%',
     },
     message: {
+      paddingTop: 20,
       fontSize: 30,
       fontWeight: 'bold',
       color: '#FFF',
+    },
+    botaoEditarAtivo: {
+      backgroundColor: '#FFF', // Substitua pela cor desejada
+      borderRadius: 4,
+      padding: 8,
+      marginHorizontal: 5,
+    },
+    messagePre:{
+      paddingTop:20,
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: '#e61919',
     },
     containerForm: {
       flex: 1,

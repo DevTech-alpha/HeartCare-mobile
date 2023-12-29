@@ -10,15 +10,13 @@ import {
   query,
   where,
 } from 'firebase/firestore';
-import { db } from '../../../firebase';
-import { getAuth } from 'firebase/auth'; // Import getAuth for authentication
+import { db } from '../../components/firebase';
+import { User, getAuth } from 'firebase/auth';
 import Medicao from '../../model/Medicao';
 import * as Animatable from 'react-native-animatable';
 import { styles } from './styles';
 
 const PressaoArterial = () => {
-  const auth = getAuth(); // Initialize Firebase Authentication
-  const user = auth.currentUser; // Retrieve the current user
 
   const [sistolica, setSistolica] = useState('');
   const [diastolica, setDiastolica] = useState('');
@@ -28,12 +26,15 @@ const PressaoArterial = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [horario, setHorario] = useState(new Date());
   const [data, setData] = useState(new Date());
+  const [modoEdicao, setModoEdicao] = useState(false);
+  const auth = getAuth();
+  const user: User | null = auth.currentUser;
 
   const adicionarMedicao = async () => {
     if (sistolica.trim() !== '' && diastolica.trim() !== '' && pulso.trim() !== '') {
       const novaMedicao: Medicao = {
         id: Date.now(),
-        userId: user.uid, 
+        userId: user?.uid ?? '',
         sistolica,
         diastolica,
         pulso,
@@ -72,21 +73,39 @@ const PressaoArterial = () => {
       limparCampos();
       setIsModalVisible(false);
       setMedicaoSelecionada(null);
+      setModoEdicao(false);
       carregarMedicoes();
     }
   };
 
-  const excluirMedicao = async (idMedicao: number) => {
-    const medicaoRef = doc(db, 'medicoes', idMedicao.toString());
-    await deleteDoc(medicaoRef);
-    carregarMedicoes();
-    alert('Medição excluída com sucesso!');
+  const abrirModalEdicao = (medicao: Medicao) => {
+    setMedicaoSelecionada(medicao);
+    setSistolica(medicao.sistolica);
+    setDiastolica(medicao.diastolica);
+    setPulso(medicao.pulso);
+    setHorario(new Date(medicao.horario));
+    setData(new Date(medicao.data));
+    setModoEdicao(true);
+    setIsModalVisible(true);
+  };
+
+  const excluirMedicao = async (id: number) => {
+    const medicaoRef = doc(db, 'medicoes', id.toString());
+
+    try {
+      await deleteDoc(medicaoRef);
+      await carregarMedicoes();
+      alert('Medição excluída com sucesso!');
+    } catch (error) {
+      console.error('Erro ao excluir medição:', error);
+      alert('Erro ao excluir medição. Consulte o console para mais detalhes.');
+    }
   };
 
   const carregarMedicoes = async () => {
     if (user) {
       const medicoesRef = collection(db, 'medicoes');
-      const q = query(medicoesRef, where('userId', '==', user.uid)); // Use user.uid as the userId
+      const q = query(medicoesRef, where('userId', '==', user.uid));
       const querySnapshot = await getDocs(q);
 
       const medicoesData: Medicao[] = querySnapshot.docs.map((doc: any) => ({ id: doc.id, ...doc.data() } as Medicao));
@@ -109,15 +128,13 @@ const PressaoArterial = () => {
     return sistolicaInRange && diastolicaInRange && pulsoInRange;
   };
 
-
   return (
     <View style={styles.container}>
-    <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
-      <Text style={styles.message}>Pressão Arterial</Text>
-    </Animatable.View>
+      <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
+        <Text style={styles.message}>Pressão Arterial</Text>
+      </Animatable.View>
 
-
-    <Animatable.View animation="fadeInUp" style={styles.containerForm}>
+      <Animatable.View animation="fadeInUp" style={styles.containerForm}>
         <Text style={styles.label}>Sistólica</Text>
         <TextInput
           style={styles.input}
@@ -149,6 +166,8 @@ const PressaoArterial = () => {
           <Text style={styles.textoBotao}>Adicionar Medição</Text>
         </TouchableOpacity>
 
+        <Text style={styles.messagePre}>Histórico</Text>
+
         <FlatList
           data={medicoes}
           keyExtractor={(item) => item.id.toString()}
@@ -165,7 +184,10 @@ const PressaoArterial = () => {
                 <Text style={styles.textoMedicaoRuim}>Pressão Ruim</Text>
               )}
               <View style={styles.containerBotoes}>
-                <TouchableOpacity style={styles.botaoEditar} onPress={() => {}}>
+                <TouchableOpacity
+                  style={modoEdicao ? styles.botaoEditarAtivo : styles.botaoEditar}
+                  onPress={() => abrirModalEdicao(item)}
+                >
                   <Text style={styles.textoBotao}>Editar</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.botaoExcluir} onPress={() => excluirMedicao(item.id)}>
@@ -197,10 +219,9 @@ const PressaoArterial = () => {
             </TouchableOpacity>
           </View>
         </Modal>
-        </Animatable.View>
+      </Animatable.View>
     </View>
   );
 };
 
 export default PressaoArterial;
-

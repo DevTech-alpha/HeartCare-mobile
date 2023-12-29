@@ -7,7 +7,7 @@ import { styles } from './styles';
 import { StackTypes } from '../../routes/NavigationStack';
 
 
-import { logar } from '../../../firebase';
+import { logar } from '../../components/firebase';
 
 const Login = () => {
 

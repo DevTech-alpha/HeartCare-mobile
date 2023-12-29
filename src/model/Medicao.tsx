@@ -1,3 +1,4 @@
+
  interface Medicao {
 id: number;
 userId: string,
@@ -7,4 +8,5 @@ pulso: string;
 horario: string;
 data: string;
 }
+
 export default Medicao;

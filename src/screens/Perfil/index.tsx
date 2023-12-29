@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity, View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
-import { auth } from '../../../firebase';
+import { auth } from '../../components/firebase';
 import { StackTypes } from '../../routes/NavigationStack';
 import * as Animatable from 'react-native-animatable';
 import { styles } from './styles';
