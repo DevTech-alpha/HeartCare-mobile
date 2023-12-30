@@ -1,28 +1,43 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import { useNavigation } from '@react-navigation/native';
 
 import { styles } from './styles';
 import { criar } from '../../components/firebase';
+import { StackTypes } from '../../routes/NavigationStack';
 
-export default function Login() {
-
+export default function Cadastro() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const navigation = useNavigation<StackTypes>();
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible((prev) => !prev);
   };
 
   const handleSignUp = () => {
+    if (password.length < 6) {
+      alert('A senha deve ter pelo menos 6 caracteres.');
+      return;
+    }
+
+    setLoading(true);
+    
     criar(email, password)
       .then((userCredentials) => {
+        setLoading(false);
         const user = userCredentials.user;
         alert('Cadastro efetuado com sucesso!');
+        navigation.navigate('Login');
       })
-      .catch((error) => alert(error.message));
+      .catch((error) => {
+        setLoading(false);
+        alert(error.message);
+      });
   };
 
   return (
@@ -54,9 +69,16 @@ export default function Login() {
           </Text>
         </TouchableOpacity>
 
+        <TouchableOpacity style={styles.button} onPress={handleSignUp} disabled={loading}>
+          {loading ? (
+            <ActivityIndicator size="small" color="#fff" />
+          ) : (
+            <Text style={styles.buttonText}>Cadastrar</Text>
+          )}
+        </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} onPress={handleSignUp}>
-          <Text style={styles.buttonText}>Cadastrar</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+          <Text style={styles.backToLogin}>Voltar para o Login</Text>
         </TouchableOpacity>
       </Animatable.View>
     </View>

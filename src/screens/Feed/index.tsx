@@ -8,6 +8,7 @@ import {
   TextInput,
   Modal,
   Button,
+  ActivityIndicator,
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
@@ -23,7 +24,7 @@ import { styles } from './styles';
 import Post from '../../model/Post';
 import { User, getAuth } from 'firebase/auth';
 
-interface FeedProps { }
+interface FeedProps {}
 
 const Feed: React.FC<FeedProps> = () => {
   const auth = getAuth();
@@ -31,26 +32,13 @@ const Feed: React.FC<FeedProps> = () => {
 
   const [posts, setPosts] = useState<Post[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
-  const [newPost, setNewPost] = useState<Post>({
-    id: '',
-    idpub: '',
-    username: '',
-    title: '',
-    content: '',
-    image: '',
-  });
-
-  const postsCollection = collection(db, 'posts');
-
+  const [newUsername, setNewUsername] = useState('');
+  const [newTitle, setNewTitle] = useState('');
+  const [newContent, setNewContent] = useState('');
+  const [loading, setLoading] = useState(false);
   const [likedPosts, setLikedPosts] = useState<string[]>([]);
 
-  const toggleLike = (postId: string) => {
-    if (likedPosts.includes(postId)) {
-      setLikedPosts(likedPosts.filter((id) => id !== postId));
-    } else {
-      setLikedPosts([...likedPosts, postId]);
-    }
-  };
+  const postsCollection = collection(db, 'posts');
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -59,7 +47,7 @@ const Feed: React.FC<FeedProps> = () => {
         const postsData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
-        }));
+        })) as Post[];
         setPosts(postsData);
       } catch (error) {
         console.error('Error fetching posts:', error);
@@ -68,11 +56,19 @@ const Feed: React.FC<FeedProps> = () => {
 
     fetchPosts();
   }, []);
-  const renderItem = ({ item }: { item: Post }) => (
+
+  const toggleLike = (postId: string) => {
+    setLikedPosts((prevLikedPosts) =>
+      prevLikedPosts.includes(postId)
+        ? prevLikedPosts.filter((id) => id !== postId)
+        : [...prevLikedPosts, postId]
+    );
+  };
+
+  const renderPostItem = ({ item }: { item: Post }) => (
     <Animatable.View animation="fadeInUp" style={styles.postContainer}>
       <View style={styles.postHeader}>
-       
-        <Image source={{ uri: item.image }} style={styles.userPhoto} />
+        {item.image && <Image source={{ uri: item.image }} style={styles.userPhoto} />}
         <Text style={styles.username}>{item.username}</Text>
       </View>
 
@@ -105,53 +101,56 @@ const Feed: React.FC<FeedProps> = () => {
       <TouchableOpacity style={styles.saveIconContainer}>
         <FontAwesome name="bookmark" size={20} color="#333" />
       </TouchableOpacity>
+
       <TouchableOpacity
-          style={styles.saveIconContainer}
-          onPress={() => deletePost(item.id)}
-        >
-          <FontAwesome name="trash" size={20} color={'#333'} />
-        </TouchableOpacity>
+        style={styles.saveIconContainer}
+        onPress={() => deletePost(item.id)}
+      >
+        <FontAwesome name="trash" size={20} color={'#333'} />
+      </TouchableOpacity>
     </Animatable.View>
   );
 
+  const deletePost = async (postId: string) => {
+    try {
+      const postRef = doc(db, 'posts', postId);
+      await deleteDoc(postRef);
+  
+      const updatedPosts = posts.filter((post) => post.id !== postId);
+      setPosts(updatedPosts);
+    } catch (error) {
+      console.error('Error deleting post:', error);
+      alert('Error deleting post. Please try again.');
+    }
+  };
+  
 
   const createNewPost = async () => {
-    if (
-      newPost.username.trim() !== '' &&
-      newPost.title.trim() !== '' &&
-      newPost.content.trim() !== ''
-    ) {
-      try {
-        const postWithUserId = { ...newPost, idpub: user?.uid || '' };
+    try {
+      if (newUsername.trim() !== '' && newTitle.trim() !== '' && newContent.trim() !== '') {
+        setLoading(true);
+
+        const postWithUserId = {
+          username: newUsername,
+          title: newTitle,
+          content: newContent,
+          image: '',
+          idpub: user?.uid || '',
+        };
 
         const docRef = await addDoc(postsCollection, postWithUserId);
         const updatedPosts = [...posts, { ...postWithUserId, id: docRef.id }];
         setPosts(updatedPosts);
         setModalVisible(false);
-        setNewPost({
-          id: '',
-          idpub: '',
-          username: '',
-          title: '',
-          content: '',
-          image: '',
-        });
-      } catch (error) {
-        console.error('Error adding post:', error);
-        alert('Error adding post. Check the console for more details.');
+        setNewUsername('');
+        setNewTitle('');
+        setNewContent('');
       }
-    }
-  };
-
-
-  const deletePost = async (postId: string) => {
-    try {
-      await deleteDoc(doc(db, 'posts', postId));
-      const updatedPosts = posts.filter((post) => post.id !== postId);
-      setPosts(updatedPosts);
     } catch (error) {
-      console.error('Error deleting post:', error);
-      alert('Error deleting post. Check the console for more details.');
+      console.error('Error adding post:', error);
+      alert('Error adding post. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -167,8 +166,8 @@ const Feed: React.FC<FeedProps> = () => {
 
       <FlatList
         data={posts}
-        keyExtractor={(item) => item.id}
-        renderItem={renderItem}
+        keyExtractor={(item, index) => item.id + index.toString()}
+        renderItem={renderPostItem}
       />
 
       <Modal
@@ -181,22 +180,20 @@ const Feed: React.FC<FeedProps> = () => {
           <TextInput
             placeholder="Username"
             style={styles.input}
-            value={newPost.username}
-            onChangeText={(text) =>
-              setNewPost({ ...newPost, username: text })
-            }
+            value={newUsername}
+            onChangeText={(text) => setNewUsername(text)}
           />
           <TextInput
             placeholder="Title"
             style={styles.input}
-            value={newPost.title}
-            onChangeText={(text) => setNewPost({ ...newPost, title: text })}
+            value={newTitle}
+            onChangeText={(text) => setNewTitle(text)}
           />
           <TextInput
             placeholder="Content"
             style={styles.input}
-            value={newPost.content}
-            onChangeText={(text) => setNewPost({ ...newPost, content: text })}
+            value={newContent}
+            onChangeText={(text) => setNewContent(text)}
           />
           <Button title="Create Post" onPress={createNewPost} />
         </View>
@@ -205,8 +202,13 @@ const Feed: React.FC<FeedProps> = () => {
       <TouchableOpacity
         style={styles.addButton}
         onPress={() => setModalVisible(true)}
+        disabled={loading}
       >
-        <Text style={styles.addButtonText}>+</Text>
+        {loading ? (
+          <ActivityIndicator size="small" color="#FFF" />
+        ) : (
+          <Text style={styles.addButtonText}>+</Text>
+        )}
       </TouchableOpacity>
     </View>
   );
