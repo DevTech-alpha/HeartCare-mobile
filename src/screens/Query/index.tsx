@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, FlatList, Modal } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, FlatList, Modal, ActivityIndicator } from 'react-native';
 import {
   addDoc,
   collection,
@@ -27,11 +27,13 @@ const PressaoArterial = () => {
   const [horario, setHorario] = useState(new Date());
   const [data, setData] = useState(new Date());
   const [modoEdicao, setModoEdicao] = useState(false);
+  const [loading, setLoading] = useState(false);
   const auth = getAuth();
   const user: User | null = auth.currentUser;
 
   const adicionarMedicao = async () => {
     if (sistolica.trim() !== '' && diastolica.trim() !== '' && pulso.trim() !== '') {
+      setLoading(true);
       const novaMedicao: Medicao = {
         id: Date.now(),
         userId: user?.uid ?? '',
@@ -42,12 +44,19 @@ const PressaoArterial = () => {
         data: data.toISOString(),
       };
 
-      const medicoesRef = collection(db, 'medicoes');
-      await addDoc(medicoesRef, novaMedicao);
+      try {
+        const medicoesRef = collection(db, 'medicoes');
+        await addDoc(medicoesRef, novaMedicao);
 
-      limparCampos();
-      carregarMedicoes();
-      alert('Medição adicionada com sucesso!');
+        limparCampos();
+        await carregarMedicoes();
+        alert('Medição adicionada com sucesso!');
+      } catch (error) {
+        console.error('Erro ao adicionar medição:', error);
+        alert('Erro ao adicionar medição. Consulte o console para mais detalhes.');
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -162,9 +171,16 @@ const PressaoArterial = () => {
           keyboardType="numeric"
         />
 
-        <TouchableOpacity style={styles.botaoAdicionar} onPress={adicionarMedicao}>
-          <Text style={styles.textoBotao}>Adicionar Medição</Text>
+        <TouchableOpacity style={styles.botaoAdicionar} onPress={adicionarMedicao} disabled={loading}>
+          {loading ? (
+            <View style={styles.loadingContainer}>
+              <ActivityIndicator size="small" color="#fff" />
+            </View>
+          ) : (
+            <Text style={styles.textoBotao}>Adicionar Medição</Text>
+          )}
         </TouchableOpacity>
+
 
         <Text style={styles.messagePre}>Histórico</Text>
 

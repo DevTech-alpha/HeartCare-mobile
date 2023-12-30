@@ -10,6 +10,11 @@ export const styles = StyleSheet.create({
       marginBottom: '10%',
       paddingStart: '5%',
     },
+    loadingContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
     message: {
       paddingTop: 20,
       fontSize: 30,

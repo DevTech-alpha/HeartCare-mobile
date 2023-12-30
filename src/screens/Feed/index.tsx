@@ -10,7 +10,7 @@ import {
   Button,
   ActivityIndicator,
 } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import { Feather, FontAwesome } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
 import {
   collection,
@@ -24,7 +24,7 @@ import { styles } from './styles';
 import Post from '../../model/Post';
 import { User, getAuth } from 'firebase/auth';
 
-interface FeedProps {}
+interface FeedProps { }
 
 const Feed: React.FC<FeedProps> = () => {
   const auth = getAuth();
@@ -115,7 +115,7 @@ const Feed: React.FC<FeedProps> = () => {
     try {
       const postRef = doc(db, 'posts', postId);
       await deleteDoc(postRef);
-  
+
       const updatedPosts = posts.filter((post) => post.id !== postId);
       setPosts(updatedPosts);
     } catch (error) {
@@ -123,7 +123,7 @@ const Feed: React.FC<FeedProps> = () => {
       alert('Error deleting post. Please try again.');
     }
   };
-  
+
 
   const createNewPost = async () => {
     try {
@@ -154,14 +154,16 @@ const Feed: React.FC<FeedProps> = () => {
     }
   };
 
+  const mensage = () => {
+    alert('clicou em mim');
+  }
   return (
     <View style={styles.container}>
-      <Animatable.View
-        animation="fadeInLeft"
-        delay={500}
-        style={styles.containerHeader}
-      >
-        <Text style={styles.message}>𝓒𝓸𝓻𝓪𝓬𝓪𝓸 𝓣𝓮𝓬𝓱</Text>
+      <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
+        <Text style={styles.message}>
+        <Feather onPress={() => mensage()}
+         name="menu" size={30} color="#fff" /> 𝓒𝓸𝓻𝓪𝓬𝓪𝓸 𝓣𝓮𝓬𝓱
+        </Text>
       </Animatable.View>
 
       <FlatList
