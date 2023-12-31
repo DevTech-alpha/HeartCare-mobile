@@ -18,13 +18,15 @@ import {
   addDoc,
   doc,
   deleteDoc,
+  query,
+  getDoc,
 } from 'firebase/firestore';
 import { db } from '../../components/firebase';
 import { styles } from './styles';
 import Post from '../../model/Post';
 import { User, getAuth } from 'firebase/auth';
 
-interface FeedProps { }
+interface FeedProps {}
 
 const Feed: React.FC<FeedProps> = () => {
   const auth = getAuth();
@@ -32,23 +34,35 @@ const Feed: React.FC<FeedProps> = () => {
 
   const [posts, setPosts] = useState<Post[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
-  const [newUsername, setNewUsername] = useState('');
   const [newTitle, setNewTitle] = useState('');
   const [newContent, setNewContent] = useState('');
   const [loading, setLoading] = useState(false);
   const [likedPosts, setLikedPosts] = useState<string[]>([]);
 
-  const postsCollection = collection(db, 'posts');
-
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'posts'));
-        const postsData = querySnapshot.docs.map((doc) => ({
+        const postsQuery = query(collection(db, 'posts'));
+        const postsSnapshot = await getDocs(postsQuery);
+        const postsData = postsSnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         })) as Post[];
-        setPosts(postsData);
+
+        const postsWithUserData = await Promise.all(
+          postsData.map(async (post) => {
+            const userDoc = await getDoc(doc(db, 'users', post.idpub));
+            const userData = userDoc.data() as { username: string; photo: string };
+
+            return {
+              ...post,
+              username: userData.username,
+              userPhoto: userData.photo,
+            };
+          })
+        );
+
+        setPosts(postsWithUserData);
       } catch (error) {
         console.error('Error fetching posts:', error);
       }
@@ -65,19 +79,15 @@ const Feed: React.FC<FeedProps> = () => {
     );
   };
 
-  const renderPostItem = ({ item }: { item: Post }) => (
+  const renderPostItem = ({ item }: { item: Post & { username: string; userPhoto: string } }) => (
     <Animatable.View animation="fadeInUp" style={styles.postContainer}>
       <View style={styles.postHeader}>
-        {item.image && <Image source={{ uri: item.image }} style={styles.userPhoto} />}
+        <Image source={{ uri: item.userPhoto }} style={styles.userPhoto} />
         <Text style={styles.username}>{item.username}</Text>
       </View>
 
       <Text style={styles.postTitle}>{item.title}</Text>
       <Text style={styles.postContent}>{item.content}</Text>
-
-      <View style={styles.postActions}>
-        <Text>ID do Postador: {item.idpub}</Text>
-      </View>
 
       <TouchableOpacity
         style={styles.actionIconContainer}
@@ -124,25 +134,21 @@ const Feed: React.FC<FeedProps> = () => {
     }
   };
 
-
   const createNewPost = async () => {
     try {
-      if (newUsername.trim() !== '' && newTitle.trim() !== '' && newContent.trim() !== '') {
+      if (newTitle.trim() !== '' && newContent.trim() !== '') {
         setLoading(true);
 
         const postWithUserId = {
-          username: newUsername,
           title: newTitle,
           content: newContent,
-          image: '',
           idpub: user?.uid || '',
         };
 
-        const docRef = await addDoc(postsCollection, postWithUserId);
+        const docRef = await addDoc(collection(db, 'posts'), postWithUserId);
         const updatedPosts = [...posts, { ...postWithUserId, id: docRef.id }];
         setPosts(updatedPosts);
         setModalVisible(false);
-        setNewUsername('');
         setNewTitle('');
         setNewContent('');
       }
@@ -154,21 +160,17 @@ const Feed: React.FC<FeedProps> = () => {
     }
   };
 
-  const mensage = () => {
-    alert('clicou em mim');
-  }
   return (
     <View style={styles.container}>
       <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
         <Text style={styles.message}>
-        <Feather onPress={() => mensage()}
-         name="menu" size={30} color="#fff" /> 𝓒𝓸𝓻𝓪𝓬𝓪𝓸 𝓣𝓮𝓬𝓱
+          <Feather name="menu" size={30} color="#fff" /> 𝓒𝓸𝓻𝓪𝓬𝓪𝓸 𝓣𝓮𝓬𝓱
         </Text>
       </Animatable.View>
 
       <FlatList
         data={posts}
-        keyExtractor={(item, index) => item.id + index.toString()}
+        keyExtractor={(item) => item.id}
         renderItem={renderPostItem}
       />
 
@@ -179,12 +181,6 @@ const Feed: React.FC<FeedProps> = () => {
         onRequestClose={() => setModalVisible(false)}
       >
         <View style={styles.modalContainer}>
-          <TextInput
-            placeholder="Username"
-            style={styles.input}
-            value={newUsername}
-            onChangeText={(text) => setNewUsername(text)}
-          />
           <TextInput
             placeholder="Title"
             style={styles.input}
