@@ -15,16 +15,16 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-const criar = (email: string, password: string) =>{
-  return createUserWithEmailAndPassword(auth, email, password);
+const criar = async (email: string, password: string) =>{
+  return await  createUserWithEmailAndPassword(auth, email, password);
 };
 
-const logar = (email: string, password: string) =>{
-  return signInWithEmailAndPassword(auth, email, password);
+const logar = async (email: string, password: string) =>{
+  return await  signInWithEmailAndPassword(auth, email, password);
 };
 
-const enviarRecuperacaoSenha = (email: string) => {
-  return sendPasswordResetEmail(auth, email);
+const enviarRecuperacaoSenha = async (email: string) => {
+  return await sendPasswordResetEmail(auth, email);
 };
 
 export { db, auth, criar, logar, enviarRecuperacaoSenha };
