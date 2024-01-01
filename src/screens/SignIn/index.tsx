@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { styles } from './styles';
 import { StackTypes } from '../../routes/NavigationStack';
-import { logar, enviarRecuperacaoSenha } from '../../components/firebase';
+import { logar, enviarRecuperacaoSenha } from '../../config/firebase';
 
 const Login = () => {
   const [email, setEmail] = useState('');

@@ -21,7 +21,7 @@ import {
   query,
   getDoc,
 } from 'firebase/firestore';
-import { db } from '../../components/firebase';
+import { db } from '../../config/firebase';
 import { styles } from './styles';
 import Post from '../../model/Post';
 import { User, getAuth } from 'firebase/auth';
@@ -89,15 +89,8 @@ const Feed: React.FC<FeedProps> = () => {
       <Text style={styles.postTitle}>{item.title}</Text>
       <Text style={styles.postContent}>{item.content}</Text>
 
-      <TouchableOpacity
-        style={styles.actionIconContainer}
-        onPress={() => toggleLike(item.id)}
-      >
-        <FontAwesome
-          name="heart"
-          size={20}
-          color={likedPosts.includes(item.id) ? 'red' : '#333'}
-        />
+      <TouchableOpacity style={styles.actionIconContainer} onPress={() => toggleLike(item.id)}>
+        <FontAwesome name="heart" size={20} color={likedPosts.includes(item.id) ? 'red' : '#333'} />
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.actionIconContainer}>
@@ -112,22 +105,27 @@ const Feed: React.FC<FeedProps> = () => {
         <FontAwesome name="bookmark" size={20} color="#333" />
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.saveIconContainer}
-        onPress={() => deletePost(item.id)}
-      >
+      {user?.uid === item.idpub && (
+      <TouchableOpacity style={styles.saveIconContainer} onPress={() => deletePost(item.id)}>
         <FontAwesome name="trash" size={20} color={'#333'} />
       </TouchableOpacity>
+    )}
     </Animatable.View>
   );
 
   const deletePost = async (postId: string) => {
     try {
       const postRef = doc(db, 'posts', postId);
-      await deleteDoc(postRef);
-
-      const updatedPosts = posts.filter((post) => post.id !== postId);
-      setPosts(updatedPosts);
+      const postDoc = await getDoc(postRef);
+  
+      if (postDoc.exists() && postDoc.data()?.idpub === user?.uid) {
+        await deleteDoc(postRef);
+  
+        const updatedPosts = posts.filter((post) => post.id !== postId);
+        setPosts(updatedPosts);
+      } else {
+        console.warn('User does not have permission to delete this post');
+      }
     } catch (error) {
       console.error('Error deleting post:', error);
       alert('Error deleting post. Please try again.');
@@ -168,11 +166,7 @@ const Feed: React.FC<FeedProps> = () => {
         </Text>
       </Animatable.View>
 
-      <FlatList
-        data={posts}
-        keyExtractor={(item) => item.id}
-        renderItem={renderPostItem}
-      />
+      <FlatList data={posts} keyExtractor={(item) => item.id} renderItem={renderPostItem} />
 
       <Modal
         animationType="slide"
@@ -181,32 +175,41 @@ const Feed: React.FC<FeedProps> = () => {
         onRequestClose={() => setModalVisible(false)}
       >
         <View style={styles.modalContainer}>
-          <TextInput
-            placeholder="Title"
-            style={styles.input}
-            value={newTitle}
-            onChangeText={(text) => setNewTitle(text)}
-          />
-          <TextInput
-            placeholder="Content"
-            style={styles.input}
-            value={newContent}
-            onChangeText={(text) => setNewContent(text)}
-          />
-          <Button title="Create Post" onPress={createNewPost} />
+          <View style={styles.modalContent}>
+            <TextInput
+              placeholder="Title"
+              style={styles.input}
+              value={newTitle}
+              onChangeText={(text) => setNewTitle(text)}
+            />
+            <TextInput
+              placeholder="Content"
+              style={styles.input}
+              value={newContent}
+              onChangeText={(text) => setNewContent(text)}
+            />
+
+            <TouchableOpacity
+              style={styles.actionButton}
+              onPress={createNewPost}
+              disabled={loading}
+            >
+              {loading ? (
+                <ActivityIndicator size="small" color="#FFF" />
+              ) : (
+                <Text style={styles.buttonText}>Criar Post</Text>
+              )}
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.actionButton} onPress={() => setModalVisible(false)}>
+              <Text style={styles.buttonText}>Fechar</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </Modal>
 
-      <TouchableOpacity
-        style={styles.addButton}
-        onPress={() => setModalVisible(true)}
-        disabled={loading}
-      >
-        {loading ? (
-          <ActivityIndicator size="small" color="#FFF" />
-        ) : (
-          <Text style={styles.addButtonText}>+</Text>
-        )}
+      <TouchableOpacity style={styles.addButton} onPress={() => setModalVisible(true)}>
+        <Text style={styles.addButtonText}>+</Text>
       </TouchableOpacity>
     </View>
   );

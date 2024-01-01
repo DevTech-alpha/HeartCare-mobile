@@ -34,6 +34,7 @@
     "react-native-communications": "^2.2.1",
     "react-native-datepicker": "^1.7.2",
     "react-native-gesture-handler": "~2.12.0",
+    "react-native-gifted-chat": "^2.4.0",
     "react-native-image-picker": "^7.1.0",
     "react-native-maps": "^1.7.1",
     "react-native-paper": "^5.11.4",

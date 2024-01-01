@@ -4,7 +4,7 @@ import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
 
 import { styles } from './styles';
-import { criar } from '../../components/firebase';
+import { criar } from '../../config/firebase';
 import { StackTypes } from '../../routes/NavigationStack';
 
 export default function Cadastro() {

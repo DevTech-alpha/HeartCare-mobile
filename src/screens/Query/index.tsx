@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, FlatList, Modal, ActivityIndicator } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  FlatList,
+  Modal,
+  ActivityIndicator,
+} from 'react-native';
 import {
   addDoc,
   collection,
@@ -10,14 +18,13 @@ import {
   query,
   where,
 } from 'firebase/firestore';
-import { db } from '../../components/firebase';
+import { db } from '../../config/firebase';
 import { User, getAuth } from 'firebase/auth';
 import Medicao from '../../model/Medicao';
 import * as Animatable from 'react-native-animatable';
 import { styles } from './styles';
 
 const PressaoArterial = () => {
-
   const [sistolica, setSistolica] = useState('');
   const [diastolica, setDiastolica] = useState('');
   const [pulso, setPulso] = useState('');
@@ -28,6 +35,7 @@ const PressaoArterial = () => {
   const [data, setData] = useState(new Date());
   const [modoEdicao, setModoEdicao] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [historicoVisivel, setHistoricoVisivel] = useState(false);
   const auth = getAuth();
   const user: User | null = auth.currentUser;
 
@@ -69,7 +77,12 @@ const PressaoArterial = () => {
   };
 
   const editarMedicao = async () => {
-    if (sistolica.trim() !== '' && diastolica.trim() !== '' && pulso.trim() !== '' && medicaoSelecionada) {
+    if (
+      sistolica.trim() !== '' &&
+      diastolica.trim() !== '' &&
+      pulso.trim() !== '' &&
+      medicaoSelecionada
+    ) {
       const medicaoRef = doc(db, 'medicoes', medicaoSelecionada.id.toString());
       await setDoc(medicaoRef, {
         sistolica,
@@ -117,7 +130,10 @@ const PressaoArterial = () => {
       const q = query(medicoesRef, where('userId', '==', user.uid));
       const querySnapshot = await getDocs(q);
 
-      const medicoesData: Medicao[] = querySnapshot.docs.map((doc: any) => ({ id: doc.id, ...doc.data() } as Medicao));
+      const medicoesData: Medicao[] = querySnapshot.docs.map((doc: any) => ({
+        id: doc.id,
+        ...doc.data(),
+      } as Medicao));
       setMedicoes(medicoesData);
     }
   };
@@ -171,48 +187,72 @@ const PressaoArterial = () => {
           keyboardType="numeric"
         />
 
-        <TouchableOpacity style={styles.botaoAdicionar} onPress={adicionarMedicao} disabled={loading}>
+        <TouchableOpacity
+          style={styles.botaoAdicionar}
+          onPress={modoEdicao ? editarMedicao : adicionarMedicao}
+          disabled={loading}
+        >
           {loading ? (
             <View style={styles.loadingContainer}>
               <ActivityIndicator size="small" color="#fff" />
             </View>
           ) : (
-            <Text style={styles.textoBotao}>Adicionar Medição</Text>
+            <Text style={styles.textoBotao}>
+              {modoEdicao ? 'Salvar Edição' : 'Adicionar Medição'}
+            </Text>
           )}
         </TouchableOpacity>
 
+        {/* Botão "Mostrar Histórico" */}
+        <TouchableOpacity
+          style={styles.botaoAdicionar}
+          onPress={() => setHistoricoVisivel(!historicoVisivel)}
+        >
+          <Text style={styles.textoBotao}>
+            {historicoVisivel ? 'Ocultar Histórico' : 'Mostrar Histórico'}
+          </Text>
+        </TouchableOpacity>
 
-        <Text style={styles.messagePre}>Histórico</Text>
-
-        <FlatList
-          data={medicoes}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <View style={styles.itemMedicao}>
-              <Text style={styles.textoMedicao}>Sistólica: {item.sistolica}</Text>
-              <Text style={styles.textoMedicao}>Diastólica: {item.diastolica}</Text>
-              <Text style={styles.textoMedicao}>Pulso: {item.pulso}</Text>
-              <Text style={styles.textoMedicao}>Horário: {new Date(item.horario).toLocaleTimeString()}</Text>
-              <Text style={styles.textoMedicao}>Data: {new Date(item.data).toLocaleDateString()}</Text>
-              {isMedicaoInRanged(item) ? (
-                <Text style={styles.textoMedicaoBoa}>Pressão Boa</Text>
-              ) : (
-                <Text style={styles.textoMedicaoRuim}>Pressão Ruim</Text>
-              )}
-              <View style={styles.containerBotoes}>
-                <TouchableOpacity
-                  style={modoEdicao ? styles.botaoEditarAtivo : styles.botaoEditar}
-                  onPress={() => abrirModalEdicao(item)}
-                >
-                  <Text style={styles.textoBotao}>Editar</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.botaoExcluir} onPress={() => excluirMedicao(item.id)}>
-                  <Text style={styles.textoBotao}>Excluir</Text>
-                </TouchableOpacity>
+        {/* Renderizar o FlatList somente se historicoVisivel for true */}
+        {historicoVisivel && (
+          <FlatList
+            data={medicoes}
+            keyExtractor={(item) => item.id.toString()}
+            ListEmptyComponent={<Text style={styles.textoVazio}>Nenhum registro encontrado.</Text>}
+            renderItem={({ item }) => (
+              <View style={styles.itemMedicao}>
+                <Text style={styles.textoMedicao}>Sistólica: {item.sistolica}</Text>
+                <Text style={styles.textoMedicao}>Diastólica: {item.diastolica}</Text>
+                <Text style={styles.textoMedicao}>Pulso: {item.pulso}</Text>
+                <Text style={styles.textoMedicao}>
+                  Horário: {new Date(item.horario).toLocaleTimeString()}
+                </Text>
+                <Text style={styles.textoMedicao}>
+                  Data: {new Date(item.data).toLocaleDateString()}
+                </Text>
+                {isMedicaoInRanged(item) ? (
+                  <Text style={styles.textoMedicaoBoa}>Pressão Boa</Text>
+                ) : (
+                  <Text style={styles.textoMedicaoRuim}>Pressão Ruim</Text>
+                )}
+                <View style={styles.containerBotoes}>
+                  <TouchableOpacity
+                    style={modoEdicao ? styles.botaoEditarAtivo : styles.botaoEditar}
+                    onPress={() => abrirModalEdicao(item)}
+                  >
+                    <Text style={styles.textoBotao}>Editar</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.botaoExcluir}
+                    onPress={() => excluirMedicao(item.id)}
+                  >
+                    <Text style={styles.textoBotao}>Excluir</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
-            </View>
-          )}
-        />
+            )}
+          />
+        )}
 
         <Modal
           animationType="slide"
@@ -227,10 +267,13 @@ const PressaoArterial = () => {
             <TouchableOpacity style={styles.botaoEditar} onPress={editarMedicao}>
               <Text style={styles.textoBotao}>Salvar Edição</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.botaoCancelar} onPress={() => {
-              setIsModalVisible(false);
-              setMedicaoSelecionada(null);
-            }}>
+            <TouchableOpacity
+              style={styles.botaoCancelar}
+              onPress={() => {
+                setIsModalVisible(false);
+                setMedicaoSelecionada(null);
+              }}
+            >
               <Text style={styles.textoBotao}>Cancelar</Text>
             </TouchableOpacity>
           </View>
@@ -241,3 +284,4 @@ const PressaoArterial = () => {
 };
 
 export default PressaoArterial;
+

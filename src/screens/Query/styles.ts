@@ -5,6 +5,12 @@ export const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#e61919',
     },
+    textoVazio: {
+      textAlign: 'center',
+      marginTop: 20,
+      fontSize: 16,
+      color: '#555', // Cor de texto desejada
+    },
     containerHeader: {
       marginTop: '15%',
       marginBottom: '10%',

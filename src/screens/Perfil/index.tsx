@@ -11,7 +11,7 @@ import {
 import { useNavigation } from '@react-navigation/core';
 import { StackTypes } from '../../routes/NavigationStack';
 import * as Animatable from 'react-native-animatable';
-import { db } from '../../components/firebase';
+import { db } from '../../config/firebase';
 import {
   User,
   getAuth,
