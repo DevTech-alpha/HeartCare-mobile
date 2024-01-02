@@ -1,43 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  Image,
-  TextInput,
-  Modal,
-  Button,
-  ActivityIndicator,
-} from 'react-native';
-import { Feather, FontAwesome } from '@expo/vector-icons';
-import * as Animatable from 'react-native-animatable';
-import {
-  collection,
-  getDocs,
-  addDoc,
-  doc,
-  deleteDoc,
-  query,
-  getDoc,
-} from 'firebase/firestore';
+import React, { useRef, useState, useEffect } from 'react';
+import { Text, TouchableOpacity, FlatList, View} from 'react-native';
+import BottomSheet from '@gorhom/bottom-sheet';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { collection, getDocs, addDoc, doc, deleteDoc, query, getDoc } from 'firebase/firestore';
 import { db } from '../../config/firebase';
-import { styles } from './styles';
+import { User, getAuth} from 'firebase/auth';
 import Post from '../../model/Post';
-import { User, getAuth } from 'firebase/auth';
+import { Feather } from '@expo/vector-icons';
+import * as Animatable from 'react-native-animatable';
+import PostItem from '../../components/PostItem';
+import BottomSheetContent from '../../components/bottomSheet';
+import { styles as feedStyles } from './styles';
 
-interface FeedProps {}
+interface FeedProps { }
 
 const Feed: React.FC<FeedProps> = () => {
   const auth = getAuth();
   const user: User | null = auth.currentUser;
 
   const [posts, setPosts] = useState<Post[]>([]);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [newTitle, setNewTitle] = useState('');
-  const [newContent, setNewContent] = useState('');
+  const [bottomSheetActive, setBottomSheetActive] = useState(false);
   const [loading, setLoading] = useState(false);
   const [likedPosts, setLikedPosts] = useState<string[]>([]);
+  const bottomSheetRef = useRef<BottomSheet>(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -79,48 +64,14 @@ const Feed: React.FC<FeedProps> = () => {
     );
   };
 
-  const renderPostItem = ({ item }: { item: Post & { username: string; userPhoto: string } }) => (
-    <Animatable.View animation="fadeInUp" style={styles.postContainer}>
-      <View style={styles.postHeader}>
-        <Image source={{ uri: item.userPhoto }} style={styles.userPhoto} />
-        <Text style={styles.username}>{item.username}</Text>
-      </View>
-
-      <Text style={styles.postTitle}>{item.title}</Text>
-      <Text style={styles.postContent}>{item.content}</Text>
-
-      <TouchableOpacity style={styles.actionIconContainer} onPress={() => toggleLike(item.id)}>
-        <FontAwesome name="heart" size={20} color={likedPosts.includes(item.id) ? 'red' : '#333'} />
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.actionIconContainer}>
-        <FontAwesome name="comment" size={20} color="#333" />
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.actionIconContainer}>
-        <FontAwesome name="send" size={20} color="#333" />
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.saveIconContainer}>
-        <FontAwesome name="bookmark" size={20} color="#333" />
-      </TouchableOpacity>
-
-      {user?.uid === item.idpub && (
-      <TouchableOpacity style={styles.saveIconContainer} onPress={() => deletePost(item.id)}>
-        <FontAwesome name="trash" size={20} color={'#333'} />
-      </TouchableOpacity>
-    )}
-    </Animatable.View>
-  );
-
   const deletePost = async (postId: string) => {
     try {
       const postRef = doc(db, 'posts', postId);
       const postDoc = await getDoc(postRef);
-  
+
       if (postDoc.exists() && postDoc.data()?.idpub === user?.uid) {
         await deleteDoc(postRef);
-  
+
         const updatedPosts = posts.filter((post) => post.id !== postId);
         setPosts(updatedPosts);
       } else {
@@ -128,27 +79,24 @@ const Feed: React.FC<FeedProps> = () => {
       }
     } catch (error) {
       console.error('Error deleting post:', error);
-      alert('Error deleting post. Please try again.');
     }
   };
 
-  const createNewPost = async () => {
+  const createNewPost = async (title: string, content: string) => {
     try {
-      if (newTitle.trim() !== '' && newContent.trim() !== '') {
+      if (title.trim() !== '' && content.trim() !== '') {
         setLoading(true);
 
         const postWithUserId = {
-          title: newTitle,
-          content: newContent,
+          title,
+          content,
           idpub: user?.uid || '',
         };
 
         const docRef = await addDoc(collection(db, 'posts'), postWithUserId);
         const updatedPosts = [...posts, { ...postWithUserId, id: docRef.id }];
         setPosts(updatedPosts);
-        setModalVisible(false);
-        setNewTitle('');
-        setNewContent('');
+        setBottomSheetActive(false);
       }
     } catch (error) {
       console.error('Error adding post:', error);
@@ -158,61 +106,60 @@ const Feed: React.FC<FeedProps> = () => {
     }
   };
 
+  const closeBottomSheet = () => {
+    setBottomSheetActive(false);
+  };
+
   return (
-    <View style={styles.container}>
-      <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
-        <Text style={styles.message}>
-          <Feather name="menu" size={30} color="#fff" /> 𝓒𝓸𝓻𝓪𝓬𝓪𝓸 𝓣𝓮𝓬𝓱
+    <GestureHandlerRootView style={feedStyles.container}>
+      <Animatable.View animation="fadeInLeft" delay={500} style={feedStyles.containerHeader}>
+        <Text style={feedStyles.message}>
+          𝓒𝓸𝓻𝓪𝓬𝓪𝓸 𝓣𝓮𝓬𝓱
         </Text>
       </Animatable.View>
 
-      <FlatList data={posts} keyExtractor={(item) => item.id} renderItem={renderPostItem} />
+      <FlatList
+        data={posts}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <PostItem
+            item={item}
+            toggleLike={toggleLike}
+            userUid={user?.uid || ''}
+            deletePost={deletePost}
+          />
+        )}
+      />
 
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <TextInput
-              placeholder="Title"
-              style={styles.input}
-              value={newTitle}
-              onChangeText={(text) => setNewTitle(text)}
-            />
-            <TextInput
-              placeholder="Content"
-              style={styles.input}
-              value={newContent}
-              onChangeText={(text) => setNewContent(text)}
-            />
+      {bottomSheetActive && (
+        <BottomSheet
+          ref={bottomSheetRef}
+          index={0}
+          snapPoints={['50%', '80%']}
+          backgroundComponent={() => <View style={{ flex: 1, backgroundColor: '#fff' }} />}
+          onChange={(index) => {
+            if (index === 0) {
+              setBottomSheetActive(true);
+            }
+          }}
+        >
+          <BottomSheetContent
+            createNewPost={createNewPost}
+            closeBottomSheet={closeBottomSheet}
+            loading={loading}
+          />
+        </BottomSheet>
+      )}
 
-            <TouchableOpacity
-              style={styles.actionButton}
-              onPress={createNewPost}
-              disabled={loading}
-            >
-              {loading ? (
-                <ActivityIndicator size="small" color="#FFF" />
-              ) : (
-                <Text style={styles.buttonText}>Criar Post</Text>
-              )}
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.actionButton} onPress={() => setModalVisible(false)}>
-              <Text style={styles.buttonText}>Fechar</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-
-      <TouchableOpacity style={styles.addButton} onPress={() => setModalVisible(true)}>
-        <Text style={styles.addButtonText}>+</Text>
+      <TouchableOpacity style={feedStyles.addButton} onPress={() => setBottomSheetActive(true)}>
+        <Text style={feedStyles.addButtonText}><Feather name="pen-tool" size={25} color="#fff" /></Text>
       </TouchableOpacity>
-    </View>
+    </GestureHandlerRootView>
   );
 };
 
 export default Feed;
+
+
+
+

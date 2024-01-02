@@ -1,4 +1,5 @@
 interface Post {
+  userPhoto: string;
   id: string;
   idpub: string; 
   username: string;

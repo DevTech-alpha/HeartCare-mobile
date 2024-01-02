@@ -1,51 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-  TextInput,
-  Alert,
-  ActivityIndicator, // Importe o componente ActivityIndicator
-} from 'react-native';
-import { useNavigation } from '@react-navigation/core';
-import { StackTypes } from '../../routes/NavigationStack';
+import { Text, View, Alert, ScrollView, TouchableOpacity } from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import { getAuth, User } from 'firebase/auth';
+import { collection, doc, getDoc, setDoc, updateDoc, DocumentData, query, getDocs, where } from 'firebase/firestore';
+import { launchImageLibrary, ImageLibraryOptions, ImagePickerResponse } from 'react-native-image-picker';
 import { db } from '../../config/firebase';
-import {
-  User,
-  getAuth,
-  signOut,
-  updateProfile,
-} from 'firebase/auth';
-import {
-  collection,
-  doc,
-  getDoc,
-  setDoc,
-  DocumentData,
-  updateDoc,
-} from 'firebase/firestore';
-import ImagePicker, { launchImageLibrary, ImageLibraryOptions, ImagePickerResponse } from 'react-native-image-picker';
 import { styles } from './styles';
+import ProfileImage from '../../components/ProfileImage';
+import UserProfileForm from '../../components/UserProfileForm';
+import PostItem from '../../components/PostItem';
+import Post from '../../model/Post';
 
 const UserProfileScreen = () => {
   const auth = getAuth();
   const user: User | null = auth.currentUser;
 
-  const navigation = useNavigation<StackTypes>();
-  const [loading, setLoading] = useState(false); // Adicione o estado de loading
+  const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState('');
   const [photo, setPhoto] = useState<string | null>(null);
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [dob, setDob] = useState('');
   const [email, setEmail] = useState(user?.email || '');
+  const [userPosts, setUserPosts] = useState<Post[]>([]);
+  const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        setLoading(true); // Defina o estado de loading como true
+        setLoading(true);
 
         if (user) {
           const uid = user.uid;
@@ -58,49 +41,77 @@ const UserProfileScreen = () => {
             setName(userData.name || '');
             setLastName(userData.lastName || '');
             setDob(userData.dob || '');
-            setPhoto(userData.photo || null);
+            setPhoto(userData.photo);
           }
         }
 
-        setLoading(false); // Limpe o estado de loading
+        setLoading(false);
       } catch (error) {
-        setLoading(false); // Em caso de erro, limpe o estado de loading
+        setLoading(false);
         console.error('Error fetching user data:', error);
       }
     };
 
+    const fetchUserPosts = async () => {
+      try {
+        setLoading(true);
+
+        if (user) {
+          const uid = user.uid;
+          const postsQuery = query(collection(db, 'posts'), where('idpub', '==', uid));
+          const postsSnapshot = await getDocs(postsQuery);
+          const userPostsData = postsSnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          })) as Post[];
+
+          setUserPosts(userPostsData);
+        }
+
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error fetching user posts:', error);
+      }
+    };
+
     fetchUserData();
-  }, [user]);
+    fetchUserPosts();
+  }, [user])
 
   const handleChoosePhoto = () => {
     const options: ImageLibraryOptions = {
       mediaType: 'photo',
     };
 
-    // Implemente a lógica para escolher a foto
+    launchImageLibrary(options, (response: ImagePickerResponse) => {
+      if (!response.didCancel && !response) {
+        setPhoto(response);
+      }
+    });
   };
 
   const handleSaveProfile = async () => {
     try {
-      setLoading(true); // Defina o estado de loading como true
-
+      setLoading(true);
+  
       if (!user) {
         Alert.alert('Erro', 'Usuário não autenticado.');
-        setLoading(false); // Em caso de erro, limpe o estado de loading
+        setLoading(false);
         return;
       }
-
+  
       const uid = user.uid;
-
+  
       if (!username || !name || !lastName || !dob || !email) {
         Alert.alert('Erro', 'Por favor, preencha todos os campos obrigatórios.');
-        setLoading(false); // Em caso de erro, limpe o estado de loading
+        setLoading(false);
         return;
       }
-
+  
       const userRef = doc(collection(db, 'users'), uid);
       const userDoc = await getDoc(userRef);
-
+  
       if (userDoc.exists()) {
         await updateDoc(userRef, {
           username,
@@ -121,16 +132,12 @@ const UserProfileScreen = () => {
           photo,
         });
       }
-
-      await updateProfile(user, {
-        displayName: username,
-        photoURL: photo,
-      });
-
-      setLoading(false); // Limpe o estado de loading
+  
+      setLoading(false);
+      setEditMode(false);
       Alert.alert('Atualizado com sucesso');
     } catch (error) {
-      setLoading(false); // Em caso de erro, limpe o estado de loading
+      setLoading(false);
       console.error('Erro ao salvar o perfil:', error);
       Alert.alert(
         'Erro',
@@ -138,86 +145,57 @@ const UserProfileScreen = () => {
       );
     }
   };
-
-  const handleLogout = async () => {
-    try {
-      setLoading(true); // Defina o estado de loading como true
-
-      await signOut(auth);
-      navigation.navigate('Login');
-
-      setLoading(false); // Limpe o estado de loading
-    } catch (error) {
-      setLoading(false); // Em caso de erro, limpe o estado de loading
-      console.error('Erro ao fazer logout:', error);
-      Alert.alert('Erro', 'Houve um erro ao fazer logout. Tente novamente mais tarde.');
-    }
+  
+  const handleEditClick = () => {
+    setEditMode(!editMode);
   };
 
   return (
     <View style={styles.container}>
-      <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
-        <Text style={styles.message}>Complete seu Perfil</Text>
+      <Animatable.View animation="fadeInLeft" delay={600} style={styles.containerHeader}>
+        <Text style={styles.message}>Perfil</Text>
       </Animatable.View>
-      <Animatable.View animation="fadeInUp" style={styles.containerForm}>
-        <TouchableOpacity
-          onPress={handleChoosePhoto}
-          style={styles.profileImageContainer}
-        >
-          {photo ? (
-            <Image source={{ uri: photo }} style={styles.profileImage} />
-          ) : (
-            <Text style={styles.choosePhotoText}>Escolha uma foto</Text>
-          )}
+
+      <ProfileImage photo={photo} onPress={handleChoosePhoto} />
+
+      <TouchableOpacity  style={styles.button}onPress={handleEditClick}>
+          <Text style={styles.buttonText}>{editMode ? 'Cancelar' : 'Editar Usuário'}</Text>
         </TouchableOpacity>
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      
 
-        <TextInput
-          style={styles.input}
-          placeholder="Nome de usuário"
-          onChangeText={(text) => setUsername(text)}
-          value={username}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Nome"
-          onChangeText={(text) => setName(text)}
-          value={name}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Sobrenome"
-          onChangeText={(text) => setLastName(text)}
-          value={lastName}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Data de Nascimento"
-          onChangeText={(text) => setDob(text)}
-          value={dob}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          onChangeText={(text) => setEmail(text)}
-          value={email}
-        />
+        {editMode && (
+          <UserProfileForm
+            username={username}
+            name={name}
+            lastName={lastName}
+            dob={dob}
+            email={email}
+            setUsername={setUsername}
+            setName={setName}
+            setLastName={setLastName}
+            setDob={setDob}
+            setEmail={setEmail}
+            handleSaveProfile={handleSaveProfile}
+            loading={loading}
+          />
+        )}
 
-        <TouchableOpacity style={styles.buttonAcessar} onPress={handleSaveProfile} disabled={loading}>
-          {loading ? (
-            <ActivityIndicator size="small" color="#fff" />
-          ) : (
-            <Text style={styles.buttonText}>Salvar perfil</Text>
-          )}
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.buttonLogout}
-          onPress={handleLogout}
-        >
-          <Text style={styles.buttonText}>Logout</Text>
-        </TouchableOpacity>
-
-      </Animatable.View>
+        <View style={styles.userPostsContainer}>
+        <Text style={styles.message}>Publicacoes</Text>
+          {userPosts.map((post) => (
+            <PostItem
+              key={post.id}
+              item={{
+                ...post,
+              }}
+              toggleLike={(postId) => { /* sua lógica para toggleLike */ }}
+              userUid={user?.uid || ''}
+              deletePost={(postId) => { /* sua lógica para deletePost */ }}
+            />
+          ))}
+        </View>
+      </ScrollView>
     </View>
   );
 };

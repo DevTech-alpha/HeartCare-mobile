@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   // Common styles
@@ -16,23 +16,19 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#FFF',
   },
-  userPostsContainer: {
-    backgroundColor: '#e61919',
-    marginTop: 20,
-    padding: 15,
+  containerForm: {
+    flex: 1,
+    backgroundColor: '#FFF',
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
-  },
-  userPostsTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10,
+    paddingHorizontal: '5%',
+    paddingVertical: '5%',
   },
 
   // Profile styles
   profileImageContainer: {
     alignItems: 'center',
-    marginBottom: 15,
+    marginBottom: 5,
   },
   profileImage: {
     width: 100,
@@ -44,16 +40,7 @@ export const styles = StyleSheet.create({
     color: '#e61919',
     marginTop: 15,
   },
-
   // Form styles
-  containerForm: {
-    flex: 1,
-    backgroundColor: '#e61919',
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
-    paddingHorizontal: '5%',
-    paddingVertical: '5%',
-  },
   title: {
     fontSize: 16,
     marginTop: 20,
@@ -61,7 +48,7 @@ export const styles = StyleSheet.create({
   input: {
     borderBottomWidth: 1,
     height: 25,
-    marginBottom: 10,
+    marginBottom: 5,
     fontSize: 16,
   },
   button: {
@@ -78,8 +65,5 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
-  scrollViewContent: {
-    flexGrow: 1,
-    justifyContent: 'space-between',
-  },
+
 });
