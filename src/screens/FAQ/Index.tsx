@@ -6,6 +6,7 @@ import { styles } from './styles';
 import * as Animatable from 'react-native-animatable';
 
 function FAQScreen() {
+ 
   const [questions] = useState([
     {
       id: 1,
@@ -59,7 +60,6 @@ function FAQScreen() {
     }
   ]);
 
-
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
   const handleQuestionPress = (id: any) => {
@@ -72,7 +72,6 @@ function FAQScreen() {
         <Text style={styles.message}>Perguntas Frequentes</Text>
       </Animatable.View>
       <ScrollView>
-
         {questions.map((item) => (
           <Animatable.View
             key={item.id}
@@ -89,7 +88,6 @@ function FAQScreen() {
                   size={20}
                   color="#333333" />
                 <Text style={styles.questionText}>{item.pergunta}</Text>
-
               </View>
             </TouchableOpacity>
             {selectedQuestion === item.id && (
@@ -105,6 +103,5 @@ function FAQScreen() {
 }
 
 export default FAQScreen;
-
 
 

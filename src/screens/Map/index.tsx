@@ -7,7 +7,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { styles } from './styles';
 
 const Mapa = () => {
-
   const callEmergencyNumber = () => {
     Linking.openURL('tel:192');
   };

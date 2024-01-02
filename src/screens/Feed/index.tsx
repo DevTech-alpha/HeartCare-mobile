@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Text, TouchableOpacity, FlatList, View} from 'react-native';
+import { Text, TouchableOpacity, FlatList, View, Alert } from 'react-native';
 import BottomSheet from '@gorhom/bottom-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { collection, getDocs, addDoc, doc, deleteDoc, query, getDoc } from 'firebase/firestore';
 import { db } from '../../config/firebase';
-import { User, getAuth} from 'firebase/auth';
+import { User, getAuth } from 'firebase/auth';
 import Post from '../../model/Post';
 import { Feather } from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable';
@@ -12,7 +12,7 @@ import PostItem from '../../components/PostItem';
 import BottomSheetContent from '../../components/bottomSheet';
 import { styles as feedStyles } from './styles';
 
-interface FeedProps { }
+interface FeedProps {}
 
 const Feed: React.FC<FeedProps> = () => {
   const auth = getAuth();
@@ -68,12 +68,30 @@ const Feed: React.FC<FeedProps> = () => {
     try {
       const postRef = doc(db, 'posts', postId);
       const postDoc = await getDoc(postRef);
-
+  
       if (postDoc.exists() && postDoc.data()?.idpub === user?.uid) {
-        await deleteDoc(postRef);
-
-        const updatedPosts = posts.filter((post) => post.id !== postId);
-        setPosts(updatedPosts);
+        // Confirm if the user wants to delete the post
+        Alert.alert(
+          'Confirmação',
+          'Tem certeza de que deseja apagar esta publicação?',
+          [
+            {
+              text: 'Cancelar',
+              style: 'cancel',
+            },
+            {
+              text: 'Apagar',
+              onPress: async () => {
+                // User pressed the "Apagar" button
+                await deleteDoc(postRef);
+  
+                const updatedPosts = posts.filter((post) => post.id !== postId);
+                setPosts(updatedPosts);
+              },
+            },
+          ],
+          { cancelable: true }
+        );
       } else {
         console.warn('User does not have permission to delete this post');
       }
@@ -81,7 +99,7 @@ const Feed: React.FC<FeedProps> = () => {
       console.error('Error deleting post:', error);
     }
   };
-
+  
   const createNewPost = async (title: string, content: string) => {
     try {
       if (title.trim() !== '' && content.trim() !== '') {
@@ -158,8 +176,15 @@ const Feed: React.FC<FeedProps> = () => {
   );
 };
 
+
+
+
+
+
+
+
+
+
+
+
 export default Feed;
-
-
-
-

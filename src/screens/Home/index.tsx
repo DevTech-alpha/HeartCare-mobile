@@ -7,7 +7,6 @@ import { styles } from './styles';
 import { StackTypes } from '../../routes/NavigationStack';
 
 export default function Home() {
-
   const navigation = useNavigation<StackTypes>();
 
   return (

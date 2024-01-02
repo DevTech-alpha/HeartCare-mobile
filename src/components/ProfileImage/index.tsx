@@ -1,14 +1,9 @@
-// ProfileImage.tsx
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
+import ProfileImageProps from '../../props/ProfileImageProps';
 
-interface ProfileImageProps {
-  photo: string | null;
-  onPress: () => void;
-}
 
-// ProfileImage.tsx
 const ProfileImage: React.FC<ProfileImageProps> = ({ photo, onPress }) => (
   <TouchableOpacity style={styles.profileImageContainer} onPress={onPress}>
     {photo && photo !== '' ? (
@@ -18,7 +13,5 @@ const ProfileImage: React.FC<ProfileImageProps> = ({ photo, onPress }) => (
     )}
   </TouchableOpacity>
 );
-
-
 
 export default ProfileImage;

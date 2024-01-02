@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
       textAlign: 'center',
       marginTop: 20,
       fontSize: 16,
-      color: '#555', // Cor de texto desejada
+      color: '#555', 
     },
     containerHeader: {
       marginTop: '15%',

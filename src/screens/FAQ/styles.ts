@@ -44,10 +44,9 @@ export const styles = StyleSheet.create({
     paddingStart: '5%',
   },
   message: {
-    paddingTop:20,
+    paddingTop: 20,
     fontSize: 28,
     fontWeight: 'bold',
     color: '#FFF',
   },
 });
-

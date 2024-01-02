@@ -3,14 +3,9 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { styles as feedStyles } from './styles';
 import * as Animatable from 'react-native-animatable';
-import Post from '../../model/Post';
+import PostItemProps from '../../props/PostItemProps';
 
-interface PostItemProps {
-  item: Post & { username: string; userPhoto: string };
-  toggleLike: (postId: string) => void;
-  userUid: string | null;
-  deletePost: (postId: string) => void;
-}
+
 
 const PostItem: React.FC<PostItemProps> = ({ item, toggleLike, userUid, deletePost }) => (
   <Animatable.View animation="fadeInUp" style={feedStyles.postContainer}>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, Alert, ScrollView, TouchableOpacity } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { getAuth, User } from 'firebase/auth';
-import { collection, doc, getDoc, setDoc, updateDoc, DocumentData, query, getDocs, where } from 'firebase/firestore';
+import { collection, doc, getDoc, setDoc, updateDoc, DocumentData, query, getDocs, where, deleteDoc } from 'firebase/firestore';
 import { launchImageLibrary, ImageLibraryOptions, ImagePickerResponse } from 'react-native-image-picker';
 import { db } from '../../config/firebase';
 import { styles } from './styles';
@@ -16,6 +16,8 @@ const UserProfileScreen = () => {
   const user: User | null = auth.currentUser;
 
   const [loading, setLoading] = useState(false);
+  const [posts, setPosts] = useState<Post[]>([]);
+
   const [username, setUsername] = useState('');
   const [photo, setPhoto] = useState<string | null>(null);
   const [name, setName] = useState('');
@@ -77,7 +79,7 @@ const UserProfileScreen = () => {
 
     fetchUserData();
     fetchUserPosts();
-  }, [user])
+  }, [user]);
 
   const handleChoosePhoto = () => {
     const options: ImageLibraryOptions = {
@@ -94,24 +96,24 @@ const UserProfileScreen = () => {
   const handleSaveProfile = async () => {
     try {
       setLoading(true);
-  
+
       if (!user) {
         Alert.alert('Erro', 'Usuário não autenticado.');
         setLoading(false);
         return;
       }
-  
+
       const uid = user.uid;
-  
+
       if (!username || !name || !lastName || !dob || !email) {
         Alert.alert('Erro', 'Por favor, preencha todos os campos obrigatórios.');
         setLoading(false);
         return;
       }
-  
+
       const userRef = doc(collection(db, 'users'), uid);
       const userDoc = await getDoc(userRef);
-  
+
       if (userDoc.exists()) {
         await updateDoc(userRef, {
           username,
@@ -132,7 +134,7 @@ const UserProfileScreen = () => {
           photo,
         });
       }
-  
+
       setLoading(false);
       setEditMode(false);
       Alert.alert('Atualizado com sucesso');
@@ -145,7 +147,44 @@ const UserProfileScreen = () => {
       );
     }
   };
-  
+
+  const deletePost = async (postId: string) => {
+    try {
+      const postRef = doc(db, 'posts', postId);
+      const postDoc = await getDoc(postRef);
+
+      if (postDoc.exists() && postDoc.data()?.idpub === user?.uid) {
+        // Confirm if the user wants to delete the post
+        Alert.alert(
+          'Confirmação',
+          'Tem certeza de que deseja apagar esta publicação?',
+          [
+            {
+              text: 'Cancelar',
+              style: 'cancel',
+            },
+            {
+              text: 'Apagar',
+              onPress: async () => {
+                // User pressed the "Apagar" button
+                await deleteDoc(postRef);
+
+                const updatedPosts = posts.filter((post) => post.id !== postId);
+                setPosts(updatedPosts);
+              },
+            },
+          ],
+          { cancelable: true }
+        );
+      } else {
+        console.warn('User does not have permission to delete this post');
+      }
+    } catch (error) {
+      console.error('Error deleting post:', error);
+    }
+  };
+
+
   const handleEditClick = () => {
     setEditMode(!editMode);
   };
@@ -158,12 +197,11 @@ const UserProfileScreen = () => {
 
       <ProfileImage photo={photo} onPress={handleChoosePhoto} />
 
-      <TouchableOpacity  style={styles.button}onPress={handleEditClick}>
-          <Text style={styles.buttonText}>{editMode ? 'Cancelar' : 'Editar Usuário'}</Text>
-        </TouchableOpacity>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-      
+      <TouchableOpacity style={styles.button} onPress={handleEditClick}>
+        <Text style={styles.buttonText}>{editMode ? 'Cancelar' : 'Editar Usuário'}</Text>
+      </TouchableOpacity>
 
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
         {editMode && (
           <UserProfileForm
             username={username}
@@ -182,18 +220,22 @@ const UserProfileScreen = () => {
         )}
 
         <View style={styles.userPostsContainer}>
-        <Text style={styles.message}>Publicacoes</Text>
-          {userPosts.map((post) => (
-            <PostItem
-              key={post.id}
-              item={{
-                ...post,
-              }}
-              toggleLike={(postId) => { /* sua lógica para toggleLike */ }}
-              userUid={user?.uid || ''}
-              deletePost={(postId) => { /* sua lógica para deletePost */ }}
-            />
-          ))}
+          <Text style={styles.message}>Publicacoes</Text>
+          {userPosts.length === 0 ? (
+            <Text style={styles.messageNop}>Não há publicações.</Text>
+          ) : (
+            userPosts.map((post) => (
+              <PostItem
+                key={post.id}
+                item={{
+                  ...post,
+                }}
+                toggleLike={() => { }}
+                userUid={user?.uid || ''}
+                deletePost={deletePost}
+              />
+            ))
+          )}
         </View>
       </ScrollView>
     </View>

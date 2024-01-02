@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  // Common styles
+  
   container: {
     flex: 1,
     backgroundColor: '#e61919',
@@ -10,6 +10,11 @@ export const styles = StyleSheet.create({
     marginTop: '14%',
     marginBottom: '8%',
     paddingStart: '5%',
+  },
+  messageNop:{
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#FFF',
   },
   message: {
     fontSize: 28,
@@ -29,7 +34,6 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
 
-  // Profile styles
   profileImageContainer: {
     alignItems: 'center',
     marginBottom: 15,
@@ -45,7 +49,6 @@ export const styles = StyleSheet.create({
     marginTop: 15,
   },
 
-  // Form styles
   containerForm: {
     flex: 1,
     backgroundColor: '#e61919',

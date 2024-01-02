@@ -1,12 +1,9 @@
 import { Feather } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { TextInput, TouchableOpacity, Text, ActivityIndicator, StyleSheet, View } from 'react-native';
+import BottomSheetContentProps from '../../props/BottomSheetContentProps';
 
-interface BottomSheetContentProps {
-  createNewPost: (title: string, content: string) => void;
-  closeBottomSheet: () => void;
-  loading: boolean;
-}
+
 
 const BottomSheetContent: React.FC<BottomSheetContentProps> = ({ createNewPost, closeBottomSheet, loading }) => {
   const [newTitle, setNewTitle] = useState('');
