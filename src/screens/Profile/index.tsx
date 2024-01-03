@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, Alert, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, Alert, ScrollView, TouchableOpacity, Image } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { getAuth, User } from 'firebase/auth';
 import { collection, doc, getDoc, setDoc, updateDoc, DocumentData, query, getDocs, where, deleteDoc } from 'firebase/firestore';
-import { launchImageLibrary, ImageLibraryOptions, ImagePickerResponse } from 'react-native-image-picker';
+import { getStorage, ref, uploadString, getDownloadURL } from 'firebase/storage';
 import { db } from '../../config/firebase';
+import * as ImagePicker from 'expo-image-picker'; // Import Expo's ImagePicker
 import { styles } from './styles';
 import ProfileImage from '../../components/ProfileImage';
 import UserProfileForm from '../../components/UserProfileForm';
@@ -26,6 +27,8 @@ const UserProfileScreen = () => {
   const [email, setEmail] = useState(user?.email || '');
   const [userPosts, setUserPosts] = useState<Post[]>([]);
   const [editMode, setEditMode] = useState(false);
+
+  const storage = getStorage();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -54,8 +57,6 @@ const UserProfileScreen = () => {
       }
     };
 
-
-
     fetchUserData();
     fetchUserPosts();
   }, [user]);
@@ -82,16 +83,29 @@ const UserProfileScreen = () => {
       console.error('Error fetching user posts:', error);
     }
   };
-  const handleChoosePhoto = () => {
-    const options: ImageLibraryOptions = {
-      mediaType: 'photo',
-    };
 
-    launchImageLibrary(options, (response: ImagePickerResponse) => {
-      if (!response.didCancel && !response) {
-        setPhoto(response);
+  const handleChoosePhoto = async () => {
+    try {
+      const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+      if (permissionResult.granted === false) {
+        Alert.alert('Permissão negada para acessar a biblioteca de mídia.');
+        return;
       }
-    });
+
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 1,
+      });
+
+      if (!result.cancelled && result.uri) {
+        setPhoto(result.uri);
+      }
+    } catch (error) {
+      console.error('Error choosing photo:', error);
+    }
   };
 
   const handleSaveProfile = async () => {
@@ -112,6 +126,14 @@ const UserProfileScreen = () => {
         return;
       }
 
+      let photoUrl = photo;
+
+      if (photo && !photo.startsWith('gs://fir-auth-9f9f7.appspot.com')) {
+        const storageRef = ref(storage, `profile_photos/${uid}`);
+        await uploadString(storageRef, photo, 'data_url');
+        photoUrl = await getDownloadURL(storageRef);
+      }
+
       const userRef = doc(collection(db, 'users'), uid);
       const userDoc = await getDoc(userRef);
 
@@ -122,7 +144,7 @@ const UserProfileScreen = () => {
           lastName,
           dob,
           email,
-          photo,
+          photo: photoUrl,
         });
       } else {
         await setDoc(userRef, {
@@ -132,7 +154,7 @@ const UserProfileScreen = () => {
           lastName,
           dob,
           email,
-          photo,
+          photo: photoUrl,
         });
       }
 
@@ -148,6 +170,7 @@ const UserProfileScreen = () => {
       );
     }
   };
+
 
   const deletePost = async (postId: string) => {
     try {
@@ -183,7 +206,6 @@ const UserProfileScreen = () => {
       console.error('Error deleting post:', error);
     }
   };
-
 
   const handleEditClick = () => {
     setEditMode(!editMode);

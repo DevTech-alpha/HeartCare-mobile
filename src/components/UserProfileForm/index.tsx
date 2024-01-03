@@ -18,11 +18,9 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
   loading,
 }) => {
   const handleEmailChange = (text: string) => {
-    // Verificar se o campo de e-mail está vazio
     if (!email.trim()) {
       Alert.alert('Fale com o suporte', 'Entre em contato com o suporte para alterar o e-mail.');
     } else {
-      // Permitir a alteração se o e-mail não estiver vazio
       setEmail(text);
     }
   };
