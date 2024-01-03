@@ -8,7 +8,7 @@ import { db } from '../../config/firebase';
 import { styles } from './styles';
 import ProfileImage from '../../components/ProfileImage';
 import UserProfileForm from '../../components/UserProfileForm';
-import PostItem from '../../components/PostItem';
+import PostItem from '../../components/PostItemProfile';
 import Post from '../../model/Post';
 
 const UserProfileScreen = () => {
@@ -54,33 +54,34 @@ const UserProfileScreen = () => {
       }
     };
 
-    const fetchUserPosts = async () => {
-      try {
-        setLoading(true);
 
-        if (user) {
-          const uid = user.uid;
-          const postsQuery = query(collection(db, 'posts'), where('idpub', '==', uid));
-          const postsSnapshot = await getDocs(postsQuery);
-          const userPostsData = postsSnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          })) as Post[];
-
-          setUserPosts(userPostsData);
-        }
-
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.error('Error fetching user posts:', error);
-      }
-    };
 
     fetchUserData();
     fetchUserPosts();
   }, [user]);
 
+  const fetchUserPosts = async () => {
+    try {
+      setLoading(true);
+
+      if (user) {
+        const uid = user.uid;
+        const postsQuery = query(collection(db, 'posts'), where('idpub', '==', uid));
+        const postsSnapshot = await getDocs(postsQuery);
+        const userPostsData = postsSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        })) as Post[];
+
+        setUserPosts(userPostsData);
+      }
+
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.error('Error fetching user posts:', error);
+    }
+  };
   const handleChoosePhoto = () => {
     const options: ImageLibraryOptions = {
       mediaType: 'photo',
@@ -154,7 +155,6 @@ const UserProfileScreen = () => {
       const postDoc = await getDoc(postRef);
 
       if (postDoc.exists() && postDoc.data()?.idpub === user?.uid) {
-        // Confirm if the user wants to delete the post
         Alert.alert(
           'Confirmação',
           'Tem certeza de que deseja apagar esta publicação?',
@@ -166,11 +166,11 @@ const UserProfileScreen = () => {
             {
               text: 'Apagar',
               onPress: async () => {
-                // User pressed the "Apagar" button
                 await deleteDoc(postRef);
 
                 const updatedPosts = posts.filter((post) => post.id !== postId);
                 setPosts(updatedPosts);
+                fetchUserPosts();
               },
             },
           ],
@@ -220,7 +220,7 @@ const UserProfileScreen = () => {
         )}
 
         <View style={styles.userPostsContainer}>
-          <Text style={styles.message}>Publicacoes</Text>
+          <Text style={styles.message}>Publicações</Text>
           {userPosts.length === 0 ? (
             <Text style={styles.messageNop}>Não há publicações.</Text>
           ) : (

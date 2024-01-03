@@ -23,14 +23,23 @@ const PressaoArterial = () => {
       const medicoesRef = collection(db, 'medicoes');
       const q = query(medicoesRef, where('userId', '==', user.uid));
       const querySnapshot = await getDocs(q);
-
+  
       const medicoesData: Medicao[] = querySnapshot.docs.map((doc: any) => ({
         id: doc.id,
         ...doc.data(),
       } as Medicao));
+  
+      // Ordenar as medições pela data, da mais nova para a mais velha
+      medicoesData.sort((a, b) => {
+        const dataA = new Date(a.data).getTime();
+        const dataB = new Date(b.data).getTime();
+        return dataB - dataA;
+      });
+  
       setMedicoes(medicoesData);
     }
   };
+  
 
   useEffect(() => {
     carregarMedicoes();
@@ -60,7 +69,10 @@ const PressaoArterial = () => {
       </Animatable.View>
 
       <Animatable.View animation="fadeInUp" style={styles.containerForm}>
-        <MedicaoForm onMedicaoAdicionada={handleMedicaoAdicionada} loading={loading} />
+        {/* Renderizar o formulário apenas se historicoVisivel for falso */}
+        {!historicoVisivel && (
+          <MedicaoForm onMedicaoAdicionada={handleMedicaoAdicionada} loading={loading} />
+        )}
 
         {/* Botão "Mostrar Histórico" */}
         <TouchableOpacity

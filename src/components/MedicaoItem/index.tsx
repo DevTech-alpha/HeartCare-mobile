@@ -5,8 +5,6 @@ import { db } from '../../config/firebase';
 import { styles } from './styles';
 import MedicaoItemProps from '../../props/MedicaoItemProps';
 
-
-
 const MedicaoItem: React.FC<MedicaoItemProps> = ({ medicao, onMedicaoExcluida, onMedicaoEditada }) => {
   const excluirMedicao = async () => {
     const medicaoRef = doc(db, 'medicoes', medicao.id.toString());
