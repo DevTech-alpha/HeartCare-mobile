@@ -8,7 +8,7 @@ import Mapa from "../screens/Map";
 import Consulta from "../screens/Query";
 import Feed from "../screens/Feed";
 import FAQScreen from "../screens/FAQ/Index";
-import Perfil from "../screens/Perfil";
+import Perfil from "../screens/Profile";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 

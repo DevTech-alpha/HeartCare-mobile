@@ -70,7 +70,6 @@ const Feed: React.FC<FeedProps> = () => {
       const postDoc = await getDoc(postRef);
   
       if (postDoc.exists() && postDoc.data()?.idpub === user?.uid) {
-        // Confirm if the user wants to delete the post
         Alert.alert(
           'Confirmação',
           'Tem certeza de que deseja apagar esta publicação?',
@@ -82,7 +81,6 @@ const Feed: React.FC<FeedProps> = () => {
             {
               text: 'Apagar',
               onPress: async () => {
-                // User pressed the "Apagar" button
                 await deleteDoc(postRef);
   
                 const updatedPosts = posts.filter((post) => post.id !== postId);
@@ -132,7 +130,7 @@ const Feed: React.FC<FeedProps> = () => {
     <GestureHandlerRootView style={feedStyles.container}>
       <Animatable.View animation="fadeInLeft" delay={500} style={feedStyles.containerHeader}>
         <Text style={feedStyles.message}>
-          𝓒𝓸𝓻𝓪𝓬𝓪𝓸 𝓣𝓮𝓬𝓱
+         𝓗𝓮𝓪𝓻𝓽𝓒𝓪𝓻𝓮
         </Text>
       </Animatable.View>
 
@@ -175,16 +173,5 @@ const Feed: React.FC<FeedProps> = () => {
     </GestureHandlerRootView>
   );
 };
-
-
-
-
-
-
-
-
-
-
-
 
 export default Feed;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import LoginForm from '../../components/LoginForm';
+import LoginForm from '../../components/SignInForm';
 import ResetPasswordForm from '../../components/ResetPassword';
 import { styles } from './styles';
 import { StackTypes } from '../../routes/NavigationStack';

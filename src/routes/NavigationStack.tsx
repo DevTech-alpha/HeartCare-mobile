@@ -10,6 +10,7 @@ import Mapa from '../screens/Map';
 import Cadastrar from '../screens/SignUp';
 import Consulta from '../screens/Query';
 import Principal from '../screens/Main'
+import Perfil from '../screens/Profile'
 
 
 const Stack = createNativeStackNavigator();
@@ -21,6 +22,7 @@ type StackNavigation = {
   Mapa: undefined;
   Consulta: undefined;
   Principal: undefined;
+  Perfil:undefined;
 }
 
 
@@ -60,7 +62,11 @@ export default function StackComponent() {
         component={Principal}
         options={{ headerShown: false }}
       />
-  
+      <Stack.Screen
+        name="Perfil"
+        component={Perfil}
+        options={{ headerShown: false }}
+      />
 
     </Stack.Navigator>
   );
