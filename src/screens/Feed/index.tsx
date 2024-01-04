@@ -11,10 +11,14 @@ import * as Animatable from 'react-native-animatable';
 import PostItem from '../../components/PostItem';
 import BottomSheetContent from '../../components/bottomSheet';
 import { styles as feedStyles } from './styles';
+import { useNavigation } from '@react-navigation/native';
+import { StackTypes } from '../../routes/NavigationStack';
 
 interface FeedProps { }
 
 const Feed: React.FC<FeedProps> = () => {
+  
+  const navigation = useNavigation<StackTypes>()
   const auth = getAuth();
   const user: User | null = auth.currentUser;
 
@@ -102,13 +106,22 @@ const Feed: React.FC<FeedProps> = () => {
     try {
       if (title.trim() !== '' && content.trim() !== '') {
         setLoading(true);
-
+  
+        const userDoc = await getDoc(doc(db, 'users', user?.uid || ''));
+        const userData = userDoc.data();
+  
+        if (!userData || Object.keys(userData).length === 0) {
+          alert('Complete seu cadastro antes de fazer a publicação.');
+          navigation.navigate('Perfil');
+          return;
+        }
+  
         const postWithUserId = {
           title,
           content,
           idpub: user?.uid || '',
         };
-
+  
         const docRef = await addDoc(collection(db, 'posts'), postWithUserId);
         const updatedPosts = [...posts, { ...postWithUserId, id: docRef.id }];
         setPosts(updatedPosts);
@@ -121,6 +134,7 @@ const Feed: React.FC<FeedProps> = () => {
       setLoading(false);
     }
   };
+  
 
   const closeBottomSheet = () => {
     setBottomSheetActive(false);

@@ -21,10 +21,6 @@ const PostItem: React.FC<PostItemProps> = ({ item, toggleLike, userUid, deletePo
         </TouchableOpacity>
   
         <TouchableOpacity style={feedStyles.actionIconContainer}>
-          <FontAwesome name="comment" size={30} color="#333" />
-        </TouchableOpacity>
-  
-        <TouchableOpacity style={feedStyles.actionIconContainer}>
           <FontAwesome name="send" size={30} color="#333" />
         </TouchableOpacity>
       </View>
