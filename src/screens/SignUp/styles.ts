@@ -56,8 +56,8 @@ export const styles = StyleSheet.create({
     fontSize: 14,
   },
   backToLogin: {
-    color: '#e61919',
-    fontSize: 16,
+    color: '#a1a1a1',
+    fontSize: 14,
     marginTop: 16,
     textAlign: 'center',
   },
