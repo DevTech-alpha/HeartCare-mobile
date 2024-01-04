@@ -3,7 +3,7 @@ import { Text, View, Alert, ScrollView, TouchableOpacity, Image } from 'react-na
 import * as Animatable from 'react-native-animatable';
 import { getAuth, User } from 'firebase/auth';
 import { collection, doc, getDoc, setDoc, updateDoc, DocumentData, query, getDocs, where, deleteDoc } from 'firebase/firestore';
-import { getStorage, ref, uploadString, getDownloadURL } from 'firebase/storage';
+import { getStorage, ref, uploadString, getDownloadURL, uploadBytes } from 'firebase/storage';
 import { db } from '../../config/firebase';
 import * as ImagePicker from 'expo-image-picker';
 import { styles } from './styles';
@@ -87,56 +87,69 @@ const UserProfileScreen = () => {
   const handleChoosePhoto = async () => {
     try {
       const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-
+  
       if (permissionResult.granted === false) {
         Alert.alert('Permissão negada para acessar a biblioteca de mídia.');
         return;
       }
-
+  
       const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
         aspect: [1, 1],
         quality: 1,
       });
-
-      if (!result.cancelled && result.uri) {
-        setPhoto(result.uri);
+  
+      if (result.canceled === false && result.assets && result.assets.length > 0) {
+        // Tratamento adicional para garantir que a entrada seja uma imagem no formato esperado (JPEG, PNG, etc.)
+        const supportedFormats = ['jpeg', 'png', 'jpg']; // Adicione outros formatos suportados, se necessário
+        const uriParts = result.assets[0].uri.split('.');
+        const fileExtension = uriParts[uriParts.length - 1].toLowerCase();
+  
+        if (supportedFormats.includes(fileExtension)) {
+          setPhoto(result.assets[0].uri);
+        } else {
+          Alert.alert('Formato de imagem não suportado. Por favor, escolha outra imagem.');
+        }
       }
     } catch (error) {
-      console.error('Error choosing photo:', error);
+      console.error('Erro ao escolher a foto:', error);
     }
   };
-
+  
+  
   const handleSaveProfile = async () => {
     try {
       setLoading(true);
-
+  
       if (!user) {
         Alert.alert('Erro', 'Usuário não autenticado.');
         setLoading(false);
         return;
       }
-
+  
       const uid = user.uid;
-
+  
       if (!username || !name || !lastName || !dob || !email) {
         Alert.alert('Erro', 'Por favor, preencha todos os campos obrigatórios.');
         setLoading(false);
         return;
       }
-
+  
       let photoUrl = photo;
-
+  
       if (photo && !photo.startsWith('gs://fir-auth-9f9f7.appspot.com')) {
         const storageRef = ref(storage, `profile_photos/${uid}`);
-        await uploadString(storageRef, photo, 'data_url');
+        const response = await fetch(photo);
+        const blob = await response.blob();
+  
+        await uploadBytes(storageRef, blob);
         photoUrl = await getDownloadURL(storageRef);
       }
-
+  
       const userRef = doc(collection(db, 'users'), uid);
       const userDoc = await getDoc(userRef);
-
+  
       if (userDoc.exists()) {
         await updateDoc(userRef, {
           username,
@@ -157,7 +170,7 @@ const UserProfileScreen = () => {
           photo: photoUrl,
         });
       }
-
+  
       setLoading(false);
       setEditMode(false);
       Alert.alert('Atualizado com sucesso');
@@ -170,6 +183,7 @@ const UserProfileScreen = () => {
       );
     }
   };
+  
 
 
   const deletePost = async (postId: string) => {
