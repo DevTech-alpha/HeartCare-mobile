@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Text, TouchableOpacity, FlatList, View, Alert } from 'react-native';
+import { Text, TouchableOpacity, FlatList, View, Alert, ActivityIndicator } from 'react-native';
 import BottomSheet from '@gorhom/bottom-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { collection, getDocs, addDoc, doc, deleteDoc, query, getDoc } from 'firebase/firestore';
@@ -12,7 +12,7 @@ import PostItem from '../../components/PostItem';
 import BottomSheetContent from '../../components/bottomSheet';
 import { styles as feedStyles } from './styles';
 
-interface FeedProps {}
+interface FeedProps { }
 
 const Feed: React.FC<FeedProps> = () => {
   const auth = getAuth();
@@ -68,7 +68,7 @@ const Feed: React.FC<FeedProps> = () => {
     try {
       const postRef = doc(db, 'posts', postId);
       const postDoc = await getDoc(postRef);
-  
+
       if (postDoc.exists() && postDoc.data()?.idpub === user?.uid) {
         Alert.alert(
           'Confirmação',
@@ -82,7 +82,7 @@ const Feed: React.FC<FeedProps> = () => {
               text: 'Apagar',
               onPress: async () => {
                 await deleteDoc(postRef);
-  
+
                 const updatedPosts = posts.filter((post) => post.id !== postId);
                 setPosts(updatedPosts);
               },
@@ -97,7 +97,7 @@ const Feed: React.FC<FeedProps> = () => {
       console.error('Error deleting post:', error);
     }
   };
-  
+
   const createNewPost = async (title: string, content: string) => {
     try {
       if (title.trim() !== '' && content.trim() !== '') {
@@ -130,7 +130,7 @@ const Feed: React.FC<FeedProps> = () => {
     <GestureHandlerRootView style={feedStyles.container}>
       <Animatable.View animation="fadeInLeft" delay={500} style={feedStyles.containerHeader}>
         <Text style={feedStyles.message}>
-         𝓗𝓮𝓪𝓻𝓽𝓒𝓪𝓻𝓮
+          𝓗𝓮𝓪𝓻𝓽𝓒𝓪𝓻𝓮
         </Text>
       </Animatable.View>
 
@@ -145,6 +145,7 @@ const Feed: React.FC<FeedProps> = () => {
             deletePost={deletePost}
           />
         )}
+        ListFooterComponent={() => loading && <ActivityIndicator size="large" color="#fff" />}
       />
 
       {bottomSheetActive && (
@@ -173,5 +174,6 @@ const Feed: React.FC<FeedProps> = () => {
     </GestureHandlerRootView>
   );
 };
+
 
 export default Feed;

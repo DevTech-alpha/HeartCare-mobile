@@ -5,7 +5,7 @@ import { getAuth, User } from 'firebase/auth';
 import { collection, doc, getDoc, setDoc, updateDoc, DocumentData, query, getDocs, where, deleteDoc } from 'firebase/firestore';
 import { getStorage, ref, uploadString, getDownloadURL } from 'firebase/storage';
 import { db } from '../../config/firebase';
-import * as ImagePicker from 'expo-image-picker'; // Import Expo's ImagePicker
+import * as ImagePicker from 'expo-image-picker';
 import { styles } from './styles';
 import ProfileImage from '../../components/ProfileImage';
 import UserProfileForm from '../../components/UserProfileForm';

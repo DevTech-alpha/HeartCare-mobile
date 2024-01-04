@@ -5,9 +5,10 @@ import LoginForm from '../../components/SignInForm';
 import ResetPasswordForm from '../../components/ResetPassword';
 import { styles } from './styles';
 import { StackTypes } from '../../routes/NavigationStack';
-import { logar, enviarRecuperacaoSenha } from '../../config/firebase';
 
 import * as Animatable from 'react-native-animatable';
+import { logar } from '../../api/LogInToAccount';
+import { enviarRecuperacaoSenha } from '../../api/PasswordRecovery';
 
 const Login = () => {
   const [email, setEmail] = useState('');
