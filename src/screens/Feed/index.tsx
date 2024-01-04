@@ -13,6 +13,8 @@ import BottomSheetContent from '../../components/bottomSheet';
 import { styles as feedStyles } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import { StackTypes } from '../../routes/NavigationStack';
+import * as Sharing from 'expo-sharing';
+import * as FileSystem from 'expo-file-system';
 
 interface FeedProps { }
 
@@ -135,6 +137,18 @@ const Feed: React.FC<FeedProps> = () => {
     }
   };
   
+  const sharePost = async (title: string, content: string) => {
+    try {
+      const shareMessage = `${title}\n\n${content}`;
+  
+      const fileUri = FileSystem.cacheDirectory + 'post.txt';
+      await FileSystem.writeAsStringAsync(fileUri, shareMessage);
+      await Sharing.shareAsync(fileUri);
+    } catch (error) {
+      console.error('Erro ao compartilhar a publicação:', error);
+    }
+  };
+  
 
   const closeBottomSheet = () => {
     setBottomSheetActive(false);
@@ -157,6 +171,7 @@ const Feed: React.FC<FeedProps> = () => {
             toggleLike={toggleLike}
             userUid={user?.uid || ''}
             deletePost={deletePost}
+            sharePost={sharePost}
           />
         )}
         ListFooterComponent={() => loading && <ActivityIndicator size="large" color="#fff" />}

@@ -5,7 +5,7 @@ import { styles as feedStyles } from './styles';
 import * as Animatable from 'react-native-animatable';
 import PostItemProps from '../../props/PostItemProps';
 
-const PostItem: React.FC<PostItemProps> = ({ item, toggleLike, userUid, deletePost }) => (
+const PostItem: React.FC<PostItemProps> = ({ item, toggleLike, userUid, deletePost , sharePost }) => (
     <Animatable.View animation="fadeInUp" style={feedStyles.postContainer}>
       <View style={feedStyles.postHeader}>
         <Image source={{ uri: item.userPhoto }} style={feedStyles.userPhoto} />
@@ -21,7 +21,7 @@ const PostItem: React.FC<PostItemProps> = ({ item, toggleLike, userUid, deletePo
         </TouchableOpacity>
   
         <TouchableOpacity style={feedStyles.actionIconContainer}>
-          <FontAwesome name="send" size={30} color="#333" />
+          <FontAwesome name="send" size={30} color="#333" onPress={() => sharePost(item.title, item.content)}/>
         </TouchableOpacity>
       </View>
   

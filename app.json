@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#e61919"
-      }
+      },
+      "package": "com.devsntosx71.HeartCare"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e50d0b2d-ab2f-4308-9f1c-4f1707189bb4"
+      }
     }
   }
 }
