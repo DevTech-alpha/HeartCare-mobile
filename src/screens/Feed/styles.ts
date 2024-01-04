@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
+import theme from '../../theme';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e61919',
+    backgroundColor: theme.COLORS.BACKGROUND,
   },
  
   addButton: {
@@ -23,12 +24,7 @@ export const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
   },
- 
-  containerHeader: {
-    marginTop: '14%',
-    marginBottom: 12,
-    paddingHorizontal: '5%',
-  },
+
   message: {
     fontSize: 32,
     fontWeight: 'bold',

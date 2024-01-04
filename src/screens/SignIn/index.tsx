@@ -4,13 +4,15 @@ import { useNavigation } from '@react-navigation/native';
 import LoginForm from '../../components/SignInForm';
 import ResetPasswordForm from '../../components/ResetPassword';
 import { styles } from './styles';
-import { StackTypes } from '../../routes/NavigationStack';
 
 import * as Animatable from 'react-native-animatable';
 import { logar } from '../../api/LogInToAccount';
 import { enviarRecuperacaoSenha } from '../../api/PasswordRecovery';
+import { propsStack } from '../../routes/Models';
+import { useAuth } from '../../hooks/Auth';
 
 const Login = () => {
+  const { signIn} = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [resetEmail, setResetEmail] = useState('');
@@ -18,20 +20,11 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [showResetPassword, setShowResetPassword] = useState(false);
 
-  const navigation = useNavigation<StackTypes>();
+  const { navigate } = useNavigation<propsStack>();
 
   const handleLogin = () => {
     setLoading(true);
-    logar(email, password)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
-        setLoading(false);
-        navigation.navigate('Principal');
-      })
-      .catch((error) => {
-        setLoading(false);
-        alert(error.message);
-      });
+    signIn({email, password})
   };
 
   const handleResetPassword = () => {

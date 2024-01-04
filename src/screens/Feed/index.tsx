@@ -12,15 +12,17 @@ import PostItem from '../../components/PostItem';
 import BottomSheetContent from '../../components/bottomSheet';
 import { styles as feedStyles } from './styles';
 import { useNavigation } from '@react-navigation/native';
-import { StackTypes } from '../../routes/NavigationStack';
 import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system';
+import { propsStack } from '../../routes/Models';
+import { Header } from '../../components/Header';
+import theme from '../../theme';
 
 interface FeedProps { }
 
 const Feed: React.FC<FeedProps> = () => {
   
-  const navigation = useNavigation<StackTypes>()
+  const { navigate, canGoBack } = useNavigation<propsStack>();
   const auth = getAuth();
   const user: User | null = auth.currentUser;
 
@@ -114,7 +116,7 @@ const Feed: React.FC<FeedProps> = () => {
   
         if (!userData || Object.keys(userData).length === 0) {
           alert('Complete seu cadastro antes de fazer a publicação.');
-          navigation.navigate('Perfil');
+          navigate('Perfil');
           return;
         }
   
@@ -126,7 +128,7 @@ const Feed: React.FC<FeedProps> = () => {
   
         const docRef = await addDoc(collection(db, 'posts'), postWithUserId);
         const updatedPosts = [...posts, { ...postWithUserId, id: docRef.id }];
-        setPosts(updatedPosts);
+        setPosts(updatedPosts as any);
         setBottomSheetActive(false);
       }
     } catch (error) {
@@ -156,10 +158,8 @@ const Feed: React.FC<FeedProps> = () => {
 
   return (
     <GestureHandlerRootView style={feedStyles.container}>
-      <Animatable.View animation="fadeInLeft" delay={500} style={feedStyles.containerHeader}>
-        <Text style={feedStyles.message}>
-          𝓗𝓮𝓪𝓻𝓽𝓒𝓪𝓻𝓮
-        </Text>
+      <Animatable.View animation="fadeInLeft" delay={500}>
+      <Header title='𝓗𝓮𝓪𝓻𝓽𝓒𝓪𝓻𝓮'/>
       </Animatable.View>
 
       <FlatList
@@ -177,12 +177,16 @@ const Feed: React.FC<FeedProps> = () => {
         ListFooterComponent={() => loading && <ActivityIndicator size="large" color="#fff" />}
       />
 
+      <TouchableOpacity style={feedStyles.addButton} onPress={() => setBottomSheetActive(true)}>
+        <Text style={feedStyles.addButtonText}><Feather name="pen-tool" size={25} color="#fff" /></Text>
+      </TouchableOpacity>
+      
       {bottomSheetActive && (
         <BottomSheet
           ref={bottomSheetRef}
           index={0}
+          backgroundComponent={() => <View style={{ flex: 1, backgroundColor: theme.COLORS.OVERLEY }} />}
           snapPoints={['50%', '80%']}
-          backgroundComponent={() => <View style={{ flex: 1, backgroundColor: '#fff' }} />}
           onChange={(index) => {
             if (index === 0) {
               setBottomSheetActive(true);
@@ -196,10 +200,6 @@ const Feed: React.FC<FeedProps> = () => {
           />
         </BottomSheet>
       )}
-
-      <TouchableOpacity style={feedStyles.addButton} onPress={() => setBottomSheetActive(true)}>
-        <Text style={feedStyles.addButtonText}><Feather name="pen-tool" size={25} color="#fff" /></Text>
-      </TouchableOpacity>
     </GestureHandlerRootView>
   );
 };

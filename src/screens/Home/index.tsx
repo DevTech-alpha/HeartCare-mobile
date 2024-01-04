@@ -4,10 +4,10 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 import { styles } from './styles';
-import { StackTypes } from '../../routes/NavigationStack';
+import { propsStack } from '../../routes/Models';
 
 export default function Home() {
-  const navigation = useNavigation<StackTypes>();
+  const { navigate } = useNavigation<propsStack>();
 
   return (
     <View style={styles.container}>
@@ -24,7 +24,7 @@ export default function Home() {
         <Text style={styles.title}>Cuide do seu coração, a sinfonia da vida agradece.</Text>
         <Text style={styles.text}>Faça o login para começar</Text>
 
-        <TouchableOpacity style={styles.buttonAcessar} onPress={() => navigation.navigate('Login')}>
+        <TouchableOpacity style={styles.buttonAcessar} onPress={() => navigate('Login')}>
           <Text style={styles.buttonText}>Acessar</Text>
         </TouchableOpacity>
       </Animatable.View>

@@ -12,12 +12,15 @@ import UserProfileForm from '../../components/UserProfileForm';
 import PostItem from '../../components/PostItemProfile';
 import Post from '../../model/Post';
 import { useNavigation } from '@react-navigation/native';
-import { StackTypes } from '../../routes/NavigationStack';
 import { Feather } from '@expo/vector-icons';
+import { propsStack } from '../../routes/Models';
+import { useAuth } from '../../hooks/Auth';
+import { asyncRemoveUser } from '../../utils/store';
+import { Header } from '../../components/Header';
 
 const UserProfileScreen = () => {
-
-  const navigation = useNavigation<StackTypes>();
+  const { setAuthData } = useAuth();
+  const { replace } = useNavigation<propsStack>();
   const auth = getAuth();
   const user: User | null = auth.currentUser;
 
@@ -229,17 +232,20 @@ const UserProfileScreen = () => {
     setEditMode(!editMode);
   };
 
-  const handleSignOut = () => {
-    auth
-      .signOut()
-      .then(() => {
-        navigation.replace("Login")
-      })
-      .catch(error => alert(error.message))
+  const handleSignOut = async () => {
+      setAuthData(undefined)
+      await asyncRemoveUser()
+
+
+      //   const data = auth.signOut()
+      // // .then(() => {
+      // // })
+      // // .catch(error => alert(error.message))
   }
 
   return (
     <View style={styles.container}>
+
       <Animatable.View animation="fadeInLeft" delay={600} style={styles.containerHeader}>
         <Text style={styles.message}>Perfil</Text>
         <Feather name="log-out" size={30} color="#fff" onPress={handleSignOut}/>
@@ -275,7 +281,7 @@ const UserProfileScreen = () => {
             <Text style={styles.messageNop}>Não há publicações.</Text>
           ) : (
             userPosts.map((post) => (
-              <PostItem
+              <PostItem 
                 key={post.id}
                 item={{
                   ...post,

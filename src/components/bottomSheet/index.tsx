@@ -1,7 +1,8 @@
-import { Feather } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { TextInput, TouchableOpacity, Text, ActivityIndicator, StyleSheet, View } from 'react-native';
 import BottomSheetContentProps from '../../props/BottomSheetContentProps';
+import theme from '../../theme';
 
 const BottomSheetContent: React.FC<BottomSheetContentProps> = ({ createNewPost, closeBottomSheet, loading }) => {
   const [newTitle, setNewTitle] = useState('');
@@ -9,6 +10,15 @@ const BottomSheetContent: React.FC<BottomSheetContentProps> = ({ createNewPost, 
 
   return (
     <View style={styles.container}>
+      <View style={{alignItems: 'flex-end'}}>
+          <AntDesign
+              onPress={closeBottomSheet}
+              name="close"
+              size={25}
+              color={theme.COLORS.CAPTION_500}
+            />
+      </View>
+
       <TextInput
         placeholder="Título"
         style={styles.input}
@@ -23,11 +33,7 @@ const BottomSheetContent: React.FC<BottomSheetContentProps> = ({ createNewPost, 
       />
 
       <TouchableOpacity style={styles.actionButton} onPress={() => createNewPost(newTitle, newContent)} disabled={loading}>
-        {loading ? <ActivityIndicator size="small" color="#FFF" /> : <Text style={styles.buttonText}>Criar Post</Text>}
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.roundedActionButton} onPress={closeBottomSheet}>
-        <Feather name="log-out" size={25} color="#fff" />
+        {loading ? <ActivityIndicator size="small" color="#FFF" /> : <Text style={styles.buttonText}>CRIAR POSTAGEM</Text>}
       </TouchableOpacity>
     </View>
   );

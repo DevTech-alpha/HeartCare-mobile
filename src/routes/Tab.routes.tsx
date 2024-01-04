@@ -9,8 +9,9 @@ import Consulta from "../screens/Query";
 import Feed from "../screens/Feed";
 import FAQScreen from "../screens/FAQ/Index";
 import Perfil from "../screens/Profile";
+import { propsNavigationStack } from "./Models";
 
-const { Navigator, Screen } = createBottomTabNavigator();
+const { Navigator, Screen } = createBottomTabNavigator<propsNavigationStack>();
 
 export function AppRoutes() {
   return (
@@ -93,13 +94,5 @@ export function AppRoutes() {
         }}
       />
     </Navigator>
-  );
-}
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <AppRoutes />
-    </NavigationContainer>
   );
 }
