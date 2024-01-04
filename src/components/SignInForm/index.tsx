@@ -4,9 +4,7 @@ import * as Animatable from 'react-native-animatable';
 import { styles } from './styles';
 import LoginFormProps from '../../props/LoginFormProps';
 import { useNavigation } from '@react-navigation/native';
-import { StackTypes } from '../../routes/NavigationStack';
-
-
+import { propsNavigationStack, propsStack } from '../../routes/Models';
 
 
 const LoginForm: React.FC<LoginFormProps> = ({
@@ -22,7 +20,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
   handleForgotPassword,
 }) => {
 
-  const navigation = useNavigation<StackTypes>()
+  const { navigate } = useNavigation<propsStack>();
 
   return (
     <Animatable.View animation="fadeInUp" style={styles.containerForm}>
@@ -62,7 +60,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
       <TouchableOpacity style={styles.buttonRegister}>
         <Text
           style={styles.registerText}
-          onPress={() => navigation.navigate('Cadastrar')}
+          onPress={() => navigate('Cadastrar')}
         >
           Não possui uma conta? Cadastre-se
         </Text>

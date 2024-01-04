@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { styles } from './styles';
 import { criar } from '../../api/CreateAcount';
-import { StackTypes } from '../../routes/NavigationStack';
+import { propsStack } from '../../routes/Models';
 
 export default function Cadastro() {
   const [email, setEmail] = useState('');
@@ -13,7 +13,7 @@ export default function Cadastro() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const navigation = useNavigation<StackTypes>();
+  const { navigate } = useNavigation<propsStack>();
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible((prev) => !prev);
@@ -32,7 +32,7 @@ export default function Cadastro() {
         setLoading(false);
         const user = userCredentials.user;
         alert('Cadastro efetuado com sucesso!');
-        navigation.navigate('Login');
+        navigate('Login');
       })
       .catch((error) => {
         setLoading(false);
@@ -77,7 +77,7 @@ export default function Cadastro() {
           )}
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+        <TouchableOpacity onPress={() => navigate('Login')}>
           <Text style={styles.backToLogin}>Voltar para o Login</Text>
         </TouchableOpacity>
       </Animatable.View>
