@@ -5,8 +5,7 @@ export const styles = StyleSheet.create({
   containerForm: {
     flex: 1,
     backgroundColor: theme.COLORS.BACKGROUND,
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
+    borderRadius: 25,
     paddingHorizontal: '5%',
     paddingVertical: '5%',
   },

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 
 import theme from "../../theme";
 
@@ -20,10 +20,10 @@ export function Header({ title }: Props) {
 
 const styles = StyleSheet.create({
   contain: {
-    marginTop: 30,
+    marginTop: 15,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 15,
+    paddingVertical: 17,
   },
   container: {
     justifyContent: 'center',
@@ -33,11 +33,10 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 30,
     paddingStart: '10%',
     paddingEnd: '5%',
-    marginBottom: 10,
   },
   text: {
     color: theme.COLORS.WHITE,
-    fontSize: 30,
+    fontSize: 25,
     textTransform: 'uppercase',
     letterSpacing: 1    
   }

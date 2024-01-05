@@ -26,8 +26,8 @@ export const styles = StyleSheet.create({
     backgroundColor: '#F0F2F5',
     marginTop: 20,
     padding: 15,
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
   },
   userPostsTitle: {
     fontSize: 20,
@@ -71,7 +71,6 @@ export const styles = StyleSheet.create({
   button: {
     backgroundColor: '#e61919',
     width: '100%',
-    borderRadius: 4,
     paddingVertical: 12,
     marginTop: 10,
     justifyContent: 'center',
