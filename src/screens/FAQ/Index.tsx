@@ -7,7 +7,7 @@ import * as Animatable from 'react-native-animatable';
 import { Header } from '../../components/Header';
 
 function FAQScreen() {
- 
+
   const [questions] = useState([
     {
       id: 1,
@@ -68,38 +68,37 @@ function FAQScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <Animatable.View animation="fadeInLeft" delay={500}>
-      <Header title='𝓕𝓐𝓠'/>
-      </Animatable.View>
-      <ScrollView>
-        {questions.map((item) => (
-          <Animatable.View
-            key={item.id}
-            animation="fadeInUp"
-            style={styles.questionContainer}
-          >
-            <TouchableOpacity
-              style={styles.questionTouchable}
-              onPress={() => handleQuestionPress(item.id)}
+    <><View>
+      <Header title='𝓕𝓐𝓠' />
+    </View><View style={styles.container}>
+        <ScrollView>
+          {questions.map((item) => (
+            <Animatable.View
+              key={item.id}
+              animation="fadeInUp"
+              style={styles.questionContainer}
             >
-              <View style={styles.questionHeader}>
-                <Icon
-                  name={selectedQuestion === item.id ? 'chevron-up' : 'chevron-down'}
-                  size={20}
-                  color="#333333" />
-                <Text style={styles.questionText}>{item.pergunta}</Text>
-              </View>
-            </TouchableOpacity>
-            {selectedQuestion === item.id && (
-              <Animatable.Text animation="fadeIn" style={styles.answerText}>
-                {item.resposta}
-              </Animatable.Text>
-            )}
-          </Animatable.View>
-        ))}
-      </ScrollView>
-    </View>
+              <TouchableOpacity
+                style={styles.questionTouchable}
+                onPress={() => handleQuestionPress(item.id)}
+              >
+                <View style={styles.questionHeader}>
+                  <Icon
+                    name={selectedQuestion === item.id ? 'chevron-up' : 'chevron-down'}
+                    size={20}
+                    color="#333333" />
+                  <Text style={styles.questionText}>{item.pergunta}</Text>
+                </View>
+              </TouchableOpacity>
+              {selectedQuestion === item.id && (
+                <Animatable.Text animation="fadeIn" style={styles.answerText}>
+                  {item.resposta}
+                </Animatable.Text>
+              )}
+            </Animatable.View>
+          ))}
+        </ScrollView>
+      </View></>
   );
 }
 

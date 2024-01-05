@@ -1,10 +1,8 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 
 
-import Mapa from "../screens/Map";
 import Consulta from "../screens/Query";
 import Feed from "../screens/Feed";
 import FAQScreen from "../screens/FAQ/Index";
@@ -38,26 +36,12 @@ export function AppRoutes() {
         }}
       />
       <Screen
-        name="Mapa"
-        component={Mapa}
-        options={{
-          tabBarIcon: ({ focused, color, size }) => (
-            <Feather
-              name="map"
-              size={focused ? size + 5 : size}
-              color={focused ? 'red' : color}
-            />
-          ),
-          tabBarLabel: () => null,
-        }}
-      />
-      <Screen
         name="FAQ"
         component={FAQScreen}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <Feather
-              name="list"
+              name="info"
               size={focused ? size + 5 : size}
               color={focused ? 'red' : color}
             />
@@ -71,7 +55,7 @@ export function AppRoutes() {
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <Feather
-              name="edit"
+              name="edit-2"
               size={focused ? size + 5 : size}
               color={focused ? 'red' : color}
             />

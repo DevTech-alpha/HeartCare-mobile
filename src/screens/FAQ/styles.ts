@@ -5,22 +5,22 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.COLORS.BACKGROUND,
+    padding: 10,
   },
   questionContainer: {
-    marginBottom: 15,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: '#e0e0e0',
-    elevation: 3, // Adiciona elevação para a sombra no Android
+    margin: 16,
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    padding: 5,
+    marginBottom: 10,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 4,
     },
-    shadowOpacity: 0.3, // Ajusta a opacidade da sombra no iOS
-    shadowRadius: 4, // Ajusta o raio da sombra no iOS
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 8,
   },
   questionText: {
     fontSize: 16,

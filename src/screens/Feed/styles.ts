@@ -17,10 +17,10 @@ export const styles = StyleSheet.create({
     borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
-    elevation: 8,
+    elevation: 10,
   },
   addButtonText: {
-    fontSize: 24,
+    fontSize: 30,
     color: '#fff',
     fontWeight: 'bold',
   },

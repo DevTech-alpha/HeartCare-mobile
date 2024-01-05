@@ -258,9 +258,9 @@ const UserProfileScreen = () => {
   return (
     <View style={styles.container}>
 
-      <Animatable.View animation="fadeInLeft" delay={600}>
+      <View>
         <Header title='𝓟𝓮𝓻𝓯𝓲𝓵' />
-      </Animatable.View>
+      </View>
 
       <ProfileImage photo={photo} onPress={handleChoosePhoto} />
 

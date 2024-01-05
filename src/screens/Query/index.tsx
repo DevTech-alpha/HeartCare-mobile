@@ -64,67 +64,63 @@ const PressaoArterial = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Animatable.View animation="fadeInLeft" delay={500}>
-      <Header title='𝓹𝓻𝓮𝓼𝓼𝓪̃𝓸 𝓪𝓻𝓽𝓮𝓻𝓲𝓪𝓵'/>
-      </Animatable.View>
+    <><View>
+      <Header title='𝓹𝓻𝓮𝓼𝓼𝓪̃𝓸 𝓪𝓻𝓽𝓮𝓻𝓲𝓪𝓵' />
+    </View><View style={styles.container}>
+        <Animatable.View animation="fadeInUp" style={styles.containerForm}>
+          {/* Renderizar o formulário apenas se historicoVisivel for falso */}
+          {!historicoVisivel && (
+            <MedicaoForm onMedicaoAdicionada={handleMedicaoAdicionada} loading={loading} />
+          )}
 
-      <Animatable.View animation="fadeInUp" style={styles.containerForm}>
-        {/* Renderizar o formulário apenas se historicoVisivel for falso */}
-        {!historicoVisivel && (
-          <MedicaoForm onMedicaoAdicionada={handleMedicaoAdicionada} loading={loading} />
-        )}
+          {/* Botão "Mostrar Histórico" */}
+          <TouchableOpacity
+            style={styles.botaoAdicionar}
+            onPress={() => setHistoricoVisivel(!historicoVisivel)}
+          >
+            <Text style={styles.textoBotao}>
+              {historicoVisivel ? 'Ocultar Histórico' : 'Mostrar Histórico'}
+            </Text>
+          </TouchableOpacity>
 
-        {/* Botão "Mostrar Histórico" */}
-        <TouchableOpacity
-          style={styles.botaoAdicionar}
-          onPress={() => setHistoricoVisivel(!historicoVisivel)}
-        >
-          <Text style={styles.textoBotao}>
-            {historicoVisivel ? 'Ocultar Histórico' : 'Mostrar Histórico'}
-          </Text>
-        </TouchableOpacity>
+          {/* Renderizar o FlatList somente se historicoVisivel for true */}
+          {historicoVisivel && (
+            <FlatList
+              data={medicoes}
+              keyExtractor={(item) => item.id.toString()}
+              ListEmptyComponent={<Text style={styles.textoVazio}>Nenhum registro encontrado.</Text>}
+              renderItem={({ item }) => (
+                <MedicaoItem
+                  medicao={item}
+                  onMedicaoExcluida={handleMedicaoExcluida}
+                  onMedicaoEditada={abrirModalEdicao} />
+              )} />
+          )}
 
-        {/* Renderizar o FlatList somente se historicoVisivel for true */}
-        {historicoVisivel && (
-          <FlatList
-            data={medicoes}
-            keyExtractor={(item) => item.id.toString()}
-            ListEmptyComponent={<Text style={styles.textoVazio}>Nenhum registro encontrado.</Text>}
-            renderItem={({ item }) => (
-              <MedicaoItem
-                medicao={item}
-                onMedicaoExcluida={handleMedicaoExcluida}
-                onMedicaoEditada={abrirModalEdicao}
-              />
-            )}
-          />
-        )}
-
-        {/* Modal de Edição */}
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={isModalVisible}
-          onRequestClose={() => {
-            setIsModalVisible(false);
-            setMedicaoSelecionada(null);
-          }}
-        >
-          <View style={styles.containerModal}>
-            <TouchableOpacity
-              style={styles.botaoEditar}
-              onPress={() => {
-                setIsModalVisible(false);
-                setMedicaoSelecionada(null);
-              }}
-            >
-              <Text style={styles.textoBotao}>Fechar</Text>
-            </TouchableOpacity>
-          </View>
-        </Modal>
-      </Animatable.View>
-    </View>
+          {/* Modal de Edição */}
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={isModalVisible}
+            onRequestClose={() => {
+              setIsModalVisible(false);
+              setMedicaoSelecionada(null);
+            } }
+          >
+            <View style={styles.containerModal}>
+              <TouchableOpacity
+                style={styles.botaoEditar}
+                onPress={() => {
+                  setIsModalVisible(false);
+                  setMedicaoSelecionada(null);
+                } }
+              >
+                <Text style={styles.textoBotao}>Fechar</Text>
+              </TouchableOpacity>
+            </View>
+          </Modal>
+        </Animatable.View>
+      </View></>
   );
 };
 

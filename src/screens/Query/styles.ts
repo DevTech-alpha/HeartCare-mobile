@@ -83,21 +83,7 @@ export const styles = StyleSheet.create({
   listaContainer: {
     flex: 1,
   },
-  itemMedicao: {
-    flexDirection: 'column',
-    backgroundColor: '#FFF',
-    borderRadius: 4,
-    marginBottom: 10,
-    padding: 10,
-    elevation: 3, // Adiciona elevação para a sombra no Android
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3, // Ajusta a opacidade da sombra no iOS
-    shadowRadius: 4, // Ajusta o raio da sombra no iOS
-  },
+ 
   textoMedicao: {
     fontSize: 16,
     color: '#333',
@@ -118,7 +104,7 @@ export const styles = StyleSheet.create({
   },
   botaoEditar: {
     backgroundColor: theme.COLORS.BUTTON,
-    borderRadius: 4,
+    borderRadius: 5,
     padding: 8,
     marginHorizontal: 5,
   },

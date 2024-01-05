@@ -157,50 +157,46 @@ const Feed: React.FC<FeedProps> = () => {
   };
 
   return (
-    <GestureHandlerRootView style={feedStyles.container}>
-      <Animatable.View animation="fadeInLeft" delay={500}>
-      <Header title='𝓗𝓮𝓪𝓻𝓽𝓒𝓪𝓻𝓮'/>
-      </Animatable.View>
+    <><View>
+      <Header title='𝓗𝓮𝓪𝓻𝓽𝓒𝓪𝓻𝓮' />
+    </View><GestureHandlerRootView style={feedStyles.container}>
 
-      <FlatList
-        data={posts}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <PostItem
-            item={item}
-            toggleLike={toggleLike}
-            userUid={user?.uid || ''}
-            deletePost={deletePost}
-            sharePost={sharePost}
-          />
+        <FlatList
+          data={posts}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <PostItem
+              item={item}
+              toggleLike={toggleLike}
+              userUid={user?.uid || ''}
+              deletePost={deletePost}
+              sharePost={sharePost} />
+          )}
+          ListFooterComponent={() => loading && <ActivityIndicator size="large" color="#fff" />} />
+
+        <TouchableOpacity style={feedStyles.addButton} onPress={() => setBottomSheetActive(true)}>
+          <Text style={feedStyles.addButtonText}>+</Text>
+        </TouchableOpacity>
+
+        {bottomSheetActive && (
+          <BottomSheet
+            ref={bottomSheetRef}
+            index={0}
+            backgroundComponent={() => <View style={{ flex: 1, backgroundColor: theme.COLORS.OVERLEY }} />}
+            snapPoints={['50%', '80%']}
+            onChange={(index) => {
+              if (index === 0) {
+                setBottomSheetActive(true);
+              }
+            } }
+          >
+            <BottomSheetContent
+              createNewPost={createNewPost}
+              closeBottomSheet={closeBottomSheet}
+              loading={loading} />
+          </BottomSheet>
         )}
-        ListFooterComponent={() => loading && <ActivityIndicator size="large" color="#fff" />}
-      />
-
-      <TouchableOpacity style={feedStyles.addButton} onPress={() => setBottomSheetActive(true)}>
-        <Text style={feedStyles.addButtonText}><Feather name="pen-tool" size={25} color="#fff" /></Text>
-      </TouchableOpacity>
-      
-      {bottomSheetActive && (
-        <BottomSheet
-          ref={bottomSheetRef}
-          index={0}
-          backgroundComponent={() => <View style={{ flex: 1, backgroundColor: theme.COLORS.OVERLEY }} />}
-          snapPoints={['50%', '80%']}
-          onChange={(index) => {
-            if (index === 0) {
-              setBottomSheetActive(true);
-            }
-          }}
-        >
-          <BottomSheetContent
-            createNewPost={createNewPost}
-            closeBottomSheet={closeBottomSheet}
-            loading={loading}
-          />
-        </BottomSheet>
-      )}
-    </GestureHandlerRootView>
+      </GestureHandlerRootView></>
   );
 };
 

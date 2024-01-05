@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { styles as feedStyles } from './styles';
 import * as Animatable from 'react-native-animatable';
-import PostItemProps from '../../props/PostItemProps';
+import PostItemProps from '../../props/PostItemProfileProps';
 
 
 
