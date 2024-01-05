@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     color: '#FFF',
   },
   userPostsContainer: {
-    backgroundColor: '#e61919',
+    backgroundColor: '#F0F2F5',
     marginTop: 20,
     padding: 15,
     borderTopLeftRadius: 25,
@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
   },
   choosePhotoText: {
     fontSize: 20,
-    color: '#e61919',
+    color: '#F0F2F5',
     marginTop: 15,
   },
 

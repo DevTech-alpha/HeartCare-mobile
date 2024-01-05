@@ -56,7 +56,7 @@ const Login = () => {
   return (
     <View style={styles.container}>
       <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
-        <Text style={styles.message}>Bem-vindo(a)</Text>
+        <Text style={styles.message}>𝓑𝓮𝓶-𝓿𝓲𝓷𝓭𝓸(𝓪)</Text>
       </Animatable.View>
 
       {showResetPassword ? (

@@ -232,23 +232,34 @@ const UserProfileScreen = () => {
     setEditMode(!editMode);
   };
 
+
   const handleSignOut = async () => {
-      setAuthData(undefined)
-      await asyncRemoveUser()
+    Alert.alert(
+      'Confirmação',
+      'Deseja realmente sair?',
+      [
+        {
+          text: 'Cancelar',
+          style: 'cancel',
+        },
+        {
+          text: 'Sair',
+          onPress: async () => {
+            setAuthData(undefined);
+            await asyncRemoveUser();
+          },
+        },
+      ],
+      { cancelable: false }
+    );
+  };
 
-
-      //   const data = auth.signOut()
-      // // .then(() => {
-      // // })
-      // // .catch(error => alert(error.message))
-  }
 
   return (
     <View style={styles.container}>
 
-      <Animatable.View animation="fadeInLeft" delay={600} style={styles.containerHeader}>
-        <Text style={styles.message}>Perfil</Text>
-        <Feather name="log-out" size={30} color="#fff" onPress={handleSignOut}/>
+      <Animatable.View animation="fadeInLeft" delay={600}>
+        <Header title='𝓟𝓮𝓻𝓯𝓲𝓵' />
       </Animatable.View>
 
       <ProfileImage photo={photo} onPress={handleChoosePhoto} />
@@ -256,7 +267,9 @@ const UserProfileScreen = () => {
       <TouchableOpacity style={styles.button} onPress={handleEditClick}>
         <Text style={styles.buttonText}>{editMode ? 'Cancelar' : 'Editar Usuário'}</Text>
       </TouchableOpacity>
-
+      <TouchableOpacity style={styles.button} onPress={handleSignOut}>
+        <Text style={styles.buttonText}>Sair</Text>
+      </TouchableOpacity>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         {editMode && (
           <UserProfileForm
@@ -276,12 +289,11 @@ const UserProfileScreen = () => {
         )}
 
         <View style={styles.userPostsContainer}>
-          <Text style={styles.message}>Publicações</Text>
           {userPosts.length === 0 ? (
             <Text style={styles.messageNop}>Não há publicações.</Text>
           ) : (
             userPosts.map((post) => (
-              <PostItem 
+              <PostItem
                 key={post.id}
                 item={{
                   ...post,

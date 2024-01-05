@@ -1,19 +1,26 @@
 import { StyleSheet } from 'react-native';
+import theme from '../../theme';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e61919',
-    paddingLeft: 10, 
-    paddingRight: 10,
+    backgroundColor: theme.COLORS.BACKGROUND,
   },
   questionContainer: {
     marginBottom: 15,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: 'white',
     borderRadius: 10,
     overflow: 'hidden',
     borderWidth: 1,
     borderColor: '#e0e0e0',
+    elevation: 3, // Adiciona elevação para a sombra no Android
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3, // Ajusta a opacidade da sombra no iOS
+    shadowRadius: 4, // Ajusta o raio da sombra no iOS
   },
   questionText: {
     fontSize: 16,
@@ -37,11 +44,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     padding: 10,
-  },
-  containerHeader: {
-    marginTop: '14%',
-    marginBottom: 20,
-    paddingStart: '5%',
   },
   message: {
     paddingTop: 20,

@@ -8,6 +8,7 @@ import { db } from '../../config/firebase';
 import { styles } from './styles';
 import MedicaoItem from '../../components/MedicaoItem';
 import MedicaoForm from '../../components/MedicaoForm';
+import { Header } from '../../components/Header';
 
 const PressaoArterial = () => {
   const [medicoes, setMedicoes] = useState<Medicao[]>([]);
@@ -64,8 +65,8 @@ const PressaoArterial = () => {
 
   return (
     <View style={styles.container}>
-      <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
-        <Text style={styles.message}>Pressão Arterial</Text>
+      <Animatable.View animation="fadeInLeft" delay={500}>
+      <Header title='𝓹𝓻𝓮𝓼𝓼𝓪̃𝓸 𝓪𝓻𝓽𝓮𝓻𝓲𝓪𝓵'/>
       </Animatable.View>
 
       <Animatable.View animation="fadeInUp" style={styles.containerForm}>

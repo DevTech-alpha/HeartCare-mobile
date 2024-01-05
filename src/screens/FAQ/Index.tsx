@@ -4,6 +4,7 @@ import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { styles } from './styles';
 import * as Animatable from 'react-native-animatable';
+import { Header } from '../../components/Header';
 
 function FAQScreen() {
  
@@ -68,8 +69,8 @@ function FAQScreen() {
 
   return (
     <View style={styles.container}>
-      <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
-        <Text style={styles.message}>Perguntas Frequentes</Text>
+      <Animatable.View animation="fadeInLeft" delay={500}>
+      <Header title='𝓕𝓐𝓠'/>
       </Animatable.View>
       <ScrollView>
         {questions.map((item) => (

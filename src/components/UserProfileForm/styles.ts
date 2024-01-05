@@ -1,9 +1,10 @@
 import { StyleSheet } from "react-native";
+import theme from "../../theme";
 
 export const styles = StyleSheet.create({
   containerForm: {
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: theme.COLORS.BACKGROUND,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     paddingHorizontal: '5%',

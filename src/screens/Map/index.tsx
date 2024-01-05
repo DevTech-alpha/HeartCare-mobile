@@ -1,19 +1,36 @@
 import React from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { View, TouchableOpacity, Alert, Linking } from 'react-native';
-import * as Animatable from 'react-native-animatable';
 import { Ionicons } from '@expo/vector-icons';
 
 import { styles } from './styles';
 
 const Mapa = () => {
   const callEmergencyNumber = () => {
-    Linking.openURL('tel:192');
+    // Exibe um alerta de confirmação antes de realizar a chamada de emergência
+    Alert.alert(
+      'Confirmação',
+      'Deseja realmente ligar para o número de emergência?',
+      [
+        {
+          text: 'Cancelar',
+          style: 'cancel',
+        },
+        {
+          text: 'Ligar',
+          onPress: () => {
+            // Realiza a chamada de emergência
+            Linking.openURL('tel:192');
+          },
+        },
+      ],
+      { cancelable: false }
+    );
   };
 
   return (
     <View style={styles.container}>
-      <Animatable.View animation="fadeInUp" style={styles.containerForm}>
+      <View style={styles.containerForm}>
         <TouchableOpacity style={styles.mapaContainer}>
           <MapView
             style={styles.mapa}
@@ -47,7 +64,7 @@ const Mapa = () => {
             <Ionicons name="ios-call" size={30} color="#fff" />
           </TouchableOpacity>
         </TouchableOpacity>
-      </Animatable.View>
+      </View>
     </View>
   );
 };

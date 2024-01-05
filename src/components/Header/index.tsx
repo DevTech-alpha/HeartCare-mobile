@@ -21,6 +21,7 @@ export function Header({ title }: Props) {
 
 const styles = StyleSheet.create({
   contain: {
+    marginTop: 30,
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 15,
@@ -31,12 +32,13 @@ const styles = StyleSheet.create({
     backgroundColor: theme.COLORS.PRIMARY,
     borderBottomLeftRadius: 25,
     borderBottomRightRadius: 25,
-    paddingStart: '5%',
+    paddingStart: '10%',
     paddingEnd: '5%',
+    marginBottom: 10,
   },
   text: {
     color: theme.COLORS.WHITE,
-    fontSize: 35,
+    fontSize: 30,
     textTransform: 'uppercase',
     letterSpacing: 1    
   }
