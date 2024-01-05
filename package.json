@@ -1,6 +1,6 @@
 {
   "name": "heartcare",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -52,10 +52,8 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "^18.2.45",
-    "@types/react-native": "^0.73.0",
     "@types/react-native-vector-icons": "^6.4.18",
     "@types/react-navigation": "^3.4.0",
-    "expo-cli": "^6.3.10",
     "typescript": "^5.3.3"
   },
   "private": true

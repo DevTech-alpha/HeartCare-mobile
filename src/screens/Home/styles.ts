@@ -1,13 +1,14 @@
 import { StyleSheet } from "react-native";
+import theme from "../../theme";
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e61919'
+    backgroundColor: theme.COLORS.PRIMARY
   },
   containerLogo: {
     flex: 2,
-    backgroundColor: '#e61919',
+    backgroundColor: theme.COLORS.PRIMARY,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -29,7 +30,7 @@ export const styles = StyleSheet.create({
     color: '#a1a1a1'
   },
   buttonAcessar: {
-    backgroundColor: '#e61919',
+    backgroundColor: theme.COLORS.BUTTON,
     borderRadius: 50,
     paddingVertical: 8,
     width: '60%',

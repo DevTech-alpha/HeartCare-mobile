@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
   },
   button: {
-    backgroundColor: '#e61919',
+    backgroundColor: theme.COLORS.BUTTON,
     width: '100%',
     borderRadius: 4,
     paddingVertical: 12,

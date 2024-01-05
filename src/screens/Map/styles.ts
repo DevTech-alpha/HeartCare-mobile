@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import theme from "../../theme";
 
 export const styles = StyleSheet.create({
   containerForm: {
@@ -10,7 +11,7 @@ export const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#e61919',
+    backgroundColor: theme.COLORS.PRIMARY,
   },
   mapaContainer: {
     flex: 1,
@@ -27,7 +28,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     right: 20,
-    backgroundColor: '#e61919',
+    backgroundColor: theme.COLORS.BUTTON,
     borderRadius: 30,
     padding: 15,
   },

@@ -1,5 +1,7 @@
 import { StyleSheet } from "react-native";
 
+import theme from "../../theme";
+
 export const styles = StyleSheet.create({
   textoBotao: {
     color: '#FFF',
@@ -40,13 +42,13 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   botaoEditar: {
-    backgroundColor: '#e61919',
+    backgroundColor: theme.COLORS.BUTTON,
     borderRadius: 4,
     padding: 8,
     marginHorizontal: 5,
   },
   botaoExcluir: {
-    backgroundColor: '#e61919',
+    backgroundColor:  theme.COLORS.BUTTON,
     borderRadius: 4,
     padding: 8,
     marginHorizontal: 5,

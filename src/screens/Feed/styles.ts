@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 24,
     right: 24,
-    backgroundColor: '#e61919',
+    backgroundColor: theme.COLORS.BUTTON,
     width: 60,
     height: 60,
     borderRadius: 30,

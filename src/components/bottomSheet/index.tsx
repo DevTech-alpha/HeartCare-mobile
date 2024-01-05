@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   actionButton: {
-    backgroundColor: '#e61919',
+    backgroundColor: theme.COLORS.BUTTON,
     width: '100%',
     borderRadius: 4,
     paddingVertical: 8,
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   roundedActionButton: {
-    backgroundColor: '#e61919',
+    backgroundColor: theme.COLORS.BUTTON,
     width: '100%',
     paddingVertical: 8,
     marginTop: 14,

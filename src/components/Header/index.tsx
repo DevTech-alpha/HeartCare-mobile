@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import theme from "../../theme";
 
 interface Props {

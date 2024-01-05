@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
     paddingTop: 20,
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#e61919',
+    color: theme.COLORS.PRIMARY,
   },
   containerForm: {
     flex: 1,
@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
   },
   toggleHorarioButton: {
-    backgroundColor: '#e61919',
+    backgroundColor: theme.COLORS.BUTTON,
     borderRadius: 4,
     justifyContent: 'center',
     alignItems: 'center',
@@ -70,7 +70,7 @@ export const styles = StyleSheet.create({
     color: '#FFF',
   },
   botaoAdicionar: {
-    backgroundColor: '#e61919',
+    backgroundColor: theme.COLORS.BUTTON,
     borderRadius: 4,
     justifyContent: 'center',
     alignItems: 'center',
@@ -117,13 +117,13 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   botaoEditar: {
-    backgroundColor: '#e61919',
+    backgroundColor: theme.COLORS.BUTTON,
     borderRadius: 4,
     padding: 8,
     marginHorizontal: 5,
   },
   botaoExcluir: {
-    backgroundColor: '#e61919',
+    backgroundColor: theme.COLORS.BUTTON,
     borderRadius: 4,
     padding: 8,
     marginHorizontal: 5,
@@ -135,7 +135,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   botaoCancelar: {
-    backgroundColor: '#e61919',
+    backgroundColor: theme.COLORS.BUTTON,
     borderRadius: 4,
     padding: 8,
     marginTop: 10,

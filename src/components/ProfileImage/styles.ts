@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import theme from "../../theme";
 
 export const styles = StyleSheet.create({
   profileImageContainer: {
@@ -12,7 +13,7 @@ export const styles = StyleSheet.create({
   },
   choosePhotoText: {
     fontSize: 20,
-    color: '#e61919',
+    color:  theme.COLORS.PRIMARY,
     marginTop: 15,
   },
 });
