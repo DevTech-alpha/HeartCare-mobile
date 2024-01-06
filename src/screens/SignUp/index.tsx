@@ -20,18 +20,13 @@ export default function Cadastro() {
   };
 
   const handleSignUp = () => {
-    if (password.length < 6) {
-      alert('A senha deve ter pelo menos 6 caracteres.');
-      return;
-    }
-
     setLoading(true);
-    
+  
     criar(email, password)
       .then((userCredentials) => {
         setLoading(false);
         const user = userCredentials.user;
-        alert('Cadastro efetuado com sucesso!');
+        alert('Registro realizado com sucesso!');
         navigate('Login');
       })
       .catch((error) => {
@@ -39,6 +34,7 @@ export default function Cadastro() {
         alert(error.message);
       });
   };
+  
 
   return (
     <View style={styles.container}>

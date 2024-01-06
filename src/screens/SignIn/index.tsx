@@ -12,7 +12,7 @@ import { propsStack } from '../../routes/Models';
 import { useAuth } from '../../hooks/Auth';
 
 const Login = () => {
-  const { signIn} = useAuth();
+  const { signIn } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [resetEmail, setResetEmail] = useState('');
@@ -22,22 +22,27 @@ const Login = () => {
 
   const { navigate } = useNavigation<propsStack>();
 
-  const handleLogin = () => {
-    setLoading(true);
-    signIn({email, password})
+  const handleLogin = async () => {
+    try {
+      setLoading(true);
+      await signIn({ email, password });
+    } catch (error) {
+      console.error('Erro durante o login:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleResetPassword = () => {
-    setLoading(true);
-    enviarRecuperacaoSenha(resetEmail)
-      .then(() => {
-        setLoading(false);
-        alert('Um email de recuperação de senha foi enviado.');
-      })
-      .catch((error: { message: any; }) => {
-        setLoading(false);
-        alert(error.message);
-      });
+  const handleResetPassword = async () => {
+    try {
+      setLoading(true);
+      await enviarRecuperacaoSenha(resetEmail);
+      setLoading(false);
+      alert('Um e-mail de recuperação de senha foi enviado.');
+    } catch (error) {
+      setLoading(false);
+      alert(error);
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -80,7 +85,7 @@ const Login = () => {
           handleForgotPassword={handleForgotPassword}
         />
       )}
-    
+
     </View>
   );
 };

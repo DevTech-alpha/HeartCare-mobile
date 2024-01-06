@@ -34,10 +34,6 @@ export const styles = StyleSheet.create({
     paddingBottom: 16,
     paddingTop: 8,
   },
-  questionTouchable: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-  },
   questionHeader: {
     flexDirection: 'row',
     justifyContent: 'flex-start',

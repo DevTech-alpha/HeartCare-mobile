@@ -79,7 +79,6 @@ function FAQScreen() {
               style={styles.questionContainer}
             >
               <TouchableOpacity
-                style={styles.questionTouchable}
                 onPress={() => handleQuestionPress(item.id)}
               >
                 <View style={styles.questionHeader}>
