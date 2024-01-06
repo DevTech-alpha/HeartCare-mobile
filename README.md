@@ -13,7 +13,7 @@ O HeartCare é um aplicativo React Native dedicado ao cuidado do coração, ofer
 ### Página Inicial
 - **Feed de Publicações sobre Coração:** Mantenha-se informado sobre cuidados cardíacos e formas de prevenção.
 - **Criação e Exclusão de Publicações:** Compartilhe sua experiência ou aprendizado, e gerencie suas publicações conforme necessário.
-- **Mapa de Saúde Cardíaca:** Visualize locais relevantes para sua saúde cardíaca, como clínicas e centros de bem-estar.
+
 
 ### FAQ
 - **Perguntas Frequentes sobre o Coração:** Obtenha respostas para dúvidas comuns relacionadas à saúde do coração.
