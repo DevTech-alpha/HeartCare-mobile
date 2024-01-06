@@ -1,9 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, Alert, ScrollView, TouchableOpacity, Image } from 'react-native';
+import React, { useState, useEffect, useCallback } from 'react';
+import {
+  Text,
+  View,
+  Alert,
+  ScrollView,
+  TouchableOpacity,
+  Image,
+  RefreshControl,
+} from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import { getAuth, User } from 'firebase/auth';
-import { collection, doc, getDoc, setDoc, updateDoc, DocumentData, query, getDocs, where, deleteDoc } from 'firebase/firestore';
-import { getStorage, ref, uploadString, getDownloadURL, uploadBytes } from 'firebase/storage';
+import {
+  getAuth,
+  User,
+} from 'firebase/auth';
+import {
+  collection,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  DocumentData,
+  query,
+  getDocs,
+  where,
+  deleteDoc,
+} from 'firebase/firestore';
+import {
+  getStorage,
+  ref,
+  uploadString,
+  getDownloadURL,
+  uploadBytes,
+} from 'firebase/storage';
 import { db } from '../../config/firebase';
 import * as ImagePicker from 'expo-image-picker';
 import { styles } from './styles';
@@ -12,7 +40,7 @@ import UserProfileForm from '../../components/UserProfileForm';
 import PostItem from '../../components/PostItemProfile';
 import Post from '../../model/Post';
 import { useNavigation } from '@react-navigation/native';
-import { Feather } from '@expo/vector-icons';
+import { Feather, FontAwesome } from '@expo/vector-icons';
 import { propsStack } from '../../routes/Models';
 import { useAuth } from '../../hooks/Auth';
 import { asyncRemoveUser } from '../../utils/store';
@@ -26,6 +54,7 @@ const UserProfileScreen = () => {
 
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState<Post[]>([]);
+  const [refreshing, setRefreshing] = useState(false);
 
   const [username, setUsername] = useState('');
   const [photo, setPhoto] = useState<string | null>(null);
@@ -37,6 +66,10 @@ const UserProfileScreen = () => {
   const [editMode, setEditMode] = useState(false);
 
   const storage = getStorage();
+
+  const onRefresh = useCallback(() => {
+    fetchUserPosts();
+  }, []);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -69,10 +102,10 @@ const UserProfileScreen = () => {
     fetchUserPosts();
   }, [user]);
 
+
   const fetchUserPosts = async () => {
     try {
       setLoading(true);
-
       if (user) {
         const uid = user.uid;
         const postsQuery = query(collection(db, 'posts'), where('idpub', '==', uid));
@@ -86,8 +119,10 @@ const UserProfileScreen = () => {
       }
 
       setLoading(false);
+      setRefreshing(false);
     } catch (error) {
       setLoading(false);
+      setRefreshing(false);
       console.error('Error fetching user posts:', error);
     }
   };
@@ -267,10 +302,12 @@ const UserProfileScreen = () => {
       <TouchableOpacity style={styles.button} onPress={handleEditClick}>
         <Text style={styles.buttonText}>{editMode ? 'Cancelar' : 'Editar Usuário'}</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={handleSignOut}>
-        <Text style={styles.buttonText}>Sair</Text>
-      </TouchableOpacity>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      <ScrollView
+        contentContainerStyle={styles.scrollViewContent}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
         {editMode && (
           <UserProfileForm
             username={username}
@@ -289,22 +326,21 @@ const UserProfileScreen = () => {
         )}
 
         <View style={styles.userPostsContainer}>
-          {userPosts.length === 0 ? (
-            <Text style={styles.messageNop}>Não há publicações.</Text>
-          ) : (
-            userPosts.map((post) => (
-              <PostItem
-                key={post.id}
-                item={{
-                  ...post,
-                }}
-                toggleLike={() => { }}
-                userUid={user?.uid || ''}
-                deletePost={deletePost}
-              />
-            ))
-          )}
+          <TouchableOpacity  onPress={handleSignOut}>
+            <FontAwesome name="sign-out" size={30} color={'#333'} />
+          </TouchableOpacity>
+          {userPosts.map((post) => (
+            <PostItem
+              key={post.id}
+              item={post}
+              toggleLike={() => { }}
+              userUid={user?.uid || ''}
+              deletePost={deletePost}
+            />
+          ))}
+          {userPosts.length === 0 && <Text style={styles.messageNop}>Não há publicações.</Text>}
         </View>
+
       </ScrollView>
     </View>
   );

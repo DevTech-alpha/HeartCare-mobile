@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, FlatList, Modal, ActivityIndicator } from 'react-native';
+import React, { useState, useEffect, useCallback } from 'react';
+import { View, Text, TouchableOpacity, FlatList, Modal, ActivityIndicator, RefreshControl } from 'react-native';
 import { addDoc, collection, getDocs, deleteDoc, doc, setDoc, query, where } from 'firebase/firestore';
 import { getAuth, User } from 'firebase/auth';
 import Medicao from '../../model/Medicao';
@@ -16,6 +16,7 @@ const PressaoArterial = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [historicoVisivel, setHistoricoVisivel] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   const auth = getAuth();
   const user: User | null = auth.currentUser;
 
@@ -24,23 +25,26 @@ const PressaoArterial = () => {
       const medicoesRef = collection(db, 'medicoes');
       const q = query(medicoesRef, where('userId', '==', user.uid));
       const querySnapshot = await getDocs(q);
-  
+
       const medicoesData: Medicao[] = querySnapshot.docs.map((doc: any) => ({
         id: doc.id,
         ...doc.data(),
       } as Medicao));
-  
+
       // Ordenar as medições pela data, da mais nova para a mais velha
       medicoesData.sort((a, b) => {
         const dataA = new Date(a.data).getTime();
         const dataB = new Date(b.data).getTime();
         return dataB - dataA;
       });
-  
+
       setMedicoes(medicoesData);
     }
   };
-  
+
+  const onRefresh = useCallback(() => {
+    carregarMedicoes();
+  }, []);
 
   useEffect(() => {
     carregarMedicoes();
@@ -64,9 +68,11 @@ const PressaoArterial = () => {
   };
 
   return (
-    <><View>
-      <Header title='𝓹𝓻𝓮𝓼𝓼𝓪̃𝓸 𝓪𝓻𝓽𝓮𝓻𝓲𝓪𝓵' />
-    </View><View style={styles.container}>
+    <>
+      <View>
+        <Header title='𝓹𝓻𝓮𝓼𝓼𝓪̃𝓸 𝓪𝓻𝓽𝓮𝓻𝓲𝓪𝓵' />
+      </View>
+      <View style={styles.container}>
         <Animatable.View animation="fadeInUp" style={styles.containerForm}>
           {/* Renderizar o formulário apenas se historicoVisivel for falso */}
           {!historicoVisivel && (
@@ -94,7 +100,11 @@ const PressaoArterial = () => {
                   medicao={item}
                   onMedicaoExcluida={handleMedicaoExcluida}
                   onMedicaoEditada={abrirModalEdicao} />
-              )} />
+              )}
+              refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+              }
+            />
           )}
 
           {/* Modal de Edição */}
@@ -105,7 +115,7 @@ const PressaoArterial = () => {
             onRequestClose={() => {
               setIsModalVisible(false);
               setMedicaoSelecionada(null);
-            } }
+            }}
           >
             <View style={styles.containerModal}>
               <TouchableOpacity
@@ -113,14 +123,15 @@ const PressaoArterial = () => {
                 onPress={() => {
                   setIsModalVisible(false);
                   setMedicaoSelecionada(null);
-                } }
+                }}
               >
                 <Text style={styles.textoBotao}>Fechar</Text>
               </TouchableOpacity>
             </View>
           </Modal>
         </Animatable.View>
-      </View></>
+      </View>
+    </>
   );
 };
 

@@ -3,6 +3,7 @@ export default {
     BACKGROUND: '#F0F2F5',
     BACKGROUND_CARD: '#E4E6EF',
     BUTTON:'#e61919',
+    BUTTON_TEXT:'#FFF',
 
     CAPTION_500: '#71717A',
     CAPTION_400: '#A1A1AA',

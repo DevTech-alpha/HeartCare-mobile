@@ -9,7 +9,8 @@ const ProfileImage: React.FC<ProfileImageProps> = ({ photo, onPress }) => (
     {photo && photo !== '' ? (
       <Image source={{ uri: photo }} style={styles.profileImage} />
     ) : (
-      <Text style={styles.choosePhotoText}>Escolha uma foto</Text>
+      <Image source={require('../../assets/user.png')}style={styles.profileImage} />
+
     )}
   </TouchableOpacity>
 );

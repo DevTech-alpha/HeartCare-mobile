@@ -13,9 +13,11 @@ export const styles = StyleSheet.create({
     paddingStart: '5%',
   },
   messageNop:{
+    alignItems:'center',
+    textAlign:'center',
     fontSize: 15,
     fontWeight: 'bold',
-    color: '#FFF',
+    color: theme.COLORS.PRIMARY,
   },
   message: {
     fontSize: 28,
@@ -28,6 +30,8 @@ export const styles = StyleSheet.create({
     padding: 15,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
+    width:'100%',
+    height: '100%',
   },
   userPostsTitle: {
     fontSize: 20,
