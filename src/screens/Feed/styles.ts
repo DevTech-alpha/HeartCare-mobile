@@ -7,6 +7,10 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.COLORS.BACKGROUND,
   },
  
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
   addButton: {
     position: 'absolute',
     bottom: 24,
@@ -15,6 +19,7 @@ export const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
+    textAlign:'center',
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 10,

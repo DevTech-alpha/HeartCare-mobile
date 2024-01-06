@@ -1,6 +1,6 @@
 import { AntDesign } from '@expo/vector-icons';
 import React, { useState } from 'react';
-import { TextInput, TouchableOpacity, Text, ActivityIndicator, StyleSheet, View } from 'react-native';
+import { TextInput, TouchableOpacity, Text, ActivityIndicator, StyleSheet, View, Alert } from 'react-native';
 import BottomSheetContentProps from '../../props/BottomSheetContentProps';
 import theme from '../../theme';
 
@@ -8,15 +8,22 @@ const BottomSheetContent: React.FC<BottomSheetContentProps> = ({ createNewPost, 
   const [newTitle, setNewTitle] = useState('');
   const [newContent, setNewContent] = useState('');
 
+  const validateAndCreatePost = () => {
+    if (newTitle.trim() === '' || newContent.trim() === '') {
+      Alert.alert('Erro', 'Por favor, preencha todos os campos.');
+    } else {
+      createNewPost(newTitle, newContent);
+    }
+  };
   return (
     <View style={styles.container}>
-      <View style={{alignItems: 'flex-end'}}>
-          <AntDesign
-              onPress={closeBottomSheet}
-              name="close"
-              size={25}
-              color={theme.COLORS.CAPTION_500}
-            />
+      <View style={{ alignItems: 'flex-end' }}>
+        <AntDesign
+          onPress={closeBottomSheet}
+          name="close"
+          size={30}
+          color={theme.COLORS.PRIMARY}
+        />
       </View>
 
       <TextInput
@@ -32,8 +39,16 @@ const BottomSheetContent: React.FC<BottomSheetContentProps> = ({ createNewPost, 
         onChangeText={(text) => setNewContent(text)}
       />
 
-      <TouchableOpacity style={styles.actionButton} onPress={() => createNewPost(newTitle, newContent)} disabled={loading}>
-        {loading ? <ActivityIndicator size="small" color="#FFF" /> : <Text style={styles.buttonText}>CRIAR POSTAGEM</Text>}
+      <TouchableOpacity
+        style={styles.actionButton}
+        onPress={validateAndCreatePost}
+        disabled={loading}
+      >
+        {loading ? (
+          <ActivityIndicator size="small" color="#FFF" />
+        ) : (
+          <Text style={styles.buttonText}>CRIAR POSTAGEM</Text>
+        )}
       </TouchableOpacity>
     </View>
   );
@@ -41,9 +56,10 @@ const BottomSheetContent: React.FC<BottomSheetContentProps> = ({ createNewPost, 
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 25,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: theme.COLORS.WHITE,
     padding: 20,
     shadowColor: '#000',
     shadowOffset: {
@@ -52,25 +68,32 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5,
+    elevation: 10,
   },
   input: {
-    borderBottomWidth: 1,
+    backgroundColor: 'white',
     height: 40,
     marginBottom: 12,
+    borderColor: theme.COLORS.PRIMARY,
+    borderWidth: 2,
+    marginTop: 12,
     fontSize: 16,
+    paddingLeft: 5,
+    borderRadius: 10,
   },
   actionButton: {
     backgroundColor: theme.COLORS.BUTTON,
     width: '100%',
-    borderRadius: 4,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: 'white',
     paddingVertical: 8,
     marginTop: 14,
     justifyContent: 'center',
     alignItems: 'center',
   },
   roundedActionButton: {
-    backgroundColor: theme.COLORS.BUTTON,
+    backgroundColor: theme.COLORS.BUTTON_QUANTITY,
     width: '100%',
     paddingVertical: 8,
     marginTop: 14,

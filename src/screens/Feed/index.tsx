@@ -203,8 +203,8 @@ const Feed: React.FC<FeedProps> = () => {
           <BottomSheet
             ref={bottomSheetRef}
             index={0}
-            backgroundComponent={() => <View style={{ flex: 1, backgroundColor: theme.COLORS.OVERLEY }} />}
-            snapPoints={['50%', '80%']}
+            backgroundComponent={() => <View style={{ flex: 1}} />}
+            snapPoints={['100%', '100%']}
             onChange={(index) => {
               if (index === 0) {
                 setBottomSheetActive(true);

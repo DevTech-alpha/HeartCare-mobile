@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
     height: 60,
     borderRadius: 30,
     marginRight: 16,
+    resizeMode: 'contain',
   },
   postHeader: {
     flexDirection: 'row',
