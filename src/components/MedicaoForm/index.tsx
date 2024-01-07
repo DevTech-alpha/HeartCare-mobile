@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, ActivityIndicator, View } from 'react-native';
 import { addDoc, collection } from 'firebase/firestore';
-import { db } from '../../config/firebase';
+import { db } from '../../firebase/firebase';
 import { getAuth } from 'firebase/auth';
 import Medicao from '../../model/Medicao';
 import { styles } from './styles';
-import MedicaoFormProps from '../../props/MedicaoFormProps';
+import MedicaoFormProps from '../../@types/MedicaoFormProps';
+import theme from '../../theme';
 
 const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading }) => {
   const [sistolica, setSistolica] = useState('');
   const [diastolica, setDiastolica] = useState('');
   const [pulso, setPulso] = useState('');
-  const [isAddingMedicao, setIsAddingMedicao] = useState(false); // Novo estado para indicar se está adicionando uma medição
+  const [isAddingMedicao, setIsAddingMedicao] = useState(false);
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -32,12 +33,11 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading 
         };
 
         try {
-          setIsAddingMedicao(true); // Ativar o indicador de carregamento
+          setIsAddingMedicao(true);
 
           const medicoesRef = collection(db, 'medicoes');
           await addDoc(medicoesRef, novaMedicao);
 
-          // Verificar se a pressão está boa
           if (sistolicaValue >= 90 && sistolicaValue <= 120 && diastolicaValue >= 60 && diastolicaValue <= 80) {
             alert('Pressão está boa!');
           } else {
@@ -49,7 +49,7 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading 
           console.error('Erro ao adicionar medição:', error);
           alert('Erro ao adicionar medição. Consulte o console para mais detalhes.');
         } finally {
-          setIsAddingMedicao(false); // Desativar o indicador de carregamento, independentemente de sucesso ou falha
+          setIsAddingMedicao(false);
         }
       } else {
         alert('Valores inválidos. Certifique-se de inserir números válidos para pressão sistólica e diastólica.');
@@ -89,14 +89,14 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading 
       <TouchableOpacity
         style={styles.botaoAdicionar}
         onPress={adicionarMedicao}
-        disabled={loading || isAddingMedicao} // Desativar o botão se estiver carregando ou adicionando uma medição
+        disabled={loading || isAddingMedicao}
       >
-        {isAddingMedicao ? ( // Exibir indicador de carregamento se estiver adicionando uma medição
+        {isAddingMedicao ? (
           <View style={styles.loadingContainer}>
-            <ActivityIndicator size="small" color="#fff" />
+            <ActivityIndicator size="small" color={theme.COLORS.WHITE} />
           </View>
         ) : (
-          <Text style={styles.textoBotao}>Adicionar Medição</Text>
+          <Text style={styles.textoBotao}>Registrar Medição</Text>
         )}
       </TouchableOpacity>
     </>

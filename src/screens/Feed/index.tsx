@@ -19,12 +19,10 @@ import {
   query,
   getDoc,
 } from 'firebase/firestore';
-import { db } from '../../config/firebase';
+import { db } from '../../firebase/firebase';
 import { User, getAuth } from 'firebase/auth';
 import Post from '../../model/Post';
-import * as Animatable from 'react-native-animatable';
 import PostItem from '../../components/PostItem';
-import BottomSheetContent from '../../components/bottomSheet';
 import { styles as feedStyles } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import * as Sharing from 'expo-sharing';
@@ -32,11 +30,13 @@ import * as FileSystem from 'expo-file-system';
 import { propsStack } from '../../routes/Models';
 import { Header } from '../../components/Header';
 import theme from '../../theme';
+import { Modalize } from 'react-native-modalize';
+import ModalizeContent from '../../components/modalize';
 
-interface FeedProps {}
+interface FeedProps { }
 
 const Feed: React.FC<FeedProps> = () => {
-  const { navigate, canGoBack } = useNavigation<propsStack>();
+  const { navigate } = useNavigation<propsStack>();
   const auth = getAuth();
   const user: User | null = auth.currentUser;
 
@@ -44,8 +44,12 @@ const Feed: React.FC<FeedProps> = () => {
   const [bottomSheetActive, setBottomSheetActive] = useState(false);
   const [loading, setLoading] = useState(false);
   const [likedPosts, setLikedPosts] = useState<string[]>([]);
-  const bottomSheetRef = useRef<BottomSheet>(null);
   const [refreshing, setRefreshing] = useState(false);
+
+  const modalizeRef = useRef<Modalize | null>(null);
+  function onOpen() {
+    modalizeRef.current?.open();
+  }
 
   const fetchPosts = useCallback(async () => {
     try {
@@ -169,16 +173,13 @@ const Feed: React.FC<FeedProps> = () => {
     }
   };
 
-  const closeBottomSheet = () => {
-    setBottomSheetActive(false);
-  };
 
   return (
     <>
-      <View>
-        <Header title='𝓗𝓮𝓪𝓻𝓽𝓒𝓪𝓻𝓮' />
-      </View>
       <GestureHandlerRootView style={feedStyles.container}>
+        <View>
+          <Header title='𝓗𝓮𝓪𝓻𝓽𝓒𝓪𝓻𝓮' />
+        </View>
         <FlatList
           data={posts}
           keyExtractor={(item) => item.id}
@@ -191,33 +192,25 @@ const Feed: React.FC<FeedProps> = () => {
               sharePost={sharePost}
             />
           )}
-          ListFooterComponent={() => loading && <ActivityIndicator size="large" color="#fff" />}
+          ListFooterComponent={() => loading && <ActivityIndicator size="large" color={theme.COLORS.WHITE} />}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={fetchPosts} />
           }
         />
-        <TouchableOpacity style={feedStyles.addButton} onPress={() => setBottomSheetActive(true)}>
+        <TouchableOpacity style={feedStyles.addButton} onPress={onOpen}>
           <Text style={feedStyles.addButtonText}>+</Text>
         </TouchableOpacity>
-        {bottomSheetActive && (
-          <BottomSheet
-            ref={bottomSheetRef}
-            index={0}
-            backgroundComponent={() => <View style={{ flex: 1}} />}
-            snapPoints={['100%', '100%']}
-            onChange={(index) => {
-              if (index === 0) {
-                setBottomSheetActive(true);
-              }
-            }}
-          >
-            <BottomSheetContent
-              createNewPost={createNewPost}
-              closeBottomSheet={closeBottomSheet}
-              loading={loading}
-            />
-          </BottomSheet>
-        )}
+        <Modalize
+          ref={modalizeRef}
+          snapPoint={220}
+          modalHeight={220}
+        >
+          <ModalizeContent
+            createNewPost={createNewPost}
+            loading={loading}
+          />
+        </Modalize>
+
       </GestureHandlerRootView>
     </>
   );

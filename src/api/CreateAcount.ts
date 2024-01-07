@@ -1,5 +1,5 @@
-import { AuthErrorCodes, UserCredential, createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../config/firebase";
+import { UserCredential, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase/firebase";
 import { localizeErrorMap } from "../components/firebaseTranslator";
 
 

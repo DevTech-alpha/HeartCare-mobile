@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { styles } from './styles';
 import * as Animatable from 'react-native-animatable';
 import { Header } from '../../components/Header';
+import theme from '../../theme';
 
 function FAQScreen() {
 
@@ -85,7 +86,7 @@ function FAQScreen() {
                   <Icon
                     name={selectedQuestion === item.id ? 'chevron-up' : 'chevron-down'}
                     size={20}
-                    color="#333333" />
+                    color={theme.COLORS.ICON} />
                   <Text style={styles.questionText}>{item.pergunta}</Text>
                 </View>
               </TouchableOpacity>

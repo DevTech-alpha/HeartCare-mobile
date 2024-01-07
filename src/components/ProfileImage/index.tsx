@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
-import ProfileImageProps from '../../props/ProfileImageProps';
+import ProfileImageProps from '../../@types/ProfileImageProps';
 
 
 const ProfileImage: React.FC<ProfileImageProps> = ({ photo, onPress }) => (

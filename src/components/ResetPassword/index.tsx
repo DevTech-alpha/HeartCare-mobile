@@ -2,7 +2,8 @@ import React from 'react';
 import { Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { styles } from './styles';
-import ResetPasswordFormProps from '../../props/ResetPassowordProps';
+import ResetPasswordFormProps from '../../@types/ResetPassowordProps';
+import theme from '../../theme';
 
 
 const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
@@ -23,7 +24,7 @@ const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
       />
       <TouchableOpacity style={styles.button} onPress={handleResetPassword} disabled={loading}>
         {loading ? (
-          <ActivityIndicator size="small" color="#FFF" />
+          <ActivityIndicator size="small" color={theme.COLORS.WHITE} />
         ) : (
           <Text style={styles.buttonText}>Recuperar Senha</Text>
         )}

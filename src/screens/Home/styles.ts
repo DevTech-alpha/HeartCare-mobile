@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     marginBottom: 12
   },
   text: {
-    color: '#a1a1a1'
+    color: theme.COLORS.TEXT,
   },
   buttonAcessar: {
     backgroundColor: theme.COLORS.BUTTON,
@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    color: '#FFF',
+    color: theme.COLORS.BUTTON_TEXT,
     fontWeight: 'bold'
   }
 });

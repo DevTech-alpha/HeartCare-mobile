@@ -9,10 +9,10 @@ import theme from './src/theme';
 export default function App() {
   return (
     <AppProvider>
-   <NavigationContainer>
-    <StatusBar backgroundColor={theme.COLORS.PRIMARY} barStyle="light-content"/>
-    <Router/>
-   </NavigationContainer>
+      <NavigationContainer>
+        <StatusBar backgroundColor={theme.COLORS.PRIMARY} barStyle="light-content" />
+        <Router />
+      </NavigationContainer>
     </AppProvider>
   );
 }

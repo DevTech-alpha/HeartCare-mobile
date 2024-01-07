@@ -2,45 +2,21 @@ export default {
   COLORS: {
     BACKGROUND: '#F0F2F5',
     BACKGROUND_CARD: '#E4E6EF',
-    BUTTON:'#e61919',
-    BUTTON_TEXT:'#FFF',
 
-    CAPTION_500: '#71717A',
-    CAPTION_400: '#A1A1AA',
-    CAPTION_300: '#D4D4D8',
-    CAPTION_200: '#e2e2e5',
+    BUTTON: '#e61918',
+    BUTTON_TEXT: '#FFF',
 
-    SHAPE: '#2A2634',
-    BACKGROUND_LOGIN: '#1B1B1F',
+    TEXT: '#a1a1a1',
 
-    BACKGROUND_900: '#121214',
-    BACKGROUND_800: '#18181B',
-
-    TITLE: '#363F5F',
-    TEXT:'#969CB2',
-    TEXT_DARK: '#000',
-
-    BUTTON_QUANTITY: '#808287',
-
-    OPEN: '#528F33',
-    CLOSED: '#E03F50',
-    SUCCESS:'#12a454',
-
-    DESSINCRONIZADA:'#dfab4d',
+    ICON: '#333',
 
     PRIMARY: '#e61919',
     WHITE: '#FFF',
-    
+
+    POST_TITLE: '#333',
+    POST_CONTENT: '#555',
+
     OVERLEY: 'rgba(0,0,0,0.6)'
 
   },
-
-  // FONTS: {
-  //   REGULAR:'Poppins-Regular',
-  //   BOLD:'Poppins-Bold',
-  //   SEMI_BOLD: 'Poppins-SemiBold',
-  //   LIGHT: 'Poppins-Light',
-  //   EXTRA_LIGHT: 'Poppins-ExtraLight',
-  //   MEDIUM: 'Poppins-Medium'  
-  // },
 };

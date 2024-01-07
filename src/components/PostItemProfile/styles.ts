@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
+import theme from '../../theme';
 
 export const styles = StyleSheet.create({
   postContainer: {
     margin: 16,
-    backgroundColor: '#fff',
+    backgroundColor: theme.COLORS.WHITE,
     borderRadius: 20,
     padding: 20,
     marginBottom: 20,
@@ -31,17 +32,17 @@ export const styles = StyleSheet.create({
   username: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',
+    color: theme.COLORS.POST_TITLE,
   },
   postTitle: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 12,
-    color: '#333',
+    color: theme.COLORS.POST_TITLE,
   },
   postContent: {
     fontSize: 18,
-    color: '#555',
+    color: theme.COLORS.POST_CONTENT,
     marginBottom: 12,
   },
   actionIconContainer: {

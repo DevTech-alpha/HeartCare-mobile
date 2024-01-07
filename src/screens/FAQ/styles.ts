@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   },
   questionContainer: {
     margin: 16,
-    backgroundColor: '#fff',
+    backgroundColor: theme.COLORS.WHITE,
     borderRadius: 20,
     padding: 5,
     marginBottom: 10,
@@ -24,12 +24,12 @@ export const styles = StyleSheet.create({
   questionText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#333333',
+    color: theme.COLORS.POST_TITLE,
     padding: 16,
   },
   answerText: {
     fontSize: 16,
-    color: '#555555',
+    color: theme.COLORS.POST_CONTENT,
     paddingHorizontal: 16,
     paddingBottom: 16,
     paddingTop: 8,
@@ -44,6 +44,6 @@ export const styles = StyleSheet.create({
     paddingTop: 20,
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#FFF',
+    color: theme.COLORS.WHITE,
   },
 });

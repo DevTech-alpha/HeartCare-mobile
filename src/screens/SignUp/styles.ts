@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   message: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#FFF',
+    color: theme.COLORS.WHITE,
   },
   containerForm: {
     flex: 1,
@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {
-    color: '#FFF',
+    color: theme.COLORS.BUTTON_TEXT,
     fontSize: 18,
     fontWeight: 'bold',
   },
@@ -53,11 +53,11 @@ export const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   togglePasswordButtonText: {
-    color: '#a1a1a1',
+    color: theme.COLORS.TEXT,
     fontSize: 14,
   },
   backToLogin: {
-    color: '#a1a1a1',
+    color: theme.COLORS.TEXT,
     fontSize: 14,
     marginTop: 16,
     textAlign: 'center',

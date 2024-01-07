@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import theme from '../../theme';
 
 export const styles = StyleSheet.create({
-  
+
   container: {
     flex: 1,
     backgroundColor: theme.COLORS.PRIMARY,
@@ -12,9 +12,9 @@ export const styles = StyleSheet.create({
     marginBottom: '8%',
     paddingStart: '5%',
   },
-  messageNop:{
-    alignItems:'center',
-    textAlign:'center',
+  messageNop: {
+    alignItems: 'center',
+    textAlign: 'center',
     fontSize: 15,
     fontWeight: 'bold',
     color: theme.COLORS.PRIMARY,
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
   message: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#FFF',
+    color: theme.COLORS.WHITE,
   },
   userPostsContainer: {
     backgroundColor: '#F0F2F5',
@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     padding: 15,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    width:'100%',
+    width: '100%',
     height: '100%',
   },
   userPostsTitle: {
@@ -56,7 +56,7 @@ export const styles = StyleSheet.create({
 
   containerForm: {
     flex: 1,
-    backgroundColor: '#e61919',
+    backgroundColor: theme.COLORS.PRIMARY,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     paddingHorizontal: '5%',
@@ -73,7 +73,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
   },
   button: {
-    backgroundColor: '#e61919',
+    backgroundColor: theme.COLORS.BUTTON,
     width: '100%',
     paddingVertical: 12,
     marginTop: 10,
@@ -81,7 +81,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {
-    color: '#FFF',
+    color: theme.COLORS.BUTTON_TEXT,
     fontSize: 18,
     fontWeight: 'bold',
   },

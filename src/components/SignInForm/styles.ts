@@ -14,11 +14,11 @@ export const styles = StyleSheet.create({
     message: {
       fontSize: 28,
       fontWeight: 'bold',
-      color: '#FFF',
+      color: theme.COLORS.WHITE,
     },
     containerForm: {
       flex: 1,
-      backgroundColor: '#FFF',
+      backgroundColor: theme.COLORS.WHITE,
       borderTopLeftRadius: 25,
       borderTopRightRadius: 25,
       paddingStart: '5%',
@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
       alignItems: 'center',
     },
     buttonText: {
-      color: '#FFF',
+      color: theme.COLORS.BUTTON_TEXT,
       fontSize: 18,
       fontWeight: 'bold',
     },
@@ -53,14 +53,14 @@ export const styles = StyleSheet.create({
       alignSelf: 'center',
     },
     registerText: {
-      color: '#a1a1a1',
+      color: theme.COLORS.TEXT,
     },
     togglePasswordButton: {
       marginTop: 10,
       alignSelf: 'flex-end',
     },
     togglePasswordButtonText: {
-      color: '#a1a1a1',
+      color: theme.COLORS.TEXT,
       fontSize: 14,
     },
   });

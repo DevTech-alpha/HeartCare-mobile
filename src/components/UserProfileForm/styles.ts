@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {
-    color: '#FFF',
+    color: theme.COLORS.BUTTON_TEXT,
     fontSize: 18,
     fontWeight: 'bold',
   },

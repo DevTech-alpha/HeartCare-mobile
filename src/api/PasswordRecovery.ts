@@ -1,5 +1,5 @@
 import { sendPasswordResetEmail } from "firebase/auth";
-import { auth } from "../config/firebase";
+import { auth } from "../firebase/firebase";
 import { localizeErrorMap } from "../components/firebaseTranslator";
 
 export const enviarRecuperacaoSenha = async (email: string): Promise<void> => {

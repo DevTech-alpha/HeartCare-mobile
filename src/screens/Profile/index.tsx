@@ -5,10 +5,8 @@ import {
   Alert,
   ScrollView,
   TouchableOpacity,
-  Image,
   RefreshControl,
 } from 'react-native';
-import * as Animatable from 'react-native-animatable';
 import {
   getAuth,
   User,
@@ -28,11 +26,10 @@ import {
 import {
   getStorage,
   ref,
-  uploadString,
   getDownloadURL,
   uploadBytes,
 } from 'firebase/storage';
-import { db } from '../../config/firebase';
+import { db } from '../../firebase/firebase';
 import * as ImagePicker from 'expo-image-picker';
 import { styles } from './styles';
 import ProfileImage from '../../components/ProfileImage';
@@ -40,15 +37,15 @@ import UserProfileForm from '../../components/UserProfileForm';
 import PostItem from '../../components/PostItemProfile';
 import Post from '../../model/Post';
 import { useNavigation } from '@react-navigation/native';
-import { Feather, FontAwesome } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import { propsStack } from '../../routes/Models';
 import { useAuth } from '../../hooks/Auth';
 import { asyncRemoveUser } from '../../utils/store';
 import { Header } from '../../components/Header';
+import theme from '../../theme';
 
 const UserProfileScreen = () => {
   const { setAuthData } = useAuth();
-  const { replace } = useNavigation<propsStack>();
   const auth = getAuth();
   const user: User | null = auth.currentUser;
 
@@ -326,8 +323,8 @@ const UserProfileScreen = () => {
         )}
 
         <View style={styles.userPostsContainer}>
-          <TouchableOpacity  onPress={handleSignOut}>
-            <FontAwesome name="sign-out" size={30} color={'#333'} />
+          <TouchableOpacity onPress={handleSignOut}>
+            <FontAwesome name="sign-out" size={30} color={theme.COLORS.ICON} />
           </TouchableOpacity>
           {userPosts.map((post) => (
             <PostItem

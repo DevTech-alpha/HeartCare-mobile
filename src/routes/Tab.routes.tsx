@@ -8,6 +8,7 @@ import Feed from "../screens/Feed";
 import FAQScreen from "../screens/FAQ/Index";
 import Perfil from "../screens/Profile";
 import { propsNavigationStack } from "./Models";
+import theme from "../theme";
 
 const { Navigator, Screen } = createBottomTabNavigator<propsNavigationStack>();
 
@@ -17,7 +18,7 @@ export function AppRoutes() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: '#FFF', 
+          backgroundColor: theme.COLORS.WHITE,
         },
       }}
     >
@@ -28,8 +29,8 @@ export function AppRoutes() {
           tabBarIcon: ({ focused, color, size }) => (
             <Feather
               name="home"
-              size={focused ? size + 5 : size} 
-              color={focused ? 'red' : color} 
+              size={focused ? size + 5 : size}
+              color={focused ? theme.COLORS.PRIMARY : color}
             />
           ),
           tabBarLabel: () => null,
@@ -43,13 +44,13 @@ export function AppRoutes() {
             <Feather
               name="info"
               size={focused ? size + 5 : size}
-              color={focused ? 'red' : color}
+              color={focused ? theme.COLORS.PRIMARY : color}
             />
           ),
           tabBarLabel: () => null,
         }}
       />
-       <Screen
+      <Screen
         name="Consulta"
         component={Consulta}
         options={{
@@ -57,7 +58,7 @@ export function AppRoutes() {
             <Feather
               name="edit-2"
               size={focused ? size + 5 : size}
-              color={focused ? 'red' : color}
+              color={focused ? theme.COLORS.PRIMARY : color}
             />
           ),
           tabBarLabel: () => null,
@@ -71,7 +72,7 @@ export function AppRoutes() {
             <Feather
               name="user"
               size={focused ? size + 5 : size}
-              color={focused ? 'red' : color}
+              color={focused ? theme.COLORS.PRIMARY : color}
             />
           ),
           tabBarLabel: () => null,

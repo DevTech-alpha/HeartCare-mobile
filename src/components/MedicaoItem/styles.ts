@@ -4,11 +4,11 @@ import theme from "../../theme";
 
 export const styles = StyleSheet.create({
   textoBotao: {
-    color: '#FFF',
+    color: theme.COLORS.BUTTON_TEXT,
   },
   itemMedicao: {
     margin: 16,
-    backgroundColor: '#fff',
+    backgroundColor: theme.COLORS.WHITE,
     borderRadius: 20,
     padding: 20,
     marginBottom: 20,
@@ -23,19 +23,10 @@ export const styles = StyleSheet.create({
   },
   textoMedicao: {
     fontSize: 16,
-    color: '#333',
+    color: theme.COLORS.POST_CONTENT,
     marginBottom: 5,
   },
-  textoMedicaoBoa: {
-    fontSize: 16,
-    color: 'green',
-    marginBottom: 5,
-  },
-  textoMedicaoRuim: {
-    fontSize: 16,
-    color: 'red',
-    marginBottom: 5,
-  },
+
   containerBotoes: {
     flexDirection: 'row',
   },

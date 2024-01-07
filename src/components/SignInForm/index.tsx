@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { styles } from './styles';
-import LoginFormProps from '../../props/LoginFormProps';
+import LoginFormProps from '../../@types/LoginFormProps';
 import { useNavigation } from '@react-navigation/native';
-import { propsNavigationStack, propsStack } from '../../routes/Models';
+import { propsStack } from '../../routes/Models';
+import theme from '../../theme';
 
 
 const LoginForm: React.FC<LoginFormProps> = ({
@@ -48,7 +48,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
 
       <TouchableOpacity style={styles.button} onPress={handleLogin} disabled={loading}>
         {loading ? (
-          <ActivityIndicator size="small" color="#FFF" />
+          <ActivityIndicator size="small" color={theme.COLORS.WHITE} />
         ) : (
           <Text style={styles.buttonText}>Acessar</Text>
         )}
@@ -62,7 +62,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
           style={styles.registerText}
           onPress={() => navigate('Cadastrar')}
         >
-          Não possui uma conta? Cadastre-se
+          Não possui uma conta? Registre-se
         </Text>
       </TouchableOpacity>
     </Animatable.View>

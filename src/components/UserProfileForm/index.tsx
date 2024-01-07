@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, TextInput, ScrollView, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import { styles } from './styles';
-import UserProfileFormProps from '../../props/UserProfileFormProps';
+import UserProfileFormProps from '../../@types/UserProfileFormProps';
+import theme from '../../theme';
 
 const UserProfileForm: React.FC<UserProfileFormProps> = ({
   username,
@@ -17,14 +18,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
   handleSaveProfile,
   loading,
 }) => {
-  const handleEmailChange = (text: string) => {
-    if (!email.trim()) {
-      Alert.alert('Fale com o suporte', 'Entre em contato com o suporte para alterar o e-mail.');
-    } else {
-      setEmail(text);
-    }
-  };
-
+ 
   return (
     <View style={styles.containerForm}>
       <ScrollView>
@@ -58,16 +52,15 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
         />
         <Text style={styles.title}>Email</Text>
         <TextInput
-          style={[styles.input, { color: email.trim() ? 'gray' : 'black' }]} // Mudar a cor do texto se o e-mail não estiver vazio
+          style={[styles.input, { color: email.trim() ? 'gray' : 'black' }]}
           placeholder="Digite seu Email"
-          onChangeText={handleEmailChange}
           value={email}
-          pointerEvents={email.trim() ? 'none' : 'auto'} // Desativar a interação se o e-mail não estiver vazio
+          pointerEvents={email.trim() ? 'none' : 'auto'}
         />
       </ScrollView>
       <TouchableOpacity style={styles.button} onPress={handleSaveProfile} disabled={loading}>
         {loading ? (
-          <ActivityIndicator size="small" color="#fff" />
+          <ActivityIndicator size="small" color={theme.COLORS.WHITE} />
         ) : (
           <Text style={styles.buttonText}>Salvar perfil</Text>
         )}

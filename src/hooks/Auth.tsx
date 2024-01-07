@@ -24,53 +24,53 @@ interface AuthProviderProps {
 
 export const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-const AuthProvider = ({children}: AuthProviderProps) => {
-      const [authData, setAuthData] = useState<DB_USER>();
-      const [isLoading, setIsLoading] = useState(false);
-      const [loading, setLoading] = useState(false);
+const AuthProvider = ({ children }: AuthProviderProps) => {
+  const [authData, setAuthData] = useState<DB_USER>();
+  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-      useEffect(() => {
-        loadFromStorage();
-      },[])
+  useEffect(() => {
+    loadFromStorage();
+  }, [])
 
-      async function loadFromStorage(){
+  async function loadFromStorage() {
 
-        const user = await asyncGetUser();
-        console.log(user)
-        setIsLoading(true)
-        if(user){
-          setAuthData(user);
-        }
-        setIsLoading(false)
-      }
+    const user = await asyncGetUser();
+    console.log(user)
+    setIsLoading(true)
+    if (user) {
+      setAuthData(user);
+    }
+    setIsLoading(false)
+  }
 
-      async function signIn({email, password}: SignCredentials){
-          try{
-                setLoading(true);
-                const { user } =  await logar(email, password)
+  async function signIn({ email, password }: SignCredentials) {
+    try {
+      setLoading(true);
+      const { user } = await logar(email, password)
 
-                await asyncSetUser(user)
-                setAuthData(user as any) //fiquei sem paciencia para tipar 
-                setLoading(false);
-              }catch(err: any){
-                Alert.alert('Atenção', err.message)
-             }finally{
-              setLoading(false);
-             }
-      }
+      await asyncSetUser(user)
+      setAuthData(user as any) //fiquei sem paciencia para tipar 
+      setLoading(false);
+    } catch (err: any) {
+      Alert.alert('Atenção', err.message)
+    } finally {
+      setLoading(false);
+    }
+  }
 
-    return <AuthContext.Provider value={{
-      authData,
-      signIn,
-      isLoading,
-      setAuthData
-    }}>{children}</AuthContext.Provider>
+  return <AuthContext.Provider value={{
+    authData,
+    signIn,
+    isLoading,
+    setAuthData
+  }}>{children}</AuthContext.Provider>
 }
 
-function useAuth(): AuthContextData{
-    const context = useContext(AuthContext);
+function useAuth(): AuthContextData {
+  const context = useContext(AuthContext);
 
-    return context;
+  return context;
 }
 
-export { AuthProvider, useAuth}
+export { AuthProvider, useAuth }

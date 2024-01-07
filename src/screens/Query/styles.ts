@@ -17,29 +17,6 @@ export const styles = StyleSheet.create({
     marginBottom: '10%',
     paddingStart: '5%',
   },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  message: {
-    paddingTop: 20,
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: '#FFF',
-  },
-  botaoEditarAtivo: {
-    backgroundColor: '#FFF',
-    borderRadius: 4,
-    padding: 8,
-    marginHorizontal: 5,
-  },
-  messagePre: {
-    paddingTop: 20,
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: theme.COLORS.PRIMARY,
-  },
   containerForm: {
     flex: 1,
     backgroundColor: theme.COLORS.BACKGROUND,
@@ -67,7 +44,7 @@ export const styles = StyleSheet.create({
     marginTop: 10,
   },
   toggleHorarioButtonText: {
-    color: '#FFF',
+    color: theme.COLORS.BUTTON_TEXT,
   },
   botaoAdicionar: {
     backgroundColor: theme.COLORS.BUTTON,
@@ -78,27 +55,17 @@ export const styles = StyleSheet.create({
     marginTop: 14,
   },
   textoBotao: {
-    color: '#FFF',
+    color: theme.COLORS.BUTTON_TEXT,
   },
   listaContainer: {
     flex: 1,
   },
- 
   textoMedicao: {
     fontSize: 16,
     color: '#333',
     marginBottom: 5,
   },
-  textoMedicaoBoa: {
-    fontSize: 16,
-    color: 'green',
-    marginBottom: 5,
-  },
-  textoMedicaoRuim: {
-    fontSize: 16,
-    color: 'red',
-    marginBottom: 5,
-  },
+
   containerBotoes: {
     flexDirection: 'row',
   },
@@ -114,27 +81,5 @@ export const styles = StyleSheet.create({
     padding: 8,
     marginHorizontal: 5,
   },
-  containerModal: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  botaoCancelar: {
-    backgroundColor: theme.COLORS.BUTTON,
-    borderRadius: 4,
-    padding: 8,
-    marginTop: 10,
-  },
-  iconeMedicao: {
-    fontSize: 24,
-    color: '#333',
-    marginBottom: 5,
-    textShadowColor: '#000',
-    textShadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    textShadowRadius: 2,
-  },
+
 });

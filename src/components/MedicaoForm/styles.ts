@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import theme from "../../theme";
 
 export const styles = StyleSheet.create({
 
@@ -20,7 +21,7 @@ export const styles = StyleSheet.create({
     },
   
     botaoAdicionar: {
-      backgroundColor: '#e61919',
+      backgroundColor: theme.COLORS.BUTTON,
       borderRadius: 4,
       justifyContent: 'center',
       alignItems: 'center',
@@ -28,7 +29,7 @@ export const styles = StyleSheet.create({
       marginTop: 14,
     },
     textoBotao: {
-      color: '#FFF',
+      color: theme.COLORS.BUTTON_TEXT,
     },
    
   });

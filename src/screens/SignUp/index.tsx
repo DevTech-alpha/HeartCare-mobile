@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { styles } from './styles';
 import { criar } from '../../api/CreateAcount';
 import { propsStack } from '../../routes/Models';
+import theme from '../../theme';
 
 export default function Cadastro() {
   const [email, setEmail] = useState('');
@@ -21,7 +22,7 @@ export default function Cadastro() {
 
   const handleSignUp = () => {
     setLoading(true);
-  
+
     criar(email, password)
       .then((userCredentials) => {
         setLoading(false);
@@ -34,7 +35,7 @@ export default function Cadastro() {
         alert(error.message);
       });
   };
-  
+
 
   return (
     <View style={styles.container}>
@@ -67,9 +68,9 @@ export default function Cadastro() {
 
         <TouchableOpacity style={styles.button} onPress={handleSignUp} disabled={loading}>
           {loading ? (
-            <ActivityIndicator size="small" color="#fff" />
+            <ActivityIndicator size="small" color={theme.COLORS.WHITE} />
           ) : (
-            <Text style={styles.buttonText}>Cadastrar</Text>
+            <Text style={styles.buttonText}>Registrar</Text>
           )}
         </TouchableOpacity>
 

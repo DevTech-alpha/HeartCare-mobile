@@ -6,10 +6,10 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.COLORS.BACKGROUND,
   },
- 
+
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: theme.COLORS.OVERLEY,
   },
   addButton: {
     position: 'absolute',
@@ -19,22 +19,21 @@ export const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    textAlign:'center',
+    textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 10,
   },
   addButtonText: {
     fontSize: 30,
-    color: '#fff',
+    color: theme.COLORS.WHITE,
     fontWeight: 'bold',
   },
 
   message: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: '#FFF',
+    color: theme.COLORS.WHITE,
   },
 
-  });
-  
+});
