@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import MedicaoItemProps from '../../@types/MedicaoItemProps';
 
-const MedicaoItem: React.FC<MedicaoItemProps> = ({ medicao }) => {
+const MedicaoItem: React.FC<MedicaoItemProps> = ({ medicao , deleteMedicao }) => {
  
 
   return (
@@ -25,6 +25,8 @@ const MedicaoItem: React.FC<MedicaoItemProps> = ({ medicao }) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.botaoExcluir}
+          onPress={() =>
+             deleteMedicao(medicao.id)}
         >
           <Text style={styles.textoBotao}>Excluir</Text>
         </TouchableOpacity>

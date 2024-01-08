@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, TouchableOpacity, FlatList, Modal, ActivityIndicator, RefreshControl } from 'react-native';
-import { addDoc, collection, getDocs, deleteDoc, doc, setDoc, query, where } from 'firebase/firestore';
+import { View, Text, TouchableOpacity, FlatList, Modal, ActivityIndicator, RefreshControl, Alert } from 'react-native';
+import { addDoc, collection, getDocs, deleteDoc, doc, setDoc, query, where, getDoc } from 'firebase/firestore';
 import { getAuth, User } from 'firebase/auth';
 import Medicao from '../../model/Medicao';
 import * as Animatable from 'react-native-animatable';
@@ -12,15 +12,13 @@ import { Header } from '../../components/Header';
 
 const PressaoArterial = () => {
   const [medicoes, setMedicoes] = useState<Medicao[]>([]);
-  const [medicaoSelecionada, setMedicaoSelecionada] = useState<Medicao | null>(null);
-  const [isModalVisible, setIsModalVisible] = useState(false);
   const [historicoVisivel, setHistoricoVisivel] = useState(false);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const auth = getAuth();
   const user: User | null = auth.currentUser;
 
-  const carregarMedicoes = async () => {
+  const carregarMedicoes = useCallback(async () => {
     if (user) {
       const medicoesRef = collection(db, 'medicoes');
       const q = query(medicoesRef, where('userId', '==', user.uid));
@@ -31,29 +29,60 @@ const PressaoArterial = () => {
         ...doc.data(),
       } as Medicao));
 
-      medicoesData.sort((a, b) => {
-        const dataA = new Date(a.data).getTime();
-        const dataB = new Date(b.data).getTime();
-        return dataB - dataA;
-      });
+      medicoesData.sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime());
 
       setMedicoes(medicoesData);
     }
-  };
+  }, [user]);
 
   const onRefresh = useCallback(() => {
     carregarMedicoes();
-  }, []);
+    setRefreshing(false);
+  }, [carregarMedicoes]);
 
   useEffect(() => {
     carregarMedicoes();
-  }, [user]);
-
+  }, [user, carregarMedicoes]);
 
   const handleMedicaoAdicionada = () => {
-    setIsModalVisible(false);
-    setMedicaoSelecionada(null);
+    setLoading(true);
     carregarMedicoes();
+    setLoading(false);
+  };
+
+  const deleteMedicao = async (medicaoId: number) => {
+    try {
+      const medicoesRef = doc(db, 'medicoes', medicaoId.toString());
+      const confirmDelete = await new Promise((resolve) => {
+        Alert.alert(
+          'Confirmação',
+          'Tem certeza de que deseja apagar esta medição?',
+          [
+            {
+              text: 'Cancelar',
+              style: 'cancel',
+              onPress: () => resolve(false),
+            },
+            {
+              text: 'Apagar',
+              onPress: () => resolve(true),
+            },
+          ],
+          { cancelable: true }
+        );
+      });
+
+      if (confirmDelete) {
+        await deleteDoc(medicoesRef);
+        setMedicoes((prevMedicoes) =>
+          prevMedicoes.filter((medicao) => medicao.id !== medicaoId)
+        );
+      } else {
+        console.log('Exclusão cancelada pelo usuário');
+      }
+    } catch (error) {
+      console.error('Erro ao excluir Medicao:', error);
+    }
   };
 
 
@@ -85,6 +114,7 @@ const PressaoArterial = () => {
               renderItem={({ item }) => (
                 <MedicaoItem
                   medicao={item}
+                  deleteMedicao={deleteMedicao}
                 />
               )}
               refreshControl={
@@ -92,7 +122,6 @@ const PressaoArterial = () => {
               }
             />
           )}
-
         </Animatable.View>
       </View>
     </>
