@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
   
     botaoAdicionar: {
       backgroundColor: theme.COLORS.BUTTON,
-      borderRadius: 4,
+      borderRadius: 20,
       justifyContent: 'center',
       alignItems: 'center',
       paddingVertical: 8,

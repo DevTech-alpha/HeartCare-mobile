@@ -73,7 +73,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
   },
   button: {
-    backgroundColor: theme.COLORS.BUTTON,
+    backgroundColor: theme.COLORS.PRIMARY,
     width: '100%',
     paddingVertical: 12,
     marginTop: 10,

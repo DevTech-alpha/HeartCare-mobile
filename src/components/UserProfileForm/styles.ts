@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
   button: {
     backgroundColor: theme.COLORS.BUTTON,
     width: '100%',
-    borderRadius: 4,
+    borderRadius: 20,
     paddingVertical: 12,
     marginTop: 10,
     justifyContent: 'center',

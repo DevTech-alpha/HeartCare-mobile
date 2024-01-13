@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
   },
   buttonAcessar: {
     backgroundColor: theme.COLORS.BUTTON,
-    borderRadius: 50,
+    borderRadius: 20,
     paddingVertical: 8,
     width: '60%',
     alignSelf: 'center',

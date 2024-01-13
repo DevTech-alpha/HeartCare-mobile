@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
   button: {
     backgroundColor: theme.COLORS.BUTTON,
     width: '100%',
-    borderRadius: 4,
+    borderRadius: 20,
     paddingVertical: 8,
     marginTop: 14,
     justifyContent: 'center',

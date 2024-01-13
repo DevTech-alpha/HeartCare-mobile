@@ -3,14 +3,14 @@ export default {
     BACKGROUND: '#F0F2F5',
     BACKGROUND_CARD: '#E4E6EF',
 
-    BUTTON: '#e61918',
+    BUTTON: '#cc5972',
     BUTTON_TEXT: '#FFF',
 
     TEXT: '#a1a1a1',
 
     ICON: '#333',
 
-    PRIMARY: '#e61919',
+    PRIMARY: '#8A273A',
     WHITE: '#FFF',
 
     POST_TITLE: '#333',
