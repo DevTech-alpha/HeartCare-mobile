@@ -27,6 +27,25 @@ O HeartCare é um aplicativo React Native dedicado ao cuidado do coração, ofer
 2. Instale as dependências usando `npm install`.
 3. Execute o aplicativo com `npx react-native run-android` (ou `run-ios` para dispositivos iOS).
 
+## Galeria
+
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(15).jpeg" alt="Tela Inicial" width="300"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(14).jpeg" alt="Tela Inicial" width="300"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(13).jpeg" alt="Tela Inicial" width="300"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(12).jpeg" alt="Tela Inicial" width="300"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(11).jpeg" alt="Tela Inicial" width="300"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(10).jpeg" alt="Tela Inicial" width="300"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(9).jpeg" alt="Tela Inicial" width="300"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(8).jpeg" alt="Tela Inicial" width="300"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(7).jpeg" alt="Tela Inicial" width="300"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(6).jpeg" alt="Tela Inicial" width="300"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(5).jpeg" alt="Tela Inicial" width="300"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(4).jpeg" alt="Tela Inicial" width="300"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(3).jpeg" alt="Tela Inicial" width="300"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(2).jpeg" alt="Tela Inicial" width="300"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(1).jpeg" alt="Tela Inicial" width="300"/>
+
+
 ## Contribuições
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests para melhorar o HeartCare.
 
