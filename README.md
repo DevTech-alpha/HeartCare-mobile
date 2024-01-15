@@ -27,13 +27,22 @@ O HeartCare é um aplicativo React Native dedicado ao cuidado do coração, ofer
 3. Execute o aplicativo com `npx react-native run-android` (ou `run-ios` para dispositivos iOS).
 
 ## Galeria
-| [Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(15).jpeg | width=250) | [Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(14).jpeg | width=250) | [Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(13).jpeg | width=250) |
-| --- | --- | --- |
-| [Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(12).jpeg | width=250) | [Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(11).jpeg | width=250) | [Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(10).jpeg | width=250) |
-| [Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(9).jpeg | width=250) | [Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(8).jpeg | width=250) | [Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(7).jpeg | width=250) |
-| [Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(6).jpeg | width=250) | [Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(5).jpeg | width=250) | [Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(4).jpeg | width=250) |
-| [Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(3).jpeg | width=250) | [Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(2).jpeg | width=250) | 
-[Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(1).jpeg | width=250) |
+
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(15).jpeg" alt="# HeartCare App - Tela 1" width="250"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(14).jpeg" alt="# HeartCare App - Tela 2" width="250"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(13).jpeg" alt="# HeartCare App - Tela 3" width="250"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(12).jpeg" alt="# HeartCare App - Tela 4" width="250"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(11).jpeg" alt="# HeartCare App - Tela 5" width="250"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(10).jpeg" alt="# HeartCare App - Tela 6" width="250"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(9).jpeg" alt="# HeartCare App - Tela 7" width="250"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(8).jpeg" alt="# HeartCare App - Tela 8" width="250"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(7).jpeg" alt="# HeartCare App - Tela 9" width="250"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(6).jpeg" alt="# HeartCare App - Tela 10" width="250"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(5).jpeg" alt="# HeartCare App - Tela 11" width="250"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(4).jpeg" alt="# HeartCare App - Tela 12" width="250"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(3).jpeg" alt="# HeartCare App - Tela 13" width="250"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(2).jpeg" alt="# HeartCare App - Tela 14" width="250"/>
+<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(1).jpeg" alt="# HeartCare App - Tela 15" width="250"/>
 
 ## Contribuições
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests para melhorar o HeartCare.
