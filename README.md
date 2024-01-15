@@ -14,7 +14,6 @@ O HeartCare é um aplicativo React Native dedicado ao cuidado do coração, ofer
 - **Feed de Publicações sobre Coração:** Mantenha-se informado sobre cuidados cardíacos e formas de prevenção.
 - **Criação e Exclusão de Publicações:** Compartilhe sua experiência ou aprendizado, e gerencie suas publicações conforme necessário.
 
-
 ### FAQ
 - **Perguntas Frequentes sobre o Coração:** Obtenha respostas para dúvidas comuns relacionadas à saúde do coração.
 
@@ -28,23 +27,12 @@ O HeartCare é um aplicativo React Native dedicado ao cuidado do coração, ofer
 3. Execute o aplicativo com `npx react-native run-android` (ou `run-ios` para dispositivos iOS).
 
 ## Galeria
-
-<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(15).jpeg" alt="Tela Inicial" width="300"/>
-<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(14).jpeg" alt="Tela Inicial" width="300"/>
-<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(13).jpeg" alt="Tela Inicial" width="300"/>
-<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(12).jpeg" alt="Tela Inicial" width="300"/>
-<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(11).jpeg" alt="Tela Inicial" width="300"/>
-<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(10).jpeg" alt="Tela Inicial" width="300"/>
-<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(9).jpeg" alt="Tela Inicial" width="300"/>
-<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(8).jpeg" alt="Tela Inicial" width="300"/>
-<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(7).jpeg" alt="Tela Inicial" width="300"/>
-<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(6).jpeg" alt="Tela Inicial" width="300"/>
-<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(5).jpeg" alt="Tela Inicial" width="300"/>
-<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(4).jpeg" alt="Tela Inicial" width="300"/>
-<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(3).jpeg" alt="Tela Inicial" width="300"/>
-<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(2).jpeg" alt="Tela Inicial" width="300"/>
-<img src="https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(1).jpeg" alt="Tela Inicial" width="300"/>
-
+| ![Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(15).jpeg | width=250) | ![Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(14).jpeg | width=250) | ![Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(13).jpeg | width=250) |
+| --- | --- | --- |
+| ![Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(12).jpeg | width=250) | ![Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(11).jpeg | width=250) | ![Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(10).jpeg | width=250) |
+| ![Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(9).jpeg | width=250) | ![Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(8).jpeg | width=250) | ![Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(7).jpeg | width=250) |
+| ![Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(6).jpeg | width=250) | ![Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(5).jpeg | width=250) | ![Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(4).jpeg | width=250) |
+| ![Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(3).jpeg | width=250) | ![Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(2).jpeg | width=250) | ![Galeria](https://raw.githubusercontent.com/DSantosxTech/HeartCare/master/github/screenshot/galeria%20(1).jpeg | width=250) |
 
 ## Contribuições
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests para melhorar o HeartCare.
