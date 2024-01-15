@@ -2,14 +2,14 @@
   "expo": {
     "name": "HeartCare",
     "slug": "HeartCare",
-    "version": "1.0.1",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#e61919"
+      "backgroundColor": "#8A273A"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -20,7 +20,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#e61919"
+        "backgroundColor": "#8A273A"
       },
       "package": "com.devsntosx71.HeartCare"
     },
