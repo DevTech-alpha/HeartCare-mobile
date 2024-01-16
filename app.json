@@ -15,14 +15,22 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config": {
+        "googleMapsApiKey": "AIzaSyCFLIp4Js-CeTFakpLJ4CxdtSqmPtQy1vw"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#8A273A"
       },
-      "package": "com.devsntosx71.HeartCare"
+      "package": "com.devsntosx71.HeartCare",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCFLIp4Js-CeTFakpLJ4CxdtSqmPtQy1vw"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

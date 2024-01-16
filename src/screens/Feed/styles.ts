@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.COLORS.OVERLEY,
   },
+
   addButton: {
     position: 'absolute',
     bottom: 24,
@@ -24,6 +25,21 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     elevation: 10,
   },
+
+  buttonInfo: {
+    position: 'absolute',
+    top: 100,  // Adjusted the position to the top
+    right: 24,
+    backgroundColor: theme.COLORS.BUTTON,
+    width: 50,
+    height: 50,
+    borderRadius: 30,
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 10,
+  },
+
   addButtonText: {
     fontSize: 30,
     color: theme.COLORS.WHITE,
@@ -35,5 +51,4 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: theme.COLORS.WHITE,
   },
-
 });

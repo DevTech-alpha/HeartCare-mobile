@@ -94,40 +94,6 @@ const Feed: React.FC<FeedProps> = () => {
     );
   };
 
-  const deletePost = async (postId: string) => {
-    try {
-      const postRef = doc(db, 'posts', postId);
-      const postDoc = await getDoc(postRef);
-
-      if (postDoc.exists() && postDoc.data()?.idpub === user?.uid) {
-        Alert.alert(
-          'Confirmação',
-          'Tem certeza de que deseja apagar esta publicação?',
-          [
-            {
-              text: 'Cancelar',
-              style: 'cancel',
-            },
-            {
-              text: 'Apagar',
-              onPress: async () => {
-                await deleteDoc(postRef);
-
-                const updatedPosts = posts.filter((post) => post.id !== postId);
-                setPosts(updatedPosts);
-              },
-            },
-          ],
-          { cancelable: true }
-        );
-      } else {
-        console.warn('User does not have permission to delete this post');
-      }
-    } catch (error) {
-      console.error('Error deleting post:', error);
-    }
-  };
-
   const createNewPost = async (title: string, content: string) => {
     try {
       if (title.trim() !== '' && content.trim() !== '') {
@@ -187,8 +153,6 @@ const Feed: React.FC<FeedProps> = () => {
             <PostItem
               item={item}
               toggleLike={toggleLike}
-              userUid={user?.uid || ''}
-              deletePost={deletePost}
               sharePost={sharePost}
             />
           )}
@@ -200,6 +164,8 @@ const Feed: React.FC<FeedProps> = () => {
         <TouchableOpacity style={feedStyles.addButton} onPress={onOpen}>
           <Text style={feedStyles.addButtonText}>+</Text>
         </TouchableOpacity>
+
+       
         <Modalize
           ref={modalizeRef}
           snapPoint={220}

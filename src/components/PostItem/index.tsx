@@ -6,7 +6,7 @@ import * as Animatable from 'react-native-animatable';
 import PostItemProps from '../../@types/PostItemProps';
 import theme from '../../theme';
 
-const PostItem: React.FC<PostItemProps> = ({ item, toggleLike, userUid, deletePost, sharePost }) => (
+const PostItem: React.FC<PostItemProps> = ({ item, toggleLike, sharePost }) => (
   <Animatable.View animation="fadeInUp" style={feedStyles.postContainer}>
     <View style={feedStyles.postHeader}>
       <Image
@@ -30,11 +30,6 @@ const PostItem: React.FC<PostItemProps> = ({ item, toggleLike, userUid, deletePo
       </TouchableOpacity>
     </View>
 
-    {userUid === item.idpub && (
-      <TouchableOpacity style={feedStyles.saveIconContainer} onPress={() => deletePost(item.id)}>
-        <FontAwesome name="trash" size={30} color={theme.COLORS.ICON} />
-      </TouchableOpacity>
-    )}
   </Animatable.View>
 );
 

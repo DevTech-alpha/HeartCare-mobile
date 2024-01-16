@@ -43,6 +43,11 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 15,
   },
+  botoes:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+  },
   profileImage: {
     width: 100,
     height: 100,
@@ -89,4 +94,5 @@ export const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'space-between',
   },
+
 });

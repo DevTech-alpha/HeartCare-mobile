@@ -7,7 +7,7 @@ import * as Animatable from 'react-native-animatable';
 import { Header } from '../../components/Header';
 import theme from '../../theme';
 
-function FAQScreen() {
+function FAQ() {
 
   const [questions] = useState([
     {
@@ -102,6 +102,6 @@ function FAQScreen() {
   );
 }
 
-export default FAQScreen;
+export default FAQ;
 
 

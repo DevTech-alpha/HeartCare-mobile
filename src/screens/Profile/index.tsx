@@ -62,7 +62,10 @@ const UserProfileScreen = () => {
   const [userPosts, setUserPosts] = useState<Post[]>([]);
   const [editMode, setEditMode] = useState(false);
 
-  const storage = getStorage();
+  const storage = getStorage()
+  ;
+
+  const { navigate } = useNavigation<propsStack>();
 
   const onRefresh = useCallback(() => {
     fetchUserPosts();
@@ -323,9 +326,14 @@ const UserProfileScreen = () => {
         )}
 
         <View style={styles.userPostsContainer}>
+          <View style={styles.botoes}>
           <TouchableOpacity onPress={handleSignOut}>
             <FontAwesome name="sign-out" size={30} color={theme.COLORS.ICON} />
           </TouchableOpacity>
+          <TouchableOpacity  onPress={() => navigate('FAQ')}>
+            <FontAwesome name="info-circle" size={30} color={theme.COLORS.ICON} />
+          </TouchableOpacity>
+          </View>
           {userPosts.map((post) => (
             <PostItem
               key={post.id}

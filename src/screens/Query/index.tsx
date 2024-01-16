@@ -9,6 +9,8 @@ import { styles } from './styles';
 import MedicaoItem from '../../components/MedicaoItem';
 import MedicaoForm from '../../components/MedicaoForm';
 import { Header } from '../../components/Header';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Feather } from '@expo/vector-icons';
 
 const PressaoArterial = () => {
   const [medicoes, setMedicoes] = useState<Medicao[]>([]);
@@ -91,11 +93,15 @@ const PressaoArterial = () => {
       <View>
         <Header title='𝓹𝓻𝓮𝓼𝓼𝓪̃𝓸 𝓪𝓻𝓽𝓮𝓻𝓲𝓪𝓵' />
       </View>
+      
       <View style={styles.container}>
+        
+        
         <Animatable.View animation="fadeInUp" style={styles.containerForm}>
           {!historicoVisivel && (
             <MedicaoForm onMedicaoAdicionada={handleMedicaoAdicionada} loading={loading} />
           )}
+
 
           <TouchableOpacity
             style={styles.botaoAdicionar}
@@ -107,6 +113,7 @@ const PressaoArterial = () => {
           </TouchableOpacity>
 
           {historicoVisivel && (
+            
             <FlatList
               data={medicoes}
               keyExtractor={(item) => item.id.toString()}

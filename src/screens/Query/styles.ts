@@ -60,6 +60,25 @@ export const styles = StyleSheet.create({
   listaContainer: {
     flex: 1,
   },
+  buttonInfo: {
+    position: 'absolute',
+    top: 100,  // Adjusted the position to the top
+    right: 24,
+    backgroundColor: theme.COLORS.BUTTON,
+    width: 50,
+    height: 50,
+    borderRadius: 30,
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 40,
+  },
+
+  addButtonText: {
+    fontSize: 30,
+    color: theme.COLORS.WHITE,
+    fontWeight: 'bold',
+  },
   textoMedicao: {
     fontSize: 16,
     color: '#333',
