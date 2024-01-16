@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
-import { StyleSheet, View, Dimensions, ActivityIndicator, Text } from "react-native";
+import { StyleSheet, View, Dimensions, ActivityIndicator, Text, Linking } from "react-native";
 import MapView, { Details, LatLng, Region } from "react-native-maps";
 import { Accuracy, requestForegroundPermissionsAsync, watchPositionAsync } from 'expo-location';
 import MapViewDirections, { MapDirectionsResponse } from "react-native-maps-directions";
@@ -125,6 +125,10 @@ const Map: React.FC = () => {
       }, 3000)
    }
 
+   const makeEmergencyCall = () => {
+      const phoneNumber = '192'; // Número de emergência
+      Linking.openURL(`tel:${phoneNumber}`);
+   }
    return (
       <View style={styles.container}>
 
@@ -226,6 +230,7 @@ const Map: React.FC = () => {
                   icon={require('../..//assets/my-location.png')}
                   onPress={() => handleFollowUserLocation()}
                />
+               
             </View>
          </>
       </View>

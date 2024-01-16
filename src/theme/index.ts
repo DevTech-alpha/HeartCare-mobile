@@ -1,16 +1,16 @@
 export default {
   COLORS: {
-    BACKGROUND: '#F0F2F5',
-    BACKGROUND_CARD: '#E4E6EF',
+    BACKGROUND_CARD: '#F0F2F5',
+    BACKGROUND: '#E4E6EF',
 
-    BUTTON: '#cc5972',
+    BUTTON: '#9f0a2f',
     BUTTON_TEXT: '#FFF',
 
     TEXT: '#a1a1a1',
 
     ICON: '#333',
 
-    PRIMARY: '#8A273A',
+    PRIMARY: '#800020',
     WHITE: '#FFF',
 
     POST_TITLE: '#333',

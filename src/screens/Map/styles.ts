@@ -8,25 +8,7 @@ export const styles = StyleSheet.create({
     map: {
        ...StyleSheet.absoluteFillObject,
     },
-    buttonInfo: {
-    position: 'absolute',
-    top: 100,  // Adjusted the position to the top
-    right: 24,
-    backgroundColor: theme.COLORS.BUTTON,
-    width: 50,
-    height: 50,
-    borderRadius: 30,
-    textAlign: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-    elevation: 40,
-  },
-
-  addButtonText: {
-    fontSize: 30,
-    color: theme.COLORS.WHITE,
-    fontWeight: 'bold',
-  },
+    
     buttonWrapper: {
         position: 'absolute',
         bottom: 24,

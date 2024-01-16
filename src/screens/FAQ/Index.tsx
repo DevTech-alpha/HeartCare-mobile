@@ -7,7 +7,7 @@ import * as Animatable from 'react-native-animatable';
 import { Header } from '../../components/Header';
 import theme from '../../theme';
 
-function FAQ() {
+const FAQ = () => {
 
   const [questions] = useState([
     {

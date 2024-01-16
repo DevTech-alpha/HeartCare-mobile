@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     color: theme.COLORS.WHITE,
   },
   userPostsContainer: {
-    backgroundColor: '#F0F2F5',
+    backgroundColor: theme.COLORS.BACKGROUND_CARD,
     marginTop: 20,
     padding: 15,
     borderTopLeftRadius: 30,
