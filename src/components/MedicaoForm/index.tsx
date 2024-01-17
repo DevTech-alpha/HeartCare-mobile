@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Text, TextInput, TouchableOpacity, ActivityIndicator, View } from 'react-native';
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from '../../firebase/firebase';
-import { getAuth } from 'firebase/auth';
 import Medicao from '../../model/Medicao';
 import { styles } from './styles';
 import MedicaoFormProps from '../../@types/MedicaoFormProps';
 import theme from '../../theme';
+import { useState } from 'react';
+import { getAuth } from 'firebase/auth';
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../../firebase/firebase';
+import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading }) => {
   const [sistolica, setSistolica] = useState('');
@@ -22,8 +22,7 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading 
       const diastolicaValue = parseFloat(diastolica);
 
       if (!isNaN(sistolicaValue) && !isNaN(diastolicaValue)) {
-        const novaMedicao: Medicao = {
-          id: Date.now(),
+        const novaMedicao = {
           userId: user?.uid ?? '',
           sistolica,
           diastolica,
@@ -36,7 +35,10 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading 
           setIsAddingMedicao(true);
 
           const medicoesRef = collection(db, 'medicoes');
-          await addDoc(medicoesRef, novaMedicao);
+          const docRef = await addDoc(medicoesRef, novaMedicao);
+
+          // Agora, você pode acessar o ID gerado usando docRef.id
+          console.log('ID da nova medição:', docRef.id);
 
           if (sistolicaValue >= 90 && sistolicaValue <= 120 && diastolicaValue >= 60 && diastolicaValue <= 80) {
             alert('Pressão está boa!');
@@ -55,7 +57,7 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading 
         alert('Valores inválidos. Certifique-se de inserir números válidos para pressão sistólica e diastólica.');
       }
     }
-  };
+  }
 
   return (
     <>

@@ -52,46 +52,33 @@ const PressaoArterial = () => {
     setLoading(false);
   };
 
-  const deleteMedicao = async (medicaoId: string) => {
+  const deleteMedicao = async (postId: string) => {
     try {
-      const medicoesRef = doc(db, 'medicoes', medicaoId);
-      const confirmDelete = await new Promise((resolve) => {
-        Alert.alert(
-          'Confirmação',
-          'Tem certeza de que deseja apagar esta medição?',
-          [
-            {
-              text: 'Cancelar',
-              style: 'cancel',
-              onPress: () => resolve(false),
-            },
-            {
-              text: 'Apagar',
-              onPress: async () => {
-                await deleteDoc(medicoesRef);
+      const postRef = doc(db, 'medicoes', postId);
 
-                const updatedPosts = medicoes.filter((medicao) => medicao.id !== medicaoId);
-                setMedicoes(updatedPosts);
-                carregarMedicoes();
-              },
+      Alert.alert(
+        'Confirmação',
+        'Tem certeza de que deseja apagar esta publicação?',
+        [
+          {
+            text: 'Cancelar',
+            style: 'cancel',
+          },
+          {
+            text: 'Apagar',
+            onPress: async () => {
+              await deleteDoc(postRef);
+              Alert.alert('Sucesso', 'Excluido com sucesso!')
+              carregarMedicoes();
             },
-          ],
-          { cancelable: true }
-        );
-      });
-      
-      if (confirmDelete) {
-      }
+          },
+        ],
+        { cancelable: true }
+      );
     } catch (error) {
-      console.error('Erro ao excluir medição:', error);
+      console.error('Error deleting post:', error);
     }
   };
-
-
-
-
-
-
 
   return (
     <>
@@ -100,13 +87,10 @@ const PressaoArterial = () => {
       </View>
 
       <View style={styles.container}>
-
-
         <Animatable.View animation="fadeInUp" style={styles.containerForm}>
           {!historicoVisivel && (
             <MedicaoForm onMedicaoAdicionada={handleMedicaoAdicionada} loading={loading} />
           )}
-
 
           <TouchableOpacity
             style={styles.botaoAdicionar}
@@ -118,10 +102,8 @@ const PressaoArterial = () => {
           </TouchableOpacity>
 
           {historicoVisivel && (
-
             <FlatList
               data={medicoes}
-              keyExtractor={(item) => item.id.toString()}
               ListEmptyComponent={<Text style={styles.textoVazio}>Nenhum registro encontrado.</Text>}
               renderItem={({ item }) => (
                 <MedicaoItem
