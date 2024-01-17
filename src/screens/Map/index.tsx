@@ -1,13 +1,12 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
-import { StyleSheet, View, Dimensions, ActivityIndicator, Text, Linking } from "react-native";
-import MapView, { Details, LatLng, Region } from "react-native-maps";
+import { View, Dimensions } from "react-native";
+import MapView, { Details, LatLng } from "react-native-maps";
 import { Accuracy, requestForegroundPermissionsAsync, watchPositionAsync } from 'expo-location';
 import MapViewDirections, { MapDirectionsResponse } from "react-native-maps-directions";
 import CustomMarker from "../../components/CustomMarker";
 import Button from "../../components/Button/Button";
 import { styles } from "./styles";
 import { Header } from "../../components/Header";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 interface Camera {
    center: LatLng;
@@ -125,12 +124,8 @@ const Map: React.FC = () => {
       }, 3000)
    }
 
-   const makeEmergencyCall = () => {
-      const phoneNumber = '192'; // Número de emergência
-      Linking.openURL(`tel:${phoneNumber}`);
-   }
    return (
-      <View style={styles.container}>
+      <><Header title="𝓜𝓪𝓹𝓪"/><View style={styles.container}>
 
          <>
             <MapView
@@ -192,7 +187,7 @@ const Map: React.FC = () => {
                      precision={'high'}
                      onError={(errorMessage) => {
                         alert('Erro ao obter direções...');
-                     }}
+                     } }
                      onReady={(result: MapDirectionsResponse) => {
                         if (shouldFitMarkers) {
                            mapRef.current?.fitToCoordinates(result.coordinates, {
@@ -205,8 +200,7 @@ const Map: React.FC = () => {
                            });
                            setShouldFitMarkers(false);
                         }
-                     }}
-                  />
+                     } } />
                )}
             </MapView>
             <View style={styles.buttonWrapper}>
@@ -216,24 +210,21 @@ const Map: React.FC = () => {
                      height={40}
                      width={40}
                      icon={require('../../assets/clear.png')}
-                     onPress={() => removeDirections()}
-                  />
+                     onPress={() => removeDirections()} />
                )}
                {selectedDestination && (
                   <Button
                      backgroundColor={'#4285F4'}
                      icon={require('../../assets/directions.png')}
-                     onPress={() => getDirections()}
-                  />
+                     onPress={() => getDirections()} />
                )}
                <Button
                   icon={require('../..//assets/my-location.png')}
-                  onPress={() => handleFollowUserLocation()}
-               />
-               
+                  onPress={() => handleFollowUserLocation()} />
+
             </View>
          </>
-      </View>
+      </View></>
    );
 }
 

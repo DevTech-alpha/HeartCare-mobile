@@ -1,14 +1,9 @@
 import React, { FC } from "react";
-import { StyleSheet, TouchableOpacity, Image, ImageSourcePropType } from "react-native";
+import {TouchableOpacity, Image} from "react-native";
 import { styles } from "./styles";
+import ButtonProps from "../../@types/ButtonProps";
 
-interface ButtonProps {
-   backgroundColor?: string;
-   width?: number;
-   height?: number;
-   icon: ImageSourcePropType;
-   onPress: () => void;
-}
+
 
 const Button: FC<ButtonProps> = ({
    backgroundColor = '#fff', 

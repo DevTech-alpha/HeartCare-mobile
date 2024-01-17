@@ -330,9 +330,6 @@ const UserProfileScreen = () => {
           <TouchableOpacity onPress={handleSignOut}>
             <FontAwesome name="sign-out" size={30} color={theme.COLORS.ICON} />
           </TouchableOpacity>
-          <TouchableOpacity  onPress={() => navigate('Perguntas')}>
-            <FontAwesome name="info-circle" size={30} color={theme.COLORS.ICON} />
-          </TouchableOpacity>
           </View>
           {userPosts.map((post) => (
             <PostItem

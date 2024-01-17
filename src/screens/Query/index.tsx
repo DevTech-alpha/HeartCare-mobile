@@ -52,9 +52,9 @@ const PressaoArterial = () => {
     setLoading(false);
   };
 
-  const deleteMedicao = async (medicaoId: number) => {
+  const deleteMedicao = async (medicaoId: string) => {
     try {
-      const medicoesRef = doc(db, 'medicoes', medicaoId.toString());
+      const medicoesRef = doc(db, 'medicoes', medicaoId);
       const confirmDelete = await new Promise((resolve) => {
         Alert.alert(
           'Confirmação',
@@ -67,25 +67,30 @@ const PressaoArterial = () => {
             },
             {
               text: 'Apagar',
-              onPress: () => resolve(true),
+              onPress: async () => {
+                await deleteDoc(medicoesRef);
+
+                const updatedPosts = medicoes.filter((medicao) => medicao.id !== medicaoId);
+                setMedicoes(updatedPosts);
+                carregarMedicoes();
+              },
             },
           ],
           { cancelable: true }
         );
       });
-
+      
       if (confirmDelete) {
-        await deleteDoc(medicoesRef);
-        setMedicoes((prevMedicoes) =>
-          prevMedicoes.filter((medicao) => medicao.id !== medicaoId)
-        );
-      } else {
-        console.log('Exclusão cancelada pelo usuário');
       }
     } catch (error) {
-      console.error('Erro ao excluir Medicao:', error);
+      console.error('Erro ao excluir medição:', error);
     }
   };
+
+
+
+
+
 
 
   return (
@@ -93,10 +98,10 @@ const PressaoArterial = () => {
       <View>
         <Header title='𝓹𝓻𝓮𝓼𝓼𝓪̃𝓸 𝓪𝓻𝓽𝓮𝓻𝓲𝓪𝓵' />
       </View>
-      
+
       <View style={styles.container}>
-        
-        
+
+
         <Animatable.View animation="fadeInUp" style={styles.containerForm}>
           {!historicoVisivel && (
             <MedicaoForm onMedicaoAdicionada={handleMedicaoAdicionada} loading={loading} />
@@ -113,7 +118,7 @@ const PressaoArterial = () => {
           </TouchableOpacity>
 
           {historicoVisivel && (
-            
+
             <FlatList
               data={medicoes}
               keyExtractor={(item) => item.id.toString()}

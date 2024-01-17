@@ -17,8 +17,7 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.COLORS.BACKGROUND,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
-    paddingStart: '5%',
-    paddingEnd: '5%'
+    padding: '5%'
   },
   title: {
     fontSize: 24,
@@ -36,7 +35,7 @@ export const styles = StyleSheet.create({
     width: '60%',
     alignSelf: 'center',
     position: 'absolute',
-    bottom: '30%',
+    bottom: '15%',  // Ajustado para melhor posicionamento
     alignItems: 'center',
     justifyContent: 'center'
   },

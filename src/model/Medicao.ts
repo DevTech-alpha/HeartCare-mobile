@@ -1,6 +1,6 @@
 
  interface Medicao {
-id: number;
+id: string;
 userId: string,
 sistolica: string;
 diastolica: string;

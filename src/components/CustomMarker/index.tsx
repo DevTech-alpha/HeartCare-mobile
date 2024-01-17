@@ -1,16 +1,11 @@
 import React, { FC } from 'react';
 import { Callout, Marker } from 'react-native-maps';
-import { StyleSheet, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import { styles } from './styles';
 import theme from '../../theme';
+import CustomMarkerProps from '../../@types/CustomMarkerProps';
 
-interface CustomMarkerProps {
-  id: string;
-  nome_hospital: string,
-  latitude: number;
-  longitude: number;
-  onPress: (latitude: number, longitude: number) => void; // Add onPress property
-}
+
 
 const CustomMarker: FC<CustomMarkerProps> = ({
   id,
