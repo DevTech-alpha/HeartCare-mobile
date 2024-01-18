@@ -4,7 +4,10 @@ import { styles } from './styles';
 import LoginFormProps from '../../@types/LoginFormProps';
 import { useNavigation } from '@react-navigation/native';
 import { propsStack } from '../../routes/Models';
-import theme from '../../theme';
+
+import { useTheme } from '../../hooks/ThemeProvider';
+
+const { theme } = useTheme();
 
 
 const LoginForm: React.FC<LoginFormProps> = ({

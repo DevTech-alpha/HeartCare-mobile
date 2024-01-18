@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { TextInput, TouchableOpacity, Text, ActivityIndicator, View, Alert } from 'react-native';
-import theme from '../../theme';
+
+
 import { styles } from './styles';
 import ModalizeProps from '../../@types/ModalizeProps';
+import { useTheme } from '../../hooks/ThemeProvider';
+
+const { theme } = useTheme();
 
 const ModalizeContent: React.FC<ModalizeProps> = ({ createNewPost, loading }) => {
   const [newTitle, setNewTitle] = useState('');
   const [newContent, setNewContent] = useState('');
+
+  
 
   const validateAndCreatePost = () => {
     if (newTitle.trim() === '' || newContent.trim() === '') {

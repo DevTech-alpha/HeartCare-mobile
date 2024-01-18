@@ -5,7 +5,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { styles } from './styles';
 import * as Animatable from 'react-native-animatable';
 import { Header } from '../../components/Header';
-import theme from '../../theme';
+
+import { useTheme } from '../../hooks/ThemeProvider';
+
+const { theme } = useTheme();
 
 const FAQ = () => {
 

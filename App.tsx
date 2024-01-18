@@ -1,19 +1,21 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
-
 import { NavigationContainer } from '@react-navigation/native';
-import { AppProvider } from './src/hooks';
-import { Router } from './src/routes/Router';
-import theme from './src/theme';
+import { AuthProvider } from './src/hooks/Auth';
+import { AppRoutes } from './src/routes/Tab.routes';
+import { ThemeProvider, useTheme } from './src/hooks/ThemeProvider';
 
-export default function App() {
+export default function App(): React.JSX.Element {
+  const { theme } = useTheme();
+
   return (
-    <AppProvider>
-      <NavigationContainer>
-        <StatusBar backgroundColor={theme.COLORS.PRIMARY} barStyle="light-content" />
-        <Router />
-      </NavigationContainer>
-    </AppProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <NavigationContainer>
+          <StatusBar backgroundColor={theme.COLORS.PRIMARY} barStyle="light-content" />
+          <AppRoutes />
+        </NavigationContainer>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
-

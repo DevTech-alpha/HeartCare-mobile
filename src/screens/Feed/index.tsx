@@ -28,7 +28,9 @@ import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system';
 import { propsStack } from '../../routes/Models';
 import { Header } from '../../components/Header';
-import theme from '../../theme';
+import { useTheme } from '../../hooks/ThemeProvider';
+
+ 
 import { Modalize } from 'react-native-modalize';
 import ModalizeContent from '../../components/modalize';
 
@@ -38,6 +40,7 @@ const Feed: React.FC<FeedProps> = () => {
   const { navigate } = useNavigation<propsStack>();
   const auth = getAuth();
   const user: User | null = auth.currentUser;
+  const { theme } = useTheme();
 
   const [posts, setPosts] = useState<Post[]>([]);
   const [bottomSheetActive, setBottomSheetActive] = useState(false);

@@ -1,12 +1,17 @@
 import Medicao from '../../model/Medicao';
 import { styles } from './styles';
 import MedicaoFormProps from '../../@types/MedicaoFormProps';
-import theme from '../../theme';
+
 import { useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
 import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useTheme } from '../../hooks/ThemeProvider';
+
+const { theme } = useTheme();
+
+
 
 const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading }) => {
   const [sistolica, setSistolica] = useState('');
@@ -15,7 +20,7 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading 
   const [isAddingMedicao, setIsAddingMedicao] = useState(false);
   const auth = getAuth();
   const user = auth.currentUser;
-
+  
   const adicionarMedicao = async () => {
     if (sistolica.trim() !== '' && diastolica.trim() !== '' && pulso.trim() !== '') {
       const sistolicaValue = parseFloat(sistolica);

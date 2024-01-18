@@ -4,7 +4,9 @@ import { FontAwesome } from '@expo/vector-icons';
 import { styles as feedStyles } from './styles';
 import * as Animatable from 'react-native-animatable';
 import PostItemProps from '../../@types/PostItemProps';
-import theme from '../../theme';
+import { useTheme } from '../../hooks/ThemeProvider';
+
+const { theme } = useTheme();
 
 const PostItem: React.FC<PostItemProps> = ({ item, toggleLike, sharePost }) => (
   <Animatable.View animation="fadeInUp" style={feedStyles.postContainer}>

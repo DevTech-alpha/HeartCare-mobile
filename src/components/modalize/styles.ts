@@ -1,5 +1,7 @@
 import { StyleSheet } from "react-native";
-import theme from "../../theme";
+import { useTheme } from "../../hooks/ThemeProvider";
+
+const { theme } = useTheme();
 
 export const styles = StyleSheet.create({
     container: {
@@ -40,7 +42,7 @@ export const styles = StyleSheet.create({
       alignItems: 'center',
     },
     roundedActionButton: {
-      backgroundColor: theme.COLORS.OVERLEY,
+      backgroundColor: theme.COLORS.OVERLAY,
       width: '100%',
       paddingVertical: 8,
       marginTop: 14,

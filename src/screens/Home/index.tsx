@@ -6,11 +6,13 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import { styles } from './styles';
 import { propsStack } from '../../routes/Models';
-import theme from '../../theme';
+import { useTheme } from '../../hooks/ThemeProvider';
 
 export default function Home() {
   const { navigate } = useNavigation<propsStack>();
 
+  const { theme } = useTheme();
+  
   return (
     <View style={styles.container}>
       <Animatable.View animation="pulse" easing="ease-out" iterationCount="infinite" style={styles.containerLogo}>
