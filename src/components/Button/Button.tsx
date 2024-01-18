@@ -3,13 +3,10 @@ import {TouchableOpacity, Image} from "react-native";
 import { styles } from "./styles";
 import ButtonProps from "../../@types/ButtonProps";
 
-import { useTheme } from '../../hooks/ThemeProvider';
-
-const { theme } = useTheme();
 
 
 const Button: FC<ButtonProps> = ({
-   backgroundColor = theme.COLORS.BACKGROUND, 
+   backgroundColor = '#fff', 
    width = 50, 
    height = 50,
    icon,

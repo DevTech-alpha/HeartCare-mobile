@@ -2,10 +2,7 @@ import React from 'react';
 import { View, Text, TextInput, ScrollView, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import { styles } from './styles';
 import UserProfileFormProps from '../../@types/UserProfileFormProps';
-
-import { useTheme } from '../../hooks/ThemeProvider';
-
-const { theme } = useTheme();
+import theme from '../../theme';
 
 const UserProfileForm: React.FC<UserProfileFormProps> = ({
   username,

@@ -1,8 +1,6 @@
 import { StyleSheet } from "react-native";
-import { useTheme } from "../../hooks/ThemeProvider";
 
-
-const { theme } = useTheme();
+import theme from "../../theme";
 
 export const styles = StyleSheet.create({
   textoBotao: {
@@ -25,8 +23,9 @@ export const styles = StyleSheet.create({
   },
   textoMedicao: {
     fontSize: 16,
-    color: theme.COLORS.POST_CONTENT,
-    marginBottom: 5,
+    color: theme.COLORS.POST_TITLE,
+    paddingBottom: 6,
+    paddingTop: 2,
   },
 
   containerBotoes: {
@@ -35,13 +34,13 @@ export const styles = StyleSheet.create({
   botaoEditar: {
     backgroundColor: theme.COLORS.BUTTON,
     borderRadius: 4,
-    padding: 8,
+    padding: 10,
     marginHorizontal: 5,
   },
   botaoExcluir: {
     backgroundColor:  theme.COLORS.BUTTON,
     borderRadius: 4,
-    padding: 8,
+    padding: 10,
     marginHorizontal: 5,
   },
 });

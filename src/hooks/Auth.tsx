@@ -36,7 +36,6 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   async function loadFromStorage() {
 
     const user = await asyncGetUser();
-    console.log(user)
     setIsLoading(true)
     if (user) {
       setAuthData(user);

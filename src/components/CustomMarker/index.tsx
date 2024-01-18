@@ -2,11 +2,10 @@ import React, { FC } from 'react';
 import { Callout, Marker } from 'react-native-maps';
 import { View, Text } from 'react-native';
 import { styles } from './styles';
+import theme from '../../theme';
 import CustomMarkerProps from '../../@types/CustomMarkerProps';
-import { useTheme } from '../../hooks/ThemeProvider';
 
 
-const { theme } = useTheme();
 
 const CustomMarker: FC<CustomMarkerProps> = ({
   id,

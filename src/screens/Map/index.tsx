@@ -16,7 +16,6 @@ interface Camera {
    zoom: number;
 }
 
-
 const Map: React.FC = () => {
    const APIKEY = "AIzaSyCFLIp4Js-CeTFakpLJ4CxdtSqmPtQy1vw";
 

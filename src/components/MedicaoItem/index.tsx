@@ -19,6 +19,30 @@ const MedicaoItem: React.FC<MedicaoItemProps> = ({ medicao, deleteMedicao }) => 
     fecharModal();
   };
 
+  const avaliarPressao = () => {
+    const sistolica = parseFloat(medicao.sistolica);
+    const diastolica = parseFloat(medicao.diastolica);
+  
+    if (!isNaN(sistolica) && !isNaN(diastolica)) {
+      if (sistolica < 90 && diastolica < 60) {
+        return 'Pressão Baixa';
+      } else if (sistolica >= 90 && sistolica <= 120 && diastolica >= 60 && diastolica <= 80) {
+        return 'Pressão Normal';
+      } else if (sistolica > 120 && diastolica > 80 && sistolica <= 140 && diastolica <= 90) {
+        return 'Pré-Hipertensão';
+      } else if (sistolica > 140 && diastolica > 90 && sistolica <= 160 && diastolica <= 100) {
+        return 'Hipertensão Estágio 1';
+      } else if (sistolica > 160 && diastolica > 100) {
+        return 'Hipertensão Estágio 2';
+      } else {
+        return 'Pressão Não Classificada';
+      }
+    } else {
+      return 'Valores Inválidos';
+    }
+  };
+  
+
   return (
     <View style={styles.itemMedicao}>
       <Text style={styles.textoMedicao}>Sistólica: {medicao.sistolica}</Text>
@@ -30,6 +54,7 @@ const MedicaoItem: React.FC<MedicaoItemProps> = ({ medicao, deleteMedicao }) => 
       <Text style={styles.textoMedicao}>
         Data: {new Date(medicao.data).toLocaleDateString()}
       </Text>
+      <Text style={styles.textoMedicao}>Avaliação: {avaliarPressao()}</Text>
       <View style={styles.containerBotoes}>
         <TouchableOpacity style={styles.botaoEditar} onPress={abrirModal}>
           <Text style={styles.textoBotao}>Editar</Text>

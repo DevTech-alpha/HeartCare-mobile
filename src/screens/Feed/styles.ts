@@ -1,7 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { useTheme } from '../../hooks/ThemeProvider';
-
-const { theme } = useTheme();
+import theme from '../../theme';
 
 export const styles = StyleSheet.create({
   container: {
@@ -11,7 +9,7 @@ export const styles = StyleSheet.create({
 
   overlay: {
     flex: 1,
-    backgroundColor: theme.COLORS.OVERLAY,
+    backgroundColor: theme.COLORS.OVERLEY,
   },
 
   addButton: {

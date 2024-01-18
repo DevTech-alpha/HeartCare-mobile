@@ -42,17 +42,13 @@ import { propsStack } from '../../routes/Models';
 import { useAuth } from '../../hooks/Auth';
 import { asyncRemoveUser } from '../../utils/store';
 import { Header } from '../../components/Header';
-
-import { useTheme } from '../../hooks/ThemeProvider';
-
-
+import theme from '../../theme';
 
 const UserProfileScreen = () => {
   const { setAuthData } = useAuth();
   const auth = getAuth();
   const user: User | null = auth.currentUser;
 
-  const { theme } = useTheme();
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState<Post[]>([]);
   const [refreshing, setRefreshing] = useState(false);

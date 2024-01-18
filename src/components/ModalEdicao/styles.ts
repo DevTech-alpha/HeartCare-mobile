@@ -1,14 +1,13 @@
+// styles.ts
 import { StyleSheet } from 'react-native';
-import { useTheme } from '../../hooks/ThemeProvider';
-
-const { theme } = useTheme();
+import theme from '../../theme';
 
 export const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: theme.COLORS.OVERLAY, 
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fundo escuro semi-transparente
   },
   modalContent: {
     backgroundColor: theme.COLORS.WHITE,

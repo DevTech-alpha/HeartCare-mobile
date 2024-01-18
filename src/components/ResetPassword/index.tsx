@@ -3,10 +3,8 @@ import { Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-nati
 import * as Animatable from 'react-native-animatable';
 import { styles } from './styles';
 import ResetPasswordFormProps from '../../@types/ResetPassowordProps';
+import theme from '../../theme';
 
-import { useTheme } from '../../hooks/ThemeProvider';
-
-const { theme } = useTheme();
 
 const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
   resetEmail,

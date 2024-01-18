@@ -3,9 +3,6 @@ import { Image, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import ProfileImageProps from '../../@types/ProfileImageProps';
 
-import { useTheme } from '../../hooks/ThemeProvider';
-
-const { theme } = useTheme();
 
 const ProfileImage: React.FC<ProfileImageProps> = ({ photo, onPress }) => (
   <TouchableOpacity style={styles.profileImageContainer} onPress={onPress}>

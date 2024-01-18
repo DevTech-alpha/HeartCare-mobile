@@ -6,12 +6,9 @@ import { useNavigation } from '@react-navigation/native';
 import { styles } from './styles';
 import { criar } from '../../api/CreateAcount';
 import { propsStack } from '../../routes/Models';
-
-import { useTheme } from '../../hooks/ThemeProvider';
-
+import theme from '../../theme';
 
 export default function Cadastro() {
-  const { theme } = useTheme();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);

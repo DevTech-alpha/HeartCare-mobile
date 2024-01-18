@@ -1,9 +1,5 @@
 import { StyleSheet } from "react-native";
 
-import { useTheme } from '../../hooks/ThemeProvider';
-
-const { theme } = useTheme();
-
 export const styles = StyleSheet.create({
 
     mapButton: {
@@ -11,7 +7,7 @@ export const styles = StyleSheet.create({
        alignItems: 'center',
        justifyContent: 'center',
        borderRadius: 30,
-       shadowColor: theme.COLORS.OVERLAY,
+       shadowColor: "#000",
        shadowOffset: {
           width: 0,
           height: 2,
