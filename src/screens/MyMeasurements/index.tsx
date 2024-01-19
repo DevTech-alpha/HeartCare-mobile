@@ -11,6 +11,7 @@ import MedicaoForm from '../../components/MedicaoForm';
 import { Header } from '../../components/Header';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Feather } from '@expo/vector-icons';
+import { useTheme } from '../../hooks/ThemeProvider';
 
 const PressaoArterial = () => {
   const [medicoes, setMedicoes] = useState<Medicao[]>([]);
@@ -19,6 +20,8 @@ const PressaoArterial = () => {
   const [refreshing, setRefreshing] = useState(false);
   const auth = getAuth();
   const user: User | null = auth.currentUser;
+
+  const { theme } = useTheme()
 
   const carregarMedicoes = useCallback(async () => {
     if (user) {
@@ -81,22 +84,20 @@ const PressaoArterial = () => {
   };
 
   return (
-    <>
-      <View>
-        <Header title='𝓹𝓻𝓮𝓼𝓼𝓪̃𝓸 𝓪𝓻𝓽𝓮𝓻𝓲𝓪𝓵' />
-      </View>
-
-      <View style={styles.container}>
-        <Animatable.View animation="fadeInUp" style={styles.containerForm}>
+      <View style={[styles.container, { backgroundColor: theme.COLORS.BACKGROUND }]}>
+        <View>
+          <Header title='𝓹𝓻𝓮𝓼𝓼𝓪̃𝓸 𝓪𝓻𝓽𝓮𝓻𝓲𝓪𝓵' />
+        </View>
+        <Animatable.View animation="fadeInUp" style={[styles.containerForm, { backgroundColor: theme.COLORS.BACKGROUND }]}>
           {!historicoVisivel && (
             <MedicaoForm onMedicaoAdicionada={handleMedicaoAdicionada} loading={loading} />
           )}
 
           <TouchableOpacity
-            style={styles.botaoAdicionar}
+            style={[styles.botaoAdicionar, { backgroundColor: theme.COLORS.BUTTON }]}
             onPress={() => setHistoricoVisivel(!historicoVisivel)}
           >
-            <Text style={styles.textoBotao}>
+            <Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>
               {historicoVisivel ? 'Ocultar Histórico' : 'Mostrar Histórico'}
             </Text>
           </TouchableOpacity>
@@ -104,7 +105,7 @@ const PressaoArterial = () => {
           {historicoVisivel && (
             <FlatList
               data={medicoes}
-              ListEmptyComponent={<Text style={styles.textoVazio}>Nenhum registro encontrado.</Text>}
+              ListEmptyComponent={<Text style={[styles.textoVazio, { color: theme.COLORS.TEXT }]}>Nenhum registro encontrado.</Text>}
               renderItem={({ item }) => (
                 <MedicaoItem
                   medicao={item}
@@ -118,7 +119,6 @@ const PressaoArterial = () => {
           )}
         </Animatable.View>
       </View>
-    </>
   );
 };
 

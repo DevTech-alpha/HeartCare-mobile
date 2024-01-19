@@ -1,36 +1,50 @@
-import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
-import { styles as feedStyles } from './styles';
-import * as Animatable from 'react-native-animatable';
-import PostItemProps from '../../@types/PostItemProps';
-import theme from '../../theme';
+import React from "react"
+import { View, Text, Image, TouchableOpacity } from "react-native"
+import { FontAwesome } from "@expo/vector-icons"
+import { styles as feedStyles } from "./styles"
+import * as Animatable from "react-native-animatable"
+import PostItemProps from "../../types/PostItemProps"
+import { useTheme } from "../../hooks/ThemeProvider"
 
-const PostItem: React.FC<PostItemProps> = ({ item, toggleLike, sharePost }) => (
-  <Animatable.View animation="fadeInUp" style={feedStyles.postContainer}>
-    <View style={feedStyles.postHeader}>
-      <Image
-        source={item.userPhoto ? { uri: item.userPhoto } : require('../../assets/user.png')}
-        style={feedStyles.userPhoto}
-        defaultSource={require('../../assets/user.png')}
-      />
-      <Text style={feedStyles.username}>{item.username}</Text>
-    </View>
+const PostItem: React.FC<PostItemProps> = ({ item, toggleLike, sharePost }) => {
+	const { theme } = useTheme()
 
-    <Text style={feedStyles.postTitle}>{item.title}</Text>
-    <Text style={feedStyles.postContent}>{item.content}</Text>
+	return (
+		<Animatable.View animation="fadeInUp" style={[feedStyles.postContainer, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}>
+			<View style={feedStyles.postHeader}>
+				<Image
+					source={
+						item.userPhoto
+							? { uri: item.userPhoto }
+							: require("../../assets/user.png")
+					}
+					style={feedStyles.userPhoto}
+					defaultSource={require("../../assets/user.png")}
+				/>
+				<Text style={[feedStyles.username, { color: theme.COLORS.POST_TITLE }]}>{item.username}</Text>
+			</View>
 
-    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-      <TouchableOpacity style={feedStyles.actionIconContainer} onPress={() => toggleLike(item.id)}>
-        <FontAwesome name="heart" size={30} color={theme.COLORS.ICON} />
-      </TouchableOpacity>
+			<Text style={[feedStyles.postTitle, { color: theme.COLORS.POST_TITLE }]}>{item.title}</Text>
+			<Text style={[feedStyles.postContent, { color: theme.COLORS.POST_CONTENT }]}>{item.content}</Text>
 
-      <TouchableOpacity style={feedStyles.actionIconContainer}>
-        <FontAwesome name="send" size={30} color={theme.COLORS.ICON} onPress={() => sharePost(item.title, item.content)} />
-      </TouchableOpacity>
-    </View>
+			<View style={{ flexDirection: "row", alignItems: "center" }}>
+				<TouchableOpacity
+					style={feedStyles.actionIconContainer}
+					onPress={() => toggleLike(item.id)}>
+					<FontAwesome name="heart" size={30} color={theme.COLORS.ICON} />
+				</TouchableOpacity>
 
-  </Animatable.View>
-);
+				<TouchableOpacity style={feedStyles.actionIconContainer}>
+					<FontAwesome
+						name="send"
+						size={30}
+						color={theme.COLORS.ICON}
+						onPress={() => sharePost(item.title, item.content)}
+					/>
+				</TouchableOpacity>
+			</View>
+		</Animatable.View>
+	)
+}
 
-export default PostItem;
+export default PostItem

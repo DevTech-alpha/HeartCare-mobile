@@ -1,26 +1,22 @@
-import { StyleSheet } from "react-native";
-import theme from "../../theme";
+import { StyleSheet } from "react-native"
+
 
 export const styles = StyleSheet.create({
-    contain: {
-      marginTop: 15,
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingVertical: 17,
-    },
-    container: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: theme.COLORS.PRIMARY,
-      borderBottomLeftRadius: 30,
-      borderBottomRightRadius: 30,
-      paddingStart: '10%',
-      paddingEnd: '5%',
-    },
-    text: {
-      color: theme.COLORS.WHITE,
-      fontSize: 30,
-      textTransform: 'uppercase',
-      letterSpacing: 2,    
-    }
-});
+	contain: {
+		marginTop: 20,
+		justifyContent: "center",
+		alignItems: "center",
+		paddingVertical: 17,
+	},
+	container: {
+		justifyContent: "center",
+		alignItems: "center",
+		backgroundColor: "#800020",
+		borderBottomLeftRadius: 30,
+		borderBottomRightRadius: 30,
+	},
+	text: {
+		color: "white", 
+		fontSize: 25,
+	},
+})

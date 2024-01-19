@@ -2,7 +2,6 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type propsNavigationStack =  {
     Feed: undefined | any;
-    Perguntas: undefined | any;
     Consulta: undefined | any;
     Perfil: undefined | any;
     Home: undefined | any;

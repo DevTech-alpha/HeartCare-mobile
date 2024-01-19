@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { AuthProvider } from './Auth';
+import { AuthProvider } from './AuthProvider';
 
 interface AppProviderProps {
   children: ReactNode;

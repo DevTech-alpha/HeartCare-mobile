@@ -7,6 +7,7 @@ import CustomMarker from "../../components/CustomMarker";
 import Button from "../../components/Button/Button";
 import { styles } from "./styles";
 import { Header } from "../../components/Header";
+import { useTheme } from "../../hooks/ThemeProvider";
 
 interface Camera {
    center: LatLng;
@@ -16,8 +17,9 @@ interface Camera {
    zoom: number;
 }
 
+
 const Map: React.FC = () => {
-   const APIKEY = "AIzaSyCFLIp4Js-CeTFakpLJ4CxdtSqmPtQy1vw";
+   const APIKEY = "AIzaSyCzeV_9EqiX7FqRAP0GfKob43SQ2sVxUdU";
 
    const [camera, setCamera] = useState<Camera>({
       center: {
@@ -38,6 +40,8 @@ const Map: React.FC = () => {
 
    const mapRef = useRef<MapView>(null);
    const { width, height } = Dimensions.get('window');
+
+   const {theme} = useTheme();
 
    useEffect(() => {
       const startTracking = async () => {
@@ -125,10 +129,8 @@ const Map: React.FC = () => {
    }
 
    return (
-      <><Header title="𝓜𝓪𝓹𝓪"/><View style={styles.container}>
-
          <>
-            <MapView
+         <MapView
                style={styles.map}
                camera={followUserLocation ? camera : undefined}
                showsUserLocation={true}
@@ -141,6 +143,7 @@ const Map: React.FC = () => {
                onMapReady={handleMapReady}
                onRegionChangeComplete={(region, isGesture) => handleMapCamera({ isGesture })}
                onPress={!destinationLocation ? () => setSelectedDestination(null) : undefined}
+               customMapStyle={theme.MAP_STYLE} // Adicione esta linha para aplicar o estilo do mapa
             >
                <CustomMarker
                   latitude={-23.116678758774682}
@@ -224,7 +227,6 @@ const Map: React.FC = () => {
 
             </View>
          </>
-      </View></>
    );
 }
 

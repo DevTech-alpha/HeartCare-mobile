@@ -5,7 +5,6 @@ import { propsNavigationStack } from './Models';
 import Home from '../screens/Home';
 import Login from '../screens/SignIn';
 import Cadastrar from '../screens/SignUp';
-import FAQ from '../screens/FAQ';
 
 const { Screen, Navigator } = createNativeStackNavigator<propsNavigationStack>();
 
@@ -26,11 +25,6 @@ export function AuthStack() {
             <Screen
                 name="Cadastrar"
                 component={Cadastrar}
-                options={{ headerShown: false }}
-            />
-             <Screen
-                name="Perguntas"
-                component={FAQ}
                 options={{ headerShown: false }}
             />
         </Navigator>

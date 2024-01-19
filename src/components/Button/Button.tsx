@@ -1,8 +1,7 @@
 import React, { FC } from "react";
 import {TouchableOpacity, Image} from "react-native";
 import { styles } from "./styles";
-import ButtonProps from "../../@types/ButtonProps";
-
+import ButtonProps from "../../types/ButtonProps";
 
 
 const Button: FC<ButtonProps> = ({

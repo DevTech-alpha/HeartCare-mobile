@@ -28,7 +28,9 @@ import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system';
 import { propsStack } from '../../routes/Models';
 import { Header } from '../../components/Header';
-import theme from '../../theme';
+import { useTheme } from '../../hooks/ThemeProvider';
+
+ 
 import { Modalize } from 'react-native-modalize';
 import ModalizeContent from '../../components/modalize';
 
@@ -38,6 +40,7 @@ const Feed: React.FC<FeedProps> = () => {
   const { navigate } = useNavigation<propsStack>();
   const auth = getAuth();
   const user: User | null = auth.currentUser;
+  const { theme } = useTheme();
 
   const [posts, setPosts] = useState<Post[]>([]);
   const [bottomSheetActive, setBottomSheetActive] = useState(false);
@@ -141,7 +144,7 @@ const Feed: React.FC<FeedProps> = () => {
 
   return (
     <>
-      <GestureHandlerRootView style={feedStyles.container}>
+      <GestureHandlerRootView style={[feedStyles.container,{backgroundColor:theme.COLORS.BACKGROUND}]}>
         <View>
           <Header title='𝓗𝓮𝓪𝓻𝓽𝓒𝓪𝓻𝓮' />
         </View>
@@ -155,13 +158,13 @@ const Feed: React.FC<FeedProps> = () => {
               sharePost={sharePost}
             />
           )}
-          ListFooterComponent={() => loading && <ActivityIndicator size="large" color={theme.COLORS.WHITE} />}
+          ListFooterComponent={() => loading && <ActivityIndicator size="large" color={theme.COLORS.PRIMARY} />}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={fetchPosts} />
           }
         />
-        <TouchableOpacity style={feedStyles.addButton} onPress={onOpen}>
-          <Text style={feedStyles.addButtonText}>+</Text>
+        <TouchableOpacity style={[feedStyles.addButton,{backgroundColor: theme.COLORS.BUTTON}]} onPress={onOpen}>
+          <Text style={[feedStyles.addButtonText, {color: theme.COLORS.BUTTON_TEXT}]}>+</Text>
         </TouchableOpacity>
 
        

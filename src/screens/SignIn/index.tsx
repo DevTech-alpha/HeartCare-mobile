@@ -6,10 +6,10 @@ import ResetPasswordForm from '../../components/ResetPassword';
 import { styles } from './styles';
 
 import * as Animatable from 'react-native-animatable';
-import { logar } from '../../api/LogInToAccount';
 import { enviarRecuperacaoSenha } from '../../api/PasswordRecovery';
 import { propsStack } from '../../routes/Models';
-import { useAuth } from '../../hooks/Auth';
+import { useAuth } from '../../hooks/AuthProvider';
+import { useTheme } from '../../hooks/ThemeProvider';
 
 const Login = () => {
   const { signIn } = useAuth();
@@ -21,6 +21,8 @@ const Login = () => {
   const [showResetPassword, setShowResetPassword] = useState(false);
 
   const { navigate } = useNavigation<propsStack>();
+
+  const {theme} = useTheme()
 
   const handleLogin = async () => {
     try {
@@ -59,7 +61,7 @@ const Login = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container , {backgroundColor: theme.COLORS.PRIMARY }]}>
       <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
         <Text style={styles.message}>𝓑𝓮𝓶-𝓿𝓲𝓷𝓭𝓸(𝓪)</Text>
       </Animatable.View>
