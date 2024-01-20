@@ -1,8 +1,8 @@
-import React, { FC, useState } from "react"
+import React, { FC } from "react"
 import { Callout, Marker } from "react-native-maps"
 import { View, Text } from "react-native"
 import { styles } from "./styles"
-import CustomMarkerProps from "../../types/CustomMarkerProps"
+import CustomMarkerProps from "../../props/CustomMarkerProps"
 import { useTheme } from "../../hooks/ThemeProvider"
 
 const CustomMarker: FC<CustomMarkerProps> = ({
@@ -23,8 +23,7 @@ const CustomMarker: FC<CustomMarkerProps> = ({
 				longitude: longitude,
 			}}
 			tracksViewChanges={false}
-			onPress={() => onPress(latitude, longitude)} // Call onPress when marker is pressed
-		>
+			onPress={() => onPress(latitude, longitude)}>
 			<View style={styles.markerWrapper}>
 				<View
 					style={[

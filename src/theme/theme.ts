@@ -1,4 +1,3 @@
-
 export interface Theme {
 	COLORS: {
 		BACKGROUND_CARD: string;

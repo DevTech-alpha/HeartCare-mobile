@@ -9,7 +9,7 @@ import {
 	Alert,
 } from "react-native"
 import { styles } from "./styles"
-import UserProfileFormProps from "../../types/UserProfileFormProps"
+import UserProfileFormProps from "../../props/UserProfileFormProps"
 
 import { useTheme } from "../../hooks/ThemeProvider"
 

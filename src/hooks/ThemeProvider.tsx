@@ -22,7 +22,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
 	async function loadThemeFromStorage() {
 		try {
-			const storedTheme = await AsyncStorage.getItem("themePreference")
+			const storedTheme = await AsyncStorage.getItem("heartcare@theme")
 			if (storedTheme !== null) {
 				setTheme(storedTheme === "dark" ? themes.dark : themes.light)
 			}
@@ -35,7 +35,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 		const newTheme = theme === themes.light ? themes.dark : themes.light
 		setTheme(newTheme)
 		AsyncStorage.setItem(
-			"themePreference",
+			"heartcare@theme",
 			newTheme === themes.dark ? "dark" : "light"
 		)
 	}

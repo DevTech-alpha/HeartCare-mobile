@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Modal, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
-import MedicaoItemProps from '../../types/MedicaoItemProps';
+import MedicaoItemProps from '../../props/MedicaoItemProps';
 import ModalEdicao from '../ModalEdicao';
 import { useTheme } from '../../hooks/ThemeProvider';
 

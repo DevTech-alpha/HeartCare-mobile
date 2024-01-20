@@ -1,16 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, TouchableOpacity, FlatList, Modal, ActivityIndicator, RefreshControl, Alert } from 'react-native';
-import { addDoc, collection, getDocs, deleteDoc, doc, setDoc, query, where, getDoc } from 'firebase/firestore';
+import { View, Text, TouchableOpacity, FlatList, RefreshControl, Alert } from 'react-native';
+import { collection, getDocs, deleteDoc, doc, query, where } from 'firebase/firestore';
 import { getAuth, User } from 'firebase/auth';
 import Medicao from '../../model/Medicao';
 import * as Animatable from 'react-native-animatable';
-import { db } from '../../firebase/firebase';
+import { db } from '../../firebase/firebaseConfig';
 import { styles } from './styles';
 import MedicaoItem from '../../components/MedicaoItem';
 import MedicaoForm from '../../components/MedicaoForm';
 import { Header } from '../../components/Header';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Feather } from '@expo/vector-icons';
 import { useTheme } from '../../hooks/ThemeProvider';
 
 const PressaoArterial = () => {
@@ -84,41 +82,41 @@ const PressaoArterial = () => {
   };
 
   return (
-      <View style={[styles.container, { backgroundColor: theme.COLORS.BACKGROUND }]}>
-        <View>
-          <Header title='𝓹𝓻𝓮𝓼𝓼𝓪̃𝓸 𝓪𝓻𝓽𝓮𝓻𝓲𝓪𝓵' />
-        </View>
-        <Animatable.View animation="fadeInUp" style={[styles.containerForm, { backgroundColor: theme.COLORS.BACKGROUND }]}>
-          {!historicoVisivel && (
-            <MedicaoForm onMedicaoAdicionada={handleMedicaoAdicionada} loading={loading} />
-          )}
-
-          <TouchableOpacity
-            style={[styles.botaoAdicionar, { backgroundColor: theme.COLORS.BUTTON }]}
-            onPress={() => setHistoricoVisivel(!historicoVisivel)}
-          >
-            <Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>
-              {historicoVisivel ? 'Ocultar Histórico' : 'Mostrar Histórico'}
-            </Text>
-          </TouchableOpacity>
-
-          {historicoVisivel && (
-            <FlatList
-              data={medicoes}
-              ListEmptyComponent={<Text style={[styles.textoVazio, { color: theme.COLORS.TEXT }]}>Nenhum registro encontrado.</Text>}
-              renderItem={({ item }) => (
-                <MedicaoItem
-                  medicao={item}
-                  deleteMedicao={deleteMedicao}
-                />
-              )}
-              refreshControl={
-                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-              }
-            />
-          )}
-        </Animatable.View>
+    <View style={[styles.container, { backgroundColor: theme.COLORS.BACKGROUND }]}>
+      <View>
+        <Header title='𝓹𝓻𝓮𝓼𝓼𝓪̃𝓸 𝓪𝓻𝓽𝓮𝓻𝓲𝓪𝓵' />
       </View>
+      <Animatable.View animation="fadeInUp" style={[styles.containerForm, { backgroundColor: theme.COLORS.BACKGROUND }]}>
+        {!historicoVisivel && (
+          <MedicaoForm onMedicaoAdicionada={handleMedicaoAdicionada} loading={loading} />
+        )}
+
+        <TouchableOpacity
+          style={[styles.botaoAdicionar, { backgroundColor: theme.COLORS.BUTTON }]}
+          onPress={() => setHistoricoVisivel(!historicoVisivel)}
+        >
+          <Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>
+            {historicoVisivel ? 'Ocultar Histórico' : 'Mostrar Histórico'}
+          </Text>
+        </TouchableOpacity>
+
+        {historicoVisivel && (
+          <FlatList
+            data={medicoes}
+            ListEmptyComponent={<Text style={[styles.textoVazio, { color: theme.COLORS.TEXT }]}>Nenhum registro encontrado.</Text>}
+            renderItem={({ item }) => (
+              <MedicaoItem
+                medicao={item}
+                deleteMedicao={deleteMedicao}
+              />
+            )}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+          />
+        )}
+      </Animatable.View>
+    </View>
   );
 };
 

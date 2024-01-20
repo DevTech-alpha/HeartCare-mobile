@@ -18,7 +18,7 @@ import {
   query,
   getDoc,
 } from 'firebase/firestore';
-import { db } from '../../firebase/firebase';
+import { db } from '../../firebase/firebaseConfig';
 import { User, getAuth } from 'firebase/auth';
 import Post from '../../model/Post';
 import PostItem from '../../components/PostItem';

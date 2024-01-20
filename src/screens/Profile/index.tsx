@@ -21,7 +21,7 @@ import {
 	deleteDoc,
 } from "firebase/firestore"
 import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage"
-import { db } from "../../firebase/firebase"
+import { db } from "../../firebase/firebaseConfig"
 import * as ImagePicker from "expo-image-picker"
 import { styles } from "./styles"
 import ProfileImage from "../../components/ProfileImage"
@@ -42,10 +42,11 @@ const UserProfileScreen = () => {
 	const auth = getAuth()
 	const user: User | null = auth.currentUser
 
-	const { theme, toggleTheme } = useTheme();
+	const {theme, toggleTheme } = useTheme();
 	const [loading, setLoading] = useState(false)
 	const [posts, setPosts] = useState<Post[]>([])
 	const [refreshing, setRefreshing] = useState(false)
+	const [isDayMode, setIsDayMode] = useState(true); 
 
 	const [username, setUsername] = useState("")
 	const [photo, setPhoto] = useState<string | null>(null)
@@ -265,47 +266,50 @@ const UserProfileScreen = () => {
 
 	const handleSignOut = async () => {
 		Alert.alert(
-		  "Confirmação",
-		  "Deseja realmente sair?",
-		  [
-			{
-			  text: "Cancelar",
-			  style: "cancel",
-			},
-			{
-			  text: "Sair",
-			  onPress: async () => {
-				setAuthData(undefined);
-				console.log("sair")
-				await asyncRemoveUser();
-				console.log("sair")
-			  },
-			},
-		  ],
-		  { cancelable: false }
+			"Confirmação",
+			"Deseja realmente sair?",
+			[
+				{
+					text: "Cancelar",
+					style: "cancel",
+				},
+				{
+					text: "Sair",
+					onPress: async () => {
+						setAuthData(undefined);
+						await asyncRemoveUser();
+					},
+				},
+			],
+			{ cancelable: false }
 		);
-	  };
-	  
+	};
+
 	const handleToggleTheme = () => {
 		toggleTheme();
-	  };
+		setIsDayMode(!isDayMode);
+	};
 
 	return (
-		<View style={[styles.container , {backgroundColor: theme.COLORS.PRIMARY}]}>
+		<View style={[styles.container, { backgroundColor: theme.COLORS.PRIMARY }]}>
 			<View>
 				<Header title="𝓟𝓮𝓻𝓯𝓲𝓵" />
 			</View>
 
 			<ProfileImage photo={photo} onPress={handleChoosePhoto} />
 
-			<TouchableOpacity style={[styles.button, {backgroundColor: theme.COLORS.PRIMARY}]} onPress={handleEditClick}>
-				<Text style={[styles.buttonText, {color: theme.COLORS.BUTTON_TEXT}]}>
+			<TouchableOpacity style={[styles.button, { backgroundColor: theme.COLORS.PRIMARY }]} onPress={handleEditClick}>
+				<Text style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}>
 					{editMode ? "Cancelar" : "Editar Usuário"}
 				</Text>
 			</TouchableOpacity>
 
-			<TouchableOpacity style={styles.themeToggleButton} onPress={handleToggleTheme}>
-				<FontAwesome name="moon-o" size={24} color={theme.COLORS.ICON} />
+			<TouchableOpacity style={[styles.themeToggleButton, { backgroundColor: theme.COLORS.BACKGROUND }]} onPress={handleToggleTheme}>
+				<FontAwesome
+					name={isDayMode ? 'moon-o' : 'sun-o'}
+					size={25}
+					color={theme.COLORS.ICON}
+				/>
 			</TouchableOpacity>
 
 			<ScrollView
@@ -330,7 +334,7 @@ const UserProfileScreen = () => {
 					/>
 				)}
 
-				<View style={[styles.userPostsContainer,{backgroundColor:  theme.COLORS.BACKGROUND}]}>
+				<View style={[styles.userPostsContainer, { backgroundColor: theme.COLORS.BACKGROUND }]}>
 					<View style={styles.botoes}>
 						<TouchableOpacity onPress={handleSignOut}>
 							<FontAwesome
@@ -350,7 +354,7 @@ const UserProfileScreen = () => {
 						/>
 					))}
 					{userPosts.length === 0 && (
-						<Text style={styles.messageNop}>Não há publicações.</Text>
+						<Text style={[styles.messageNop ,{color: theme.COLORS.TEXT}]}>Não há publicações.</Text>
 					)}
 				</View>
 			</ScrollView>

@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword, UserCredential } from "firebase/auth";
-import { auth } from "../firebase/firebase";
-import { localizeErrorMap } from "../firebase/firebaseTranslator";
+import { auth } from "../firebase/firebaseConfig";
+import { localizeErrorMap } from "../utils/firebaseTranslator";
 
 export const logar = async (email: string, password: string): Promise<UserCredential> => {
   try {

@@ -2,7 +2,7 @@ import React from "react"
 import { Text, TextInput, TouchableOpacity, ActivityIndicator } from "react-native"
 import * as Animatable from "react-native-animatable"
 import { styles } from "./styles"
-import ResetPasswordFormProps from "../../types/ResetPassowordProps"
+import ResetPasswordFormProps from "../../props/ResetPassowordProps"
 
 import { useTheme } from "../../hooks/ThemeProvider"
 

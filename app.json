@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#8A273A"
+      "backgroundColor": "#800020"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -17,18 +17,18 @@
     "ios": {
       "supportsTablet": true,
       "config": {
-        "googleMapsApiKey": "AIzaSyCFLIp4Js-CeTFakpLJ4CxdtSqmPtQy1vw"
+        "googleMapsApiKey": "AIzaSyCzeV_9EqiX7FqRAP0GfKob43SQ2sVxUdU"
       }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#8A273A"
+        "backgroundColor": "#800020"
       },
       "package": "com.devsntosx71.HeartCare",
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyCFLIp4Js-CeTFakpLJ4CxdtSqmPtQy1vw"
+          "apiKey": "AIzaSyCzeV_9EqiX7FqRAP0GfKob43SQ2sVxUdU"
         }
       }
     },

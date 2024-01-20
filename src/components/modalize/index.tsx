@@ -9,7 +9,7 @@ import {
 } from "react-native"
 
 import { styles } from "./styles"
-import ModalizeProps from "../../types/ModalizeProps"
+import ModalizeProps from "../../props/ModalizeProps"
 import { useTheme } from "../../hooks/ThemeProvider"
 
 const ModalizeContent: React.FC<ModalizeProps> = ({ createNewPost, loading }) => {

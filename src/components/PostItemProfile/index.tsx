@@ -3,7 +3,7 @@ import { Text, TouchableOpacity } from "react-native"
 import { FontAwesome } from "@expo/vector-icons"
 import { styles as feedStyles } from "./styles"
 import * as Animatable from "react-native-animatable"
-import PostItemProps from "../../types/PostItemProfileProps"
+import PostItemProps from "../../props/PostItemProfileProps"
 import { useTheme } from "../../hooks/ThemeProvider"
 
 const PostItem: React.FC<PostItemProps> = ({ item, userUid, deletePost }) => {

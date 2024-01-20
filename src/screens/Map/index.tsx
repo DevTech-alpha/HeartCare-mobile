@@ -6,7 +6,6 @@ import MapViewDirections, { MapDirectionsResponse } from "react-native-maps-dire
 import CustomMarker from "../../components/CustomMarker";
 import Button from "../../components/Button/Button";
 import { styles } from "./styles";
-import { Header } from "../../components/Header";
 import { useTheme } from "../../hooks/ThemeProvider";
 
 interface Camera {

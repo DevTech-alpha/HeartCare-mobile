@@ -10,9 +10,9 @@ import {
 } from "react-native"
 import { styles } from "./styles"
 import { collection, doc, updateDoc } from "firebase/firestore"
-import { db } from "../../firebase/firebase"
+import { db } from "../../firebase/firebaseConfig"
 import Medicao from "../../model/Medicao"
-import ModalEdicaoProps from "../../types/ModalEdicaoProps"
+import ModalEdicaoProps from "../../props/ModalEdicaoProps"
 import { useTheme } from "../../hooks/ThemeProvider"
 
 const ModalEdicao: React.FC<ModalEdicaoProps> = ({

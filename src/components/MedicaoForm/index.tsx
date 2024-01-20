@@ -1,10 +1,10 @@
 import { styles } from "./styles"
-import MedicaoFormProps from "../../types/MedicaoFormProps"
+import MedicaoFormProps from "../../props/MedicaoFormProps"
 
 import { useState } from "react"
 import { getAuth } from "firebase/auth"
 import { addDoc, collection } from "firebase/firestore"
-import { db } from "../../firebase/firebase"
+import { db } from "../../firebase/firebaseConfig"
 import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { useTheme } from "../../hooks/ThemeProvider"
 
@@ -79,7 +79,7 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading 
                     { color: theme.COLORS.POST_CONTENT },
                 ]}
                 placeholder="Digite o valor sistólico"
-                placeholderTextColor={theme.COLORS.TEXT} // Defina a cor do placeholder
+                placeholderTextColor={theme.COLORS.TEXT} 
                 value={sistolica}
                 onChangeText={(texto) => setSistolica(texto)}
                 keyboardType="numeric"

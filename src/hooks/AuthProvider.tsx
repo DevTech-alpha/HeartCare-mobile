@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
 import { asyncGetUser, asyncSetUser } from "../utils/store";
 import { logar } from "../api/LogInToAccount";
