@@ -1,8 +1,8 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { AppRoutes } from './Tab.routes';
 import { AuthStack } from './Auth.routes';
 import { useAuth } from '../hooks/AuthProvider';
+import { TabRoutes } from './Tab.routes';
 
 
 export function Router(){
@@ -14,7 +14,7 @@ export function Router(){
 
     return(
         <NavigationContainer independent={true}>
-            {authData ? <AppRoutes/> : <AuthStack/> }
+            {authData ? <TabRoutes/> : <AuthStack/> }
         </NavigationContainer>
     )
 }

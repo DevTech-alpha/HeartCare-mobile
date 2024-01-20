@@ -1,16 +1,17 @@
 import React from 'react';
-import { AppRoutes } from './src/routes/Tab.routes';
 import { ThemeProvider } from './src/hooks/ThemeProvider';
 import { AuthProvider } from './src/hooks/AuthProvider';
+import { Router } from './src/routes/Router';
+import { NavigationContainer } from '@react-navigation/native';
 
 
 export default function App(): React.JSX.Element {
-  
+
 
   return (
     <AuthProvider>
       <ThemeProvider>
-          <AppRoutes />
+          <Router />
       </ThemeProvider>
     </AuthProvider>
   );

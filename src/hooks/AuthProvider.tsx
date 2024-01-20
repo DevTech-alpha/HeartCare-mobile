@@ -48,7 +48,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
       const { user } = await logar(email, password)
 
       await asyncSetUser(user)
-      setAuthData(user as any) //fiquei sem paciencia para tipar 
+      setAuthData(user as any)
       setLoading(false);
     } catch (err: any) {
       Alert.alert('Atenção', err.message)

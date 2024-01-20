@@ -13,7 +13,7 @@ import { NavigationContainer } from "@react-navigation/native"
 
 const { Navigator, Screen } = createBottomTabNavigator<propsNavigationStack>()
 
-export function AppRoutes() {
+export function TabRoutes() {
 	const { theme } = useTheme()
 
 	const getIconSize = (isFocused: boolean, size: number) => {
@@ -25,73 +25,62 @@ export function AppRoutes() {
 	}
 
 	return (
-		<NavigationContainer>
-			<StatusBar backgroundColor={theme.COLORS.PRIMARY} barStyle="light-content" />
-			<Navigator
-				screenOptions={{
-					headerShown: false,
-					tabBarStyle: {
-						backgroundColor: theme.COLORS.BACKGROUND, // Use a cor apropriada do tema
-					},
-				}}>
-				<Screen
-					name="Feed"
-					component={Feed}
-					options={{
-						tabBarIcon: ({ focused, size }) => (
-							<Feather
-								name="heart"
-								size={getIconSize(focused, size)}
-								color={getIconColor(focused)}
-							/>
-						),
-						tabBarLabel: () => null,
-					}}
-				/>
-				<Screen
-					name="Mapa"
-					component={Map}
-					options={{
-						tabBarIcon: ({ focused, size }) => (
-							<Feather
-								name="search"
-								size={focused ? size + 5 : size}
-								color={focused ? theme.COLORS.PRIMARY : theme.COLORS.ICON}
-							/>
-						),
-						tabBarLabel: () => null,
-					}}
-				/>
+			<><StatusBar backgroundColor={theme.COLORS.PRIMARY} barStyle="light-content" /><Navigator
+			screenOptions={{
+				headerShown: false,
+				tabBarStyle: {
+					backgroundColor: theme.COLORS.BACKGROUND, // Use a cor apropriada do tema
+				},
+			}}>
+			<Screen
+				name="Feed"
+				component={Feed}
+				options={{
+					tabBarIcon: ({ focused, size }) => (
+						<Feather
+							name="heart"
+							size={getIconSize(focused, size)}
+							color={getIconColor(focused)} />
+					),
+					tabBarLabel: () => null,
+				}} />
+			<Screen
+				name="Mapa"
+				component={Map}
+				options={{
+					tabBarIcon: ({ focused, size }) => (
+						<Feather
+							name="search"
+							size={focused ? size + 5 : size}
+							color={focused ? theme.COLORS.PRIMARY : theme.COLORS.ICON} />
+					),
+					tabBarLabel: () => null,
+				}} />
 
-				<Screen
-					name="Consulta"
-					component={Consulta}
-					options={{
-						tabBarIcon: ({ focused, size }) => (
-							<Feather
-								name="calendar"
-								size={focused ? size + 5 : size}
-								color={focused ? theme.COLORS.PRIMARY : theme.COLORS.ICON}
-							/>
-						),
-						tabBarLabel: () => null,
-					}}
-				/>
-				<Screen
-					name="Perfil"
-					component={Perfil}
-					options={{
-						tabBarIcon: ({ focused, size }) => (
-							<Feather
-								name="user"
-								size={focused ? size + 5 : size}
-								color={focused ? theme.COLORS.PRIMARY : theme.COLORS.ICON}
-							/>
-						),
-						tabBarLabel: () => null,
-					}}
-				/>
-			</Navigator>
-		</NavigationContainer>
+			<Screen
+				name="Consulta"
+				component={Consulta}
+				options={{
+					tabBarIcon: ({ focused, size }) => (
+						<Feather
+							name="calendar"
+							size={focused ? size + 5 : size}
+							color={focused ? theme.COLORS.PRIMARY : theme.COLORS.ICON} />
+					),
+					tabBarLabel: () => null,
+				}} />
+			<Screen
+				name="Perfil"
+				component={Perfil}
+				options={{
+					tabBarIcon: ({ focused, size }) => (
+						<Feather
+							name="user"
+							size={focused ? size + 5 : size}
+							color={focused ? theme.COLORS.PRIMARY : theme.COLORS.ICON} />
+					),
+					tabBarLabel: () => null,
+				}} />
+		</Navigator></>
 	)
 }
