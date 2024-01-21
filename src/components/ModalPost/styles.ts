@@ -25,13 +25,13 @@ export const styles = StyleSheet.create({
 	},
 	botaoSalvar: {
 		padding: 10,
-		borderRadius: 5,
+		borderRadius: 20,
 		alignItems: "center",
 		marginBottom: 10,
 	},
 	botaoFechar: {
 		padding: 10,
-		borderRadius: 5,
+		borderRadius: 20,
 		alignItems: "center",
 	},
 	textoBotao: {
