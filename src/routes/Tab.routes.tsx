@@ -12,7 +12,7 @@ import FAQ from "../screens/FAQ"
 
 const { Navigator, Screen } = createBottomTabNavigator<propsNavigationStack>()
 
-export function TabRoutes() {
+export function AuthTab() {
 	const { theme } = useTheme()
 
 	const getIconSize = (isFocused: boolean, size: number) => {

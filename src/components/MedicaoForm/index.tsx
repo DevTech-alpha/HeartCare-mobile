@@ -71,7 +71,7 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading 
     }
 
     return (
-        <>
+        <View style={[styles.container , {backgroundColor: theme.COLORS.BACKGROUND_CARD}]}>
             <Text style={[styles.label, { color: theme.COLORS.POST_TITLE }]}>Sistólica</Text>
             <TextInput
                 style={[
@@ -123,7 +123,7 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading 
                     <Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>Registrar Medição</Text>
                 )}
             </TouchableOpacity>
-        </>
+        </View>
     )
 }
 

@@ -1,13 +1,9 @@
 import { StyleSheet } from "react-native"
 
-// import { useTheme } from '../../hooks/ThemeProvider';
-
-// // const { theme } = useTheme();
 
 export const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		// backgroundColor: theme.COLORS.BACKGROUND,
 	},
 	textoVazio: {
 		textAlign: "center",
@@ -22,7 +18,6 @@ export const styles = StyleSheet.create({
 	},
 	containerForm: {
 		flex: 1,
-		// backgroundColor: theme.COLORS.BACKGROUND,
 		borderTopLeftRadius: 25,
 		borderTopRightRadius: 25,
 		padding: 20,
@@ -39,7 +34,6 @@ export const styles = StyleSheet.create({
 		fontSize: 16,
 	},
 	toggleHorarioButton: {
-		// backgroundColor: theme.COLORS.BUTTON,
 		borderRadius: 4,
 		justifyContent: "center",
 		alignItems: "center",
@@ -47,10 +41,8 @@ export const styles = StyleSheet.create({
 		marginTop: 10,
 	},
 	toggleHorarioButtonText: {
-		// color: theme.COLORS.BUTTON_TEXT,
 	},
 	botaoAdicionar: {
-		// backgroundColor: theme.COLORS.BUTTON,
 		borderRadius: 20,
 		justifyContent: "center",
 		alignItems: "center",
@@ -58,7 +50,6 @@ export const styles = StyleSheet.create({
 		marginTop: 14,
 	},
 	textoBotao: {
-		// color: theme.COLORS.BUTTON_TEXT,
 	},
 	listaContainer: {
 		flex: 1,

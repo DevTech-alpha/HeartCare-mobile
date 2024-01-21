@@ -16,9 +16,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "config": {
-        "googleMapsApiKey": "AIzaSyCzeV_9EqiX7FqRAP0GfKob43SQ2sVxUdU"
-      }
+      "config": {}
     },
     "android": {
       "adaptiveIcon": {
@@ -26,11 +24,7 @@
         "backgroundColor": "#800020"
       },
       "package": "com.devsntosx71.HeartCare",
-      "config": {
-        "googleMaps": {
-          "apiKey": "AIzaSyCzeV_9EqiX7FqRAP0GfKob43SQ2sVxUdU"
-        }
-      }
+      "config": {}
     },
     "web": {
       "favicon": "./assets/favicon.png"
