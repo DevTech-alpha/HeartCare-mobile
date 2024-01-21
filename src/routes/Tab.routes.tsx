@@ -7,9 +7,8 @@ import Consulta from "../screens/MyMeasurements"
 import Feed from "../screens/Feed"
 import Perfil from "../screens/Profile"
 import { propsNavigationStack } from "./Models"
-import Map from "../screens/Map"
 import { StatusBar } from "react-native"
-import { NavigationContainer } from "@react-navigation/native"
+import FAQ from "../screens/FAQ"
 
 const { Navigator, Screen } = createBottomTabNavigator<propsNavigationStack>()
 
@@ -29,7 +28,7 @@ export function TabRoutes() {
 			screenOptions={{
 				headerShown: false,
 				tabBarStyle: {
-					backgroundColor: theme.COLORS.BACKGROUND, // Use a cor apropriada do tema
+					backgroundColor: theme.COLORS.BACKGROUND, 
 				},
 			}}>
 			<Screen
@@ -45,12 +44,12 @@ export function TabRoutes() {
 					tabBarLabel: () => null,
 				}} />
 			<Screen
-				name="Mapa"
-				component={Map}
+				name="FAQ"
+				component={FAQ}
 				options={{
 					tabBarIcon: ({ focused, size }) => (
 						<Feather
-							name="search"
+							name="info"
 							size={focused ? size + 5 : size}
 							color={focused ? theme.COLORS.PRIMARY : theme.COLORS.ICON} />
 					),

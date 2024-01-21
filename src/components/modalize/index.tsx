@@ -26,7 +26,7 @@ const ModalizeContent: React.FC<ModalizeProps> = ({ createNewPost, loading }) =>
 		}
 	}
 	return (
-		<View style={[styles.container , {backgroundColor:theme.COLORS.BACKGROUND}]}>
+		<View style={[styles.container , {backgroundColor:theme.COLORS.BACKGROUND_CARD}]}>
 			<TextInput
 				placeholder="Título"
 				style={[styles.input , {borderColor: theme.COLORS.PRIMARY}]}
