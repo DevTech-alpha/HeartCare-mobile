@@ -38,19 +38,6 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading 
                     const medicoesRef = collection(db, "medicoes")
                     const docRef = await addDoc(medicoesRef, novaMedicao)
 
-                    if (
-                        sistolicaValue >= 90 &&
-                        sistolicaValue <= 120 &&
-                        diastolicaValue >= 60 &&
-                        diastolicaValue <= 80
-                    ) {
-                        alert("Pressão está boa!")
-                    } else {
-                        alert(
-                            "Pressão fora da faixa considerada saudável. Consulte um médico."
-                        )
-                    }
-
                     onMedicaoAdicionada()
                     alert("Adicionado com sucesso!!")
 
@@ -92,7 +79,7 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading 
                     { color: theme.COLORS.POST_CONTENT },
                 ]}
                 placeholder="Digite o valor diastólico"
-                placeholderTextColor={theme.COLORS.TEXT} // Defina a cor do placeholder
+                placeholderTextColor={theme.COLORS.TEXT} 
                 value={diastolica}
                 onChangeText={(texto) => setDiastolica(texto)}
                 keyboardType="numeric"
@@ -105,7 +92,7 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading 
                     { color: theme.COLORS.POST_CONTENT },
                 ]}
                 placeholder="Digite o valor do pulso"
-                placeholderTextColor={theme.COLORS.TEXT} // Defina a cor do placeholder
+                placeholderTextColor={theme.COLORS.TEXT}
                 value={pulso}
                 onChangeText={(texto) => setPulso(texto)}
                 keyboardType="numeric"

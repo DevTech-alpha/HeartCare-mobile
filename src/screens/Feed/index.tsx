@@ -1,21 +1,17 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   Text,
   TouchableOpacity,
   FlatList,
   View,
-  Alert,
   ActivityIndicator,
   RefreshControl,
 } from 'react-native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
   collection,
   getDocs,
   addDoc,
   doc,
-  deleteDoc,
-  query,
   getDoc,
 } from 'firebase/firestore';
 import { db } from '../../firebase/firebaseConfig';
@@ -29,12 +25,9 @@ import * as FileSystem from 'expo-file-system';
 import { propsStack } from '../../routes/Models';
 import { Header } from '../../components/Header';
 import { useTheme } from '../../hooks/ThemeProvider';
+import PublishModalContent from '../../components/ModalPost';
 
- 
-import { Modalize } from 'react-native-modalize';
-import ModalizeContent from '../../components/modalize';
-
-interface FeedProps { }
+interface FeedProps {}
 
 const Feed: React.FC<FeedProps> = () => {
   const { navigate } = useNavigation<propsStack>();
@@ -43,20 +36,15 @@ const Feed: React.FC<FeedProps> = () => {
   const { theme } = useTheme();
 
   const [posts, setPosts] = useState<Post[]>([]);
-  const [bottomSheetActive, setBottomSheetActive] = useState(false);
   const [loading, setLoading] = useState(false);
   const [likedPosts, setLikedPosts] = useState<string[]>([]);
   const [refreshing, setRefreshing] = useState(false);
-
-  const modalizeRef = useRef<Modalize | null>(null);
-  function onOpen() {
-    modalizeRef.current?.open();
-  }
+  const [modalVisivel, setModalVisivel] = useState(false);
 
   const fetchPosts = useCallback(async () => {
     try {
       setRefreshing(true);
-      const postsQuery = query(collection(db, 'posts'));
+      const postsQuery = collection(db, 'posts');
       const postsSnapshot = await getDocs(postsQuery);
       const postsData = postsSnapshot.docs.map((doc) => ({
         id: doc.id,
@@ -119,7 +107,6 @@ const Feed: React.FC<FeedProps> = () => {
         const docRef = await addDoc(collection(db, 'posts'), postWithUserId);
         const updatedPosts = [...posts, { ...postWithUserId, id: docRef.id }];
         setPosts(updatedPosts as any);
-        setBottomSheetActive(false);
       }
     } catch (error) {
       console.error('Error adding post:', error);
@@ -141,10 +128,17 @@ const Feed: React.FC<FeedProps> = () => {
     }
   };
 
+  const abrirModal = () => {
+    setModalVisivel(true);
+  };
+
+  const fecharModal = () => {
+    setModalVisivel(false);
+  };
 
   return (
     <>
-      <GestureHandlerRootView style={[feedStyles.container,{backgroundColor:theme.COLORS.BACKGROUND}]}>
+      <View style={[feedStyles.container, { backgroundColor: theme.COLORS.BACKGROUND }]}>
         <View>
           <Header title='𝓗𝓮𝓪𝓻𝓽𝓒𝓪𝓻𝓮' />
         </View>
@@ -163,23 +157,17 @@ const Feed: React.FC<FeedProps> = () => {
             <RefreshControl refreshing={refreshing} onRefresh={fetchPosts} />
           }
         />
-        <TouchableOpacity style={[feedStyles.addButton,{backgroundColor: theme.COLORS.BUTTON}]} onPress={onOpen}>
-          <Text style={[feedStyles.addButtonText, {color: theme.COLORS.BUTTON_TEXT}]}>+</Text>
+        <TouchableOpacity style={[feedStyles.addButton, { backgroundColor: theme.COLORS.BUTTON }]} onPress={abrirModal}>
+          <Text style={[feedStyles.addButtonText, { color: theme.COLORS.BUTTON_TEXT }]}>+</Text>
         </TouchableOpacity>
 
-       
-        <Modalize
-          ref={modalizeRef}
-          snapPoint={220}
-          modalHeight={220}
-        >
-          <ModalizeContent
-            createNewPost={createNewPost}
-            loading={loading}
-          />
-        </Modalize>
-
-      </GestureHandlerRootView>
+        <PublishModalContent
+          fecharModal={fecharModal}
+          visivel={modalVisivel}
+          createNewPost={createNewPost}
+          loading={loading}
+        />
+      </View>
     </>
   );
 };

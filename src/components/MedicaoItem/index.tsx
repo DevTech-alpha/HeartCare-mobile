@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import MedicaoItemProps from '../../props/MedicaoItemProps';
-import ModalEdicao from '../ModalEdicao';
+import ModalEdicao from '../ModalEdit';
 import { useTheme } from '../../hooks/ThemeProvider';
 
 const MedicaoItem: React.FC<MedicaoItemProps> = ({ medicao, deleteMedicao }) => {
