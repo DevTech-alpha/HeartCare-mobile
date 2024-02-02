@@ -1,12 +1,12 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet , Platform } from "react-native"
 
 
 export const styles = StyleSheet.create({
 	contain: {
-		marginTop: 20,
+		marginTop: Platform.OS === 'android' ? 0 : 20,
 		justifyContent: "center",
 		alignItems: "center",
-		paddingVertical: 17,
+		paddingVertical: Platform.OS === 'android' ? 5 : 15,
 	},
 	container: {
 		justifyContent: "center",
