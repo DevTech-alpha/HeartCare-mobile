@@ -1,13 +1,8 @@
 import { StyleSheet } from "react-native"
 
-// import { useTheme } from '../../hooks/ThemeProvider';
-
-// // const { theme } = useTheme();
-
 export const styles = StyleSheet.create({
 	containerForm: {
 		flex: 1,
-		// backgroundColor: theme.COLORS.BACKGROUND,
 		borderRadius: 25,
 		paddingHorizontal: "5%",
 		paddingVertical: "5%",
@@ -23,7 +18,6 @@ export const styles = StyleSheet.create({
 		fontSize: 16,
 	},
 	button: {
-		// backgroundColor: theme.COLORS.BUTTON,
 		width: "100%",
 		borderRadius: 20,
 		paddingVertical: 12,
@@ -32,7 +26,6 @@ export const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	buttonText: {
-		// color: theme.COLORS.BUTTON_TEXT,
 		fontSize: 18,
 		fontWeight: "bold",
 	},

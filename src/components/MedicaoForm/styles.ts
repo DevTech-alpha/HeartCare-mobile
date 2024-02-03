@@ -3,8 +3,7 @@ import { StyleSheet } from "react-native"
 
 export const styles = StyleSheet.create({
 	container: {
-
-		margin: 5,
+		margin: 20,
 		borderRadius: 20,
 		padding: 20,
 		marginBottom: 20,
@@ -39,7 +38,6 @@ export const styles = StyleSheet.create({
 		justifyContent: "center",
 		alignItems: "center",
 		paddingVertical: 8,
-		marginTop: 14,
 	},
 	textoBotao: {
 	},

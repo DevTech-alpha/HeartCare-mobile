@@ -40,7 +40,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 		)
 	}
 
-	
+
 
 	const contextValue: ThemeContextData = {
 		theme,

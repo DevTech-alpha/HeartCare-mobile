@@ -12,9 +12,9 @@ const MedicaoItem: React.FC<MedicaoItemProps> = ({ medicao, deleteMedicao }) => 
     setModalVisivel(true);
   };
 
-  const {theme} = useTheme()
+  const { theme } = useTheme()
 
-   const fecharModal = () => {
+  const fecharModal = () => {
     setModalVisivel(false);
   };
 
@@ -25,7 +25,7 @@ const MedicaoItem: React.FC<MedicaoItemProps> = ({ medicao, deleteMedicao }) => 
   const avaliarPressao = () => {
     const sistolica = parseFloat(medicao.sistolica);
     const diastolica = parseFloat(medicao.diastolica);
-  
+
     if (!isNaN(sistolica) && !isNaN(diastolica)) {
       if (sistolica < 90 && diastolica < 60) {
         return 'Pressão Baixa';
@@ -44,26 +44,26 @@ const MedicaoItem: React.FC<MedicaoItemProps> = ({ medicao, deleteMedicao }) => 
       return 'Valores Inválidos';
     }
   };
-  
+
 
   return (
-    <View style={[styles.itemMedicao , {backgroundColor: theme.COLORS.BACKGROUND_CARD}]}>
-      <Text style={[styles.textoMedicao , {color: theme.COLORS.POST_CONTENT}]}>Sistólica: {medicao.sistolica}</Text>
-      <Text style={[styles.textoMedicao , {color: theme.COLORS.POST_CONTENT}]}>Diastólica: {medicao.diastolica}</Text>
-      <Text style={[styles.textoMedicao , {color: theme.COLORS.POST_CONTENT}]}>Pulso: {medicao.pulso}</Text>
-      <Text style={[styles.textoMedicao , {color: theme.COLORS.POST_CONTENT}]}>
+    <View style={[styles.itemMedicao, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}>
+      <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>Sistólica: {medicao.sistolica}</Text>
+      <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>Diastólica: {medicao.diastolica}</Text>
+      <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>Pulso: {medicao.pulso}</Text>
+      <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>
         Horário: {new Date(medicao.horario).toLocaleTimeString()}
       </Text>
-      <Text style={[styles.textoMedicao , {color: theme.COLORS.POST_CONTENT}]}>
+      <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>
         Data: {new Date(medicao.data).toLocaleDateString()}
       </Text>
-      <Text style={[styles.textoMedicao , {color: theme.COLORS.POST_CONTENT}]}>Avaliação: {avaliarPressao()}</Text>
+      <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>Avaliação: {avaliarPressao()}</Text>
       <View style={styles.containerBotoes}>
-        <TouchableOpacity style={[styles.botao , {backgroundColor: theme.COLORS.BUTTON}]} onPress={abrirModal}>
-          <Text style={[styles.textoBotao , {color: theme.COLORS.BUTTON_TEXT}]}>Editar</Text>
+        <TouchableOpacity style={[styles.botao, { backgroundColor: theme.COLORS.BUTTON }]} onPress={abrirModal}>
+          <Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>Editar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.botao , {backgroundColor: theme.COLORS.BUTTON}]} onPress={() => deleteMedicao(medicao.id)}>
-          <Text style={[styles.textoBotao , {color: theme.COLORS.BUTTON_TEXT}]}>Excluir</Text>
+        <TouchableOpacity style={[styles.botao, { backgroundColor: theme.COLORS.BUTTON }]} onPress={() => deleteMedicao(medicao.id)}>
+          <Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>Excluir</Text>
         </TouchableOpacity>
       </View>
 

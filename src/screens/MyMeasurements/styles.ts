@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native"
 
-
 export const styles = StyleSheet.create({
 	container: {
 		flex: 1,
@@ -57,7 +56,6 @@ export const styles = StyleSheet.create({
 
 	addButtonText: {
 		fontSize: 30,
-		// color: theme.COLORS.WHITE,
 		fontWeight: "bold",
 	},
 	textoMedicao: {
@@ -70,13 +68,11 @@ export const styles = StyleSheet.create({
 		flexDirection: "row",
 	},
 	botaoEditar: {
-		// backgroundColor: theme.COLORS.BUTTON,
 		borderRadius: 5,
 		padding: 8,
 		marginHorizontal: 5,
 	},
 	botaoExcluir: {
-		// backgroundColor: theme.COLORS.BUTTON,
 		borderRadius: 4,
 		padding: 8,
 		marginHorizontal: 5,

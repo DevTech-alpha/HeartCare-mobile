@@ -1,4 +1,4 @@
-import { StyleSheet , Platform } from "react-native"
+import { StyleSheet, Platform } from "react-native"
 
 
 export const styles = StyleSheet.create({
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
 		borderBottomRightRadius: 30,
 	},
 	text: {
-		color: "white", 
+		color: "white",
 		fontSize: 25,
 	},
 })

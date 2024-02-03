@@ -1,5 +1,5 @@
 interface HeaderProps {
-    title: string;
-  }
-  
+  title: string;
+}
+
 export default HeaderProps;

@@ -8,7 +8,7 @@ import Feed from "../screens/Feed"
 import Perfil from "../screens/Profile"
 import { propsNavigationStack } from "./Models"
 import { StatusBar } from "react-native"
-import FAQ from "../screens/FAQ"
+import ChatIA from "../screens/ChatDoctor"
 
 const { Navigator, Screen } = createBottomTabNavigator<propsNavigationStack>()
 
@@ -24,11 +24,11 @@ export function AuthTab() {
 	}
 
 	return (
-			<><StatusBar backgroundColor={theme.COLORS.PRIMARY} barStyle="light-content" /><Navigator
+		<><StatusBar backgroundColor={theme.COLORS.PRIMARY} barStyle="light-content" /><Navigator
 			screenOptions={{
 				headerShown: false,
 				tabBarStyle: {
-					backgroundColor: theme.COLORS.BACKGROUND, 
+					backgroundColor: theme.COLORS.BACKGROUND,
 				},
 			}}>
 			<Screen
@@ -44,12 +44,12 @@ export function AuthTab() {
 					tabBarLabel: () => null,
 				}} />
 			<Screen
-				name="FAQ"
-				component={FAQ}
+				name="ChatIa"
+				component={ChatIA}
 				options={{
 					tabBarIcon: ({ focused, size }) => (
 						<Feather
-							name="info"
+							name="cpu"
 							size={focused ? size + 5 : size}
 							color={focused ? theme.COLORS.PRIMARY : theme.COLORS.ICON} />
 					),

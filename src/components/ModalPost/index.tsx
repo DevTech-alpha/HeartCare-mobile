@@ -70,7 +70,7 @@ const PublishModalContent: React.FC<ModalPostProps> = ({
             {loading ? (
               <ActivityIndicator size="small" color={theme.COLORS.BUTTON_TEXT} />
             ) : (
-              <Text style={[styles.textoBotao , {color: theme.COLORS.BUTTON_TEXT}]}>Postar</Text>
+              <Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>Postar</Text>
             )}
           </TouchableOpacity>
 

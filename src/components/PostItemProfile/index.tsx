@@ -10,9 +10,9 @@ const PostItem: React.FC<PostItemProps> = ({ item, userUid, deletePost }) => {
 	const { theme } = useTheme()
 
 	return (
-		<Animatable.View animation="fadeInUp" style={[feedStyles.postContainer,{backgroundColor: theme.COLORS.BACKGROUND_CARD}]}>
-			<Text style={[feedStyles.postTitle, {color: theme.COLORS.POST_TITLE}]}>{item.title}</Text>
-			<Text style={[feedStyles.postContent, {color: theme.COLORS.POST_CONTENT}]}>{item.content}</Text>
+		<Animatable.View animation="fadeInUp" style={[feedStyles.postContainer, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}>
+			<Text style={[feedStyles.postTitle, { color: theme.COLORS.POST_TITLE }]}>{item.title}</Text>
+			<Text style={[feedStyles.postContent, { color: theme.COLORS.POST_CONTENT }]}>{item.content}</Text>
 
 			{userUid === item.idpub && (
 				<TouchableOpacity

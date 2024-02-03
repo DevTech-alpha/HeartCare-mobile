@@ -58,7 +58,7 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading 
     }
 
     return (
-        <View style={[styles.container , {backgroundColor: theme.COLORS.BACKGROUND_CARD}]}>
+        <View style={[styles.container, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}>
             <Text style={[styles.label, { color: theme.COLORS.POST_TITLE }]}>Sistólica</Text>
             <TextInput
                 style={[
@@ -66,7 +66,7 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading 
                     { color: theme.COLORS.POST_CONTENT },
                 ]}
                 placeholder="Digite o valor sistólico"
-                placeholderTextColor={theme.COLORS.TEXT} 
+                placeholderTextColor={theme.COLORS.TEXT}
                 value={sistolica}
                 onChangeText={(texto) => setSistolica(texto)}
                 keyboardType="numeric"
@@ -79,7 +79,7 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading 
                     { color: theme.COLORS.POST_CONTENT },
                 ]}
                 placeholder="Digite o valor diastólico"
-                placeholderTextColor={theme.COLORS.TEXT} 
+                placeholderTextColor={theme.COLORS.TEXT}
                 value={diastolica}
                 onChangeText={(texto) => setDiastolica(texto)}
                 keyboardType="numeric"

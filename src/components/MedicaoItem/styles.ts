@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
 	textoBotao: {
 	},
 	itemMedicao: {
-		margin: 15,
+		margin: 20,
 		borderRadius: 20,
 		padding: 20,
 		marginBottom: 20,
@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
 	},
 	textoMedicao: {
 		fontSize: 15,
-		marginBottom: 5,
+		margin: 2,
 	},
 
 	containerBotoes: {
@@ -30,5 +30,5 @@ export const styles = StyleSheet.create({
 		padding: 8,
 		marginHorizontal: 5,
 	},
-	
+
 })

@@ -1,7 +1,7 @@
 interface Post {
   userPhoto: string;
   id: string;
-  idpub: string; 
+  idpub: string;
   username: string;
   title: string;
   content: string;

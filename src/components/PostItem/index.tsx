@@ -31,13 +31,13 @@ const PostItem: React.FC<PostItemProps> = ({ item, toggleLike, sharePost }) => {
 				<TouchableOpacity
 					style={feedStyles.actionIconContainer}
 					onPress={() => toggleLike(item.id)}>
-					<FontAwesome name="heart" size={30} color={theme.COLORS.ICON} />
+					<FontAwesome name="heart" size={25} color={theme.COLORS.ICON} />
 				</TouchableOpacity>
 
 				<TouchableOpacity style={feedStyles.actionIconContainer}>
 					<FontAwesome
 						name="send"
-						size={30}
+						size={25}
 						color={theme.COLORS.ICON}
 						onPress={() => sharePost(item.title, item.content)}
 					/>

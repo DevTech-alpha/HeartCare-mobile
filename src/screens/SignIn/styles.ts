@@ -5,14 +5,14 @@ export const styles = StyleSheet.create({
 		flex: 1,
 	},
 	containerHeader: {
-		marginTop: "14%",
-		marginBottom: "8%",
+		marginTop: "15%",
+		marginBottom: "10%",
 		paddingStart: "5%",
 	},
 	message: {
-		fontSize: 28,
+		fontSize: 25,
 		fontWeight: "bold",
-		 color: 'white',
+		color: 'white',
 	},
 	containerForm: {
 		flex: 1,

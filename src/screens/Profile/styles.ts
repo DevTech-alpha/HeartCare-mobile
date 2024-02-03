@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
 		right: 10,
 		padding: 10,
 		borderRadius: 5,
-	  },
+	},
 	containerHeader: {
 		marginTop: "14%",
 		marginBottom: "8%",

@@ -22,7 +22,7 @@ const Login = () => {
 
   const { navigate } = useNavigation<propsStack>();
 
-  const {theme} = useTheme()
+  const { theme } = useTheme()
 
   const handleLogin = async () => {
     try {
@@ -61,7 +61,7 @@ const Login = () => {
   };
 
   return (
-    <View style={[styles.container , {backgroundColor: theme.COLORS.PRIMARY }]}>
+    <View style={[styles.container, { backgroundColor: theme.COLORS.PRIMARY }]}>
       <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
         <Text style={styles.message}>𝓑𝓮𝓶-𝓿𝓲𝓷𝓭𝓸(𝓪)</Text>
       </Animatable.View>

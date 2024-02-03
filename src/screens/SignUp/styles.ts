@@ -1,20 +1,17 @@
 import { StyleSheet } from "react-native"
-// import { useTheme } from '../../hooks/ThemeProvider';
 
-// // const { theme } = useTheme();
 
 export const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		// backgroundColor: theme.COLORS.PRIMARY,
 	},
 	containerHeader: {
-		marginTop: "14%",
-		marginBottom: "8%",
+		marginTop: "15%",
+		marginBottom: "10%",
 		paddingStart: "5%",
 	},
 	message: {
-		fontSize: 28,
+		fontSize: 25,
 		fontWeight: "bold",
 		color: 'white',
 	},
@@ -27,7 +24,7 @@ export const styles = StyleSheet.create({
 	},
 	title: {
 		fontSize: 20,
-		marginTop: 28,
+		marginTop: 20,
 	},
 	input: {
 		borderBottomWidth: 1,

@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   questionContainer: {
-    margin: 16,
+    margin: 10,
     borderRadius: 20,
     padding: 5,
     marginBottom: 10,
@@ -21,23 +21,17 @@ export const styles = StyleSheet.create({
   questionText: {
     fontSize: 15,
     fontWeight: 'bold',
-    padding: 16,
+    padding: 10,
   },
   answerText: {
     fontSize: 15,
-    paddingHorizontal: 16,
-    paddingBottom: 16,
-    paddingTop: 8,
+    paddingHorizontal: 15,
+    paddingBottom: 15,
   },
   questionHeader: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
     padding: 10,
-  },
-  message: {
-    paddingTop: 20,
-    fontSize: 28,
-    fontWeight: 'bold',
   },
 });

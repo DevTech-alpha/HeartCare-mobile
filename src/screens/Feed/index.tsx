@@ -27,7 +27,7 @@ import { Header } from '../../components/Header';
 import { useTheme } from '../../hooks/ThemeProvider';
 import PublishModalContent from '../../components/ModalPost';
 
-interface FeedProps {}
+interface FeedProps { }
 
 const Feed: React.FC<FeedProps> = () => {
   const { navigate } = useNavigation<propsStack>();

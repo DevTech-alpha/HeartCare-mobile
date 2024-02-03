@@ -1,6 +1,6 @@
 
 interface MedicaoFormProps {
-    onMedicaoAdicionada: () => void;
-    loading: boolean;
-  }
- export default MedicaoFormProps;  
+  onMedicaoAdicionada: () => void;
+  loading: boolean;
+}
+export default MedicaoFormProps;  

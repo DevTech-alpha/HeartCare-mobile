@@ -42,11 +42,11 @@ const UserProfileScreen = () => {
 	const auth = getAuth()
 	const user: User | null = auth.currentUser
 
-	const {theme, toggleTheme } = useTheme();
+	const { theme, toggleTheme } = useTheme();
 	const [loading, setLoading] = useState(false)
 	const [posts, setPosts] = useState<Post[]>([])
 	const [refreshing, setRefreshing] = useState(false)
-	const [isDayMode, setIsDayMode] = useState(true); 
+	const [isDayMode, setIsDayMode] = useState(true);
 
 	const [username, setUsername] = useState("")
 	const [photo, setPhoto] = useState<string | null>(null)
@@ -354,7 +354,7 @@ const UserProfileScreen = () => {
 						/>
 					))}
 					{userPosts.length === 0 && (
-						<Text style={[styles.messageNop ,{color: theme.COLORS.TEXT}]}>Não há publicações.</Text>
+						<Text style={[styles.messageNop, { color: theme.COLORS.TEXT }]}>Não há publicações.</Text>
 					)}
 				</View>
 			</ScrollView>

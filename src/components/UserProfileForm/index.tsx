@@ -32,33 +32,33 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
 	return (
 		<View style={[styles.containerForm, { backgroundColor: theme.COLORS.BACKGROUND }]}>
 			<ScrollView>
-				<Text style={[styles.title,{color: theme.COLORS.POST_TITLE}]}>Usuário</Text>
+				<Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>Usuário</Text>
 				<TextInput
 					style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
 					placeholder="Digite seu usuário"
 					onChangeText={(text) => setUsername(text)}
 					value={username}
 				/>
-				<Text style={[styles.title,{color: theme.COLORS.POST_TITLE}]}>Nome</Text>
+				<Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>Nome</Text>
 				<TextInput
 					style={[styles.input, { color: theme.COLORS.POST_CONTENT }]} placeholder="Digite seu Nome"
 					onChangeText={(text) => setName(text)}
 					value={name}
 				/>
-				<Text style={[styles.title,{color: theme.COLORS.POST_TITLE}]}>Sobrenome</Text>
+				<Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>Sobrenome</Text>
 				<TextInput
 					style={[styles.input, { color: theme.COLORS.POST_CONTENT }]} placeholder="Digite seu Sobrenome"
 					onChangeText={(text) => setLastName(text)}
 					value={lastName}
 				/>
-				<Text style={[styles.title,{color: theme.COLORS.POST_TITLE}]}>Data de Nascimento</Text>
+				<Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>Data de Nascimento</Text>
 				<TextInput
 					style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
 					placeholder="Digite sua Data de Nascimento"
 					onChangeText={(text) => setDob(text)}
 					value={dob}
 				/>
-				<Text style={[styles.title,{color: theme.COLORS.POST_TITLE}]}>Email</Text>
+				<Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>Email</Text>
 				<TextInput
 					style={[styles.input, { color: email.trim() ? "gray" : "black" }]}
 					placeholder="Digite seu Email"

@@ -26,7 +26,7 @@ const ModalEdicao: React.FC<ModalEdicaoProps> = ({
 	const [pulsoEditado, setPulsoEditado] = useState(medicao.pulso)
 	const [loading, setLoading] = useState(false)
 
-	const {theme} = useTheme();
+	const { theme } = useTheme();
 
 	const handleSalvarEdicao = async () => {
 		const novaMedicao: Medicao = {
@@ -59,32 +59,32 @@ const ModalEdicao: React.FC<ModalEdicaoProps> = ({
 
 	return (
 		<Modal visible={visivel} transparent animationType="slide">
-			<View style={[styles.modalContainer , {backgroundColor: theme.COLORS.OVERLAY}]}>
-			<View style={[styles.modalContent , {backgroundColor: theme.COLORS.BACKGROUND_CARD}]}>
-					<Text style={[styles.textoModal, {color: theme.COLORS.POST_TITLE}]}>Editar Medição</Text>
+			<View style={[styles.modalContainer, { backgroundColor: theme.COLORS.OVERLAY }]}>
+				<View style={[styles.modalContent, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}>
+					<Text style={[styles.textoModal, { color: theme.COLORS.POST_TITLE }]}>Editar Medição</Text>
 					<TextInput
-					style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-					placeholder="Sistólica"
+						style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
+						placeholder="Sistólica"
 						value={sistolicaEditada}
 						onChangeText={(texto) => setSistolicaEditada(texto)}
 						keyboardType="numeric"
 					/>
 					<TextInput
-					style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-					placeholder="Diastólica"
+						style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
+						placeholder="Diastólica"
 						value={diastolicaEditada}
 						onChangeText={(texto) => setDiastolicaEditada(texto)}
 						keyboardType="numeric"
 					/>
 					<TextInput
-					style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-					placeholder="Pulso"
+						style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
+						placeholder="Pulso"
 						value={pulsoEditado}
 						onChangeText={(texto) => setPulsoEditado(texto)}
 						keyboardType="numeric"
 					/>
 					<TouchableOpacity
-						style={[styles.botaoSalvar , {backgroundColor: theme.COLORS.BUTTON}]}
+						style={[styles.botaoSalvar, { backgroundColor: theme.COLORS.BUTTON }]}
 						onPress={handleSalvarEdicao}
 						disabled={loading} >
 						{loading ? (
@@ -93,11 +93,11 @@ const ModalEdicao: React.FC<ModalEdicaoProps> = ({
 								color={'#fff'}
 							/>
 						) : (
-							<Text style={[styles.textoBotao , {color:theme.COLORS.BUTTON_TEXT}]}>Salvar</Text>
+							<Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>Salvar</Text>
 						)}
 					</TouchableOpacity>
-					<TouchableOpacity style={[styles.botaoFechar , {backgroundColor: theme.COLORS.BUTTON}]} onPress={fecharModal}>
-						<Text style={[styles.textoBotao , {color:theme.COLORS.BUTTON_TEXT}]}>Fechar</Text>
+					<TouchableOpacity style={[styles.botaoFechar, { backgroundColor: theme.COLORS.BUTTON }]} onPress={fecharModal}>
+						<Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>Fechar</Text>
 					</TouchableOpacity>
 				</View>
 			</View>

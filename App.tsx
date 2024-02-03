@@ -10,7 +10,7 @@ export default function App(): React.JSX.Element {
   return (
     <AuthProvider>
       <ThemeProvider>
-          <Router />
+        <Router />
       </ThemeProvider>
     </AuthProvider>
   );
