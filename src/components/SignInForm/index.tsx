@@ -34,7 +34,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
 
       <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>Senha</Text>
       <TextInput
-        placeholder="Sua senha"
+        placeholder="Digite sua senha"
         placeholderTextColor={theme.COLORS.TEXT}
         style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
         value={password}

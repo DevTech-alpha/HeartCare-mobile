@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { View } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { styles } from "./styles";
@@ -14,12 +14,15 @@ const CalendarComponent: React.FC<CalendarComponentProps> = ({
 }) => {
   const [openDatePicker, setOpenDatePicker] = useState(false);
 
-  const handleChangeDate = (event: any, date?: Date) => {
-    if (date) {
-      onSelectDate(date);
-    }
-    setOpenDatePicker(false);
-  };
+  const handleChangeDate = useCallback(
+    (event: any, date?: Date) => {
+      if (date) {
+        onSelectDate(date);
+      }
+      setOpenDatePicker(false);
+    },
+    [onSelectDate]
+  );
 
   return (
     <View style={styles.container}>
@@ -27,7 +30,7 @@ const CalendarComponent: React.FC<CalendarComponentProps> = ({
         value={selectedDate}
         mode="date"
         display="default"
-        onChange={handleChangeDate as any}
+        onChange={handleChangeDate}
         locale="pt-BR"
       />
     </View>
