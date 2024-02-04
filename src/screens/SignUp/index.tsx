@@ -9,11 +9,11 @@ import { propsStack } from '../../routes/Models';
 
 import { useTheme } from '../../hooks/ThemeProvider';
 
-
 export default function Cadastro() {
   const { theme } = useTheme();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confPassword, setConfPassword] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -25,6 +25,13 @@ export default function Cadastro() {
 
   const handleSignUp = () => {
     setLoading(true);
+
+    // Verifica se as senhas correspondem antes de prosseguir
+    if (password !== confPassword) {
+      setLoading(false);
+      alert('As senhas não correspondem.');
+      return;
+    }
 
     criar(email, password)
       .then((userCredentials) => {
@@ -39,7 +46,6 @@ export default function Cadastro() {
       });
   };
 
-
   return (
     <View style={[styles.container, { backgroundColor: theme.COLORS.PRIMARY }]}>
       <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
@@ -51,7 +57,7 @@ export default function Cadastro() {
         <TextInput
           placeholder="Digite seu Email"
           placeholderTextColor={theme.COLORS.TEXT}
-          style={styles.input}
+          style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
           value={email}
           onChangeText={(text) => setEmail(text)}
         />
@@ -60,11 +66,22 @@ export default function Cadastro() {
         <TextInput
           placeholder="Digite sua senha"
           placeholderTextColor={theme.COLORS.TEXT}
-          style={styles.input}
+          style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
           value={password}
           secureTextEntry={!isPasswordVisible}
           onChangeText={(text) => setPassword(text)}
         />
+
+        <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>Confirme a Senha</Text>
+        <TextInput
+          placeholder="Digite sua confirmação de senha"
+          placeholderTextColor={theme.COLORS.TEXT}
+          style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
+          value={confPassword}
+          secureTextEntry={!isPasswordVisible}
+          onChangeText={(text) => setConfPassword(text)}
+        />
+
         <TouchableOpacity onPress={togglePasswordVisibility} style={styles.togglePasswordButton}>
           <Text style={[styles.togglePasswordButtonText, { color: theme.COLORS.TEXT }]}>
             {isPasswordVisible ? 'Ocultar Senha' : 'Mostrar Senha'}

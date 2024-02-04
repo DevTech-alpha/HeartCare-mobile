@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
 	title: {
 		fontSize: 16,
 		marginTop: 20,
+		paddingBottom: 5,
 	},
 	input: {
 		borderBottomWidth: 1,

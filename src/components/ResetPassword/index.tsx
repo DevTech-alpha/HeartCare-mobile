@@ -22,7 +22,7 @@ const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
 				placeholder="Digite seu Email para recuperação"
 				placeholderTextColor={theme.COLORS.TEXT}
 				value={resetEmail}
-				style={styles.input}
+        style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
 				onChangeText={(text) => setResetEmail(text)}
 			/>
 			<TouchableOpacity
