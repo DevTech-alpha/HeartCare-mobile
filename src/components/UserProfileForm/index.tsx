@@ -16,25 +16,17 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
   username,
   name,
   lastName,
-  dob,
   email,
+  dob,
   setUsername,
   setName,
   setLastName,
-  setDob,
   setEmail,
+  setDob,
   handleSaveProfile,
   loading,
 }) => {
   const { theme } = useTheme();
-
-  const [selectedDate, setSelectedDate] = useState(new Date());
-
-  const handleSelectDate = (date: Date) => {
-    const newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    setSelectedDate(newDate);
-    setDob(newDate);
-  };
 
   return (
     <View style={[styles.containerForm, { backgroundColor: theme.COLORS.BACKGROUND }]}>
@@ -62,8 +54,8 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
         />
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>Data de Nascimento</Text>
         <CalendarComponent
-          onSelectDate={handleSelectDate}
-          selectedDate={selectedDate}
+         value={dob}
+         onChange={setDob}
         />
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>Email</Text>
         <TextInput

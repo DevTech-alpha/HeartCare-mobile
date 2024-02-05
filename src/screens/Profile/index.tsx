@@ -58,7 +58,6 @@ const UserProfileScreen = () => {
 	const [editMode, setEditMode] = useState(false)
 
 	const storage = getStorage()
-	const { navigate } = useNavigation<propsStack>()
 
 	const onRefresh = useCallback(() => {
 		fetchUserPosts()
