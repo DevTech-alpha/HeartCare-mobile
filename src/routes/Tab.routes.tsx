@@ -49,7 +49,7 @@ export function AuthTab() {
 				options={{
 					tabBarIcon: ({ focused, size }) => (
 						<Feather
-							name="cpu"
+							name="search"
 							size={focused ? size + 5 : size}
 							color={focused ? theme.COLORS.PRIMARY : theme.COLORS.ICON} />
 					),
