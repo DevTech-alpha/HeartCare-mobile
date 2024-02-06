@@ -13,14 +13,7 @@ export const styles = StyleSheet.create({
 	modalContent: {
 		padding: 20,
 		borderRadius: 10,
-		width: "80%",
-	},
-  botaoFechar: {
-		padding: 10,
-		borderRadius: 20,
-		alignItems: "center",
-	},
-	textoBotao: {
+		width: "50%",
 	},
   containerDate:{
     alignItems: "center",

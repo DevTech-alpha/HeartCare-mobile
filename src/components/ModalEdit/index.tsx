@@ -14,6 +14,7 @@ import { db } from "../../firebase/firebaseConfig"
 import Medicao from "../../model/Medicao"
 import ModalEdicaoProps from "../../props/ModalEditProps"
 import { useTheme } from "../../hooks/ThemeProvider"
+import { AntDesign } from "@expo/vector-icons"
 
 const ModalEdicao: React.FC<ModalEdicaoProps> = ({
 	visivel,
@@ -61,6 +62,14 @@ const ModalEdicao: React.FC<ModalEdicaoProps> = ({
 		<Modal visible={visivel} transparent animationType="slide">
 			<View style={[styles.modalContainer, { backgroundColor: theme.COLORS.OVERLAY }]}>
 				<View style={[styles.modalContent, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}>
+					<View style={{ alignItems: 'flex-end' }}>
+						<AntDesign
+							onPress={fecharModal}
+							name="close"
+							size={25}
+							color={theme.COLORS.ICON}
+						/>
+					</View>
 					<Text style={[styles.textoModal, { color: theme.COLORS.POST_TITLE }]}>Editar Medição</Text>
 					<TextInput
 						style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
@@ -95,9 +104,6 @@ const ModalEdicao: React.FC<ModalEdicaoProps> = ({
 						) : (
 							<Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>Salvar</Text>
 						)}
-					</TouchableOpacity>
-					<TouchableOpacity style={[styles.botaoFechar, { backgroundColor: theme.COLORS.BUTTON }]} onPress={fecharModal}>
-						<Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>Fechar</Text>
 					</TouchableOpacity>
 				</View>
 			</View>

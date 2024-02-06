@@ -37,7 +37,6 @@ const Feed: React.FC<FeedProps> = () => {
 
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(false);
-  const [likedPosts, setLikedPosts] = useState<string[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const [modalVisivel, setModalVisivel] = useState(false);
 
@@ -76,13 +75,6 @@ const Feed: React.FC<FeedProps> = () => {
     fetchPosts();
   }, [fetchPosts]);
 
-  const toggleLike = (postId: string) => {
-    setLikedPosts((prevLikedPosts) =>
-      prevLikedPosts.includes(postId)
-        ? prevLikedPosts.filter((id) => id !== postId)
-        : [...prevLikedPosts, postId]
-    );
-  };
 
   const createNewPost = async (title: string, content: string) => {
     try {
@@ -148,11 +140,10 @@ const Feed: React.FC<FeedProps> = () => {
           renderItem={({ item }) => (
             <PostItem
               item={item}
-              toggleLike={toggleLike}
               sharePost={sharePost}
             />
           )}
-          ListFooterComponent={() => loading && <ActivityIndicator size="large" color={theme.COLORS.PRIMARY} />}
+          ListFooterComponent={() => loading && <ActivityIndicator size="large" color={theme.COLORS.ICON} />}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={fetchPosts} />
           }

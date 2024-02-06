@@ -6,7 +6,7 @@ import * as Animatable from "react-native-animatable"
 import PostItemProps from "../../props/PostItemProps"
 import { useTheme } from "../../hooks/ThemeProvider"
 
-const PostItem: React.FC<PostItemProps> = ({ item, toggleLike, sharePost }) => {
+const PostItem: React.FC<PostItemProps> = ({ item, sharePost }) => {
 	const { theme } = useTheme()
 
 	return (
@@ -30,7 +30,7 @@ const PostItem: React.FC<PostItemProps> = ({ item, toggleLike, sharePost }) => {
 			<View style={{ flexDirection: "row", alignItems: "center" }}>
 				<TouchableOpacity
 					style={feedStyles.actionIconContainer}
-					onPress={() => toggleLike(item.id)}>
+					>
 					<FontAwesome name="heart" size={25} color={theme.COLORS.ICON} />
 				</TouchableOpacity>
 

@@ -103,7 +103,7 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading 
                 onPress={adicionarMedicao}
                 disabled={loading || isAddingMedicao}>
                 {isAddingMedicao ? (
-                    <View style={styles.loadingContainer}>
+                    <View>
                         <ActivityIndicator size="small" color={theme.COLORS.WHITE} />
                     </View>
                 ) : (

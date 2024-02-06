@@ -3,6 +3,7 @@ import { View, Text, Modal, TouchableOpacity, Platform } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { styles } from "./styles";
 import { useTheme } from "../../hooks/ThemeProvider";
+import { AntDesign } from "@expo/vector-icons";
 
 interface CalendarComponentProps {
   value: string;
@@ -25,11 +26,11 @@ const CalendarComponent: React.FC<CalendarComponentProps> = ({
     if (selectedDate !== undefined) {
       setDisplayedDate(selectedDate);
       onChange(selectedDate.toISOString().split('T')[0]);
-  
+
       if (Platform.OS === 'android') handleCloseDatePicker();
     }
   };
-  
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={handleOpenDatePicker}>
@@ -37,33 +38,45 @@ const CalendarComponent: React.FC<CalendarComponentProps> = ({
           {displayedDate.toLocaleDateString()}
         </Text>
       </TouchableOpacity>
-
-      <Modal
-        transparent={true}
-        animationType="slide"
-        visible={openDatePicker}
-        onRequestClose={handleCloseDatePicker}
-      >
-        <View style={[styles.modalContainer, { backgroundColor: theme.COLORS.OVERLAY }]}>
-          <View style={[styles.modalContent, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}>
-            <View style={styles.containerDate}>
-              <DateTimePicker
-                value={displayedDate}
-                mode="date"
-                display="default"
-                locale="pt-BR"
-                onChange={handleDateChange}
-              />
-            </View>
-            <TouchableOpacity
-              style={[styles.botaoFechar, { backgroundColor: theme.COLORS.BUTTON }]}
+      {Platform.OS === 'android' && (
+        <DateTimePicker
+          value={displayedDate}
+          mode="date"
+          display="default"
+          locale="pt-BR"
+          onChange={handleDateChange}
+        />
+      )}
+      {Platform.OS !== 'android' && (
+        <Modal
+          transparent={true}
+          animationType="slide"
+          visible={openDatePicker}
+          onRequestClose={handleCloseDatePicker}
+        >
+          <View style={[styles.modalContainer, { backgroundColor: theme.COLORS.OVERLAY }]}>
+            <View style={[styles.modalContent, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}>
+            <View style={{ alignItems: 'flex-end' }}>
+            <AntDesign
               onPress={handleCloseDatePicker}
-            >
-              <Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>Fechar</Text>
-            </TouchableOpacity>
+              name="close"
+              size={25}
+              color={theme.COLORS.ICON}
+            />
           </View>
-        </View>
-      </Modal>
+              <View style={styles.containerDate}>
+                <DateTimePicker
+                  value={displayedDate}
+                  mode="date"
+                  display="default"
+                  locale="pt-BR"
+                  onChange={handleDateChange}
+                />
+              </View>
+            </View>
+          </View>
+        </Modal>
+      )}
     </View>
   );
 };

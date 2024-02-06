@@ -16,12 +16,7 @@ export const styles = StyleSheet.create({
 		shadowRadius: 4,
 		elevation: 10,
 	},
-	loadingContainer: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-	},
-
+	
 	label: {
 		fontSize: 15,
 		marginTop: 12,

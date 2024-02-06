@@ -12,6 +12,7 @@ import {
 import { styles } from "./styles";
 import { useTheme } from "../../hooks/ThemeProvider";
 import ModalPostProps from "../../props/ModalPostProps";
+import { AntDesign } from "@expo/vector-icons";
 
 const PublishModalContent: React.FC<ModalPostProps> = ({
   createNewPost,
@@ -44,6 +45,14 @@ const PublishModalContent: React.FC<ModalPostProps> = ({
     <Modal visible={visivel} transparent animationType="slide">
       <View style={[styles.modalContainer, { backgroundColor: theme.COLORS.OVERLAY }]}>
         <View style={[styles.modalContent, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}>
+          <View style={{ alignItems: 'flex-end' }}>
+            <AntDesign
+              onPress={fecharModal}
+              name="close"
+              size={25}
+              color={theme.COLORS.ICON}
+            />
+          </View>
           <Text style={[styles.textoModal, { color: theme.COLORS.POST_TITLE }]}>
             Nova Publicação
           </Text>
@@ -72,15 +81,6 @@ const PublishModalContent: React.FC<ModalPostProps> = ({
             ) : (
               <Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>Postar</Text>
             )}
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={[styles.botaoFechar, { backgroundColor: theme.COLORS.BUTTON }]}
-            onPress={fecharModal}
-          >
-            <Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>
-              Fechar
-            </Text>
           </TouchableOpacity>
         </View>
       </View>
