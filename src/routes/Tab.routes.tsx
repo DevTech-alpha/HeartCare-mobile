@@ -12,7 +12,7 @@ import ChatIA from "../screens/ChatDoctor"
 
 const { Navigator, Screen } = createBottomTabNavigator<propsNavigationStack>()
 
-export function AuthTab() {
+export function TabRoutes() {
 	const { theme } = useTheme()
 
 	const getIconSize = (isFocused: boolean, size: number) => {

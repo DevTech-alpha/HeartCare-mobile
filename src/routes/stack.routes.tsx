@@ -9,7 +9,7 @@ import FAQ from '../screens/FAQ';
 
 const { Screen, Navigator } = createNativeStackNavigator<propsNavigationStack>();
 
-export function AuthStack() {
+export function StackRoutes() {
 
     return (
         <Navigator screenOptions={{ headerShown: false }}>
