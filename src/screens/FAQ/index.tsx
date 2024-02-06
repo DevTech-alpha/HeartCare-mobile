@@ -6,12 +6,16 @@ import * as Animatable from 'react-native-animatable';
 import { Header } from '../../components/Header';
 
 import { useTheme } from '../../hooks/ThemeProvider';
+import { useNavigation } from '@react-navigation/native';
+import { propsStack } from '../../routes/Models';
 
 
 
 const FAQ = () => {
 
     const { theme } = useTheme();
+    const { navigate } = useNavigation<propsStack>();
+
 
     const [questions] = useState([
         {

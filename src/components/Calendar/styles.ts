@@ -1,11 +1,11 @@
 import { Platform, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  container: {
-    paddingTop: 5,
-    alignItems: "flex-start",
-  },
-  modalContainer: {
+	container: {
+		paddingTop: 5,
+		alignItems: "flex-start",
+	},
+	modalContainer: {
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
@@ -15,11 +15,16 @@ export const styles = StyleSheet.create({
 		borderRadius: 10,
 		width: "50%",
 	},
-  containerDate:{
-    alignItems: "center",
-    padding: 10,
-  },
-  text:{
+	textoModal: {
+		fontSize: 15,
+		fontWeight: "bold",
+		marginBottom: 10,
+	},
+	containerDate: {
+		alignItems: "center",
+		padding: 10,
+	},
+	text: {
 
-  }
+	}
 });

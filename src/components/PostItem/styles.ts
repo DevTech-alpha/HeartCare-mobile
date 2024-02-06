@@ -17,10 +17,9 @@ export const styles = StyleSheet.create({
 	},
 	userPhoto: {
 		width: 60,
-		height: 60,
-		borderRadius: 30,
-		marginRight: 16,
-		resizeMode: "contain",
+    height: 60,
+    borderRadius: 30,
+		marginRight: 15,
 	},
 	postHeader: {
 		flexDirection: "row",

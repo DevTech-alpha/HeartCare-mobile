@@ -56,15 +56,18 @@ const CalendarComponent: React.FC<CalendarComponentProps> = ({
         >
           <View style={[styles.modalContainer, { backgroundColor: theme.COLORS.OVERLAY }]}>
             <View style={[styles.modalContent, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}>
-            <View style={{ alignItems: 'flex-end' }}>
-            <AntDesign
-              onPress={handleCloseDatePicker}
-              name="close"
-              size={25}
-              color={theme.COLORS.ICON}
-            />
-          </View>
+              <View style={{ alignItems: 'flex-end' }}>
+                <AntDesign
+                  onPress={handleCloseDatePicker}
+                  name="close"
+                  size={25}
+                  color={theme.COLORS.ICON}
+                />
+              </View>
               <View style={styles.containerDate}>
+                <Text style={[styles.textoModal, { color: theme.COLORS.POST_TITLE }]}>
+                  Data de Nascimento :
+                </Text>
                 <DateTimePicker
                   value={displayedDate}
                   mode="date"

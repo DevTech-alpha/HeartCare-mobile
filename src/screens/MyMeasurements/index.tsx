@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity, FlatList, RefreshControl, Alert } from 'r
 import { collection, getDocs, deleteDoc, doc, query, where } from 'firebase/firestore';
 import { getAuth, User } from 'firebase/auth';
 import Medicao from '../../model/Medicao';
-import * as Animatable from 'react-native-animatable';
 import { db } from '../../firebase/firebaseConfig';
 import { styles } from './styles';
 import MedicaoItem from '../../components/MedicaoItem';
@@ -86,7 +85,7 @@ const PressaoArterial = () => {
       <View>
         <Header title='𝓹𝓻𝓮𝓼𝓼𝓪̃𝓸 𝓪𝓻𝓽𝓮𝓻𝓲𝓪𝓵' />
       </View>
-      <Animatable.View animation="fadeInUp" style={[styles.containerForm, { backgroundColor: theme.COLORS.BACKGROUND }]}>
+      <View style={[styles.containerForm, { backgroundColor: theme.COLORS.BACKGROUND }]}>
         {!historicoVisivel && (
           <MedicaoForm onMedicaoAdicionada={handleMedicaoAdicionada} loading={loading} />
         )}
@@ -115,7 +114,7 @@ const PressaoArterial = () => {
             }
           />
         )}
-      </Animatable.View>
+      </View>
     </View>
   );
 };

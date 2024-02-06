@@ -6,7 +6,7 @@ import * as Animatable from 'react-native-animatable';
 import { styles } from './styles';
 import { propsStack } from '../../routes/Models';
 import { useTheme } from '../../hooks/ThemeProvider';
-import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
+import { AntDesign, FontAwesome, MaterialIcons } from '@expo/vector-icons';
 
 export default function Home() {
   const { navigate } = useNavigation<propsStack>();
@@ -27,8 +27,8 @@ export default function Home() {
       </Animatable.View>
 
       <TouchableOpacity style={[styles.themeToggleButton, { backgroundColor: theme.COLORS.BACKGROUND }]} onPress={() => navigate('FAQ')}>
-        <FontAwesome
-          name={'info-circle'}
+        <AntDesign
+          name="infocirlceo"
           size={30}
           color={theme.COLORS.ICON}
         />
