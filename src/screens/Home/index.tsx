@@ -25,14 +25,6 @@ export default function Home() {
           resizeMode="contain"
         />
       </Animatable.View>
-
-      <TouchableOpacity style={[styles.themeToggleButton, { backgroundColor: theme.COLORS.BACKGROUND }]} onPress={() => navigate('FAQ')}>
-        <AntDesign
-          name="infocirlceo"
-          size={30}
-          color={theme.COLORS.ICON}
-        />
-      </TouchableOpacity>
       <Animatable.View delay={600} animation="fadeInUp" style={[styles.containerForm, { backgroundColor: theme.COLORS.BACKGROUND }]}>
 
 

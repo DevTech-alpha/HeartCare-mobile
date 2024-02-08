@@ -8,7 +8,6 @@ export type propsNavigationStack = {
     Login: undefined | any;
     Cadastrar: undefined | any;
     Principal: undefined | any;
-    FAQ: undefined | any;
     ChatIa: undefined | any;
 }
 

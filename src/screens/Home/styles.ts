@@ -23,13 +23,6 @@ export const styles = StyleSheet.create({
 	},
 	text: {
 	},
-	themeToggleButton: {
-		position: 'absolute',
-		top: 40,
-		right: 20,
-		padding: 10,
-		borderRadius: 20,
-	},
 	buttonAcessar: {
 		borderRadius: 20,
 		paddingVertical: 8,
