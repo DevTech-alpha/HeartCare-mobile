@@ -21,7 +21,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#fff"
+        "backgroundColor": "#800020"
       },
       "package": "com.devsntosx71.HeartCare",
       "config": {}
