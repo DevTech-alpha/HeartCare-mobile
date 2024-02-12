@@ -3,7 +3,7 @@ import { StyleSheet, Platform } from "react-native"
 
 export const styles = StyleSheet.create({
 	contain: {
-		marginTop: Platform.OS === 'android' ? 0 : 20,
+		marginTop: Platform.OS === 'android' ? 0 : 30,
 		justifyContent: "center",
 		alignItems: "center",
 		paddingVertical: Platform.OS === 'android' ? 5 : 15,

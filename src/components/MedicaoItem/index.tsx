@@ -7,12 +7,11 @@ import { useTheme } from '../../hooks/ThemeProvider';
 
 const MedicaoItem: React.FC<MedicaoItemProps> = ({ medicao, deleteMedicao }) => {
   const [modalVisivel, setModalVisivel] = useState(false);
+  const { theme } = useTheme();
 
   const abrirModal = () => {
     setModalVisivel(true);
   };
-
-  const { theme } = useTheme()
 
   const fecharModal = () => {
     setModalVisivel(false);
@@ -45,19 +44,14 @@ const MedicaoItem: React.FC<MedicaoItemProps> = ({ medicao, deleteMedicao }) => 
     }
   };
 
-
   return (
     <View style={[styles.itemMedicao, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}>
-      <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>Sistólica: {medicao.sistolica}</Text>
-      <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>Diastólica: {medicao.diastolica}</Text>
-      <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>Pulso: {medicao.pulso}</Text>
-      <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>
-        Horário: {new Date(medicao.horario).toLocaleTimeString()}
-      </Text>
-      <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>
-        Data: {new Date(medicao.data).toLocaleDateString()}
-      </Text>
-      <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>Avaliação: {avaliarPressao()}</Text>
+      <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>Sistólica: <Text style={{ fontWeight: 'bold' }}>{medicao.sistolica}</Text></Text>
+      <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>Diastólica: <Text style={{ fontWeight: 'bold' }}>{medicao.diastolica}</Text></Text>
+      <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>Pulso: <Text style={{ fontWeight: 'bold' }}>{medicao.pulso}</Text></Text>
+      <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>Horário: <Text style={{ fontWeight: 'bold' }}>{new Date(medicao.horario).toLocaleTimeString()}</Text></Text>
+      <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>Data: <Text style={{ fontWeight: 'bold' }}>{new Date(medicao.data).toLocaleDateString()}</Text></Text>
+      <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>Avaliação: <Text style={{ fontWeight: 'bold' }}>{avaliarPressao()}</Text></Text>
       <View style={styles.containerBotoes}>
         <TouchableOpacity style={[styles.botao, { backgroundColor: theme.COLORS.BUTTON }]} onPress={abrirModal}>
           <Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>Editar</Text>

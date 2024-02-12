@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -8,7 +8,6 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useTheme } from "../../hooks/ThemeProvider";
-import CalendarComponent from "../Calendar";
 import UserProfileFormProps from "../../props/UserProfileFormProps";
 import { styles } from "./styles";
 
@@ -27,6 +26,15 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
   loading,
 }) => {
   const { theme } = useTheme();
+
+  const formatBirthdateInput = (inputValue: any) => {
+    const formattedValue = inputValue
+      .replace(/\D/g, "")
+      .replace(/(\d{2})(\d)/, "$1/$2")
+      .replace(/(\d{2})(\d)/, "$1/$2")
+      .replace(/(\d{4})\d+?$/, "$1");
+    return formattedValue;
+  };
 
   return (
     <View style={[styles.containerForm, { backgroundColor: theme.COLORS.BACKGROUND }]}>
@@ -53,9 +61,12 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
           value={lastName}
         />
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>Data de Nascimento</Text>
-        <CalendarComponent
-         value={dob}
-         onChange={setDob}
+        <TextInput
+          style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
+          placeholder="Digite sua data de nascimento"
+          onChangeText={(text) => setDob(formatBirthdateInput(text))}
+          value={dob}
+          keyboardType="numeric"
         />
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>Email</Text>
         <TextInput

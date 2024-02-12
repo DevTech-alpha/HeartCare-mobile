@@ -10,6 +10,9 @@ import MedicaoForm from '../../components/MedicaoForm';
 import { Header } from '../../components/Header';
 import { useTheme } from '../../hooks/ThemeProvider';
 
+import * as Animatable from 'react-native-animatable';
+
+
 const PressaoArterial = () => {
   const [medicoes, setMedicoes] = useState<Medicao[]>([]);
   const [historicoVisivel, setHistoricoVisivel] = useState(false);
@@ -81,11 +84,12 @@ const PressaoArterial = () => {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.COLORS.BACKGROUND }]}>
+    <View
+      style={[styles.container, { backgroundColor: theme.COLORS.BACKGROUND }]}>
       <View>
         <Header title='𝓹𝓻𝓮𝓼𝓼𝓪̃𝓸 𝓪𝓻𝓽𝓮𝓻𝓲𝓪𝓵' />
       </View>
-      <View style={[styles.containerForm, { backgroundColor: theme.COLORS.BACKGROUND }]}>
+      <Animatable.View animation="fadeInUp" style={[styles.containerForm, { backgroundColor: theme.COLORS.BACKGROUND }]}>
         {!historicoVisivel && (
           <MedicaoForm onMedicaoAdicionada={handleMedicaoAdicionada} loading={loading} />
         )}
@@ -114,7 +118,7 @@ const PressaoArterial = () => {
             }
           />
         )}
-      </View>
+      </Animatable.View>
     </View>
   );
 };

@@ -3,12 +3,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { Feather } from "@expo/vector-icons"
 import { useTheme } from "../hooks/ThemeProvider"
 
-import Consulta from "../screens/MyMeasurements"
+import Consulta from "../screens/Query"
 import Feed from "../screens/Feed"
 import Perfil from "../screens/Profile"
 import { propsNavigationStack } from "./Models"
 import { StatusBar } from "react-native"
-import ChatIA from "../screens/ChatDoctor"
+import Search from "../screens/Search"
 
 const { Navigator, Screen } = createBottomTabNavigator<propsNavigationStack>()
 
@@ -44,8 +44,8 @@ export function TabRoutes() {
 					tabBarLabel: () => null,
 				}} />
 			<Screen
-				name="ChatIa"
-				component={ChatIA}
+				name="Search"
+				component={Search}
 				options={{
 					tabBarIcon: ({ focused, size }) => (
 						<Feather
@@ -57,7 +57,7 @@ export function TabRoutes() {
 				}} />
 
 			<Screen
-				name="Consulta"
+				name="Query"
 				component={Consulta}
 				options={{
 					tabBarIcon: ({ focused, size }) => (

@@ -26,6 +26,7 @@ import { propsStack } from '../../routes/Models';
 import { Header } from '../../components/Header';
 import { useTheme } from '../../hooks/ThemeProvider';
 import PublishModalContent from '../../components/ModalPost';
+import { AntDesign } from '@expo/vector-icons';
 
 interface FeedProps { }
 
@@ -143,13 +144,16 @@ const Feed: React.FC<FeedProps> = () => {
               sharePost={sharePost}
             />
           )}
-          ListFooterComponent={() => loading && <ActivityIndicator size="large" color={theme.COLORS.ICON} />}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={fetchPosts} />
           }
         />
         <TouchableOpacity style={[feedStyles.addButton, { backgroundColor: theme.COLORS.BUTTON }]} onPress={abrirModal}>
-          <Text style={[feedStyles.addButtonText, { color: theme.COLORS.BUTTON_TEXT }]}>+</Text>
+          <AntDesign
+            name="addfile"
+            size={30}
+            color={theme.COLORS.WHITE}
+          />
         </TouchableOpacity>
 
         <PublishModalContent

@@ -1,7 +1,7 @@
 import { Text, TextInput, TouchableOpacity, ActivityIndicator } from "react-native"
 import * as Animatable from "react-native-animatable"
 import { styles } from "./styles"
-import LoginFormProps from "../../props/LoginFormProps"
+import LoginFormProps from "../../props/SignInFormProps"
 import { useNavigation } from "@react-navigation/native"
 import { propsStack } from "../../routes/Models"
 

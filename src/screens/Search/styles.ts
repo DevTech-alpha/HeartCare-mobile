@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 
 export const estilo = StyleSheet.create({
@@ -68,5 +68,12 @@ export const estilo = StyleSheet.create({
   containerScroll: {
     width: '90%',
     marginTop: 8,
-  }
+  },
+  themeToggleButton: {
+		position: 'absolute',
+    top: Platform.OS === 'android' ? 0 : 40,
+		right: 20,
+		padding: 5,
+		borderRadius: 20,
+	}
 });

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
 
 import { styles } from './styles';
 import { criar } from '../../api/CreateAcount';
 import { propsStack } from '../../routes/Models';
-
 import { useTheme } from '../../hooks/ThemeProvider';
+import CadastroForm from '../../components/SignUpForm';
 
-export default function Cadastro() {
+const Cadastro: React.FC = () => {
   const { theme } = useTheme();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,7 +26,6 @@ export default function Cadastro() {
   const handleSignUp = () => {
     setLoading(true);
 
-    // Verifica se as senhas correspondem antes de prosseguir
     if (password !== confPassword) {
       setLoading(false);
       alert('As senhas não correspondem.');
@@ -52,54 +51,20 @@ export default function Cadastro() {
         <Text style={styles.message}>𝓕𝓪𝓬̧𝓪 𝓼𝓮𝓾 𝓬𝓪𝓭𝓪𝓼𝓽𝓻𝓸</Text>
       </Animatable.View>
 
-      <Animatable.View animation="fadeInUp" style={[styles.containerForm, { backgroundColor: theme.COLORS.BACKGROUND }]}>
-        <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>Email</Text>
-        <TextInput
-          placeholder="Digite seu Email"
-          placeholderTextColor={theme.COLORS.TEXT}
-          style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-        />
-
-        <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>Senha</Text>
-        <TextInput
-          placeholder="Digite sua senha"
-          placeholderTextColor={theme.COLORS.TEXT}
-          style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-          value={password}
-          secureTextEntry={!isPasswordVisible}
-          onChangeText={(text) => setPassword(text)}
-        />
-
-        <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>Confirme a Senha</Text>
-        <TextInput
-          placeholder="Digite sua confirmação de senha"
-          placeholderTextColor={theme.COLORS.TEXT}
-          style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-          value={confPassword}
-          secureTextEntry={!isPasswordVisible}
-          onChangeText={(text) => setConfPassword(text)}
-        />
-
-        <TouchableOpacity onPress={togglePasswordVisibility} style={styles.togglePasswordButton}>
-          <Text style={[styles.togglePasswordButtonText, { color: theme.COLORS.TEXT }]}>
-            {isPasswordVisible ? 'Ocultar Senha' : 'Mostrar Senha'}
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={[styles.button, { backgroundColor: theme.COLORS.BUTTON }]} onPress={handleSignUp} disabled={loading}>
-          {loading ? (
-            <ActivityIndicator size="small" color={theme.COLORS.WHITE} />
-          ) : (
-            <Text style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}>Registrar</Text>
-          )}
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => navigate('Login')}>
-          <Text style={[styles.backToLogin, { color: theme.COLORS.TEXT }]}>Voltar para o Login</Text>
-        </TouchableOpacity>
-      </Animatable.View>
+      <CadastroForm
+        email={email}
+        setEmail={setEmail}
+        password={password}
+        setPassword={setPassword}
+        confPassword={confPassword}
+        setConfPassword={setConfPassword}
+        isPasswordVisible={isPasswordVisible}
+        togglePasswordVisibility={togglePasswordVisibility}
+        handleSignUp={handleSignUp}
+        loading={loading}
+      />
     </View>
   );
-}
+};
+
+export default Cadastro;
