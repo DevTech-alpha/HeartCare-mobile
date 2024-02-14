@@ -42,7 +42,6 @@ export const styles = StyleSheet.create({
 	actionIconContainer: {
 		marginRight: 15,
 	},
-	saveIconContainer: {
-		alignSelf: "flex-end",
-	},
+
+	likerImage:{ width: 30, height: 30, borderRadius: 15, marginRight: -5 }
 })

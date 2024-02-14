@@ -6,6 +6,7 @@ interface Post {
   title: string;
   content: string;
   image: string;
+  likes: string[];
 }
 
 

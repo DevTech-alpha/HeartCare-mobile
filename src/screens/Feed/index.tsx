@@ -1,19 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import {
-  Text,
-  TouchableOpacity,
-  FlatList,
-  View,
-  ActivityIndicator,
-  RefreshControl,
-} from 'react-native';
-import {
-  collection,
-  getDocs,
-  addDoc,
-  doc,
-  getDoc,
-} from 'firebase/firestore';
+import { Text, TouchableOpacity, FlatList, View, ActivityIndicator, RefreshControl } from 'react-native';
+import { collection, getDocs, addDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebaseConfig';
 import { User, getAuth } from 'firebase/auth';
 import Post from '../../model/Post';
@@ -76,7 +63,6 @@ const Feed: React.FC<FeedProps> = () => {
     fetchPosts();
   }, [fetchPosts]);
 
-
   const createNewPost = async (title: string, content: string) => {
     try {
       if (title.trim() !== '' && content.trim() !== '') {
@@ -92,10 +78,12 @@ const Feed: React.FC<FeedProps> = () => {
         }
 
         const postWithUserId = {
-          title,
-          content,
+          title: title,
+          content: content,
           idpub: user?.uid || '',
+          likes: [] as string[],
         };
+
 
         const docRef = await addDoc(collection(db, 'posts'), postWithUserId);
         const updatedPosts = [...posts, { ...postWithUserId, id: docRef.id }];
@@ -121,6 +109,36 @@ const Feed: React.FC<FeedProps> = () => {
     }
   };
 
+  const onLikePress = async (postId: string) => {
+    try {
+      const postRef = doc(db, 'posts', postId);
+      const postDoc = await getDoc(postRef);
+      const postData = postDoc.data() as Post;
+
+      const currentUserLiked = postData.likes?.includes(user?.uid || '');
+      let updatedLikes: string[] = [];
+
+      if (currentUserLiked) {
+        updatedLikes = postData.likes?.filter((userId) => userId !== user?.uid) || [];
+      } else {
+        updatedLikes = [...(postData.likes || []), user?.uid || ''];
+      }
+
+      await updateDoc(postRef, { likes: updatedLikes });
+
+      const updatedPosts = posts.map((post) => {
+        if (post.id === postId) {
+          return { ...post, likes: updatedLikes };
+        }
+        return post;
+      });
+
+      setPosts(updatedPosts);
+    } catch (error) {
+      console.error('Error updating like:', error);
+    }
+  };
+
   const abrirModal = () => {
     setModalVisivel(true);
   };
@@ -141,6 +159,7 @@ const Feed: React.FC<FeedProps> = () => {
           renderItem={({ item }) => (
             <PostItem
               item={item}
+              onLikePress={onLikePress}
               sharePost={sharePost}
             />
           )}
@@ -168,3 +187,4 @@ const Feed: React.FC<FeedProps> = () => {
 };
 
 export default Feed;
+ 
