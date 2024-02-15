@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native"
 
 export const styles = StyleSheet.create({
 	postContainer: {
-		margin: 16,
+		margin: 15,
 		borderRadius: 20,
 		padding: 20,
 		marginBottom: 20,
@@ -17,8 +17,8 @@ export const styles = StyleSheet.create({
 	},
 	userPhoto: {
 		width: 60,
-    height: 60,
-    borderRadius: 30,
+		height: 60,
+		borderRadius: 30,
 		marginRight: 15,
 	},
 	postHeader: {
@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
 		marginBottom: 12,
 	},
 	username: {
-		fontSize: 18,
+		fontSize: 20,
 		fontWeight: "bold",
 	},
 	postTitle: {
@@ -42,6 +42,13 @@ export const styles = StyleSheet.create({
 	actionIconContainer: {
 		marginRight: 15,
 	},
-
-	likerImage:{ width: 30, height: 30, borderRadius: 15, marginRight: -5 }
+	saveIconContainer: {
+		alignSelf: "flex-end",
+	},
+	likerImage: {
+		width: 30,
+		height: 30,
+		borderRadius: 15,
+		marginRight: -5
+	}
 })

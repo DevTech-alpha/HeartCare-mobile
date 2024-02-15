@@ -136,17 +136,18 @@ const PostItem: React.FC<PostItemProps> = ({ item, sharePost, onLikePress }) => 
 
         )}
 
-        <TouchableOpacity
-          style={feedStyles.actionIconContainer}
-          onPress={() => sharePost(item.title, item.content)}
-        >
-          <FontAwesome
-            name="send-o"
-            size={30}
-            color={theme.COLORS.ICON}
-          />
-        </TouchableOpacity>
+
       </View>
+      <TouchableOpacity
+        style={feedStyles.saveIconContainer}
+        onPress={() => sharePost(item.title, item.content)}
+      >
+        <FontAwesome
+          name="send-o"
+          size={30}
+          color={theme.COLORS.ICON}
+        />
+      </TouchableOpacity>
     </Animatable.View>
   );
 };
