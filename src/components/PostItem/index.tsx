@@ -15,62 +15,56 @@ const PostItem: React.FC<PostItemProps> = ({ item, sharePost, onLikePress }) => 
   const user: User | null = auth.currentUser;
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(item.likes.length);
-  const [likedByUser, setLikedByUser] = useState(false);
-  const [userPhoto, setUserPhoto] = useState<string | null>(null);
   const [likers, setLikers] = useState<string[]>([]);
+  const [userPhoto, setUserPhoto] = useState<string | null>(null);
 
   useEffect(() => {
     setIsLiked(item.likes.includes(user?.uid || ''));
     setLikeCount(item.likes.length);
-    setLikedByUser(item.likes.includes(user?.uid || ''));
   }, [item.likes, user]);
 
   useEffect(() => {
-    const fetchUserPhoto = async () => {
+    const fetchUserData = async () => {
       try {
         const userDoc = await getDoc(doc(db, 'users', user.uid));
         const userData = userDoc.data();
         setUserPhoto(userData?.photo || null);
       } catch (error) {
-        console.error('Error fetching user photo:', error);
+        console.error('Error fetching user data:', error);
       }
     };
 
-    fetchUserPhoto();
-  }, [item.idpub]);
-
-  useEffect(() => {
-    const fetchLikers = async () => {
+    const fetchLikersData = async () => {
       try {
-        const likersArray = [];
+        const likersArray: string[] = [];
         const reversedLikes = item.likes.slice().reverse();
         const latestThreeLikes = reversedLikes.slice(0, 3);
         for (const userId of latestThreeLikes) {
           const userDoc = await getDoc(doc(db, 'users', userId));
           const userData = userDoc.data();
           if (userData) {
-            likersArray.push(userData);
+            likersArray.push(userData.photo); // Adapte de acordo com o que você quer armazenar
           }
         }
         setLikers(likersArray);
       } catch (error) {
-        console.error('Error fetching likers:', error);
+        console.error('Error fetching likers data:', error);
       }
     };
 
-    fetchLikers();
-  }, [item.likes]);
-
+    fetchUserData();
+    fetchLikersData();
+  }, [item.likes, user]);
 
   const toggleLike = async () => {
-    setIsLiked((prev) => !prev);
+    setIsLiked(prev => !prev);
     onLikePress(item.id);
   };
 
   const renderLiker = ({ item }) => (
     <Image
       key={item.id}
-      source={item.photo ? { uri: item.photo } : require("../../assets/user.png")}
+      source={item ? { uri: item } : require("../../assets/user.png")}
       style={{ width: 30, height: 30, borderRadius: 15, marginRight: -5 }}
       {...(Platform.OS === 'ios' && { defaultSource: require("../../assets/user.png") })}
     />
@@ -86,16 +80,10 @@ const PostItem: React.FC<PostItemProps> = ({ item, sharePost, onLikePress }) => 
     >
       <View style={feedStyles.postHeader}>
         <Image
-          source={
-            userPhoto
-              ? { uri: item.userPhoto }
-              : require("../../assets/user.png")
-          }
+          source={userPhoto ? { uri: item.userPhoto } : require("../../assets/user.png")}
           style={feedStyles.userPhoto}
         />
-        <Text
-          style={[feedStyles.username, { color: theme.COLORS.POST_TITLE }]}
-        >
+        <Text style={[feedStyles.username, { color: theme.COLORS.POST_TITLE }]}>
           {item.username}
         </Text>
       </View>
@@ -103,17 +91,12 @@ const PostItem: React.FC<PostItemProps> = ({ item, sharePost, onLikePress }) => 
       <Text style={[feedStyles.postTitle, { color: theme.COLORS.POST_TITLE }]}>
         {item.title}
       </Text>
-      <Text
-        style={[feedStyles.postContent, { color: theme.COLORS.POST_CONTENT }]}
-      >
+      <Text style={[feedStyles.postContent, { color: theme.COLORS.POST_CONTENT }]}>
         {item.content}
       </Text>
 
       <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <TouchableOpacity
-          style={feedStyles.actionIconContainer}
-          onPress={toggleLike}
-        >
+        <TouchableOpacity style={feedStyles.actionIconContainer} onPress={toggleLike}>
           <FontAwesome
             name={isLiked ? "heart" : "heart-o"}
             size={30}
@@ -133,20 +116,14 @@ const PostItem: React.FC<PostItemProps> = ({ item, sharePost, onLikePress }) => 
             keyExtractor={(item, index) => `liker_${index}`}
             horizontal
           />
-
         )}
-
-
       </View>
+
       <TouchableOpacity
         style={feedStyles.saveIconContainer}
         onPress={() => sharePost(item.title, item.content)}
       >
-        <FontAwesome
-          name="send-o"
-          size={30}
-          color={theme.COLORS.ICON}
-        />
+        <FontAwesome name="send-o" size={30} color={theme.COLORS.ICON} />
       </TouchableOpacity>
     </Animatable.View>
   );

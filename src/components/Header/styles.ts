@@ -1,22 +1,26 @@
-import { StyleSheet, Platform } from "react-native"
+import { StyleSheet, Platform } from "react-native";
 
+const isAndroid = Platform.OS === 'android';
+const textFontSize = isAndroid ? 30 : 25;
+const borderBottomRadius = isAndroid ? 40 : 30;
 
 export const styles = StyleSheet.create({
 	contain: {
-		marginTop: Platform.OS === 'android' ? 0 : 30,
+		marginTop: isAndroid ? -10 : 25,
 		justifyContent: "center",
 		alignItems: "center",
-		paddingVertical: Platform.OS === 'android' ? 5 : 15,
+		paddingVertical: isAndroid ? 0 : 10,
 	},
 	container: {
 		justifyContent: "center",
 		alignItems: "center",
 		backgroundColor: "#800020",
-		borderBottomLeftRadius: 30,
-		borderBottomRightRadius: 30,
+		borderBottomLeftRadius: borderBottomRadius,
+		borderBottomRightRadius: borderBottomRadius,
 	},
 	text: {
 		color: "white",
-		fontSize: 25,
+		fontSize: textFontSize,
+		paddingBottom: isAndroid ? 10 : 0,
 	},
-})
+});

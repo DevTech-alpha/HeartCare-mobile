@@ -46,9 +46,9 @@ export const styles = StyleSheet.create({
 		alignSelf: "flex-end",
 	},
 	likerImage: {
-		width: 30,
-		height: 30,
-		borderRadius: 15,
-		marginRight: -5
+		width: 24,
+		height: 24,
+		borderRadius: 8,
+		marginRight: 2
 	}
 })
