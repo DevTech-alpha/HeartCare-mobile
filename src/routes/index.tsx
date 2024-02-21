@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { useAuth } from '../hooks/AuthProvider';
 import { StackRoutes } from './stack.routes';
-import { TabRoutes } from './Tab.routes';
+import { TabRoutes } from './tab.routes';
 
 
 export function Router() {

@@ -11,6 +11,8 @@ import { Header } from '../../components/Header';
 import { useTheme } from '../../hooks/ThemeProvider';
 
 import * as Animatable from 'react-native-animatable';
+import ComponentFeed from '../../components/Card';
+import Card from '../../components/Card';
 
 
 const PressaoArterial = () => {
@@ -89,9 +91,11 @@ const PressaoArterial = () => {
       <View>
         <Header title='𝓹𝓻𝓮𝓼𝓼𝓪̃𝓸 𝓪𝓻𝓽𝓮𝓻𝓲𝓪𝓵' />
       </View>
+
       <Animatable.View animation="fadeInUp" style={[styles.containerForm, { backgroundColor: theme.COLORS.BACKGROUND }]}>
+      <Card />
         {!historicoVisivel && (
-          <MedicaoForm onMedicaoAdicionada={handleMedicaoAdicionada} loading={loading} />
+          <><MedicaoForm onMedicaoAdicionada={handleMedicaoAdicionada} loading={loading} /></>
         )}
 
         <TouchableOpacity

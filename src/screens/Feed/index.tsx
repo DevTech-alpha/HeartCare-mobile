@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Text, TouchableOpacity, FlatList, View, ActivityIndicator, RefreshControl } from 'react-native';
+import { TouchableOpacity, FlatList, View, RefreshControl } from 'react-native';
 import { collection, getDocs, addDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebaseConfig';
 import { User, getAuth } from 'firebase/auth';
@@ -15,6 +15,7 @@ import { useTheme } from '../../hooks/ThemeProvider';
 import PublishModalContent from '../../components/ModalPost';
 import { AntDesign } from '@expo/vector-icons';
 
+
 interface FeedProps { }
 
 const Feed: React.FC<FeedProps> = () => {
@@ -27,6 +28,8 @@ const Feed: React.FC<FeedProps> = () => {
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [modalVisivel, setModalVisivel] = useState(false);
+
+
 
   const fetchPosts = useCallback(async () => {
     try {
@@ -146,45 +149,45 @@ const Feed: React.FC<FeedProps> = () => {
   const fecharModal = () => {
     setModalVisivel(false);
   };
-
+ 
   return (
     <>
       <View style={[feedStyles.container, { backgroundColor: theme.COLORS.BACKGROUND }]}>
         <View>
           <Header title='𝓗𝓮𝓪𝓻𝓽𝓒𝓪𝓻𝓮' />
         </View>
-        <FlatList
-          data={posts}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <PostItem
-              item={item}
-              onLikePress={onLikePress}
-              sharePost={sharePost}
-            />
-          )}
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={fetchPosts} />
-          }
-        />
-        <TouchableOpacity style={[feedStyles.addButton, { backgroundColor: theme.COLORS.BUTTON }]} onPress={abrirModal}>
-          <AntDesign
-            name="addfile"
-            size={30}
-            color={theme.COLORS.WHITE}
+          <FlatList
+            data={posts}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <PostItem
+                item={item}
+                onLikePress={onLikePress}
+                sharePost={sharePost}
+              />
+            )}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={fetchPosts} />
+            }
           />
-        </TouchableOpacity>
 
-        <PublishModalContent
-          fecharModal={fecharModal}
-          visivel={modalVisivel}
-          createNewPost={createNewPost}
-          loading={loading}
-        />
+          <TouchableOpacity style={[feedStyles.addButton, { backgroundColor: theme.COLORS.BUTTON }]} onPress={abrirModal}>
+            <AntDesign
+              name="addfile"
+              size={30}
+              color={theme.COLORS.WHITE}
+            />
+          </TouchableOpacity>
+
+          <PublishModalContent
+            fecharModal={fecharModal}
+            visivel={modalVisivel}
+            createNewPost={createNewPost}
+            loading={loading}
+          />
       </View>
     </>
   );
 };
 
 export default Feed;
- 
