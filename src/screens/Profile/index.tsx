@@ -240,11 +240,11 @@ const UserProfileScreen = () => {
 							text: "Apagar",
 							onPress: async () => {
 								await deleteDoc(postRef)
-
 								const updatedPosts = posts.filter(
 									(post) => post.id !== postId
 								)
 								setPosts(updatedPosts)
+								Alert.alert('Apagado com sucesso!');
 								fetchUserPosts()
 							},
 						},

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { TouchableOpacity, FlatList, View, RefreshControl } from 'react-native';
+import { TouchableOpacity, FlatList, View, RefreshControl, Alert } from 'react-native';
 import { collection, getDocs, addDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebaseConfig';
 import { User, getAuth } from 'firebase/auth';
@@ -91,6 +91,7 @@ const Feed: React.FC<FeedProps> = () => {
         const docRef = await addDoc(collection(db, 'posts'), postWithUserId);
         const updatedPosts = [...posts, { ...postWithUserId, id: docRef.id }];
         setPosts(updatedPosts as any);
+        Alert.alert('Criado com sucesso seu Post!');
       }
     } catch (error) {
       console.error('Error adding post:', error);

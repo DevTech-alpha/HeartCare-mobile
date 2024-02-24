@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
 
@@ -28,7 +28,7 @@ const Cadastro: React.FC = () => {
 
     if (password !== confPassword) {
       setLoading(false);
-      alert('As senhas não correspondem.');
+      Alert.alert('As senhas não correspondem.');
       return;
     }
 
@@ -36,7 +36,7 @@ const Cadastro: React.FC = () => {
       .then((userCredentials) => {
         setLoading(false);
         const user = userCredentials.user;
-        alert('Registro realizado com sucesso!');
+        Alert.alert('Registro realizado com sucesso!');
         navigate('Login');
       })
       .catch((error) => {

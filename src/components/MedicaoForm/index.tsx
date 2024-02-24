@@ -4,16 +4,17 @@ import MedicaoFormProps from "../../props/MedicaoFormProps"
 import { useState } from "react"
 import { addDoc, collection } from "firebase/firestore"
 import { db } from "../../firebase/firebaseConfig"
-import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from "react-native"
+import { ActivityIndicator, Alert, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { useTheme } from "../../hooks/ThemeProvider"
+import { AntDesign } from "@expo/vector-icons"
 
 
-const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading , user }) => {
+const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading, user , MudarCard }) => {
     const [sistolica, setSistolica] = useState("")
     const [diastolica, setDiastolica] = useState("")
     const [pulso, setPulso] = useState("")
     const [isAddingMedicao, setIsAddingMedicao] = useState(false)
-   
+
     const { theme } = useTheme()
 
     const adicionarMedicao = async () => {
@@ -38,8 +39,7 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading 
                     const docRef = await addDoc(medicoesRef, novaMedicao)
 
                     onMedicaoAdicionada()
-                    alert("Adicionado com sucesso!!")
-
+                    Alert.alert('Adicionado com sucesso!');
                 } catch (error) {
                     console.error("Erro ao adicionar medição:", error)
                     alert(
@@ -58,6 +58,14 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading 
 
     return (
         <View style={[styles.container, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}>
+            <View style={{ alignItems: 'flex-end' }}>
+                <AntDesign
+                    onPress={MudarCard}
+                    name="right"
+                    size={25}
+                    color={theme.COLORS.ICON}
+                />
+            </View>
             <Text style={[styles.label, { color: theme.COLORS.POST_TITLE }]}>Sistólica</Text>
             <TextInput
                 style={[

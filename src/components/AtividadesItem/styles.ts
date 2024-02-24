@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   containerCartao: {
-    margin: 10,
+    margin: 5,
     borderRadius: 20,
     padding: 10,
     shadowColor: "#000",
@@ -18,10 +18,6 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     margin: 5
   },
-  textoProgresso: {
-    fontSize: 15,
-    fontWeight: 'bold'
-  },
   containerDetalhes: {
     marginVertical: 5
   },
@@ -33,5 +29,17 @@ export const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: 'bold'
   },
-  textoBotao: {},
+  circle: {
+    padding: 10,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    borderWidth: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  number: {
+    fontWeight: 'bold',
+    fontSize: 11,
+  },
 });

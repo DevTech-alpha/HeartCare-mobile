@@ -6,8 +6,9 @@ import { db } from '../../firebase/firebaseConfig';
 import { styles } from './styles';
 import { Checkbox } from 'expo-checkbox';
 import AtividadesFormProps from '../../props/AtividadesFormProps';
+import { AntDesign } from '@expo/vector-icons';
 
-const AtividadesForm: React.FC<AtividadesFormProps> = ({ user }) => {
+const AtividadesForm: React.FC<AtividadesFormProps> = ({ user, MudarCard }) => {
   const { theme } = useTheme();
   const [loading, setLoading] = useState(false);
   const [tempoInput, setTempoInput] = useState('');
@@ -45,6 +46,7 @@ const AtividadesForm: React.FC<AtividadesFormProps> = ({ user }) => {
         Usuario: user.uid
       });
       setLoading(false);
+      Alert.alert('Adicionado com sucesso!');
       limparFormulario();
     } catch (error) {
       console.error('Erro ao registrar atividade:', error);
@@ -53,7 +55,14 @@ const AtividadesForm: React.FC<AtividadesFormProps> = ({ user }) => {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}>
-      <Text style={[styles.label, { color: theme.COLORS.POST_TITLE }]}>Selecione a Atividade</Text>
+      <View style={{ alignItems: 'flex-end' }}>
+        <AntDesign
+          onPress={MudarCard}
+          name="left"
+          size={25}
+          color={theme.COLORS.ICON}
+        />
+      </View>
       {atividadesDisponiveis.map((atividade, index) => (
         <TouchableOpacity key={index} onPress={() => toggleCheckBox(atividade)}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -61,9 +70,9 @@ const AtividadesForm: React.FC<AtividadesFormProps> = ({ user }) => {
               value={atividade === atividadeSelecionada}
               onValueChange={() => toggleCheckBox(atividade)}
               color={theme.COLORS.PRIMARY}
-              style={styles.checkbox} 
+              style={styles.checkbox}
             />
-            <Text style={[styles.textoBotao, { color: theme.COLORS.POST_CONTENT }]}>{atividade}</Text>
+            <Text style={[{ color: theme.COLORS.POST_CONTENT }]}>{atividade}</Text>
           </View>
         </TouchableOpacity>
       ))}
@@ -85,7 +94,7 @@ const AtividadesForm: React.FC<AtividadesFormProps> = ({ user }) => {
         {loading ? (
           <ActivityIndicator size="small" color={theme.COLORS.BUTTON_TEXT} />
         ) : (
-          <Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>Registrar Atividade</Text>
+          <Text style={[{ color: theme.COLORS.BUTTON_TEXT }]}>Registrar Atividade</Text>
         )}
       </TouchableOpacity>
     </View>

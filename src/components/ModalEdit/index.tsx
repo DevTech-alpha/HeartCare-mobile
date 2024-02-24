@@ -50,7 +50,7 @@ const ModalEdicao: React.FC<ModalEdicaoProps> = ({
 			await updateDoc(doc(medicoesRef, medicao.id), medicaoParaAtualizar)
 
 			setLoading(false)
-			Alert.alert("Sucesso", "Alterado com sucesso!")
+			Alert.alert("Alterado com sucesso!")
 			salvarEdicao(novaMedicao)
 		} catch (error) {
 			setLoading(false)

@@ -74,7 +74,7 @@ const PressaoArterial = () => {
             text: 'Apagar',
             onPress: async () => {
               await deleteDoc(postRef);
-              Alert.alert('Sucesso', 'Excluido com sucesso!')
+              Alert.alert('Excluido com sucesso!')
               carregarMedicoes();
             },
           },
@@ -117,16 +117,8 @@ const PressaoArterial = () => {
       <Animatable.View animation="fadeInUp" style={[styles.containerForm, { backgroundColor: theme.COLORS.BACKGROUND }]}>
         {!historicoVisivel && (
           <>
-            {AtividadesVisivel && (<AtividadesForm user={user} />)}
-            {!AtividadesVisivel && (<MedicaoForm onMedicaoAdicionada={handleMedicaoAdicionada} loading={loading} user={user} />)}
-            <TouchableOpacity
-              style={[styles.botaoAdicionar, { backgroundColor: theme.COLORS.BUTTON }]}
-              onPress={toggleAtividades}
-            >
-              <Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>
-                {AtividadesVisivel ? 'Ocultar Atividade' : 'Mostrar Atividade'}
-              </Text>
-            </TouchableOpacity>
+            {AtividadesVisivel && (<AtividadesForm  MudarCard={toggleAtividades} user={user} />)}
+            {!AtividadesVisivel && (<MedicaoForm MudarCard={toggleAtividades} onMedicaoAdicionada={handleMedicaoAdicionada} loading={loading} user={user} />)}
           </>
 
         )}

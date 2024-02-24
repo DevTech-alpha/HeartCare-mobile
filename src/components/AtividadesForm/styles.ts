@@ -32,8 +32,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 8,
   },
-  textoBotao: {},
   checkbox: {
-    margin: 8, // Ajuste o espaçamento entre o Checkbox e o texto conforme necessário
+    margin: 8,
   },
 });
