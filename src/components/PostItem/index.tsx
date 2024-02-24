@@ -5,14 +5,12 @@ import { styles as feedStyles } from "./styles";
 import * as Animatable from "react-native-animatable";
 import PostItemProps from "../../props/PostItemProps";
 import { useTheme } from "../../hooks/ThemeProvider";
-import { User, getAuth } from "firebase/auth";
 import { db } from '../../firebase/firebaseConfig';
 import { getDoc, doc } from 'firebase/firestore';
 
-const PostItem: React.FC<PostItemProps> = ({ item, sharePost, onLikePress }) => {
+const PostItem: React.FC<PostItemProps> = ({ item, sharePost, onLikePress , user}) => {
   const { theme } = useTheme();
-  const auth = getAuth();
-  const user: User | null = auth.currentUser;
+
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(item.likes.length);
   const [likers, setLikers] = useState<string[]>([]);

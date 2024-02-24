@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, TouchableOpacity, FlatList, RefreshControl, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, RefreshControl, Alert, ScrollView } from 'react-native';
 import { collection, getDocs, deleteDoc, doc, query, where } from 'firebase/firestore';
 import { getAuth, User } from 'firebase/auth';
 import Medicao from '../../model/Medicao';
@@ -9,21 +9,22 @@ import MedicaoItem from '../../components/MedicaoItem';
 import MedicaoForm from '../../components/MedicaoForm';
 import { Header } from '../../components/Header';
 import { useTheme } from '../../hooks/ThemeProvider';
-
 import * as Animatable from 'react-native-animatable';
-import ComponentFeed from '../../components/Card';
-import Card from '../../components/Card';
-
+import { AntDesign } from '@expo/vector-icons';
+import AtividadesForm from '../../components/AtividadesForm';
+import AtividadeItem from '../../components/AtividadesItem';
 
 const PressaoArterial = () => {
   const [medicoes, setMedicoes] = useState<Medicao[]>([]);
   const [historicoVisivel, setHistoricoVisivel] = useState(false);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [AtividadesVisivel, setAtividadesVisivel] = useState(false); // Adicione um estado para controlar a visibilidade do AtividadesForm
+
   const auth = getAuth();
   const user: User | null = auth.currentUser;
 
-  const { theme } = useTheme()
+  const { theme } = useTheme();
 
   const carregarMedicoes = useCallback(async () => {
     if (user) {
@@ -85,43 +86,69 @@ const PressaoArterial = () => {
     }
   };
 
+  const toggleChatVisibility = () => {
+    setHistoricoVisivel(!historicoVisivel)
+  };
+  const toggleAtividades = () => {
+    setAtividadesVisivel(!AtividadesVisivel);
+  };
+
   return (
-    <View
-      style={[styles.container, { backgroundColor: theme.COLORS.BACKGROUND }]}>
-      <View>
-        <Header title='𝓹𝓻𝓮𝓼𝓼𝓪̃𝓸 𝓪𝓻𝓽𝓮𝓻𝓲𝓪𝓵' />
-      </View>
+    <View style={[styles.container, { backgroundColor: theme.COLORS.BACKGROUND }]}>
+      <Header title={historicoVisivel ? '𝓗𝓲𝓼𝓽𝓸𝓻𝓲𝓬𝓸' : '𝓐𝓽𝓲𝓿𝓲𝓭𝓪𝓭𝓮𝓼'} />
+      {historicoVisivel ? (
+        <TouchableOpacity style={[styles.themeToggleButton, { backgroundColor: theme.COLORS.BACKGROUND }]} onPress={toggleChatVisibility}>
+          <AntDesign
+            name="arrowleft"
+            size={30}
+            color={theme.COLORS.ICON}
+          />
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity style={[styles.themeToggleButton, { backgroundColor: theme.COLORS.BACKGROUND }]} onPress={toggleChatVisibility}>
+          <AntDesign
+            name="calendar"
+            size={30}
+            color={theme.COLORS.ICON}
+          />
+        </TouchableOpacity>
+      )}
 
       <Animatable.View animation="fadeInUp" style={[styles.containerForm, { backgroundColor: theme.COLORS.BACKGROUND }]}>
-      <Card />
         {!historicoVisivel && (
-          <><MedicaoForm onMedicaoAdicionada={handleMedicaoAdicionada} loading={loading} /></>
+          <>
+            {AtividadesVisivel && (<AtividadesForm user={user} />)}
+            {!AtividadesVisivel && (<MedicaoForm onMedicaoAdicionada={handleMedicaoAdicionada} loading={loading} user={user} />)}
+            <TouchableOpacity
+              style={[styles.botaoAdicionar, { backgroundColor: theme.COLORS.BUTTON }]}
+              onPress={toggleAtividades}
+            >
+              <Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>
+                {AtividadesVisivel ? 'Ocultar Atividade' : 'Mostrar Atividade'}
+              </Text>
+            </TouchableOpacity>
+          </>
+
         )}
-
-        <TouchableOpacity
-          style={[styles.botaoAdicionar, { backgroundColor: theme.COLORS.BUTTON }]}
-          onPress={() => setHistoricoVisivel(!historicoVisivel)}
-        >
-          <Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>
-            {historicoVisivel ? 'Ocultar Histórico' : 'Mostrar Histórico'}
-          </Text>
-        </TouchableOpacity>
-
         {historicoVisivel && (
-          <FlatList
-            data={medicoes}
-            ListEmptyComponent={<Text style={[styles.textoVazio, { color: theme.COLORS.TEXT }]}>Nenhum registro encontrado.</Text>}
-            renderItem={({ item }) => (
-              <MedicaoItem
-                medicao={item}
-                deleteMedicao={deleteMedicao}
-              />
-            )}
-            refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-            }
-          />
+          <>
+            <AtividadeItem user={user} />
+            <FlatList
+              data={medicoes}
+              ListEmptyComponent={<Text style={[styles.textoVazio, { color: theme.COLORS.TEXT }]}>Nenhum registro encontrado.</Text>}
+              renderItem={({ item }) => (
+                <MedicaoItem
+                  medicao={item}
+                  deleteMedicao={deleteMedicao} />
+              )}
+              refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+              showsVerticalScrollIndicator={false}
+            />
+
+          </>
+
         )}
+
       </Animatable.View>
     </View>
   );

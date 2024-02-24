@@ -6,10 +6,10 @@ const borderBottomRadius = isAndroid ? 40 : 30;
 
 export const styles = StyleSheet.create({
 	contain: {
-		marginTop: isAndroid ? -10 : 30,
+		marginTop: isAndroid ? -10 : 25,
 		justifyContent: "center",
 		alignItems: "center",
-		paddingVertical: isAndroid ? 0 : 10,
+		paddingVertical: isAndroid ? 0 : 15,
 	},
 	container: {
 		justifyContent: "center",

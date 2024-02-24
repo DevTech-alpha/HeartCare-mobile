@@ -2,19 +2,18 @@ import { styles } from "./styles"
 import MedicaoFormProps from "../../props/MedicaoFormProps"
 
 import { useState } from "react"
-import { getAuth } from "firebase/auth"
 import { addDoc, collection } from "firebase/firestore"
 import { db } from "../../firebase/firebaseConfig"
 import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { useTheme } from "../../hooks/ThemeProvider"
 
-const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading }) => {
+
+const MedicaoForm: React.FC<MedicaoFormProps> = ({ onMedicaoAdicionada, loading , user }) => {
     const [sistolica, setSistolica] = useState("")
     const [diastolica, setDiastolica] = useState("")
     const [pulso, setPulso] = useState("")
     const [isAddingMedicao, setIsAddingMedicao] = useState(false)
-    const auth = getAuth()
-    const user = auth.currentUser
+   
     const { theme } = useTheme()
 
     const adicionarMedicao = async () => {

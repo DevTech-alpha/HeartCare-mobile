@@ -1,3 +1,4 @@
+import { User } from "firebase/auth";
 import Post from "../model/Post";
 
 interface PostItemProps {
@@ -8,6 +9,7 @@ interface PostItemProps {
   
   sharePost: (title: string, content: string) => void;
   onLikePress: (postId: string) => void;
+  user: User;
 }
 
 export default PostItemProps;

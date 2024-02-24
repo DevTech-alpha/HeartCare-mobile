@@ -164,8 +164,10 @@ const Feed: React.FC<FeedProps> = () => {
                 item={item}
                 onLikePress={onLikePress}
                 sharePost={sharePost}
+                user={user}
               />
             )}
+            showsVerticalScrollIndicator={false}
             refreshControl={
               <RefreshControl refreshing={refreshing} onRefresh={fetchPosts} />
             }
@@ -174,7 +176,7 @@ const Feed: React.FC<FeedProps> = () => {
           <TouchableOpacity style={[feedStyles.addButton, { backgroundColor: theme.COLORS.BUTTON }]} onPress={abrirModal}>
             <AntDesign
               name="addfile"
-              size={30}
+              size={25}
               color={theme.COLORS.WHITE}
             />
           </TouchableOpacity>

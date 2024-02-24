@@ -76,7 +76,9 @@ const FAQ = () => {
         <View style={[styles.container, {
             backgroundColor: theme.COLORS.BACKGROUND
         }]}>
-            <ScrollView>
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+            >
                 {questions.map((item) => (
                     <Animatable.View
                         key={item.id}

@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native"
 
 export const styles = StyleSheet.create({
 	textoBotao: {
+		fontWeight: 'bold'
 	},
 	itemMedicao: {
 		margin: 20,
@@ -29,6 +30,7 @@ export const styles = StyleSheet.create({
 		borderRadius: 4,
 		padding: 8,
 		marginHorizontal: 5,
+		marginTop: 8
 	},
 
 })

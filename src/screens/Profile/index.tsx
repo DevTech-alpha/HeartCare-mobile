@@ -313,6 +313,7 @@ const UserProfileScreen = () => {
 
 			<ScrollView
 				contentContainerStyle={styles.scrollViewContent}
+				showsVerticalScrollIndicator={false}
 				refreshControl={
 					<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
 				}>

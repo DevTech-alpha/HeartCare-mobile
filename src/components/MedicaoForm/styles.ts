@@ -19,6 +19,7 @@ export const styles = StyleSheet.create({
 	
 	label: {
 		fontSize: 15,
+		fontWeight:'bold',
 		marginTop: 12,
 	},
 	input: {
