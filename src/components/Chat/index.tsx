@@ -17,7 +17,7 @@ export default function Chat() {
 
   const API_OPENAI = "https://api.openai.com/v1/chat/completions";
   const MODELO_GPT = "gpt-3.5-turbo";
-  const CHAVE_GPT = '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';
+  const CHAVE_GPT = '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';
 
   const gerarResposta = async () => {
     if (sintomasUsuario === "") {
@@ -43,7 +43,7 @@ export default function Chat() {
           messages: [
             {
               role: "user",
-              content: prompt,
+              content: `${prompt}`,
             },
           ],
           temperature: 0.20,
@@ -91,10 +91,12 @@ export default function Chat() {
           </View>
         )}
         {respostaOpenAI && (
+       <Animatable.View animation="fadeInUp">
           <View style={[estilo.content, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}>
             <Text style={[estilo.title, { color: theme.COLORS.POST_TITLE }]}>Resposta do DoctorHeart</Text>
             <Text style={{ lineHeight: 24, color: theme.COLORS.POST_CONTENT }}>{respostaOpenAI}</Text>
           </View>
+          </Animatable.View>
         )}
       </ScrollView>
 
