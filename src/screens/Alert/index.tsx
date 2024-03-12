@@ -8,7 +8,7 @@ import { AntDesign } from '@expo/vector-icons';
 import FAQ from '../../components/FAQ';
 import Chat from '../../components/Chat';
 
-export default function Home() {
+export default function Alert() {
   const { theme } = useTheme();
   const [mostrar, setmostrar] = useState(true);
 

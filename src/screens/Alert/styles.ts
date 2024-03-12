@@ -75,5 +75,5 @@ export const estilo = StyleSheet.create({
 		right: 20,
 		padding: 5,
 		borderRadius: 20,
-	}
+	},
 });

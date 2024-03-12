@@ -5,7 +5,7 @@ import { db } from '../../firebase/firebaseConfig';
 import { User, getAuth } from 'firebase/auth';
 import Post from '../../model/Post';
 import PostItem from '../../components/PostItem';
-import { styles as feedStyles } from './styles';
+import { styles } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system';
@@ -153,7 +153,7 @@ const Feed: React.FC<FeedProps> = () => {
  
   return (
     <>
-      <View style={[feedStyles.container, { backgroundColor: theme.COLORS.BACKGROUND }]}>
+      <View style={[styles.container, { backgroundColor: theme.COLORS.BACKGROUND }]}>
         <View>
           <Header title='𝓗𝓮𝓪𝓻𝓽𝓒𝓪𝓻𝓮' />
         </View>
@@ -174,7 +174,7 @@ const Feed: React.FC<FeedProps> = () => {
             }
           />
 
-          <TouchableOpacity style={[feedStyles.addButton, { backgroundColor: theme.COLORS.BUTTON }]} onPress={abrirModal}>
+          <TouchableOpacity style={[styles.addButton, { backgroundColor: theme.COLORS.BUTTON }]} onPress={abrirModal}>
             <AntDesign
               name="addfile"
               size={25}

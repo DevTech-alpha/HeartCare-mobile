@@ -53,9 +53,13 @@ const UserProfileScreen = () => {
 	const [name, setName] = useState("")
 	const [lastName, setLastName] = useState("")
 	const [dob, setDob] = useState("")
+	const [bloodType, setBloodType] = useState("");
+	const [hasMedicalCondition, setHasMedicalCondition] = useState("");
 	const [email, setEmail] = useState(user?.email || "")
 	const [userPosts, setUserPosts] = useState<Post[]>([])
 	const [editMode, setEditMode] = useState(false)
+
+
 
 	const storage = getStorage()
 
@@ -80,6 +84,8 @@ const UserProfileScreen = () => {
 						setLastName(userData.lastName || "")
 						setDob(userData.dob || "")
 						setPhoto(userData.photo)
+						setBloodType(userData.bloodType || "")
+						setHasMedicalCondition(userData.hasMedicalCondition || "")
 					}
 				}
 
@@ -168,7 +174,7 @@ const UserProfileScreen = () => {
 
 			const uid = user.uid
 
-			if (!username || !name || !lastName || !dob || !email) {
+			if (!username || !name || !lastName || !dob || !email || !bloodType || !hasMedicalCondition) {
 				Alert.alert("Erro", "Por favor, preencha todos os campos obrigatórios.")
 				setLoading(false)
 				return
@@ -196,6 +202,8 @@ const UserProfileScreen = () => {
 					dob,
 					email,
 					photo: photoUrl,
+					bloodType,
+					hasMedicalCondition,
 				})
 			} else {
 				await setDoc(userRef, {
@@ -206,6 +214,8 @@ const UserProfileScreen = () => {
 					dob,
 					email,
 					photo: photoUrl,
+					bloodType,
+					hasMedicalCondition,
 				})
 			}
 
@@ -324,10 +334,14 @@ const UserProfileScreen = () => {
 						lastName={lastName}
 						dob={dob}
 						email={email}
+						bloodType={bloodType}
+						hasMedicalCondition={hasMedicalCondition}
 						setUsername={setUsername}
 						setName={setName}
 						setLastName={setLastName}
 						setDob={setDob}
+						setBloodType={setBloodType}
+						setHasMedicalCondition={setHasMedicalCondition}
 						setEmail={setEmail}
 						handleSaveProfile={handleSaveProfile}
 						loading={loading}

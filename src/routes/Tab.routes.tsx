@@ -8,7 +8,7 @@ import Feed from "../screens/Feed"
 import Perfil from "../screens/Profile"
 import { propsNavigationStack } from "./Models"
 import { StatusBar } from "react-native"
-import Search from "../screens/Search"
+import Alert from "../screens/Alert"
 
 const { Navigator, Screen } = createBottomTabNavigator<propsNavigationStack>()
 
@@ -44,12 +44,12 @@ export function TabRoutes() {
 					tabBarLabel: () => null,
 				}} />
 			<Screen
-				name="Search"
-				component={Search}
+				name="Alert"
+				component={Alert}
 				options={{
 					tabBarIcon: ({ focused, size }) => (
 						<Feather
-							name="search"
+							name="alert-octagon"
 							size={focused ? size + 5 : size}
 							color={focused ? theme.COLORS.PRIMARY : theme.COLORS.ICON} />
 					),

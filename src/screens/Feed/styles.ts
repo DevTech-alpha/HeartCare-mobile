@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native"
+import { Platform, StyleSheet } from "react-native"
 
 
 
@@ -34,22 +34,4 @@ export const styles = StyleSheet.create({
 		fontSize: 32,
 		fontWeight: "bold",
 	},
-	stores: {
-    height: 104,
-    width: "100%",
-    flexDirection: "row",
-    alignItems: "center",
-    paddingLeft: 10,
-    paddingVertical: 10,
-  },
-  storesCard: {
-    borderRadius: 50,
-    marginRight: 14,
-  },
-  storesCardImage: {
-    width: 64,
-    height: 64,
-    borderRadius: 50,
-    margin: 2,
-  },
 })

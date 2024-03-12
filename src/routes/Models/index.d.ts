@@ -8,7 +8,7 @@ export type propsNavigationStack = {
     Login: undefined | any;
     Cadastrar: undefined | any;
     Principal: undefined | any;
-    Search: undefined | any;
+    Alert: undefined | any;
 }
 
 export type propsStack = NativeStackNavigationProp<propsNavigationStack>
