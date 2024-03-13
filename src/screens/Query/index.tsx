@@ -95,7 +95,7 @@ const PressaoArterial = () => {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.COLORS.BACKGROUND }]}>
-      <Header title={historicoVisivel ? '𝓗𝓲𝓼𝓽𝓸𝓻𝓲𝓬𝓸' : '𝓐𝓽𝓲𝓿𝓲𝓭𝓪𝓭𝓮𝓼'} />
+      <Header title={historicoVisivel ? 'Histórico' : 'Atividades'} />
       {historicoVisivel ? (
         <TouchableOpacity style={[styles.themeToggleButton, { backgroundColor: theme.COLORS.BACKGROUND }]} onPress={toggleChatVisibility}>
           <AntDesign
@@ -117,7 +117,7 @@ const PressaoArterial = () => {
       <Animatable.View animation="fadeInUp" style={[styles.containerForm, { backgroundColor: theme.COLORS.BACKGROUND }]}>
         {!historicoVisivel && (
           <>
-            {AtividadesVisivel && (<AtividadesForm  MudarCard={toggleAtividades} user={user} />)}
+            {AtividadesVisivel && (<AtividadesForm MudarCard={toggleAtividades} user={user} />)}
             {!AtividadesVisivel && (<MedicaoForm MudarCard={toggleAtividades} onMedicaoAdicionada={handleMedicaoAdicionada} loading={loading} user={user} />)}
           </>
 

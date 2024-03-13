@@ -14,6 +14,7 @@ import { Header } from '../../components/Header';
 import { useTheme } from '../../hooks/ThemeProvider';
 import PublishModalContent from '../../components/ModalPost';
 import { AntDesign } from '@expo/vector-icons';
+import NotificationsScreen from '../../components/NotifcationItem';
 
 
 interface FeedProps { }
@@ -28,6 +29,7 @@ const Feed: React.FC<FeedProps> = () => {
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [modalVisivel, setModalVisivel] = useState(false);
+  const [mostrar, setmostrar] = useState(true);
 
 
 
@@ -89,6 +91,14 @@ const Feed: React.FC<FeedProps> = () => {
 
 
         const docRef = await addDoc(collection(db, 'posts'), postWithUserId);
+
+        // Adicione uma notificação ao Firestore
+        await addDoc(collection(db, 'notifications'), {
+          type: 'new_post',
+          userId: user?.uid || '',
+          postId: docRef.id,
+        });
+
         const updatedPosts = [...posts, { ...postWithUserId, id: docRef.id }];
         setPosts(updatedPosts as any);
         Alert.alert('Criado com sucesso seu Post!');
@@ -117,31 +127,44 @@ const Feed: React.FC<FeedProps> = () => {
     try {
       const postRef = doc(db, 'posts', postId);
       const postDoc = await getDoc(postRef);
+  
+      if (!postDoc.exists()) {
+        console.error('Post not found');
+        return;
+      }
+  
       const postData = postDoc.data() as Post;
-
+  
       const currentUserLiked = postData.likes?.includes(user?.uid || '');
       let updatedLikes: string[] = [];
-
+  
       if (currentUserLiked) {
         updatedLikes = postData.likes?.filter((userId) => userId !== user?.uid) || [];
       } else {
         updatedLikes = [...(postData.likes || []), user?.uid || ''];
       }
-
+  
       await updateDoc(postRef, { likes: updatedLikes });
-
+  
+      await addDoc(collection(db, 'notifications'), {
+        type: 'new_like',
+        userId: user?.uid || '',
+        postId: postId,
+      });
+  
       const updatedPosts = posts.map((post) => {
         if (post.id === postId) {
           return { ...post, likes: updatedLikes };
         }
         return post;
       });
-
+  
       setPosts(updatedPosts);
     } catch (error) {
       console.error('Error updating like:', error);
     }
   };
+  
 
   const abrirModal = () => {
     setModalVisivel(true);
@@ -150,13 +173,25 @@ const Feed: React.FC<FeedProps> = () => {
   const fecharModal = () => {
     setModalVisivel(false);
   };
- 
+
+  const toggleChatVisibility = () => {
+    setmostrar(!mostrar);
+  };
+
   return (
-    <>
-      <View style={[styles.container, { backgroundColor: theme.COLORS.BACKGROUND }]}>
-        <View>
-          <Header title='𝓗𝓮𝓪𝓻𝓽𝓒𝓪𝓻𝓮' />
-        </View>
+    <View style={[styles.container, { backgroundColor: theme.COLORS.BACKGROUND }]}>
+      <Header title={mostrar ? 'HeartCare' : 'Notificações'} />
+      {mostrar ? (
+        <TouchableOpacity style={[styles.themeToggleButton, { backgroundColor: theme.COLORS.PRIMARY }]} onPress={toggleChatVisibility}>
+          <AntDesign name="notification" size={30} color={theme.COLORS.ICON} />
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity style={[styles.themeToggleButton, { backgroundColor: theme.COLORS.BACKGROUND }]} onPress={toggleChatVisibility}>
+          <AntDesign name="arrowleft" size={30} color={theme.COLORS.ICON} />
+        </TouchableOpacity>
+      )}
+      {mostrar && (
+        <>
           <FlatList
             data={posts}
             keyExtractor={(item) => item.id}
@@ -169,27 +204,21 @@ const Feed: React.FC<FeedProps> = () => {
               />
             )}
             showsVerticalScrollIndicator={false}
-            refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={fetchPosts} />
-            }
+            refreshControl={<RefreshControl refreshing={refreshing} onRefresh={fetchPosts} />}
           />
-
           <TouchableOpacity style={[styles.addButton, { backgroundColor: theme.COLORS.BUTTON }]} onPress={abrirModal}>
-            <AntDesign
-              name="addfile"
-              size={25}
-              color={theme.COLORS.WHITE}
-            />
+            <AntDesign name="addfile" size={25} color={theme.COLORS.WHITE} />
           </TouchableOpacity>
-
           <PublishModalContent
             fecharModal={fecharModal}
             visivel={modalVisivel}
             createNewPost={createNewPost}
             loading={loading}
           />
-      </View>
-    </>
+        </>
+      )}
+      {!mostrar && <NotificationsScreen />}
+    </View>
   );
 };
 

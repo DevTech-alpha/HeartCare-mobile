@@ -48,7 +48,7 @@ const Cadastro: React.FC = () => {
   return (
     <View style={[styles.container, { backgroundColor: theme.COLORS.PRIMARY }]}>
       <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
-        <Text style={styles.message}>𝓕𝓪𝓬̧𝓪 𝓼𝓮𝓾 𝓬𝓪𝓭𝓪𝓼𝓽𝓻𝓸</Text>
+      <Text style={styles.message}>Faça seu cadastro</Text> 
       </Animatable.View>
 
       <CadastroForm

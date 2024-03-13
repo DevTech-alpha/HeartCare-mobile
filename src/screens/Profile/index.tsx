@@ -302,7 +302,7 @@ const UserProfileScreen = () => {
 	return (
 		<View style={[styles.container, { backgroundColor: theme.COLORS.PRIMARY }]}>
 			<View>
-				<Header title="𝓟𝓮𝓻𝓯𝓲𝓵" />
+			<Header title="Perfíl" />
 			</View>
 
 			<ProfileImage photo={photo} onPress={handleChoosePhoto} />

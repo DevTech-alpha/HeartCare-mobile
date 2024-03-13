@@ -18,7 +18,7 @@ export default function Alert() {
 
   return (
     <View style={[estilo.container, { backgroundColor: theme.COLORS.BACKGROUND }]}>
-      <Header title={mostrar ? '𝓟𝓮𝓼𝓺𝓾𝓲𝓼𝓪' : '𝓕𝓐𝓠'} />
+      <Header title={mostrar ? 'Pesquisa' : 'FAQ'} />
       {mostrar ? (
 
         <TouchableOpacity style={[estilo.themeToggleButton, { backgroundColor: theme.COLORS.BACKGROUND }]} onPress={toggleChatVisibility}>

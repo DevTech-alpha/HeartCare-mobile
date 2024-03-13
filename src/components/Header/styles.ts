@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
 	text: {
 		color: "white",
 		fontSize: textFontSize,
+		fontWeight: 'bold',
 		paddingBottom: isAndroid ? 10 : 5,
 	},
 });
