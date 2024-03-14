@@ -1,12 +1,11 @@
 import { StyleSheet } from "react-native";
 
-
 export const estilo = StyleSheet.create({
   container: {
     flex: 1,
   },
   form: {
-    width: '90%',
+    width: "90%",
     margin: 16,
     borderRadius: 20,
     padding: 20,
@@ -21,7 +20,7 @@ export const estilo = StyleSheet.create({
     elevation: 8,
   },
   label: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 18,
     marginBottom: 8,
   },
@@ -31,12 +30,11 @@ export const estilo = StyleSheet.create({
     marginBottom: 12,
     fontSize: 16,
   },
-  days: {
-  },
+  days: {},
   button: {
     borderRadius: 20,
     justifyContent: "center",
-    flexDirection: 'row',
+    flexDirection: "row",
     alignItems: "center",
     paddingVertical: 8,
     margin: 20,
@@ -45,7 +43,7 @@ export const estilo = StyleSheet.create({
     fontSize: 15,
   },
   content: {
-    width: '90%',
+    width: "90%",
     margin: 16,
     borderRadius: 20,
     padding: 20,
@@ -61,11 +59,11 @@ export const estilo = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 14
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 14,
   },
   containerScroll: {
-    width: '100%',
-  }
+    width: "100%",
+  },
 });

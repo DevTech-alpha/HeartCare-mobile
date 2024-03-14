@@ -1,15 +1,15 @@
-import React from "react"
-import { View, Text } from "react-native"
+import React from "react";
+import { View, Text } from "react-native";
 
-import { styles } from "./styles"
-import HeaderProps from "../../props/HeaderProps"
+import { styles } from "./styles";
+import HeaderProps from "../../props/HeaderProps";
 
 export function Header({ title }: HeaderProps) {
-	return (
-		<View style={styles.container}>
-			<View style={styles.contain}>
-				<Text style={styles.text}>{title}</Text>
-			</View>
-		</View>
-	)
+  return (
+    <View style={styles.container}>
+      <View style={styles.contain}>
+        <Text style={styles.text}>{title}</Text>
+      </View>
+    </View>
+  );
 }

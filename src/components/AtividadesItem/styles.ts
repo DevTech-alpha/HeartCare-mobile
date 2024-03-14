@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   containerCardsAtividade: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   containerCartao: {
     margin: 10,
@@ -15,19 +15,19 @@ export const styles = StyleSheet.create({
     elevation: 10,
   },
   containerProgresso: {
-    alignSelf: 'center',
-    margin: 5
+    alignSelf: "center",
+    margin: 5,
   },
   containerDetalhes: {
-    marginVertical: 5
+    marginVertical: 5,
   },
   textoDetalhes: {
     fontSize: 10,
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
   nomeAtividade: {
     fontSize: 12,
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
   circle: {
     padding: 10,
@@ -35,11 +35,11 @@ export const styles = StyleSheet.create({
     height: 60,
     borderRadius: 30,
     borderWidth: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   number: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 11,
   },
 });

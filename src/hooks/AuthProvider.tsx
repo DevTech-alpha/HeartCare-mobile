@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
 import { Alert } from "react-native";
 import { asyncGetUser, asyncSetUser } from "../utils/store";
 import { logar } from "../api/LogInToAccount";
@@ -20,8 +26,9 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
-
-export const AuthContext = createContext<AuthContextData>({} as AuthContextData);
+export const AuthContext = createContext<AuthContextData>(
+  {} as AuthContextData
+);
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
   const [authData, setAuthData] = useState<DB_USER>();
@@ -30,40 +37,45 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   useEffect(() => {
     loadFromStorage();
-  }, [])
+  }, []);
 
   async function loadFromStorage() {
-
     const user = await asyncGetUser();
-    setIsLoading(true)
+    setIsLoading(true);
     if (user) {
       setAuthData(user);
     }
-    setIsLoading(false)
+    setIsLoading(false);
   }
 
   async function signIn({ email, password }: SignCredentials) {
     try {
       setLoading(true);
-      const { user } = await logar(email, password)
+      const { user } = await logar(email, password);
 
-      await asyncSetUser(user)
-      setAuthData(user as any)
+      await asyncSetUser(user);
+      setAuthData(user as any);
       setLoading(false);
     } catch (err: any) {
-      Alert.alert('Atenção', err.message)
+      Alert.alert("Atenção", err.message);
     } finally {
       setLoading(false);
     }
   }
 
-  return <AuthContext.Provider value={{
-    authData,
-    signIn,
-    isLoading,
-    setAuthData
-  }}>{children}</AuthContext.Provider>
-}
+  return (
+    <AuthContext.Provider
+      value={{
+        authData,
+        signIn,
+        isLoading,
+        setAuthData,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
 
 function useAuth(): AuthContextData {
   const context = useContext(AuthContext);
@@ -71,4 +83,4 @@ function useAuth(): AuthContextData {
   return context;
 }
 
-export { AuthProvider, useAuth }
+export { AuthProvider, useAuth };

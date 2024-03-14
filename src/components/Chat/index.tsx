@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
-import { Text, View, TextInput, TouchableOpacity, ScrollView, ActivityIndicator, Alert, Keyboard } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
-import { useTheme } from '../../hooks/ThemeProvider';
-import { estilo } from './styles';
+import React, { useState } from "react";
+import {
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+  ActivityIndicator,
+  Alert,
+  Keyboard,
+} from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
+import { useTheme } from "../../hooks/ThemeProvider";
+import { estilo } from "./styles";
 
-import * as Animatable from 'react-native-animatable';
-
-
+import * as Animatable from "react-native-animatable";
 
 export default function Chat() {
   const { theme } = useTheme();
@@ -17,11 +24,14 @@ export default function Chat() {
 
   const API_OPENAI = "https://api.openai.com/v1/chat/completions";
   const MODELO_GPT = "gpt-3.5-turbo";
-  const CHAVE_GPT = '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';
+  const CHAVE_GPT = "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";
 
   const gerarResposta = async () => {
     if (sintomasUsuario === "") {
-      Alert.alert("Atenção", "Explique o que está sentindo para receber uma resposta.");
+      Alert.alert(
+        "Atenção",
+        "Explique o que está sentindo para receber uma resposta."
+      );
       return;
     }
 
@@ -46,7 +56,7 @@ export default function Chat() {
               content: `${prompt}`,
             },
           ],
-          temperature: 0.20,
+          temperature: 0.2,
           max_tokens: 500,
           top_p: 1,
         }),
@@ -59,7 +69,10 @@ export default function Chat() {
       const dados = await resposta.json();
       setRespostaOpenAI(dados.choices[0].message.content);
     } catch (erro) {
-      Alert.alert("Erro", "Ocorreu um erro ao obter a resposta. Tente novamente mais tarde.");
+      Alert.alert(
+        "Erro",
+        "Ocorreu um erro ao obter a resposta. Tente novamente mais tarde."
+      );
     } finally {
       setCarregando(false);
     }
@@ -67,8 +80,12 @@ export default function Chat() {
 
   return (
     <Animatable.View animation="fadeInUp">
-      <View style={[estilo.form, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}>
-        <Text style={[estilo.label, { color: theme.COLORS.POST_TITLE }]}>Explique o que está sentindo</Text>
+      <View
+        style={[estilo.form, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}
+      >
+        <Text style={[estilo.label, { color: theme.COLORS.POST_TITLE }]}>
+          Explique o que está sentindo
+        </Text>
         <TextInput
           placeholder="Descreva seus sintomas"
           placeholderTextColor={theme.COLORS.POST_CONTENT}
@@ -79,27 +96,57 @@ export default function Chat() {
           numberOfLines={3}
         />
       </View>
-      <TouchableOpacity style={[estilo.button, { backgroundColor: theme.COLORS.BUTTON }]} onPress={gerarResposta}>
-        <Text style={[estilo.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}>Obter Resposta</Text>
-        <MaterialIcons name="favorite" size={24} color={theme.COLORS.BUTTON_TEXT} />
+      <TouchableOpacity
+        style={[estilo.button, { backgroundColor: theme.COLORS.BUTTON }]}
+        onPress={gerarResposta}
+      >
+        <Text style={[estilo.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}>
+          Obter Resposta
+        </Text>
+        <MaterialIcons
+          name="favorite"
+          size={24}
+          color={theme.COLORS.BUTTON_TEXT}
+        />
       </TouchableOpacity>
-      <ScrollView contentContainerStyle={{ paddingBottom: 24, marginTop: 4 }} style={estilo.containerScroll} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        contentContainerStyle={{ paddingBottom: 24, marginTop: 4 }}
+        style={estilo.containerScroll}
+        showsVerticalScrollIndicator={false}
+      >
         {carregando && (
-          <View style={[estilo.content, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}>
-            <Text style={[estilo.title, { color: theme.COLORS.POST_TITLE }]}>Carregando resposta...</Text>
+          <View
+            style={[
+              estilo.content,
+              { backgroundColor: theme.COLORS.BACKGROUND_CARD },
+            ]}
+          >
+            <Text style={[estilo.title, { color: theme.COLORS.POST_TITLE }]}>
+              Carregando resposta...
+            </Text>
             <ActivityIndicator color={theme.COLORS.ICON} size="small" />
           </View>
         )}
         {respostaOpenAI && (
-       <Animatable.View animation="fadeInUp">
-          <View style={[estilo.content, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}>
-            <Text style={[estilo.title, { color: theme.COLORS.POST_TITLE }]}>Resposta do DoctorHeart</Text>
-            <Text style={{ lineHeight: 24, color: theme.COLORS.POST_CONTENT }}>{respostaOpenAI}</Text>
-          </View>
+          <Animatable.View animation="fadeInUp">
+            <View
+              style={[
+                estilo.content,
+                { backgroundColor: theme.COLORS.BACKGROUND_CARD },
+              ]}
+            >
+              <Text style={[estilo.title, { color: theme.COLORS.POST_TITLE }]}>
+                Resposta do DoctorHeart
+              </Text>
+              <Text
+                style={{ lineHeight: 24, color: theme.COLORS.POST_CONTENT }}
+              >
+                {respostaOpenAI}
+              </Text>
+            </View>
           </Animatable.View>
         )}
       </ScrollView>
-
     </Animatable.View>
   );
-} 
+}

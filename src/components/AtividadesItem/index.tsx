@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
-import { useTheme } from '../../hooks/ThemeProvider';
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import { db } from '../../firebase/firebaseConfig';
-import { styles } from './styles';
-import Atividade from '../../model/Atividade';
+import React, { useEffect, useState } from "react";
+import { Text, View } from "react-native";
+import { useTheme } from "../../hooks/ThemeProvider";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../../firebase/firebaseConfig";
+import { styles } from "./styles";
+import Atividade from "../../model/Atividade";
 import * as Animatable from "react-native-animatable";
-import AtividadesItemProps from '../../props/AtividadesItemProps';
+import AtividadesItemProps from "../../props/AtividadesItemProps";
 
 const AtividadeItem: React.FC<AtividadesItemProps> = ({ user }) => {
   const { theme } = useTheme();
@@ -15,12 +15,17 @@ const AtividadeItem: React.FC<AtividadesItemProps> = ({ user }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const q = query(collection(db, 'atividades'), where('Usuario', '==', user.uid));
+        const q = query(
+          collection(db, "atividades"),
+          where("Usuario", "==", user.uid)
+        );
         const querySnapshot = await getDocs(q);
-        const atividadesData = querySnapshot.docs.map(doc => doc.data() as Atividade);
+        const atividadesData = querySnapshot.docs.map(
+          (doc) => doc.data() as Atividade
+        );
         setAtividades(atividadesData);
       } catch (error) {
-        console.error('Erro ao buscar atividades:', error);
+        console.error("Erro ao buscar atividades:", error);
       }
     };
 
@@ -28,12 +33,14 @@ const AtividadeItem: React.FC<AtividadesItemProps> = ({ user }) => {
   }, [user]);
 
   return (
-    <Animatable.View animation="slideInLeft" style={styles.containerCardsAtividade}>
-    {atividades.slice(-3).map((item, index) => (
-      <CartaoAtividade data={item} key={index} theme={theme} />
-    ))}
-  </Animatable.View>
-  
+    <Animatable.View
+      animation="slideInLeft"
+      style={styles.containerCardsAtividade}
+    >
+      {atividades.slice(-3).map((item, index) => (
+        <CartaoAtividade data={item} key={index} theme={theme} />
+      ))}
+    </Animatable.View>
   );
 };
 
@@ -43,7 +50,12 @@ const CartaoAtividade = ({ data, theme }) => {
   const progresso = calcularPorcentagem(data.Tempo);
 
   return (
-    <View style={[styles.containerCartao, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}>
+    <View
+      style={[
+        styles.containerCartao,
+        { backgroundColor: theme.COLORS.BACKGROUND_CARD },
+      ]}
+    >
       <View style={styles.containerProgresso}>
         <View style={[styles.circle, { borderColor: theme.COLORS.ICON }]}>
           <Text style={[styles.number, { color: theme.COLORS.ICON }]}>
@@ -52,7 +64,9 @@ const CartaoAtividade = ({ data, theme }) => {
         </View>
       </View>
       <View style={styles.containerDetalhes}>
-        <Text style={[styles.textoDetalhes, { color: theme.COLORS.POST_TITLE }]}>
+        <Text
+          style={[styles.textoDetalhes, { color: theme.COLORS.POST_TITLE }]}
+        >
           Tempo {data.Tempo} min
         </Text>
       </View>
@@ -60,7 +74,6 @@ const CartaoAtividade = ({ data, theme }) => {
         {data.Modalidade}
       </Text>
     </View>
-
   );
 };
 

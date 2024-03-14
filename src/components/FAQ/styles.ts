@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 5,
     marginBottom: 10,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 4,
@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
   },
   questionText: {
     fontSize: 15,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     padding: 16,
   },
   answerText: {
@@ -30,14 +30,14 @@ export const styles = StyleSheet.create({
     paddingTop: 8,
   },
   questionHeader: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
     padding: 10,
   },
   message: {
     paddingTop: 20,
     fontSize: 28,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });

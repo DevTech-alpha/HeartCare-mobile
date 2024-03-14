@@ -43,9 +43,19 @@ const PublishModalContent: React.FC<ModalPostProps> = ({
 
   return (
     <Modal visible={visivel} transparent animationType="slide">
-      <View style={[styles.modalContainer, { backgroundColor: theme.COLORS.OVERLAY }]}>
-        <View style={[styles.modalContent, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}>
-          <View style={{ alignItems: 'flex-end' }}>
+      <View
+        style={[
+          styles.modalContainer,
+          { backgroundColor: theme.COLORS.OVERLAY },
+        ]}
+      >
+        <View
+          style={[
+            styles.modalContent,
+            { backgroundColor: theme.COLORS.BACKGROUND_CARD },
+          ]}
+        >
+          <View style={{ alignItems: "flex-end" }}>
             <AntDesign
               onPress={fecharModal}
               name="close"
@@ -72,14 +82,24 @@ const PublishModalContent: React.FC<ModalPostProps> = ({
           />
 
           <TouchableOpacity
-            style={[styles.botaoSalvar, { backgroundColor: theme.COLORS.BUTTON }]}
+            style={[
+              styles.botaoSalvar,
+              { backgroundColor: theme.COLORS.BUTTON },
+            ]}
             onPress={validateAndCreatePost}
             disabled={loading}
           >
             {loading ? (
-              <ActivityIndicator size="small" color={theme.COLORS.BUTTON_TEXT} />
+              <ActivityIndicator
+                size="small"
+                color={theme.COLORS.BUTTON_TEXT}
+              />
             ) : (
-              <Text style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}>Postar</Text>
+              <Text
+                style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}
+              >
+                Postar
+              </Text>
             )}
           </TouchableOpacity>
         </View>

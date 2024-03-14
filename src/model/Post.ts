@@ -9,5 +9,4 @@ interface Post {
   likes: string[];
 }
 
-
 export default Post;

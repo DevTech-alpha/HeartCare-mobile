@@ -15,18 +15,18 @@ export const styles = StyleSheet.create({
   checkbox: {
     margin: 5,
   },
-	label:{
+  label: {
     fontSize: 15,
-		paddingLeft: 5,
-	},
+    paddingLeft: 5,
+  },
   checkboxContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 10,
   },
-	checkboxContainerDoc: {
-    flexDirection: 'column',
-    alignItems: 'flex-start',
+  checkboxContainerDoc: {
+    flexDirection: "column",
+    alignItems: "flex-start",
     marginBottom: 10,
   },
   input: {

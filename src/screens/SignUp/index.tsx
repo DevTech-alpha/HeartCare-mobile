@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { View, Text, Alert } from 'react-native';
-import * as Animatable from 'react-native-animatable';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState } from "react";
+import { View, Text, Alert } from "react-native";
+import * as Animatable from "react-native-animatable";
+import { useNavigation } from "@react-navigation/native";
 
-import { styles } from './styles';
-import { criar } from '../../api/CreateAcount';
-import { propsStack } from '../../routes/Models';
-import { useTheme } from '../../hooks/ThemeProvider';
-import CadastroForm from '../../components/SignUpForm';
+import { styles } from "./styles";
+import { criar } from "../../api/CreateAcount";
+import { propsStack } from "../../routes/Models";
+import { useTheme } from "../../hooks/ThemeProvider";
+import CadastroForm from "../../components/SignUpForm";
 
 const Cadastro: React.FC = () => {
   const { theme } = useTheme();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confPassword, setConfPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confPassword, setConfPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -28,7 +28,7 @@ const Cadastro: React.FC = () => {
 
     if (password !== confPassword) {
       setLoading(false);
-      Alert.alert('As senhas não correspondem.');
+      Alert.alert("As senhas não correspondem.");
       return;
     }
 
@@ -36,8 +36,8 @@ const Cadastro: React.FC = () => {
       .then((userCredentials) => {
         setLoading(false);
         const user = userCredentials.user;
-        Alert.alert('Registro realizado com sucesso!');
-        navigate('Login');
+        Alert.alert("Registro realizado com sucesso!");
+        navigate("Login");
       })
       .catch((error) => {
         setLoading(false);
@@ -47,8 +47,12 @@ const Cadastro: React.FC = () => {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.COLORS.PRIMARY }]}>
-      <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
-      <Text style={styles.message}>Faça seu cadastro</Text> 
+      <Animatable.View
+        animation="fadeInLeft"
+        delay={500}
+        style={styles.containerHeader}
+      >
+        <Text style={styles.message}>Faça seu cadastro</Text>
       </Animatable.View>
 
       <CadastroForm

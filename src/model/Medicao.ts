@@ -1,7 +1,6 @@
-
 interface Medicao {
   id: string;
-  userId: string,
+  userId: string;
   sistolica: string;
   diastolica: string;
   pulso: string;
@@ -10,4 +9,3 @@ interface Medicao {
 }
 
 export default Medicao;
-

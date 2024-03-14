@@ -1,35 +1,35 @@
-import React, { useState } from 'react';
-import { View, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import LoginForm from '../../components/SignInForm';
-import ResetPasswordForm from '../../components/ResetPassword';
-import { styles } from './styles';
+import React, { useState } from "react";
+import { View, Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import LoginForm from "../../components/SignInForm";
+import ResetPasswordForm from "../../components/ResetPassword";
+import { styles } from "./styles";
 
-import * as Animatable from 'react-native-animatable';
-import { enviarRecuperacaoSenha } from '../../api/PasswordRecovery';
-import { propsStack } from '../../routes/Models';
-import { useAuth } from '../../hooks/AuthProvider';
-import { useTheme } from '../../hooks/ThemeProvider';
+import * as Animatable from "react-native-animatable";
+import { enviarRecuperacaoSenha } from "../../api/PasswordRecovery";
+import { propsStack } from "../../routes/Models";
+import { useAuth } from "../../hooks/AuthProvider";
+import { useTheme } from "../../hooks/ThemeProvider";
 
 const Login = () => {
   const { signIn } = useAuth();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [resetEmail, setResetEmail] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [resetEmail, setResetEmail] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showResetPassword, setShowResetPassword] = useState(false);
 
   const { navigate } = useNavigation<propsStack>();
 
-  const { theme } = useTheme()
+  const { theme } = useTheme();
 
   const handleLogin = async () => {
     try {
       setLoading(true);
       await signIn({ email, password });
     } catch (error) {
-      console.error('Erro durante o login:', error);
+      console.error("Erro durante o login:", error);
     } finally {
       setLoading(false);
     }
@@ -40,7 +40,7 @@ const Login = () => {
       setLoading(true);
       await enviarRecuperacaoSenha(resetEmail);
       setLoading(false);
-      alert('Um e-mail de recuperação de senha foi enviado.');
+      alert("Um e-mail de recuperação de senha foi enviado.");
     } catch (error) {
       setLoading(false);
       alert(error);
@@ -55,15 +55,18 @@ const Login = () => {
     setShowResetPassword(true);
   };
 
-
   const handleBackToLogin = () => {
     setShowResetPassword(false);
   };
 
   return (
     <View style={[styles.container, { backgroundColor: theme.COLORS.PRIMARY }]}>
-      <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
-      <Text style={styles.message}>Bem-vindo(a)</Text>
+      <Animatable.View
+        animation="fadeInLeft"
+        delay={500}
+        style={styles.containerHeader}
+      >
+        <Text style={styles.message}>Bem-vindo(a)</Text>
       </Animatable.View>
 
       {showResetPassword ? (
@@ -87,7 +90,6 @@ const Login = () => {
           handleForgotPassword={handleForgotPassword}
         />
       )}
-
     </View>
   );
 };

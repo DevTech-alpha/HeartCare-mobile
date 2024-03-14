@@ -4,7 +4,6 @@ interface Notification {
   userId: string;
   postId: string;
   username: string;
-  userPhoto: string
+  userPhoto: string;
 }
-export default Notification
-
+export default Notification;
