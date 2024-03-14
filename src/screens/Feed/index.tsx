@@ -5,6 +5,7 @@ import {
   View,
   RefreshControl,
   Alert,
+  Text,
 } from "react-native";
 import {
   collection,
@@ -29,7 +30,7 @@ import { Header } from "../../components/Header";
 import { useTheme } from "../../hooks/ThemeProvider";
 import PublishModalContent from "../../components/ModalPost";
 import { AntDesign } from "@expo/vector-icons";
-import NotificationItem from "../../components/NotifcationItem";
+import NotificationItem from "../../components/NotificationItem";
 import Notification from "../../model/Notification";
 
 const Feed = () => {
@@ -269,7 +270,7 @@ const Feed = () => {
             style={[styles.addButton, { backgroundColor: theme.COLORS.BUTTON }]}
             onPress={abrirModal}
           >
-            <AntDesign name="addfile" size={25} color={theme.COLORS.WHITE} />
+            <Text style={styles.addButtonText}>+</Text>
           </TouchableOpacity>
           <PublishModalContent
             fecharModal={fecharModal}

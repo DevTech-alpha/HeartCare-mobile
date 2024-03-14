@@ -31,6 +31,7 @@ export const styles = StyleSheet.create({
 
   addButtonText: {
     fontSize: 30,
+    color: "white",
     fontWeight: "bold",
   },
 
