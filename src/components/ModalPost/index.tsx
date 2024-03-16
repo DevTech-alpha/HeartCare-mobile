@@ -13,6 +13,7 @@ import { styles } from "./styles";
 import { useTheme } from "../../hooks/ThemeProvider";
 import ModalPostProps from "../../props/ModalPostProps";
 import { AntDesign } from "@expo/vector-icons";
+import { useLanguage } from "../../hooks/LanguageProvider";
 
 const PublishModalContent: React.FC<ModalPostProps> = ({
   createNewPost,
@@ -24,10 +25,11 @@ const PublishModalContent: React.FC<ModalPostProps> = ({
   const [newContent, setNewContent] = useState("");
 
   const { theme } = useTheme();
+  const { language } = useLanguage();
 
   const validateAndCreatePost = () => {
     if (newTitle.trim() === "" || newContent.trim() === "") {
-      Alert.alert("Erro", "Por favor, preencha todos os campos.");
+      Alert.alert(language.TEXTO.ERRO, language.TEXTO.PRENCHA_CAMPOS);
     } else {
       createNewPost(newTitle, newContent);
       fecharModal();
@@ -64,17 +66,17 @@ const PublishModalContent: React.FC<ModalPostProps> = ({
             />
           </View>
           <Text style={[styles.textoModal, { color: theme.COLORS.POST_TITLE }]}>
-            Nova Publicação
+            {language.TEXTO.NOVA_PUBLICACAO}
           </Text>
           <TextInput
-            placeholder="Título"
+            placeholder={language.TEXTO.TITULO}
             placeholderTextColor={theme.COLORS.POST_CONTENT}
             style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
             value={newTitle}
             onChangeText={(text) => setNewTitle(text)}
           />
           <TextInput
-            placeholder="Conteúdo"
+            placeholder={language.TEXTO.CONTEUDO}
             placeholderTextColor={theme.COLORS.POST_CONTENT}
             style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
             value={newContent}
@@ -98,7 +100,7 @@ const PublishModalContent: React.FC<ModalPostProps> = ({
               <Text
                 style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}
               >
-                Postar
+                {language.TEXTO.POSTAR}
               </Text>
             )}
           </TouchableOpacity>

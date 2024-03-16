@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import { useTheme } from "../../hooks/ThemeProvider";
 import { AntDesign } from "@expo/vector-icons";
+import { useLanguage } from "../../hooks/LanguageProvider";
 
 const MedicaoForm: React.FC<MedicaoFormProps> = ({
   onMedicaoAdicionada,
@@ -27,6 +28,7 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({
   const [isAddingMedicao, setIsAddingMedicao] = useState(false);
 
   const { theme } = useTheme();
+  const { language } = useLanguage();
 
   const adicionarMedicao = async () => {
     if (
@@ -54,19 +56,15 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({
           const docRef = await addDoc(medicoesRef, novaMedicao);
 
           onMedicaoAdicionada();
-          Alert.alert("Adicionado com sucesso!");
+          Alert.alert(language.TEXTO.ADICIONADO_COM_SUCESSO);
         } catch (error) {
           console.error("Erro ao adicionar medição:", error);
-          alert(
-            "Erro ao adicionar medição. Consulte o console para mais detalhes."
-          );
+          alert(language.TEXTO.ERRO_MEDICAO);
         } finally {
           setIsAddingMedicao(false);
         }
       } else {
-        alert(
-          "Valores inválidos. Certifique-se de inserir números válidos para pressão sistólica e diastólica."
-        );
+        alert(language.TEXTO.VALORES_INVALIDOS);
       }
     }
   };
@@ -87,11 +85,11 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({
         />
       </View>
       <Text style={[styles.label, { color: theme.COLORS.POST_TITLE }]}>
-        Sistólica
+        {language.TEXTO.SISTOLICA}
       </Text>
       <TextInput
         style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-        placeholder="Digite o valor sistólico"
+        placeholder={language.TEXTO.DIGITE_DIASTOLICA}
         placeholderTextColor={theme.COLORS.TEXT}
         value={sistolica}
         onChangeText={(texto) => setSistolica(texto)}
@@ -99,11 +97,11 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({
       />
 
       <Text style={[styles.label, { color: theme.COLORS.POST_TITLE }]}>
-        Diastólica
+        {language.TEXTO.DIASTOLICA}
       </Text>
       <TextInput
         style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-        placeholder="Digite o valor diastólico"
+        placeholder={language.TEXTO.DIGITE_DIASTOLICA}
         placeholderTextColor={theme.COLORS.TEXT}
         value={diastolica}
         onChangeText={(texto) => setDiastolica(texto)}
@@ -111,11 +109,11 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({
       />
 
       <Text style={[styles.label, { color: theme.COLORS.POST_TITLE }]}>
-        Pulso
+        {language.TEXTO.PULSO}
       </Text>
       <TextInput
         style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-        placeholder="Digite o valor do pulso"
+        placeholder={language.TEXTO.DIGITE_PULSO}
         placeholderTextColor={theme.COLORS.TEXT}
         value={pulso}
         onChangeText={(texto) => setPulso(texto)}
@@ -138,7 +136,7 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({
           <Text
             style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}
           >
-            Registrar Medição
+            {language.TEXTO.REGISTRAR}
           </Text>
         )}
       </TouchableOpacity>

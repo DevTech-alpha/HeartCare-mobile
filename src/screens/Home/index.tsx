@@ -6,12 +6,13 @@ import * as Animatable from "react-native-animatable";
 import { styles } from "./styles";
 import { propsStack } from "../../routes/Models";
 import { useTheme } from "../../hooks/ThemeProvider";
-import { AntDesign, FontAwesome, MaterialIcons } from "@expo/vector-icons";
+import { useLanguage } from "../../hooks/LanguageProvider";
 
 export default function Home() {
   const { navigate } = useNavigation<propsStack>();
 
   const { theme } = useTheme();
+  const { language } = useLanguage();
 
   return (
     <View style={[styles.container, { backgroundColor: theme.COLORS.PRIMARY }]}>
@@ -40,7 +41,7 @@ export default function Home() {
         ]}
       >
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-          Cuide do seu coração, a sinfonia da vida agradece.
+          {language.TEXTO.CUIDE_CORACAO}
         </Text>
 
         <TouchableOpacity
@@ -53,7 +54,7 @@ export default function Home() {
           <Text
             style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}
           >
-            Acessar
+            {language.TEXTO.ACESSAR}
           </Text>
         </TouchableOpacity>
       </Animatable.View>

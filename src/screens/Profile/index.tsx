@@ -29,13 +29,14 @@ import UserProfileForm from "../../components/UserProfileForm";
 import PostItem from "../../components/PostItemProfile";
 import Post from "../../model/Post";
 import { useNavigation } from "@react-navigation/native";
-import { FontAwesome } from "@expo/vector-icons";
+import { AntDesign, Entypo, FontAwesome } from "@expo/vector-icons";
 import { propsStack } from "../../routes/Models";
 import { useAuth } from "../../hooks/AuthProvider";
 import { asyncRemoveUser } from "../../utils/store";
 import { Header } from "../../components/Header";
 
 import { useTheme } from "../../hooks/ThemeProvider";
+import { useLanguage } from "../../hooks/LanguageProvider";
 
 const UserProfileScreen = () => {
   const { setAuthData } = useAuth();
@@ -43,6 +44,8 @@ const UserProfileScreen = () => {
   const user: User | null = auth.currentUser;
 
   const { theme, toggleTheme } = useTheme();
+  const { toggleLanguage, language } = useLanguage();
+
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState<Post[]>([]);
   const [refreshing, setRefreshing] = useState(false);
@@ -309,11 +312,14 @@ const UserProfileScreen = () => {
     toggleTheme();
     setIsDayMode(!isDayMode);
   };
+  const handleToggleLanguage = () => {
+    toggleLanguage();
+  };
 
   return (
     <View style={[styles.container, { backgroundColor: theme.COLORS.PRIMARY }]}>
       <View>
-        <Header title="Perfíl" />
+        <Header title={language.TEXTO.PERFIL} />
       </View>
 
       <ProfileImage photo={photo} onPress={handleChoosePhoto} />
@@ -323,7 +329,7 @@ const UserProfileScreen = () => {
         onPress={handleEditClick}
       >
         <Text style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}>
-          {editMode ? "Cancelar" : "Editar Usuário"}
+          {editMode ? language.TEXTO.CANCELAR : language.TEXTO.EDITAR_USUARIO}
         </Text>
       </TouchableOpacity>
 
@@ -339,6 +345,15 @@ const UserProfileScreen = () => {
           size={25}
           color={theme.COLORS.ICON}
         />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[
+          styles.languageToggleButton,
+          { backgroundColor: theme.COLORS.BACKGROUND },
+        ]}
+        onPress={handleToggleLanguage}
+      >
+        <Entypo name="language" size={25} color={theme.COLORS.ICON} />
       </TouchableOpacity>
 
       <ScrollView
@@ -395,7 +410,7 @@ const UserProfileScreen = () => {
           ))}
           {userPosts.length === 0 && (
             <Text style={[styles.messageNop, { color: theme.COLORS.TEXT }]}>
-              Não há publicações.
+              {language.TEXTO.NENHUMA_PUBLICACAO_ENCONTRADA}
             </Text>
           )}
         </View>

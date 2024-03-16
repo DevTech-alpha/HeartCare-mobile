@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Text,
   TextInput,
@@ -9,8 +10,8 @@ import { styles } from "./styles";
 import LoginFormProps from "../../props/SignInFormProps";
 import { useNavigation } from "@react-navigation/native";
 import { propsStack } from "../../routes/Models";
-
 import { useTheme } from "../../hooks/ThemeProvider";
+import { useLanguage } from "../../hooks/LanguageProvider";
 
 const LoginForm: React.FC<LoginFormProps> = ({
   email,
@@ -24,7 +25,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
   handleForgotPassword,
 }) => {
   const { theme } = useTheme();
-
+  const { language } = useLanguage();
   const { navigate } = useNavigation<propsStack>();
 
   return (
@@ -36,20 +37,20 @@ const LoginForm: React.FC<LoginFormProps> = ({
       ]}
     >
       <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-        Email
+        {language.TEXTO.EMAIL}
       </Text>
       <TextInput
-        placeholder="Digite seu Email"
+        placeholder={language.TEXTO.DIGITE_SEU_EMAIL}
         placeholderTextColor={theme.COLORS.TEXT}
         style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
         onChangeText={(text) => setEmail(text)}
       />
 
       <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-        Senha
+        {language.TEXTO.SENHA}
       </Text>
       <TextInput
-        placeholder="Digite sua senha"
+        placeholder={language.TEXTO.DIGITE_SENHA}
         placeholderTextColor={theme.COLORS.TEXT}
         style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
         value={password}
@@ -66,7 +67,9 @@ const LoginForm: React.FC<LoginFormProps> = ({
             { color: theme.COLORS.TEXT },
           ]}
         >
-          {isPasswordVisible ? "Ocultar Senha" : "Mostrar Senha"}
+          {isPasswordVisible
+            ? language.TEXTO.OCULTAR_SENHA
+            : language.TEXTO.MOSTRAR_SENHA}
         </Text>
       </TouchableOpacity>
 
@@ -81,7 +84,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
           <Text
             style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}
           >
-            Acessar
+            {language.TEXTO.ACESSAR}
           </Text>
         )}
       </TouchableOpacity>
@@ -91,7 +94,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
         onPress={handleForgotPassword}
       >
         <Text style={[styles.registerText, { color: theme.COLORS.TEXT }]}>
-          Esqueceu a senha? Clique aqui.
+          {language.TEXTO.ESQUECEU_SENHA}
         </Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.buttonRegister}>
@@ -99,7 +102,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
           style={[styles.registerText, { color: theme.COLORS.TEXT }]}
           onPress={() => navigate("Cadastrar")}
         >
-          Não possui uma conta? Registre-se
+          {language.TEXTO.NAO_POSSUI_CONTA}
         </Text>
       </TouchableOpacity>
     </Animatable.View>

@@ -11,6 +11,13 @@ export const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
   },
+  languageToggleButton: {
+    position: "absolute",
+    top: 40,
+    right: 60,
+    padding: 10,
+    borderRadius: 5,
+  },
   containerHeader: {
     marginTop: "14%",
     marginBottom: "8%",
@@ -21,15 +28,12 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 15,
     fontWeight: "bold",
-    // color: theme.COLORS.PRIMARY,
   },
   message: {
     fontSize: 28,
     fontWeight: "bold",
-    // color: theme.COLORS.WHITE,
   },
   userPostsContainer: {
-    // backgroundColor: theme.COLORS.BACKGROUND_CARD,
     marginTop: 20,
     padding: 15,
     borderTopLeftRadius: 30,
@@ -65,7 +69,6 @@ export const styles = StyleSheet.create({
 
   containerForm: {
     flex: 1,
-    // backgroundColor: theme.COLORS.PRIMARY,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     paddingHorizontal: "5%",
@@ -82,7 +85,6 @@ export const styles = StyleSheet.create({
     fontSize: 16,
   },
   button: {
-    // backgroundColor: theme.COLORS.PRIMARY,
     width: "100%",
     paddingVertical: 12,
     marginTop: 10,
@@ -90,7 +92,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonText: {
-    // color: theme.COLORS.BUTTON_TEXT,
     fontSize: 18,
     fontWeight: "bold",
   },

@@ -15,6 +15,7 @@ import Medicao from "../../model/Medicao";
 import ModalEdicaoProps from "../../props/ModalEditProps";
 import { useTheme } from "../../hooks/ThemeProvider";
 import { AntDesign } from "@expo/vector-icons";
+import { useLanguage } from "../../hooks/LanguageProvider";
 
 const ModalEdicao: React.FC<ModalEdicaoProps> = ({
   visivel,
@@ -30,6 +31,7 @@ const ModalEdicao: React.FC<ModalEdicaoProps> = ({
   const [loading, setLoading] = useState(false);
 
   const { theme } = useTheme();
+  const { language } = useLanguage();
 
   const handleSalvarEdicao = async () => {
     const novaMedicao: Medicao = {
@@ -52,7 +54,7 @@ const ModalEdicao: React.FC<ModalEdicaoProps> = ({
       await updateDoc(doc(medicoesRef, medicao.id), medicaoParaAtualizar);
 
       setLoading(false);
-      Alert.alert("Alterado com sucesso!");
+      Alert.alert(language.TEXTO.ADICIONADO_COM_SUCESSO);
       salvarEdicao(novaMedicao);
     } catch (error) {
       setLoading(false);
@@ -87,21 +89,21 @@ const ModalEdicao: React.FC<ModalEdicaoProps> = ({
           </Text>
           <TextInput
             style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-            placeholder="Sistólica"
+            placeholder={language.TEXTO.SISTOLICA}
             value={sistolicaEditada}
             onChangeText={(texto) => setSistolicaEditada(texto)}
             keyboardType="numeric"
           />
           <TextInput
             style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-            placeholder="Diastólica"
+            placeholder={language.TEXTO.DIASTOLICA}
             value={diastolicaEditada}
             onChangeText={(texto) => setDiastolicaEditada(texto)}
             keyboardType="numeric"
           />
           <TextInput
             style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-            placeholder="Pulso"
+            placeholder={language.TEXTO.PULSO}
             value={pulsoEditado}
             onChangeText={(texto) => setPulsoEditado(texto)}
             keyboardType="numeric"
@@ -120,7 +122,7 @@ const ModalEdicao: React.FC<ModalEdicaoProps> = ({
               <Text
                 style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}
               >
-                Salvar
+                {language.TEXTO.SALVAR}
               </Text>
             )}
           </TouchableOpacity>

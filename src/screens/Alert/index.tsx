@@ -7,9 +7,12 @@ import { AntDesign } from "@expo/vector-icons";
 
 import FAQ from "../../components/FAQ";
 import Chat from "../../components/Chat";
+import { useLanguage } from "../../hooks/LanguageProvider";
 
 export default function Alert() {
   const { theme } = useTheme();
+  const { language } = useLanguage();
+
   const [mostrar, setmostrar] = useState(true);
 
   const toggleChatVisibility = () => {
@@ -20,7 +23,9 @@ export default function Alert() {
     <View
       style={[estilo.container, { backgroundColor: theme.COLORS.BACKGROUND }]}
     >
-      <Header title={mostrar ? "Pesquisa" : "FAQ"} />
+      <Header
+        title={mostrar ? language.TEXTO.PESQUISA : language.TEXTO.EXPLIQUE}
+      />
       {mostrar ? (
         <TouchableOpacity
           style={[

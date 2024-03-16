@@ -14,9 +14,11 @@ import { useTheme } from "../../hooks/ThemeProvider";
 import { estilo } from "./styles";
 
 import * as Animatable from "react-native-animatable";
+import { useLanguage } from "../../hooks/LanguageProvider";
 
 export default function Chat() {
   const { theme } = useTheme();
+  const { language } = useLanguage();
 
   const [sintomasUsuario, setSintomasUsuario] = useState("");
   const [respostaOpenAI, setRespostaOpenAI] = useState("");
@@ -28,10 +30,7 @@ export default function Chat() {
 
   const gerarResposta = async () => {
     if (sintomasUsuario === "") {
-      Alert.alert(
-        "Atenção",
-        "Explique o que está sentindo para receber uma resposta."
-      );
+      Alert.alert(language.TEXTO.ALERTA, language.TEXTO.EXPLIQUE_SENTIMENTO);
       return;
     }
 
@@ -69,10 +68,7 @@ export default function Chat() {
       const dados = await resposta.json();
       setRespostaOpenAI(dados.choices[0].message.content);
     } catch (erro) {
-      Alert.alert(
-        "Erro",
-        "Ocorreu um erro ao obter a resposta. Tente novamente mais tarde."
-      );
+      Alert.alert(language.TEXTO.ERRO, language.TEXTO.ERRO_REPOSTA);
     } finally {
       setCarregando(false);
     }
@@ -84,10 +80,10 @@ export default function Chat() {
         style={[estilo.form, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}
       >
         <Text style={[estilo.label, { color: theme.COLORS.POST_TITLE }]}>
-          Explique o que está sentindo
+          {language.TEXTO.EXPLIQUE_O_QUE_ESTA_SENTINDO}
         </Text>
         <TextInput
-          placeholder="Descreva seus sintomas"
+          placeholder={language.TEXTO.DESCREVA_SEUS_SINTOMAS}
           placeholderTextColor={theme.COLORS.POST_CONTENT}
           style={[estilo.input, { color: theme.COLORS.POST_CONTENT }]}
           value={sintomasUsuario}
@@ -101,7 +97,7 @@ export default function Chat() {
         onPress={gerarResposta}
       >
         <Text style={[estilo.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}>
-          Obter Resposta
+          {language.TEXTO.OBTER_REPOSTA}
         </Text>
         <MaterialIcons
           name="favorite"
@@ -122,7 +118,7 @@ export default function Chat() {
             ]}
           >
             <Text style={[estilo.title, { color: theme.COLORS.POST_TITLE }]}>
-              Carregando resposta...
+              {language.TEXTO.CARREGANDO_REPOSTA}
             </Text>
             <ActivityIndicator color={theme.COLORS.ICON} size="small" />
           </View>
@@ -136,7 +132,7 @@ export default function Chat() {
               ]}
             >
               <Text style={[estilo.title, { color: theme.COLORS.POST_TITLE }]}>
-                Resposta do DoctorHeart
+                {language.TEXTO.RESPOSTA_DO_DOCTOR}
               </Text>
               <Text
                 style={{ lineHeight: 24, color: theme.COLORS.POST_CONTENT }}

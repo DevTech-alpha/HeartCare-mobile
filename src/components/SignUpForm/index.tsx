@@ -9,6 +9,7 @@ import {
 import { useTheme } from "../../hooks/ThemeProvider";
 import { styles } from "./styles";
 import CadastroFormProps from "../../props/SignUpFormProps";
+import { useLanguage } from "../../hooks/LanguageProvider";
 
 const CadastroForm: React.FC<CadastroFormProps> = ({
   email,
@@ -23,6 +24,7 @@ const CadastroForm: React.FC<CadastroFormProps> = ({
   loading,
 }) => {
   const { theme } = useTheme();
+  const { language } = useLanguage();
 
   return (
     <View
@@ -32,10 +34,10 @@ const CadastroForm: React.FC<CadastroFormProps> = ({
       ]}
     >
       <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-        Email
+        {language.TEXTO.EMAIL}
       </Text>
       <TextInput
-        placeholder="Digite seu Email"
+        placeholder={language.TEXTO.DIGITE_SEU_EMAIL}
         placeholderTextColor={theme.COLORS.TEXT}
         style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
         value={email}
@@ -43,10 +45,10 @@ const CadastroForm: React.FC<CadastroFormProps> = ({
       />
 
       <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-        Senha
+        {language.TEXTO.SENHA}
       </Text>
       <TextInput
-        placeholder="Digite sua senha"
+        placeholder={language.TEXTO.DIGITE_SUA_SENHA}
         placeholderTextColor={theme.COLORS.TEXT}
         style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
         value={password}
@@ -55,10 +57,10 @@ const CadastroForm: React.FC<CadastroFormProps> = ({
       />
 
       <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-        Confirme a Senha
+        {language.TEXTO.CONFIRME_A_SENHA}
       </Text>
       <TextInput
-        placeholder="Digite sua confirmação de senha"
+        placeholder={language.TEXTO.DIGITE_SUA_CONFIRMACAO_DE_SENHA}
         placeholderTextColor={theme.COLORS.TEXT}
         style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
         value={confPassword}
@@ -76,7 +78,9 @@ const CadastroForm: React.FC<CadastroFormProps> = ({
             { color: theme.COLORS.TEXT },
           ]}
         >
-          {isPasswordVisible ? "Ocultar Senha" : "Mostrar Senha"}
+          {isPasswordVisible
+            ? language.TEXTO.OCULTAR_SENHA
+            : language.TEXTO.MOSTRAR_SENHA}
         </Text>
       </TouchableOpacity>
 
@@ -91,7 +95,7 @@ const CadastroForm: React.FC<CadastroFormProps> = ({
           <Text
             style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}
           >
-            Registrar
+            {language.TEXTO.REGISTRAR}
           </Text>
         )}
       </TouchableOpacity>

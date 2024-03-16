@@ -11,6 +11,7 @@ import { useTheme } from "../../hooks/ThemeProvider";
 import UserProfileFormProps from "../../props/UserProfileFormProps";
 import { styles } from "./styles";
 import { Checkbox } from "expo-checkbox";
+import { useLanguage } from "../../hooks/LanguageProvider";
 
 const bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 const medicalConditions = ["Diabetes", "Hipertensão", "Asma", "Alergias"];
@@ -34,6 +35,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
   loading,
 }) => {
   const { theme } = useTheme();
+  const { language } = useLanguage();
 
   const formatBirthdateInput = (inputValue: any) => {
     const formattedValue = inputValue
@@ -53,44 +55,44 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
     >
       <ScrollView>
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-          Usuário :
+          {language.TEXTO.USUARIO}:
         </Text>
         <TextInput
           style={[styles.input, { color: theme.COLORS.TEXT }]}
-          placeholder="Digite seu usuário"
+          placeholder={language.TEXTO.DIGITE_SEU_USUARIO}
           onChangeText={(text) => setUsername(text)}
           value={username}
         />
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-          Nome :
+          {language.TEXTO.NOME}:
         </Text>
         <TextInput
           style={[styles.input, { color: theme.COLORS.TEXT }]}
-          placeholder="Digite seu Nome"
+          placeholder={language.TEXTO.DIGITE_SEU_NOME}
           onChangeText={(text) => setName(text)}
           value={name}
         />
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-          Sobrenome :
+          {language.TEXTO.SOBRENOME}:
         </Text>
         <TextInput
           style={[styles.input, { color: theme.COLORS.TEXT }]}
-          placeholder="Digite seu Sobrenome"
+          placeholder={language.TEXTO.DIGITE_SEU_SOBRENOME}
           onChangeText={(text) => setLastName(text)}
           value={lastName}
         />
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-          Data de Nascimento :
+          {language.TEXTO.DATA_DE_NASCIMENTO}:
         </Text>
         <TextInput
           style={[styles.input, { color: theme.COLORS.TEXT }]}
-          placeholder="Digite sua data de nascimento"
+          placeholder={language.TEXTO.DIGITE_SUA_DATA_DE_NASCIMENTO}
           onChangeText={(text) => setDob(formatBirthdateInput(text))}
           value={dob}
           keyboardType="numeric"
         />
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-          Tipo Sanguíneo :
+          {language.TEXTO.TIPO_SANGUINEO}:
         </Text>
         <View style={styles.checkboxContainer}>
           {bloodTypes.map((type) => (
@@ -110,7 +112,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
           ))}
         </View>
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-          Possui alguma Doença ou Incapacidade :
+          {language.TEXTO.DOENCA_OU_INCAPACIDADE}:
         </Text>
         <View style={styles.checkboxContainerDoc}>
           {medicalConditions.map((condition) => (
@@ -143,11 +145,11 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
           ))}
         </View>
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-          Email :
+          {language.TEXTO.EMAIL}:
         </Text>
         <TextInput
           style={[styles.input, { color: email.trim() ? "gray" : "black" }]}
-          placeholder="Digite seu Email"
+          placeholder={language.TEXTO.DIGITE_SEU_EMAIL}
           value={email}
           pointerEvents={email.trim() ? "none" : "auto"}
           onChangeText={(text) => setEmail(text)}
@@ -164,7 +166,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
           <Text
             style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}
           >
-            Salvar perfil
+            {language.TEXTO.SALVAR_PERFIL}
           </Text>
         )}
       </TouchableOpacity>

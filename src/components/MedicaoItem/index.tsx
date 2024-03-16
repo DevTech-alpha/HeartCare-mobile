@@ -4,6 +4,7 @@ import { styles } from "./styles";
 import MedicaoItemProps from "../../props/MedicaoItemProps";
 import ModalEdicao from "../ModalEdit";
 import { useTheme } from "../../hooks/ThemeProvider";
+import { useLanguage } from "../../hooks/LanguageProvider";
 
 const MedicaoItem: React.FC<MedicaoItemProps> = ({
   medicao,
@@ -11,6 +12,7 @@ const MedicaoItem: React.FC<MedicaoItemProps> = ({
 }) => {
   const [modalVisivel, setModalVisivel] = useState(false);
   const { theme } = useTheme();
+  const { language } = useLanguage();
 
   const abrirModal = () => {
     setModalVisivel(true);
@@ -30,35 +32,35 @@ const MedicaoItem: React.FC<MedicaoItemProps> = ({
 
     if (!isNaN(sistolica) && !isNaN(diastolica)) {
       if (sistolica < 90 && diastolica < 60) {
-        return "Pressão Baixa";
+        return language.TEXTO.PRESSAO_BAIXA;
       } else if (
         sistolica >= 90 &&
         sistolica <= 120 &&
         diastolica >= 60 &&
         diastolica <= 80
       ) {
-        return "Pressão Normal";
+        return language.TEXTO.PRESSAO_NORMAL;
       } else if (
         sistolica > 120 &&
         diastolica > 80 &&
         sistolica <= 140 &&
         diastolica <= 90
       ) {
-        return "Pré-Hipertensão";
+        return language.TEXTO.PRE_HIPERTENSAO;
       } else if (
         sistolica > 140 &&
         diastolica > 90 &&
         sistolica <= 160 &&
         diastolica <= 100
       ) {
-        return "Hipertensão Estágio 1";
+        return language.TEXTO.HIPERTENSAO_ESTAGIO_1;
       } else if (sistolica > 160 && diastolica > 100) {
-        return "Hipertensão Estágio 2";
+        return language.TEXTO.HIPERTENSAO_ESTAGIO_2;
       } else {
-        return "Pressão Não Classificada";
+        return language.TEXTO.PRESSAO_NAO_CLASSIFICADA;
       }
     } else {
-      return "Valores Inválidos";
+      return language.TEXTO.VALORES_INVALIDOS;
     }
   };
 
@@ -70,37 +72,37 @@ const MedicaoItem: React.FC<MedicaoItemProps> = ({
       ]}
     >
       <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>
-        Sistólica:{" "}
+        {language.TEXTO.SISTOLICA}:{" "}
         <Text style={{ fontWeight: "bold", fontSize: 13 }}>
           {medicao.sistolica}
         </Text>
       </Text>
       <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>
-        Diastólica:{" "}
+        {language.TEXTO.DIASTOLICA}:{" "}
         <Text style={{ fontWeight: "bold", fontSize: 13 }}>
           {medicao.diastolica}
         </Text>
       </Text>
       <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>
-        Pulso:{" "}
+        {language.TEXTO.PULSO}:{" "}
         <Text style={{ fontWeight: "bold", fontSize: 13 }}>
           {medicao.pulso}
         </Text>
       </Text>
       <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>
-        Horário:{" "}
+        {language.TEXTO.HORARIO}:{" "}
         <Text style={{ fontWeight: "bold", fontSize: 13 }}>
           {new Date(medicao.horario).toLocaleTimeString()}
         </Text>
       </Text>
       <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>
-        Data:{" "}
+        {language.TEXTO.DATA}:{" "}
         <Text style={{ fontWeight: "bold", fontSize: 13 }}>
           {new Date(medicao.data).toLocaleDateString()}
         </Text>
       </Text>
       <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>
-        Avaliação:{" "}
+        {language.TEXTO.AVALIACAO}:{" "}
         <Text style={{ fontWeight: "bold", fontSize: 13 }}>
           {avaliarPressao()}
         </Text>
@@ -113,7 +115,7 @@ const MedicaoItem: React.FC<MedicaoItemProps> = ({
           <Text
             style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}
           >
-            Editar
+            {language.TEXTO.EDITAR}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -123,7 +125,7 @@ const MedicaoItem: React.FC<MedicaoItemProps> = ({
           <Text
             style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}
           >
-            Excluir
+            {language.TEXTO.EXCLUIR}
           </Text>
         </TouchableOpacity>
       </View>

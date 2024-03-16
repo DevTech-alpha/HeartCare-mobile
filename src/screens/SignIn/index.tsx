@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { View, Text } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import LoginForm from "../../components/SignInForm";
 import ResetPasswordForm from "../../components/ResetPassword";
 import { styles } from "./styles";
-
 import * as Animatable from "react-native-animatable";
 import { enviarRecuperacaoSenha } from "../../api/PasswordRecovery";
-import { propsStack } from "../../routes/Models";
 import { useAuth } from "../../hooks/AuthProvider";
 import { useTheme } from "../../hooks/ThemeProvider";
+import { useLanguage } from "../../hooks/LanguageProvider";
 
 const Login = () => {
   const { signIn } = useAuth();
@@ -20,9 +18,8 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [showResetPassword, setShowResetPassword] = useState(false);
 
-  const { navigate } = useNavigation<propsStack>();
-
   const { theme } = useTheme();
+  const { language } = useLanguage();
 
   const handleLogin = async () => {
     try {
@@ -66,7 +63,7 @@ const Login = () => {
         delay={500}
         style={styles.containerHeader}
       >
-        <Text style={styles.message}>Bem-vindo(a)</Text>
+        <Text style={styles.message}>{language.TEXTO.BEM_VINDO}</Text>
       </Animatable.View>
 
       {showResetPassword ? (

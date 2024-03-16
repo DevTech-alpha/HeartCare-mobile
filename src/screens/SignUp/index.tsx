@@ -8,9 +8,12 @@ import { criar } from "../../api/CreateAcount";
 import { propsStack } from "../../routes/Models";
 import { useTheme } from "../../hooks/ThemeProvider";
 import CadastroForm from "../../components/SignUpForm";
+import { useLanguage } from "../../hooks/LanguageProvider";
 
 const Cadastro: React.FC = () => {
   const { theme } = useTheme();
+  const { language } = useLanguage();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
@@ -52,7 +55,7 @@ const Cadastro: React.FC = () => {
         delay={500}
         style={styles.containerHeader}
       >
-        <Text style={styles.message}>Faça seu cadastro</Text>
+        <Text style={styles.message}>{language.TEXTO.CADASTRO}</Text>
       </Animatable.View>
 
       <CadastroForm

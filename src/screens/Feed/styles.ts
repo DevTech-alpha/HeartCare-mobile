@@ -21,14 +21,6 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     elevation: 10,
   },
-  themeToggleButton: {
-    position: "absolute",
-    top: Platform.OS === "android" ? 0 : 40,
-    right: 20,
-    padding: 5,
-    borderRadius: 20,
-  },
-
   addButtonText: {
     fontSize: 30,
     color: "white",

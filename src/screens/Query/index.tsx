@@ -28,6 +28,7 @@ import * as Animatable from "react-native-animatable";
 import { AntDesign } from "@expo/vector-icons";
 import AtividadesForm from "../../components/AtividadesForm";
 import AtividadeItem from "../../components/AtividadesItem";
+import { useLanguage } from "../../hooks/LanguageProvider";
 
 const PressaoArterial = () => {
   const [medicoes, setMedicoes] = useState<Medicao[]>([]);
@@ -40,6 +41,7 @@ const PressaoArterial = () => {
   const user: User | null = auth.currentUser;
 
   const { theme } = useTheme();
+  const { language } = useLanguage();
 
   const carregarMedicoes = useCallback(async () => {
     if (user) {
@@ -94,7 +96,7 @@ const PressaoArterial = () => {
             text: "Apagar",
             onPress: async () => {
               await deleteDoc(postRef);
-              Alert.alert("Excluido com sucesso!");
+              Alert.alert(language.TEXTO.EXCLUIDO);
               carregarMedicoes();
             },
           },
@@ -117,7 +119,13 @@ const PressaoArterial = () => {
     <View
       style={[styles.container, { backgroundColor: theme.COLORS.BACKGROUND }]}
     >
-      <Header title={historicoVisivel ? "Histórico" : "Atividades"} />
+      <Header
+        title={
+          historicoVisivel
+            ? language.TEXTO.HISTORICO
+            : language.TEXTO.ATIVIDADES
+        }
+      />
       {historicoVisivel ? (
         <TouchableOpacity
           style={[
@@ -169,7 +177,7 @@ const PressaoArterial = () => {
               data={medicoes}
               ListEmptyComponent={
                 <Text style={[styles.textoVazio, { color: theme.COLORS.TEXT }]}>
-                  Nenhum registro encontrado.
+                  {language.TEXTO.NENHUMA_MEDICAO}
                 </Text>
               }
               renderItem={({ item }) => (

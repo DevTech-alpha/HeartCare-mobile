@@ -14,9 +14,11 @@ import { styles } from "./styles";
 import { Checkbox } from "expo-checkbox";
 import AtividadesFormProps from "../../props/AtividadesFormProps";
 import { AntDesign } from "@expo/vector-icons";
+import { useLanguage } from "../../hooks/LanguageProvider";
 
 const AtividadesForm: React.FC<AtividadesFormProps> = ({ user, MudarCard }) => {
   const { theme } = useTheme();
+  const { language } = useLanguage();
   const [loading, setLoading] = useState(false);
   const [tempoInput, setTempoInput] = useState("");
   const [atividadeSelecionada, setAtividadeSelecionada] = useState("");
@@ -37,16 +39,14 @@ const AtividadesForm: React.FC<AtividadesFormProps> = ({ user, MudarCard }) => {
   const registrarAtividade = async () => {
     try {
       if (!atividadeSelecionada || !tempoInput) {
-        Alert.alert("Por favor, selecione uma atividade e insira o tempo.");
+        Alert.alert(language.TEXTO.MENSAGEM_TEMPO);
         return;
       }
 
       const tempo = parseFloat(tempoInput);
 
       if (tempo <= 0 || tempo > 120) {
-        Alert.alert(
-          "O tempo deve ser maior que 0 e menor ou igual a 120 minutos."
-        );
+        Alert.alert(language.TEXTO.MENSAGEM_TEMPO_MAIOR);
         return;
       }
 
@@ -57,7 +57,7 @@ const AtividadesForm: React.FC<AtividadesFormProps> = ({ user, MudarCard }) => {
         Usuario: user.uid,
       });
       setLoading(false);
-      Alert.alert("Adicionado com sucesso!");
+      Alert.alert(language.TEXTO.ADICIONADO_COM_SUCESSO);
       limparFormulario();
     } catch (error) {
       console.error("Erro ao registrar atividade:", error);
@@ -96,14 +96,14 @@ const AtividadesForm: React.FC<AtividadesFormProps> = ({ user, MudarCard }) => {
       ))}
 
       <Text style={[styles.label, { color: theme.COLORS.POST_TITLE }]}>
-        Tempo do Exercício
+        {language.TEXTO.TEMPO_DO_EXERCICIO}
       </Text>
       <TextInput
         style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
         placeholderTextColor={theme.COLORS.POST_CONTENT}
         onChangeText={setTempoInput}
         value={tempoInput}
-        placeholder="Tempo (minutos)"
+        placeholder={language.TEXTO.TEMPO_EM_MINUTOS}
         keyboardType="numeric"
       />
       <TouchableOpacity
@@ -118,7 +118,7 @@ const AtividadesForm: React.FC<AtividadesFormProps> = ({ user, MudarCard }) => {
           <ActivityIndicator size="small" color={theme.COLORS.BUTTON_TEXT} />
         ) : (
           <Text style={[{ color: theme.COLORS.BUTTON_TEXT }]}>
-            Registrar Atividade
+            {language.TEXTO.REGISTRAR}
           </Text>
         )}
       </TouchableOpacity>

@@ -7,9 +7,13 @@ import { styles } from "./styles";
 import Atividade from "../../model/Atividade";
 import * as Animatable from "react-native-animatable";
 import AtividadesItemProps from "../../props/AtividadesItemProps";
+import { useLanguage } from "../../hooks/LanguageProvider";
 
 const AtividadeItem: React.FC<AtividadesItemProps> = ({ user }) => {
   const { theme } = useTheme();
+
+  const { language } = useLanguage();
+
   const [atividades, setAtividades] = useState<Atividade[]>([]);
 
   useEffect(() => {
@@ -38,13 +42,18 @@ const AtividadeItem: React.FC<AtividadesItemProps> = ({ user }) => {
       style={styles.containerCardsAtividade}
     >
       {atividades.slice(-3).map((item, index) => (
-        <CartaoAtividade data={item} key={index} theme={theme} />
+        <CartaoAtividade
+          data={item}
+          key={index}
+          theme={theme}
+          language={language}
+        />
       ))}
     </Animatable.View>
   );
 };
 
-const CartaoAtividade = ({ data, theme }) => {
+const CartaoAtividade = ({ data, theme, language }) => {
   const calcularPorcentagem = (tempo: number) => (tempo / 120) * 100;
 
   const progresso = calcularPorcentagem(data.Tempo);
@@ -67,7 +76,8 @@ const CartaoAtividade = ({ data, theme }) => {
         <Text
           style={[styles.textoDetalhes, { color: theme.COLORS.POST_TITLE }]}
         >
-          Tempo {data.Tempo} min
+          {language.TEXTO.TEMPO}
+          {data.Tempo} min
         </Text>
       </View>
       <Text style={[styles.nomeAtividade, { color: theme.COLORS.POST_TITLE }]}>
