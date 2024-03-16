@@ -1,11 +1,15 @@
 import { AuthError } from "firebase/auth";
-import { firebaseErrors } from "./firebase-error";
+import { useLanguage } from "../../hooks/LanguageProvider";
+import { firebaseErrorsIngles, firebaseErrorsPortugues } from "./firebase-error";
 
 export const localizeErrorMap = (e: Error) => {
-  if (
-    typeof (e as AuthError).code === "string" &&
-    (e as AuthError).code in firebaseErrors
-  ) {
-    (e as AuthError).message = (firebaseErrors as any)[(e as AuthError).code];
+  const { language } = useLanguage();
+  
+  if (typeof (e as AuthError).code === "string") {
+    const errorMap = language.TEXTO.PERGUNTAS === "INGLES" ? firebaseErrorsIngles : firebaseErrorsPortugues;
+    
+    if (errorMap.hasOwnProperty((e as AuthError).code)) {
+      (e as AuthError).message = errorMap[(e as AuthError).code];
+    }
   }
 };

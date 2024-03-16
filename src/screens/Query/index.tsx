@@ -85,15 +85,15 @@ const PressaoArterial = () => {
       const postRef = doc(db, "medicoes", postId);
 
       Alert.alert(
-        "Confirmação",
-        "Tem certeza de que deseja apagar esta publicação?",
+        language.TEXTO.CONFIRMA,
+        language.TEXTO.ALERT_MEDI,
         [
           {
-            text: "Cancelar",
+            text: language.TEXTO.CANCELAR_SESSAO,
             style: "cancel",
           },
           {
-            text: "Apagar",
+            text: language.TEXTO.APAGAR_MEDI,
             onPress: async () => {
               await deleteDoc(postRef);
               Alert.alert(language.TEXTO.EXCLUIDO);
@@ -103,9 +103,7 @@ const PressaoArterial = () => {
         ],
         { cancelable: true }
       );
-    } catch (error) {
-      console.error("Error deleting post:", error);
-    }
+    } catch (error) {}
   };
 
   const toggleChatVisibility = () => {

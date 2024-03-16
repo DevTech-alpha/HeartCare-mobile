@@ -38,7 +38,7 @@ export default function Chat() {
     setCarregando(true);
     Keyboard.dismiss();
 
-    const prompt = `Paciente relata os seguintes sintomas: "${sintomasUsuario}". Médico, forneça uma resposta breve, objetiva e uma possível solução para os sintomas apresentados.`;
+    const prompt = `${language.TEXTO.PROMPT}${sintomasUsuario}${language.TEXTO.PROMPT2}`;
 
     try {
       const resposta = await fetch(API_OPENAI, {

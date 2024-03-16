@@ -93,7 +93,6 @@ const UserProfileScreen = () => {
         setLoading(false);
       } catch (error) {
         setLoading(false);
-        console.error("Error fetching user data:", error);
       }
     };
 
@@ -124,7 +123,6 @@ const UserProfileScreen = () => {
     } catch (error) {
       setLoading(false);
       setRefreshing(false);
-      console.error("Error fetching user posts:", error);
     }
   };
 
@@ -134,7 +132,7 @@ const UserProfileScreen = () => {
         await ImagePicker.requestMediaLibraryPermissionsAsync();
 
       if (permissionResult.granted === false) {
-        Alert.alert("Permissão negada para acessar a biblioteca de mídia.");
+        Alert.alert(language.TEXTO.PERMISSAO_NEGADA);
         return;
       }
 
@@ -157,14 +155,10 @@ const UserProfileScreen = () => {
         if (supportedFormats.includes(fileExtension)) {
           setPhoto(result.assets[0].uri);
         } else {
-          Alert.alert(
-            "Formato de imagem não suportado. Por favor, escolha outra imagem."
-          );
+          Alert.alert(language.TEXTO.FORMATO_IMAGEM);
         }
       }
-    } catch (error) {
-      console.error("Erro ao escolher a foto:", error);
-    }
+    } catch (error) {}
   };
 
   const handleSaveProfile = async () => {
@@ -172,7 +166,10 @@ const UserProfileScreen = () => {
       setLoading(true);
 
       if (!user) {
-        Alert.alert("Erro", "Usuário não autenticado.");
+        Alert.alert(
+          language.TEXTO.ERRO,
+          language.TEXTO.USUARIO_NAO_AUTENTICADO
+        );
         setLoading(false);
         return;
       }
@@ -188,10 +185,7 @@ const UserProfileScreen = () => {
         !bloodType ||
         !hasMedicalCondition
       ) {
-        Alert.alert(
-          "Erro",
-          "Por favor, preencha todos os campos obrigatórios."
-        );
+        Alert.alert(language.TEXTO.ERRO, language.TEXTO.PRENCHA_CAMPOS);
         setLoading(false);
         return;
       }
@@ -237,12 +231,11 @@ const UserProfileScreen = () => {
 
       setLoading(false);
       setEditMode(false);
-      Alert.alert("Atualizado com sucesso");
+      Alert.alert(language.TEXTO.ALTERADO_SUCESSO);
     } catch (error) {
       setLoading(false);
-      console.error("Erro ao salvar o perfil:", error);
       Alert.alert(
-        "Erro",
+        language.TEXTO.ERRO,
         "Houve um erro ao salvar o perfil. Tente novamente mais tarde."
       );
     }
@@ -255,20 +248,20 @@ const UserProfileScreen = () => {
 
       if (postDoc.exists() && postDoc.data()?.idpub === user?.uid) {
         Alert.alert(
-          "Confirmação",
-          "Tem certeza de que deseja apagar esta publicação?",
+          language.TEXTO.CONFIRMA,
+          language.TEXTO.APAGAR_PUBLICACAO,
           [
             {
-              text: "Cancelar",
+              text: language.TEXTO.CANCELAR_SESSAO,
               style: "cancel",
             },
             {
-              text: "Apagar",
+              text: language.TEXTO.APAGAR_MEDI,
               onPress: async () => {
                 await deleteDoc(postRef);
                 const updatedPosts = posts.filter((post) => post.id !== postId);
                 setPosts(updatedPosts);
-                Alert.alert("Apagado com sucesso!");
+                Alert.alert(language.TEXTO.APAGADO_SUCESSO);
                 fetchUserPosts();
               },
             },
@@ -276,11 +269,8 @@ const UserProfileScreen = () => {
           { cancelable: true }
         );
       } else {
-        console.warn("User does not have permission to delete this post");
       }
-    } catch (error) {
-      console.error("Error deleting post:", error);
-    }
+    } catch (error) {}
   };
 
   const handleEditClick = () => {
@@ -289,15 +279,15 @@ const UserProfileScreen = () => {
 
   const handleSignOut = async () => {
     Alert.alert(
-      "Confirmação",
-      "Deseja realmente sair?",
+      language.TEXTO.CONFIRMA,
+      language.TEXTO.SAIR_SESSAO,
       [
         {
-          text: "Cancelar",
+          text: language.TEXTO.CANCELAR_SESSAO,
           style: "cancel",
         },
         {
-          text: "Sair",
+          text: language.TEXTO.SAIR,
           onPress: async () => {
             setAuthData(undefined);
             await asyncRemoveUser();

@@ -26,7 +26,6 @@ const Login = () => {
       setLoading(true);
       await signIn({ email, password });
     } catch (error) {
-      console.error("Erro durante o login:", error);
     } finally {
       setLoading(false);
     }
@@ -37,7 +36,7 @@ const Login = () => {
       setLoading(true);
       await enviarRecuperacaoSenha(resetEmail);
       setLoading(false);
-      alert("Um e-mail de recuperação de senha foi enviado.");
+      alert(language.TEXTO.EMAIL_REC);
     } catch (error) {
       setLoading(false);
       alert(error);

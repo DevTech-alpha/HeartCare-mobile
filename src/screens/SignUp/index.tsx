@@ -31,7 +31,7 @@ const Cadastro: React.FC = () => {
 
     if (password !== confPassword) {
       setLoading(false);
-      Alert.alert("As senhas não correspondem.");
+      Alert.alert(language.TEXTO.SENHA_NAO_CORRESPONDE);
       return;
     }
 
@@ -39,7 +39,7 @@ const Cadastro: React.FC = () => {
       .then((userCredentials) => {
         setLoading(false);
         const user = userCredentials.user;
-        Alert.alert("Registro realizado com sucesso!");
+        Alert.alert(language.TEXTO.REGISTRO_SUCESSO);
         navigate("Login");
       })
       .catch((error) => {

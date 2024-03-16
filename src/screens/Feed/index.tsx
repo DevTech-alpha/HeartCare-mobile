@@ -70,7 +70,6 @@ const Feed = () => {
 
       setPosts(postsWithUserData);
     } catch (error) {
-      console.error("Error fetching posts:", error);
     } finally {
       setRefreshing(false);
     }
@@ -105,11 +104,9 @@ const Feed = () => {
 
         const updatedPosts = [...posts, { ...postWithUserId, id: docRef.id }];
         setPosts(updatedPosts as any);
-        Alert.alert("Criado com sucesso seu Post!");
+        Alert.alert(language.TEXTO.CRIADO_COM_SUCESSO);
       }
     } catch (error) {
-      console.error("Error adding post:", error);
-      alert("Error adding post. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -122,9 +119,7 @@ const Feed = () => {
       const fileUri = FileSystem.cacheDirectory + "post.txt";
       await FileSystem.writeAsStringAsync(fileUri, shareMessage);
       await Sharing.shareAsync(fileUri);
-    } catch (error) {
-      console.error("Erro ao compartilhar a publicação:", error);
-    }
+    } catch (error) {}
   };
 
   const onLikePress = async (postId: string) => {
@@ -133,7 +128,6 @@ const Feed = () => {
       const postDoc = await getDoc(postRef);
 
       if (!postDoc.exists()) {
-        console.error("Post not found");
         return;
       }
 
@@ -159,9 +153,7 @@ const Feed = () => {
       });
 
       setPosts(updatedPosts);
-    } catch (error) {
-      console.error("Error updating like:", error);
-    }
+    } catch (error) {}
   };
 
   const abrirModal = () => {

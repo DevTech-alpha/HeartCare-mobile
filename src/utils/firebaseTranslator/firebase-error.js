@@ -1,4 +1,4 @@
-export const firebaseErrors = {
+export const firebaseErrorsPortugues = {
   "auth/app-deleted": "O banco de dados não foi encontrado.",
   "auth/expired-action-code": "O código de ação ou link expirou.",
   "auth/invalid-action-code":
@@ -135,4 +135,140 @@ export const firebaseErrors = {
     "A credencial utilizada não tem permissão para acessar o recurso solicitado.",
   "auth/internal-error":
     "O servidor de autenticação encontrou um erro inesperado ao tentar processar a solicitação.",
+};
+export const firebaseErrorsIngles = {
+  "auth/app-deleted": "The database was not found.",
+  "auth/expired-action-code": "The action code or link has expired.",
+  "auth/invalid-action-code":
+    "The action code is invalid. This can happen if the code is malformed or has already been used.",
+  "auth/user-disabled":
+    "The user corresponding to the provided credential has been disabled.",
+  "auth/user-not-found": "No user corresponding to the provided credential.",
+  "auth/weak-password": "The password is too weak.",
+  "auth/email-already-in-use":
+    "An account already exists with the provided email address.",
+  "auth/invalid-email": "The provided email address is not valid.",
+  "auth/missing-email": "Email address was not provided.",
+  "auth/operation-not-allowed":
+    "The account type associated with this credential is not yet activated.",
+  "auth/account-exists-with-different-credential":
+    "Email already associated with another account.",
+  "auth/auth-domain-config-required":
+    "Authentication configuration was not provided.",
+  "auth/credential-already-in-use":
+    "An account already exists associated with this credential.",
+  "auth/operation-not-supported-in-this-environment":
+    "This operation is not supported in the current environment. Check if it should be HTTP or HTTPS.",
+  "auth/timeout":
+    "Response time exceeded. The domain may not be authorized to perform operations.",
+  "auth/missing-android-pkg-name":
+    "An Android app package name must be provided for installation.",
+  "auth/missing-continue-uri":
+    "The next URL must be provided in the request.",
+  "auth/missing-ios-bundle-id":
+    "An iOS app package name must be provided for installation.",
+  "auth/invalid-continue-uri":
+    "The next URL provided in the request is invalid.",
+  "auth/unauthorized-continue-uri":
+    "The domain of the next URL is not authorized.",
+  "auth/invalid-dynamic-link-domain":
+    "The provided dynamic link domain is not authorized or configured in the current project.",
+  "auth/argument-error": "Check app link configuration.",
+  "auth/invalid-persistence-type":
+    "The specified data persistence type is invalid.",
+  "auth/unsupported-persistence-type":
+    "The current environment does not support the specified data persistence type.",
+  "auth/invalid-credential": "The credential has expired or is malformed.",
+  "auth/wrong-password": "Incorrect password.",
+  "auth/invalid-verification-code":
+    "The credential verification code is not valid.",
+  "auth/invalid-verification-id": "The credential verification ID is not valid.",
+  "auth/custom-token-mismatch": "The token is different from the requested pattern.",
+  "auth/invalid-custom-token": "The provided token is not valid.",
+  "auth/captcha-check-failed":
+    "The reCAPTCHA response token is invalid, expired, or the domain is not allowed.",
+  "auth/invalid-phone-number":
+    "The phone number is in an invalid format (E.164 standard).",
+  "auth/missing-phone-number": "Phone number is required.",
+  "auth/quota-exceeded": "SMS quota exceeded.",
+  "auth/cancelled-popup-request":
+    "Only one pop-up window request is allowed at a time.",
+  "auth/popup-blocked": "The pop-up window was blocked by the browser.",
+  "auth/popup-closed-by-user":
+    "The pop-up window was closed by the user without completing provider login.",
+  "auth/unauthorized-domain":
+    "The application domain is not authorized to perform operations.",
+  "auth/invalid-user-token": "The current user has not been identified.",
+  "auth/user-token-expired": "The current user token has expired.",
+  "auth/null-user": "The current user is null.",
+  "auth/app-not-authorized":
+    "Application not authorized to authenticate with the provided key.",
+  "auth/invalid-api-key": "The provided API key is invalid.",
+  "auth/network-request-failed": "Network connection failed.",
+  "auth/requires-recent-login":
+    "The user's last access time does not meet the security limit.",
+  "auth/too-many-requests":
+    "Requests have been blocked due to unusual activity. Try again after some time.",
+  "auth/web-storage-unsupported":
+    "The browser does not support storage or the user has disabled this feature.",
+  "auth/invalid-claims":
+    "Custom claim attributes are invalid.",
+  "auth/claims-too-large":
+    "Request size exceeds maximum allowed size of 1 Megabyte.",
+  "auth/id-token-expired": "The provided token has expired.",
+  "auth/id-token-revoked": "The provided token has lost validity.",
+  "auth/invalid-argument": "An invalid argument was provided to a method.",
+  "auth/invalid-creation-time":
+    "The creation time must be a valid UTC date.",
+  "auth/invalid-disabled-field":
+    "The property for disabled user is invalid.",
+  "auth/invalid-display-name": "User display name is invalid.",
+  "auth/invalid-email-verified": "Email is invalid.",
+  "auth/invalid-hash-algorithm":
+    "The hash algorithm is not compatible encryption.",
+  "auth/invalid-hash-block-size": "The hash block size is not valid.",
+  "auth/invalid-hash-derived-key-length":
+    "The derived key size from hash is not valid.",
+  "auth/invalid-hash-key":
+    "The hash key must have a valid byte buffer.",
+  "auth/invalid-hash-memory-cost": "The hash memory cost is not valid.",
+  "auth/invalid-hash-parallelization":
+    "The hash parallelization load is not valid.",
+  "auth/invalid-hash-rounds": "The hash rounds are not valid.",
+  "auth/invalid-hash-salt-separator":
+    "The HASH salt separator field needs to be a valid byte buffer.",
+  "auth/invalid-id-token": "The provided token code is not valid.",
+  "auth/invalid-last-sign-in-time":
+    "The last sign-in time must be a valid UTC date.",
+  "auth/invalid-page-token":
+    "The next URL provided in the request is invalid.",
+  "auth/invalid-password":
+    "The password is invalid, must be at least 6 characters long.",
+  "auth/invalid-password-hash": "The password hash is not valid.",
+  "auth/invalid-password-salt": "The password salt is not valid.",
+  "auth/invalid-photo-url": "The user photo URL is invalid.",
+  "auth/invalid-provider-id": "The provider identifier is not supported.",
+  "auth/invalid-session-cookie-duration":
+    "The session cookie duration must be a valid number in milliseconds, between 5 minutes and 2 weeks.",
+  "auth/invalid-uid":
+    "The provided identifier must be at most 128 characters long.",
+  "auth/invalid-user-import":
+    "The user record to be imported is not valid.",
+  "auth/invalid-provider-data": "The provider data is not valid.",
+  "auth/maximum-user-count-exceeded":
+    "The maximum allowed number of users to be imported has been exceeded.",
+  "auth/missing-hash-algorithm":
+    "The HASH generation algorithm and its parameters must be provided to import users.",
+  "auth/missing-uid": "An identifier is required for the current operation.",
+  "auth/reserved-claims":
+    "One or more provided custom properties used reserved words.",
+  "auth/session-cookie-revoked": "The session cookie has lost validity.",
+  "auth/uid-already-exists": "The provided identifier is already in use.",
+  "auth/email-already-exists": "The provided email is already in use.",
+  "auth/phone-number-already-exists": "The provided phone number is already in use.",
+  "auth/project-not-found": "No project found.",
+  "auth/insufficient-permission":
+    "The credential used does not have permission to access the requested resource.",
+  "auth/internal-error":
+    "The authentication server encountered an unexpected error while trying to process the request.",
 };

@@ -1,103 +1,10 @@
-export interface Language {
-  TEXTO: {
-    PESQUISA: string;
-    EXPLIQUE: string;
-    ATIVIDADES: string;
-    TEMPO_DO_EXERCICIO: string;
-    TEMPO_EM_MINUTOS: string;
-    REGISTRAR: string;
-    MENSAGEM_TEMPO: string;
-    MENSAGEM_TEMPO_MAIOR: string;
-    ADICIONADO_COM_SUCESSO: string;
-    TEMPO: string;
-    EXPLIQUE_SENTIMENTO: string;
-    ALERTA: string;
-    ERRO: string;
-    ERRO_REPOSTA: string;
-    EXPLIQUE_O_QUE_ESTA_SENTINDO: string;
-    DESCREVA_SEUS_SINTOMAS: string;
-    OBTER_REPOSTA: string;
-    CARREGANDO_REPOSTA: string;
-    RESPOSTA_DO_DOCTOR: string;
-    PERGUNTAS: string;
-    ERRO_MEDICAO: string;
-    VALORES_INVALIDOS: string;
-    SISTOLICA: string;
-    DIASTOLICA: string;
-    PULSO: string;
-    DIGITE_SISTOLICA: string;
-    DIGITE_DIASTOLICA: string;
-    DIGITE_PULSO: string;
-    PRESSAO_BAIXA: string;
-    PRESSAO_NORMAL: string;
-    PRE_HIPERTENSAO: string;
-    HIPERTENSAO_ESTAGIO_1: string;
-    HIPERTENSAO_ESTAGIO_2: string;
-    PRESSAO_NAO_CLASSIFICADA: string;
-    EDITAR: string;
-    EXCLUIR: string;
-    HORARIO: string;
-    DATA: string;
-    AVALIACAO: string;
-    SALVAR: string;
-    NOVA_PUBLICACAO: string;
-    TITULO: string;
-    CONTEUDO: string;
-    POSTAR: string;
-    PRENCHA_CAMPOS: string;
-    RECUPERAR_SENHA: string;
-    DIGITE_EMAIL: string;
-    RECUPERAR_SENHA_BOTAO: string;
-    VOLTAR_LOGIN: string;
-    SENHA: string; // Adição
-    DIGITE_SUA_SENHA: string; // Adição
-    CONFIRME_A_SENHA: string; // Adição
-    DIGITE_NOVAMENTE_A_SENHA: string; // Adição
-    JA_TEM_UMA_CONTA: string; // Adição
-    REGISTRE_SE: string; // Adição
-    CONFIRME_SUA_SENHA: string; // Adição
-    PERFIL_DO_USUARIO: string; // Adição
-    MEU_PERFIL: string; // Adição
-    SAIR: string; // Adição
-    USUARIO: string;
-    NOME: string;
-    SOBRENOME: string;
-    DATA_DE_NASCIMENTO: string;
-    TIPO_SANGUINEO: string;
-    DOENCA_OU_INCAPACIDADE: string;
-    EMAIL: string;
-    DIGITE_SEU_USUARIO: string;
-    DIGITE_SEU_NOME: string;
-    DIGITE_SEU_SOBRENOME: string;
-    DIGITE_SUA_DATA_DE_NASCIMENTO: string;
-    DIGITE_SEU_EMAIL: string;
-    SALVAR_PERFIL: string;
-    DIGITE_SENHA: string;
-    OCULTAR_SENHA: string;
-    MOSTRAR_SENHA: string;
-    ACESSAR: string;
-    ESQUECEU_SENHA: string;
-    NAO_POSSUI_CONTA: string;
-    DIGITE_SUA_CONFIRMACAO_DE_SENHA: string;
-    CUIDE_CORACAO: string;
-    PERFIL: string;
-    EXCLUIDO: string;
-    HISTORICO: string;
-    NENHUMA_PUBLICACAO_ENCONTRADA: string;
-    NENHUMA_MEDICAO: string;
-    CANCELAR: string;
-    EDITAR_USUARIO: string;
-    COMPLETE_CADASTRO: string;
-    BEM_VINDO: string;
-    CADASTRO: string;
-  };
-}
+import { Language } from "./Models/language";
 
 export const languages: { PORTUGUES: Language; INGLES: Language } = {
   PORTUGUES: {
     TEXTO: {
       PESQUISA: "Pesquisa",
-      EXPLIQUE: "Explique",
+      EXPLIQUE: "FAQ",
       ATIVIDADES: "Atividades",
       TEMPO_DO_EXERCICIO: "Tempo do Exercício",
       TEMPO_EM_MINUTOS: "Tempo (minutos)",
@@ -191,13 +98,33 @@ export const languages: { PORTUGUES: Language; INGLES: Language } = {
       COMPLETE_CADASTRO: "Complete seu cadastro antes de fazer a publicação.",
       BEM_VINDO: "Bem-vindo(a)",
       CADASTRO: "Faça seu cadastro",
+      PROMPT: "Paciente relata os seguintes sintomas: ",
+      PROMPT2:
+        "Médico, forneça uma resposta breve, objetiva e uma possível solução para os sintomas apresentados.",
+      EDITAR_MEDICAO: "Editar Medição",
+      CRIADO_COM_SUCESSO: "Criado com sucesso seu Post!!",
+      CONFIRMA: "Confirmação",
+      SAIR_SESSAO: "Deseja realmente sair?",
+      CANCELAR_SESSAO: "Cancelar",
+      ALERT_MEDI: "Tem certeza de que deseja apagar esta publicação?",
+      APAGAR_MEDI: "Apagar",
+      EMAIL_REC: "Um e-mail de recuperação de senha foi enviado.",
+      SENHA_NAO_CORRESPONDE: "As senhas não correspondem.",
+      REGISTRO_SUCESSO: "Registro realizado com sucesso!!",
+      ALTERADO_SUCESSO: "Atualizado com sucesso!!",
+      APAGAR_PUBLICACAO: "Tem certeza de que deseja apagar esta publicação?",
+      APAGADO_SUCESSO: "Apagado com sucesso!!",
+      PERMISSAO_NEGADA: "Permissão negada para acessar a biblioteca de mídia.",
+      FORMATO_IMAGEM:
+        "Formato de imagem não suportado. Por favor, escolha outra imagem.",
+      USUARIO_NAO_AUTENTICADO: "Usuário não autenticado.",
     },
   },
   INGLES: {
     TEXTO: {
       PESQUISA: "Search",
       EXPLIQUE: "FAQ",
-      ATIVIDADES: "activities",
+      ATIVIDADES: "Activities",
       TEMPO_DO_EXERCICIO: "Exercise Time",
       TEMPO_EM_MINUTOS: "Time (minutes)",
       REGISTRAR: "Register",
@@ -290,6 +217,25 @@ export const languages: { PORTUGUES: Language; INGLES: Language } = {
       COMPLETE_CADASTRO: "Complete your registration before publishing.",
       BEM_VINDO: "Welcome to",
       CADASTRO: "SignUp",
+      PROMPT: "Patient reports the following symptoms:",
+      PROMPT2:
+        "Doctor, provide a brief, objective answer and a possible solution to the symptoms presented.",
+      EDITAR_MEDICAO: "Edit Measurement",
+      CRIADO_COM_SUCESSO: "Your Post has been successfully created!!",
+      CONFIRMA: "Confirmation",
+      SAIR_SESSAO: "Do you really want to leave?",
+      CANCELAR_SESSAO: "Cancel",
+      ALERT_MEDI: "Are you sure you want to delete this post?",
+      APAGAR_MEDI: "To switch off",
+      EMAIL_REC: "A password recovery email has been sent.",
+      SENHA_NAO_CORRESPONDE: "Passwords do not match.",
+      REGISTRO_SUCESSO: "Registration completed successfully!!",
+      ALTERADO_SUCESSO: "Updated successfully!!",
+      APAGAR_PUBLICACAO: "Are you sure you want to delete this post?",
+      APAGADO_SUCESSO: "Deleted successfully!!",
+      PERMISSAO_NEGADA: "Permission denied to access the media library.",
+      FORMATO_IMAGEM: "Unsupported image format. Please choose another image.",
+      USUARIO_NAO_AUTENTICADO: "Unauthenticated user!",
     },
   },
 };

@@ -85,7 +85,7 @@ const ModalEdicao: React.FC<ModalEdicaoProps> = ({
             />
           </View>
           <Text style={[styles.textoModal, { color: theme.COLORS.POST_TITLE }]}>
-            Editar Medição
+            {language.TEXTO.EDITAR_MEDICAO}
           </Text>
           <TextInput
             style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}

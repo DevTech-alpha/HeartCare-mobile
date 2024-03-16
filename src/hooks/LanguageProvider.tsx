@@ -6,7 +6,8 @@ import React, {
   ReactNode,
 } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Language, languages } from "../utils/language/language";
+import { languages } from "../utils/language";
+import { Language } from "../utils/language/Models/language";
 
 interface LanguageContextData {
   language: Language;

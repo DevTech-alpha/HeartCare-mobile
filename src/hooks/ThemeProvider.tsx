@@ -6,7 +6,8 @@ import React, {
   ReactNode,
 } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Theme, themes } from "../utils/theme/theme";
+import { themes } from "../utils/theme";
+import { Theme } from "../utils/theme/Models/theme";
 
 interface ThemeContextData {
   theme: Theme;
