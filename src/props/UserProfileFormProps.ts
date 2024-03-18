@@ -6,6 +6,7 @@ interface UserProfileFormProps {
   dob: string;
   bloodType: string;
   hasMedicalCondition: string;
+  genero: string;
   setUsername: (text: string) => void;
   setName: (text: string) => void;
   setLastName: (text: string) => void;
@@ -13,6 +14,7 @@ interface UserProfileFormProps {
   setDob: (text: string) => void;
   setBloodType: (text: string) => void;
   setHasMedicalCondition: (text: string) => void;
+  setGenero: (text: string) => void;
   handleSaveProfile: () => void;
   loading: boolean;
 }

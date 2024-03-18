@@ -14,8 +14,6 @@ import {
   doc,
   getDoc,
   updateDoc,
-  query,
-  where,
 } from "firebase/firestore";
 import { db } from "../../firebase/firebaseConfig";
 import { User, getAuth } from "firebase/auth";

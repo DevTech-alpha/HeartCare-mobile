@@ -14,7 +14,21 @@ import { Checkbox } from "expo-checkbox";
 import { useLanguage } from "../../hooks/LanguageProvider";
 
 const bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
-const medicalConditions = ["Diabetes", "Hipertensão", "Asma", "Alergias"];
+const medicalConditionsPortugues = [
+  "Diabetes",
+  "Hipertensão",
+  "Asma",
+  "Alergias",
+];
+const medicalConditionsIngles = [
+  "Diabetes",
+  "Hypertension",
+  "Asthma",
+  "Allergies",
+];
+
+const generoPortugues = ["Masculino", "Feminino", "Prefiro não dizer"];
+const generoIngles = ["Male", "Female", "Prefer not to say"];
 
 const UserProfileForm: React.FC<UserProfileFormProps> = ({
   username,
@@ -24,6 +38,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
   dob,
   bloodType,
   hasMedicalCondition,
+  genero,
   setUsername,
   setName,
   setLastName,
@@ -31,6 +46,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
   setDob,
   setBloodType,
   setHasMedicalCondition,
+  setGenero,
   handleSaveProfile,
   loading,
 }) => {
@@ -115,34 +131,95 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
           {language.TEXTO.DOENCA_OU_INCAPACIDADE}:
         </Text>
         <View style={styles.checkboxContainerDoc}>
-          {medicalConditions.map((condition) => (
-            <View key={condition}>
-              <Text style={[styles.label, { color: theme.COLORS.TEXT }]}>
-                {condition}
-              </Text>
-              <Checkbox
-                value={hasMedicalCondition.includes(condition)}
-                onValueChange={(checked) => {
-                  if (checked) {
-                    setHasMedicalCondition(
-                      hasMedicalCondition
-                        ? hasMedicalCondition + ", " + condition
-                        : condition
-                    );
-                  } else {
-                    setHasMedicalCondition(
-                      hasMedicalCondition
-                        .split(", ")
-                        .filter((item) => item !== condition)
-                        .join(", ")
-                    );
-                  }
-                }}
-                color={theme.COLORS.PRIMARY}
-                style={styles.checkbox}
-              />
-            </View>
-          ))}
+          {language.TEXTO.PERGUNTAS === "PORTUGUES"
+            ? medicalConditionsPortugues.map((condition) => (
+                <View key={condition}>
+                  <Text style={[styles.label, { color: theme.COLORS.TEXT }]}>
+                    {condition}
+                  </Text>
+                  <Checkbox
+                    value={hasMedicalCondition.includes(condition)}
+                    onValueChange={(checked) => {
+                      if (checked) {
+                        setHasMedicalCondition(
+                          hasMedicalCondition
+                            ? hasMedicalCondition + ", " + condition
+                            : condition
+                        );
+                      } else {
+                        setHasMedicalCondition(
+                          hasMedicalCondition
+                            .split(", ")
+                            .filter((item) => item !== condition)
+                            .join(", ")
+                        );
+                      }
+                    }}
+                    color={theme.COLORS.PRIMARY}
+                    style={styles.checkbox}
+                  />
+                </View>
+              ))
+            : medicalConditionsIngles.map((condition) => (
+                <View key={condition}>
+                  <Text style={[styles.label, { color: theme.COLORS.TEXT }]}>
+                    {condition}
+                  </Text>
+                  <Checkbox
+                    value={hasMedicalCondition.includes(condition)}
+                    onValueChange={(checked) => {
+                      if (checked) {
+                        setHasMedicalCondition(
+                          hasMedicalCondition
+                            ? hasMedicalCondition + ", " + condition
+                            : condition
+                        );
+                      } else {
+                        setHasMedicalCondition(
+                          hasMedicalCondition
+                            .split(", ")
+                            .filter((item) => item !== condition)
+                            .join(", ")
+                        );
+                      }
+                    }}
+                    color={theme.COLORS.PRIMARY}
+                    style={styles.checkbox}
+                  />
+                </View>
+              ))}
+        </View>
+        <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
+          {language.TEXTO.GENERO}:
+        </Text>
+        <View style={styles.checkboxContainerDoc}>
+          {language.TEXTO.PERGUNTAS === "PORTUGUES"
+            ? generoPortugues.map((genderOption) => (
+                <View key={genderOption}>
+                  <Text style={[styles.label, { color: theme.COLORS.TEXT }]}>
+                    {genderOption}
+                  </Text>
+                  <Checkbox
+                    value={genero === genderOption}
+                    onValueChange={() => setGenero(genderOption)}
+                    color={theme.COLORS.PRIMARY}
+                    style={styles.checkbox}
+                  />
+                </View>
+              ))
+            : generoIngles.map((genderOption) => (
+                <View key={genderOption}>
+                  <Text style={[styles.label, { color: theme.COLORS.TEXT }]}>
+                    {genderOption}
+                  </Text>
+                  <Checkbox
+                    value={genero === genderOption}
+                    onValueChange={() => setGenero(genderOption)}
+                    color={theme.COLORS.PRIMARY}
+                    style={styles.checkbox}
+                  />
+                </View>
+              ))}
         </View>
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
           {language.TEXTO.EMAIL}:

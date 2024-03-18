@@ -108,6 +108,6 @@ export interface Language {
     PERMISSAO_NEGADA: string;
     FORMATO_IMAGEM: string;
     USUARIO_NAO_AUTENTICADO: string;
-
+    GENERO: string;
   };
 }

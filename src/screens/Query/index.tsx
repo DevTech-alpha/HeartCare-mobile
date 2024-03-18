@@ -35,7 +35,7 @@ const PressaoArterial = () => {
   const [historicoVisivel, setHistoricoVisivel] = useState(false);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
-  const [AtividadesVisivel, setAtividadesVisivel] = useState(false); // Adicione um estado para controlar a visibilidade do AtividadesForm
+  const [AtividadesVisivel, setAtividadesVisivel] = useState(false);
 
   const auth = getAuth();
   const user: User | null = auth.currentUser;

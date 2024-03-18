@@ -163,8 +163,7 @@ export const firebaseErrorsIngles = {
     "Response time exceeded. The domain may not be authorized to perform operations.",
   "auth/missing-android-pkg-name":
     "An Android app package name must be provided for installation.",
-  "auth/missing-continue-uri":
-    "The next URL must be provided in the request.",
+  "auth/missing-continue-uri": "The next URL must be provided in the request.",
   "auth/missing-ios-bundle-id":
     "An iOS app package name must be provided for installation.",
   "auth/invalid-continue-uri":
@@ -182,8 +181,10 @@ export const firebaseErrorsIngles = {
   "auth/wrong-password": "Incorrect password.",
   "auth/invalid-verification-code":
     "The credential verification code is not valid.",
-  "auth/invalid-verification-id": "The credential verification ID is not valid.",
-  "auth/custom-token-mismatch": "The token is different from the requested pattern.",
+  "auth/invalid-verification-id":
+    "The credential verification ID is not valid.",
+  "auth/custom-token-mismatch":
+    "The token is different from the requested pattern.",
   "auth/invalid-custom-token": "The provided token is not valid.",
   "auth/captcha-check-failed":
     "The reCAPTCHA response token is invalid, expired, or the domain is not allowed.",
@@ -211,17 +212,14 @@ export const firebaseErrorsIngles = {
     "Requests have been blocked due to unusual activity. Try again after some time.",
   "auth/web-storage-unsupported":
     "The browser does not support storage or the user has disabled this feature.",
-  "auth/invalid-claims":
-    "Custom claim attributes are invalid.",
+  "auth/invalid-claims": "Custom claim attributes are invalid.",
   "auth/claims-too-large":
     "Request size exceeds maximum allowed size of 1 Megabyte.",
   "auth/id-token-expired": "The provided token has expired.",
   "auth/id-token-revoked": "The provided token has lost validity.",
   "auth/invalid-argument": "An invalid argument was provided to a method.",
-  "auth/invalid-creation-time":
-    "The creation time must be a valid UTC date.",
-  "auth/invalid-disabled-field":
-    "The property for disabled user is invalid.",
+  "auth/invalid-creation-time": "The creation time must be a valid UTC date.",
+  "auth/invalid-disabled-field": "The property for disabled user is invalid.",
   "auth/invalid-display-name": "User display name is invalid.",
   "auth/invalid-email-verified": "Email is invalid.",
   "auth/invalid-hash-algorithm":
@@ -229,8 +227,7 @@ export const firebaseErrorsIngles = {
   "auth/invalid-hash-block-size": "The hash block size is not valid.",
   "auth/invalid-hash-derived-key-length":
     "The derived key size from hash is not valid.",
-  "auth/invalid-hash-key":
-    "The hash key must have a valid byte buffer.",
+  "auth/invalid-hash-key": "The hash key must have a valid byte buffer.",
   "auth/invalid-hash-memory-cost": "The hash memory cost is not valid.",
   "auth/invalid-hash-parallelization":
     "The hash parallelization load is not valid.",
@@ -240,8 +237,7 @@ export const firebaseErrorsIngles = {
   "auth/invalid-id-token": "The provided token code is not valid.",
   "auth/invalid-last-sign-in-time":
     "The last sign-in time must be a valid UTC date.",
-  "auth/invalid-page-token":
-    "The next URL provided in the request is invalid.",
+  "auth/invalid-page-token": "The next URL provided in the request is invalid.",
   "auth/invalid-password":
     "The password is invalid, must be at least 6 characters long.",
   "auth/invalid-password-hash": "The password hash is not valid.",
@@ -252,8 +248,7 @@ export const firebaseErrorsIngles = {
     "The session cookie duration must be a valid number in milliseconds, between 5 minutes and 2 weeks.",
   "auth/invalid-uid":
     "The provided identifier must be at most 128 characters long.",
-  "auth/invalid-user-import":
-    "The user record to be imported is not valid.",
+  "auth/invalid-user-import": "The user record to be imported is not valid.",
   "auth/invalid-provider-data": "The provider data is not valid.",
   "auth/maximum-user-count-exceeded":
     "The maximum allowed number of users to be imported has been exceeded.",
@@ -265,7 +260,8 @@ export const firebaseErrorsIngles = {
   "auth/session-cookie-revoked": "The session cookie has lost validity.",
   "auth/uid-already-exists": "The provided identifier is already in use.",
   "auth/email-already-exists": "The provided email is already in use.",
-  "auth/phone-number-already-exists": "The provided phone number is already in use.",
+  "auth/phone-number-already-exists":
+    "The provided phone number is already in use.",
   "auth/project-not-found": "No project found.",
   "auth/insufficient-permission":
     "The credential used does not have permission to access the requested resource.",

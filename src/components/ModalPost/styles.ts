@@ -35,8 +35,8 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   textoBotao: {
-		fontWeight: "bold",
-	},
+    fontWeight: "bold",
+  },
 });
 
 export default styles;

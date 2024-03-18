@@ -118,6 +118,7 @@ export const languages: { PORTUGUES: Language; INGLES: Language } = {
       FORMATO_IMAGEM:
         "Formato de imagem não suportado. Por favor, escolha outra imagem.",
       USUARIO_NAO_AUTENTICADO: "Usuário não autenticado.",
+      GENERO: "Gênero",
     },
   },
   INGLES: {
@@ -236,6 +237,7 @@ export const languages: { PORTUGUES: Language; INGLES: Language } = {
       PERMISSAO_NEGADA: "Permission denied to access the media library.",
       FORMATO_IMAGEM: "Unsupported image format. Please choose another image.",
       USUARIO_NAO_AUTENTICADO: "Unauthenticated user!",
+      GENERO: "Gener",
     },
   },
 };

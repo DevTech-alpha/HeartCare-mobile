@@ -28,9 +28,7 @@ import ProfileImage from "../../components/ProfileImage";
 import UserProfileForm from "../../components/UserProfileForm";
 import PostItem from "../../components/PostItemProfile";
 import Post from "../../model/Post";
-import { useNavigation } from "@react-navigation/native";
-import { AntDesign, Entypo, FontAwesome } from "@expo/vector-icons";
-import { propsStack } from "../../routes/Models";
+import { Entypo, FontAwesome } from "@expo/vector-icons";
 import { useAuth } from "../../hooks/AuthProvider";
 import { asyncRemoveUser } from "../../utils/store";
 import { Header } from "../../components/Header";
@@ -44,7 +42,7 @@ const UserProfileScreen = () => {
   const user: User | null = auth.currentUser;
 
   const { theme, toggleTheme } = useTheme();
-  const { toggleLanguage, language } = useLanguage();
+  const { language, toggleLanguage } = useLanguage();
 
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState<Post[]>([]);
@@ -58,6 +56,7 @@ const UserProfileScreen = () => {
   const [dob, setDob] = useState("");
   const [bloodType, setBloodType] = useState("");
   const [hasMedicalCondition, setHasMedicalCondition] = useState("");
+  const [genero, setGenero] = useState("");
   const [email, setEmail] = useState(user?.email || "");
   const [userPosts, setUserPosts] = useState<Post[]>([]);
   const [editMode, setEditMode] = useState(false);
@@ -86,6 +85,7 @@ const UserProfileScreen = () => {
             setDob(userData.dob || "");
             setPhoto(userData.photo);
             setBloodType(userData.bloodType || "");
+            setGenero(userData.genero || "");
             setHasMedicalCondition(userData.hasMedicalCondition || "");
           }
         }
@@ -183,7 +183,8 @@ const UserProfileScreen = () => {
         !dob ||
         !email ||
         !bloodType ||
-        !hasMedicalCondition
+        !hasMedicalCondition ||
+        !genero
       ) {
         Alert.alert(language.TEXTO.ERRO, language.TEXTO.PRENCHA_CAMPOS);
         setLoading(false);
@@ -214,6 +215,7 @@ const UserProfileScreen = () => {
           photo: photoUrl,
           bloodType,
           hasMedicalCondition,
+          genero,
         });
       } else {
         await setDoc(userRef, {
@@ -226,6 +228,7 @@ const UserProfileScreen = () => {
           photo: photoUrl,
           bloodType,
           hasMedicalCondition,
+          genero,
         });
       }
 
@@ -362,12 +365,14 @@ const UserProfileScreen = () => {
             email={email}
             bloodType={bloodType}
             hasMedicalCondition={hasMedicalCondition}
+            genero={genero}
             setUsername={setUsername}
             setName={setName}
             setLastName={setLastName}
             setDob={setDob}
             setBloodType={setBloodType}
             setHasMedicalCondition={setHasMedicalCondition}
+            setGenero={setGenero}
             setEmail={setEmail}
             handleSaveProfile={handleSaveProfile}
             loading={loading}
