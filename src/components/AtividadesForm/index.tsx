@@ -7,14 +7,14 @@ import {
   ActivityIndicator,
   Alert,
 } from "react-native";
-import { useTheme } from "../../hooks/ThemeProvider";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase/firebaseConfig";
 import { styles } from "./styles";
 import { Checkbox } from "expo-checkbox";
 import AtividadesFormProps from "../../props/AtividadesFormProps";
 import { AntDesign } from "@expo/vector-icons";
-import { useLanguage } from "../../hooks/LanguageProvider";
+import { useTheme } from "../../context/ThemeContext";
+import { useLanguage } from "../../context/LanguageContext";
 
 const AtividadesForm: React.FC<AtividadesFormProps> = ({ user, MudarCard }) => {
   const { theme } = useTheme();

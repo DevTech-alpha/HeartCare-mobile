@@ -1,37 +1,25 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  ReactNode,
-} from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useEffect, useState, ReactNode } from "react";
 import { languages } from "../utils/language";
 import { Language } from "../utils/language/Models/language";
-
-interface LanguageContextData {
-  language: Language;
-  toggleLanguage: () => void;
-}
+import { LanguageContext, LanguageContextData } from "../context/LanguageContext";
+import { asyncGetLanguage, asyncSetLanguage } from "../utils/storage/LanguageStorage";
 
 interface LanguageProviderProps {
   children: ReactNode;
 }
 
-const LanguageContext = createContext({} as LanguageContextData);
-
-const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [language, setlanguage] = useState<Language>(languages.INGLES);
+export const LanguageProvider = ({ children }: LanguageProviderProps) => {
+  const [language, setLanguage] = useState<Language>(languages.INGLES);
 
   useEffect(() => {
     loadLanguageFromStorage();
   }, []);
 
-  async function loadLanguageFromStorage() {
+  const loadLanguageFromStorage = async () => {
     try {
-      const storedLanguage = await AsyncStorage.getItem("heartcare@Language");
+      const storedLanguage = await asyncGetLanguage();
       if (storedLanguage !== null) {
-        setlanguage(
+        setLanguage(
           storedLanguage === "PORTUGUES"
             ? languages.PORTUGUES
             : languages.INGLES
@@ -40,14 +28,13 @@ const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
     } catch (error) {
       console.error("Error loading Language from storage:", error);
     }
-  }
+  };
 
   const toggleLanguage = () => {
     const newLanguage =
       language === languages.INGLES ? languages.PORTUGUES : languages.INGLES;
-    setlanguage(newLanguage);
-    AsyncStorage.setItem(
-      "heartcare@Language",
+    setLanguage(newLanguage);
+    asyncSetLanguage(
       newLanguage === languages.PORTUGUES ? "PORTUGUES" : "INGLES"
     );
   };
@@ -58,19 +45,8 @@ const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   };
 
   return (
-    <LanguageContext.Provider
-      value={{
-        language,
-        toggleLanguage,
-      }}
-    >
+    <LanguageContext.Provider value={contextValue}>
       {children}
     </LanguageContext.Provider>
   );
 };
-
-function useLanguage(): LanguageContextData {
-  return useContext(LanguageContext);
-}
-
-export { useLanguage, LanguageProvider };

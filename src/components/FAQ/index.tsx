@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { styles } from "./styles";
 import * as Animatable from "react-native-animatable";
+import { useTheme } from "../../context/ThemeContext";
+import { useLanguage } from "../../context/LanguageContext";
 
-import { useTheme } from "../../hooks/ThemeProvider";
-import { useLanguage } from "../../hooks/LanguageProvider";
 
 const FAQ = () => {
   const { theme } = useTheme();

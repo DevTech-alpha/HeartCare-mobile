@@ -6,10 +6,10 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
-import { useTheme } from "../../hooks/ThemeProvider";
 import { styles } from "./styles";
 import CadastroFormProps from "../../props/SignUpFormProps";
-import { useLanguage } from "../../hooks/LanguageProvider";
+import { useTheme } from "../../context/ThemeContext";
+import { useLanguage } from "../../context/LanguageContext";
 
 const CadastroForm: React.FC<CadastroFormProps> = ({
   email,

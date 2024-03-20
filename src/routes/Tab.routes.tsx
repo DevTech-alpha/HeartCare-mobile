@@ -1,7 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
-import { useTheme } from "../hooks/ThemeProvider";
 
 import Consulta from "../screens/Query";
 import Perfil from "../screens/Profile";
@@ -9,6 +8,7 @@ import { propsNavigationStack } from "./Models";
 import { StatusBar } from "react-native";
 import Alert from "../screens/Alert";
 import Feed from "../screens/Feed";
+import { useTheme } from "../context/ThemeContext";
 
 const { Navigator, Screen } = createBottomTabNavigator<propsNavigationStack>();
 

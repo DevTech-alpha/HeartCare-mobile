@@ -1,6 +1,6 @@
 import { AuthError } from "firebase/auth";
-import { useLanguage } from "../../hooks/LanguageProvider";
 import { firebaseErrorsIngles, firebaseErrorsPortugues } from "./firebase-error";
+import { useLanguage } from "../../context/LanguageContext";
 
 export const localizeErrorMap = (e: Error) => {
   const { language } = useLanguage();

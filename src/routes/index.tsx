@@ -1,8 +1,8 @@
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
-import { useAuth } from "../hooks/AuthProvider";
 import { StackRoutes } from "./stack.routes";
 import { TabRoutes } from "./tab.routes";
+import { useAuth } from "../context/AuthContext";
 
 export function Router() {
   const { authData, isLoading } = useAuth();

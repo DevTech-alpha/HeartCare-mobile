@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Text, View } from "react-native";
-import { useTheme } from "../../hooks/ThemeProvider";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebase/firebaseConfig";
 import { styles } from "./styles";
 import Atividade from "../../model/Atividade";
 import * as Animatable from "react-native-animatable";
 import AtividadesItemProps from "../../props/AtividadesItemProps";
-import { useLanguage } from "../../hooks/LanguageProvider";
+import { useLanguage } from "../../context/LanguageContext";
+import { useTheme } from "../../context/ThemeContext";
 
 const AtividadeItem: React.FC<AtividadesItemProps> = ({ user }) => {
   const { theme } = useTheme();

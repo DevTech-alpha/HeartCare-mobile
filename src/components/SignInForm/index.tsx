@@ -10,8 +10,8 @@ import { styles } from "./styles";
 import LoginFormProps from "../../props/SignInFormProps";
 import { useNavigation } from "@react-navigation/native";
 import { propsStack } from "../../routes/Models";
-import { useTheme } from "../../hooks/ThemeProvider";
-import { useLanguage } from "../../hooks/LanguageProvider";
+import { useTheme } from "../../context/ThemeContext";
+import { useLanguage } from "../../context/LanguageContext";
 
 const LoginForm: React.FC<LoginFormProps> = ({
   email,

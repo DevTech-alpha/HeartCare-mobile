@@ -11,9 +11,9 @@ import { FontAwesome } from "@expo/vector-icons";
 import { styles as feedStyles } from "./styles";
 import * as Animatable from "react-native-animatable";
 import PostItemProps from "../../props/PostItemProps";
-import { useTheme } from "../../hooks/ThemeProvider";
 import { db } from "../../firebase/firebaseConfig";
 import { getDoc, doc } from "firebase/firestore";
+import { useTheme } from "../../context/ThemeContext";
 
 const PostItem: React.FC<PostItemProps> = ({
   item,
@@ -53,7 +53,7 @@ const PostItem: React.FC<PostItemProps> = ({
           const userDoc = await getDoc(doc(db, "users", userId));
           const userData = userDoc.data();
           if (userData) {
-            likersArray.push(userData.photo); // Adapte de acordo com o que você quer armazenar
+            likersArray.push(userData.photo);
           }
         }
         setLikers(likersArray);

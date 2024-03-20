@@ -12,9 +12,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useTheme } from "../../hooks/ThemeProvider";
+import { useTheme } from "../../context/ThemeContext";
+import { useLanguage } from "../../context/LanguageContext";
 import { AntDesign } from "@expo/vector-icons";
-import { useLanguage } from "../../hooks/LanguageProvider";
 
 const MedicaoForm: React.FC<MedicaoFormProps> = ({
   onMedicaoAdicionada,

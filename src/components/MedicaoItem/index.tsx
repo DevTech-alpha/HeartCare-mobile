@@ -3,8 +3,8 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
 import MedicaoItemProps from "../../props/MedicaoItemProps";
 import ModalEdicao from "../ModalEdit";
-import { useTheme } from "../../hooks/ThemeProvider";
-import { useLanguage } from "../../hooks/LanguageProvider";
+import { useTheme } from "../../context/ThemeContext";
+import { useLanguage } from "../../context/LanguageContext";
 
 const MedicaoItem: React.FC<MedicaoItemProps> = ({
   medicao,

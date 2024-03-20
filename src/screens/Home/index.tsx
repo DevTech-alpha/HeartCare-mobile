@@ -5,8 +5,8 @@ import * as Animatable from "react-native-animatable";
 
 import { styles } from "./styles";
 import { propsStack } from "../../routes/Models";
-import { useTheme } from "../../hooks/ThemeProvider";
-import { useLanguage } from "../../hooks/LanguageProvider";
+import { useTheme } from "../../context/ThemeContext";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function Home() {
   const { navigate } = useNavigation<propsStack>();

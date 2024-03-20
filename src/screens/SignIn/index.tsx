@@ -5,9 +5,9 @@ import ResetPasswordForm from "../../components/ResetPassword";
 import { styles } from "./styles";
 import * as Animatable from "react-native-animatable";
 import { enviarRecuperacaoSenha } from "../../api/PasswordRecovery";
-import { useAuth } from "../../hooks/AuthProvider";
-import { useTheme } from "../../hooks/ThemeProvider";
-import { useLanguage } from "../../hooks/LanguageProvider";
+import { useAuth } from "../../context/AuthContext";
+import { useTheme } from "../../context/ThemeContext";
+import { useLanguage } from "../../context/LanguageContext";
 
 const Login = () => {
   const { signIn } = useAuth();

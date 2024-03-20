@@ -10,11 +10,11 @@ import {
   Keyboard,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useTheme } from "../../hooks/ThemeProvider";
 import { estilo } from "./styles";
 
 import * as Animatable from "react-native-animatable";
-import { useLanguage } from "../../hooks/LanguageProvider";
+import { useTheme } from "../../context/ThemeContext";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function Chat() {
   const { theme } = useTheme();

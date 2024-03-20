@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { View, TouchableOpacity } from "react-native";
-import { useTheme } from "../../hooks/ThemeProvider";
 import { estilo } from "./styles";
 import { Header } from "../../components/Header";
 import { AntDesign } from "@expo/vector-icons";
 
 import FAQ from "../../components/FAQ";
 import Chat from "../../components/Chat";
-import { useLanguage } from "../../hooks/LanguageProvider";
+import { useTheme } from "../../context/ThemeContext";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function Alert() {
   const { theme } = useTheme();

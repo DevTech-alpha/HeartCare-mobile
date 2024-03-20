@@ -6,9 +6,9 @@ import { useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
 import { criar } from "../../api/CreateAcount";
 import { propsStack } from "../../routes/Models";
-import { useTheme } from "../../hooks/ThemeProvider";
 import CadastroForm from "../../components/SignUpForm";
-import { useLanguage } from "../../hooks/LanguageProvider";
+import { useTheme } from "../../context/ThemeContext";
+import { useLanguage } from "../../context/LanguageContext";
 
 const Cadastro: React.FC = () => {
   const { theme } = useTheme();

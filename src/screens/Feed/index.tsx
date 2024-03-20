@@ -25,9 +25,9 @@ import * as Sharing from "expo-sharing";
 import * as FileSystem from "expo-file-system";
 import { propsStack } from "../../routes/Models";
 import { Header } from "../../components/Header";
-import { useTheme } from "../../hooks/ThemeProvider";
 import PublishModalContent from "../../components/ModalPost";
-import { useLanguage } from "../../hooks/LanguageProvider";
+import { useTheme } from "../../context/ThemeContext";
+import { useLanguage } from "../../context/LanguageContext";
 
 const Feed = () => {
   const { navigate } = useNavigation<propsStack>();

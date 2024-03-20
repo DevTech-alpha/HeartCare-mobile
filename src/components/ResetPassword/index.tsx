@@ -8,8 +8,8 @@ import {
 import * as Animatable from "react-native-animatable";
 import { styles } from "./styles";
 import ResetPasswordFormProps from "../../props/ResetPassowordProps";
-import { useTheme } from "../../hooks/ThemeProvider";
-import { useLanguage } from "../../hooks/LanguageProvider";
+import { useTheme } from "../../context/ThemeContext";
+import { useLanguage } from "../../context/LanguageContext";
 
 const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
   resetEmail,

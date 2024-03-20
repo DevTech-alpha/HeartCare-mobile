@@ -29,12 +29,11 @@ import UserProfileForm from "../../components/UserProfileForm";
 import PostItem from "../../components/PostItemProfile";
 import Post from "../../model/Post";
 import { Entypo, FontAwesome } from "@expo/vector-icons";
-import { useAuth } from "../../hooks/AuthProvider";
-import { asyncRemoveUser } from "../../utils/store";
 import { Header } from "../../components/Header";
-
-import { useTheme } from "../../hooks/ThemeProvider";
-import { useLanguage } from "../../hooks/LanguageProvider";
+import { asyncRemoveUser } from "../../utils/storage/AuthStorage";
+import { useLanguage } from "../../context/LanguageContext";
+import { useTheme } from "../../context/ThemeContext";
+import { useAuth } from "../../context/AuthContext";
 
 const UserProfileScreen = () => {
   const { setAuthData } = useAuth();

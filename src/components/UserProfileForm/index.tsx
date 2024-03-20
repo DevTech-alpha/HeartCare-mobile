@@ -7,11 +7,11 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
-import { useTheme } from "../../hooks/ThemeProvider";
 import UserProfileFormProps from "../../props/UserProfileFormProps";
 import { styles } from "./styles";
 import { Checkbox } from "expo-checkbox";
-import { useLanguage } from "../../hooks/LanguageProvider";
+import { useLanguage } from "../../context/LanguageContext";
+import { useTheme } from "../../context/ThemeContext";
 
 const bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 const medicalConditionsPortugues = [

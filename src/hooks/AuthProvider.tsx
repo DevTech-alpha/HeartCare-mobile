@@ -1,36 +1,15 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  ReactNode,
-} from "react";
+import React, { useEffect, useState, ReactNode } from "react";
 import { Alert } from "react-native";
-import { asyncGetUser, asyncSetUser } from "../utils/store";
 import { logar } from "../api/LogInToAccount";
 import { DB_USER } from "../model/User";
-
-interface SignCredentials {
-  email: string;
-  password: string;
-}
-
-interface AuthContextData {
-  authData?: DB_USER;
-  setAuthData: React.Dispatch<React.SetStateAction<DB_USER | undefined>>;
-  signIn: (credentials: SignCredentials) => Promise<void>;
-  isLoading: boolean;
-}
+import { AuthContext, SignCredentials } from "../context/AuthContext";
+import { asyncGetUser, asyncSetUser } from "../utils/storage/AuthStorage";
 
 interface AuthProviderProps {
   children: ReactNode;
 }
 
-export const AuthContext = createContext<AuthContextData>(
-  {} as AuthContextData
-);
-
-const AuthProvider = ({ children }: AuthProviderProps) => {
+export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [authData, setAuthData] = useState<DB_USER>();
   const [isLoading, setIsLoading] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -76,11 +55,3 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     </AuthContext.Provider>
   );
 };
-
-function useAuth(): AuthContextData {
-  const context = useContext(AuthContext);
-
-  return context;
-}
-
-export { AuthProvider, useAuth };

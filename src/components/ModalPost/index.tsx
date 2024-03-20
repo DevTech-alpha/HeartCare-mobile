@@ -10,10 +10,10 @@ import {
 } from "react-native";
 
 import { styles } from "./styles";
-import { useTheme } from "../../hooks/ThemeProvider";
 import ModalPostProps from "../../props/ModalPostProps";
 import { AntDesign } from "@expo/vector-icons";
-import { useLanguage } from "../../hooks/LanguageProvider";
+import { useTheme } from "../../context/ThemeContext";
+import { useLanguage } from "../../context/LanguageContext";
 
 const PublishModalContent: React.FC<ModalPostProps> = ({
   createNewPost,
