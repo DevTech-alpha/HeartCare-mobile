@@ -9,7 +9,7 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider = ({ children }: LanguageProviderProps) => {
-  const [language, setLanguage] = useState<Language>(languages.INGLES);
+  const [language, setLanguage] = useState<Language>(languages.PORTUGUES);
 
   useEffect(() => {
     loadLanguageFromStorage();
@@ -32,7 +32,7 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
 
   const toggleLanguage = () => {
     const newLanguage =
-      language === languages.INGLES ? languages.PORTUGUES : languages.INGLES;
+      language === languages.PORTUGUES ? languages.INGLES : languages.PORTUGUES;
     setLanguage(newLanguage);
     asyncSetLanguage(
       newLanguage === languages.PORTUGUES ? "PORTUGUES" : "INGLES"
