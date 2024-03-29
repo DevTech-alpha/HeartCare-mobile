@@ -8,7 +8,7 @@ import Chat from "../../components/Chat";
 import { useTheme } from "../../context/ThemeContext";
 import Header from "../../components/Header";
 
-const Alert = () => {
+function Alert() {
   const { theme } = useTheme();
 
   const [mostrar, setMostrar] = useState(true);
@@ -46,5 +46,5 @@ const Alert = () => {
       {mostrar ? <Chat /> : <FAQ />}
     </View>
   );
-};
+}
 export default Alert;

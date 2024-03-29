@@ -34,7 +34,7 @@ import { useAuth } from "../../context/AuthContext";
 import Header from "../../components/Header";
 import ProfileImage from "../../components/ProfileImage";
 
-const Profile = () => {
+function Profile() {
   const { setAuthData } = useAuth();
   const auth = getAuth();
   const user: User | null = auth.currentUser;
@@ -394,6 +394,6 @@ const Profile = () => {
       </ScrollView>
     </View>
   );
-};
+}
 
 export default Profile;

@@ -4,7 +4,7 @@ import TabRoutes from "./tab.routes";
 import StackRoutes from "./stack.routes";
 import { useAuth } from "../context/AuthContext";
 
-export function Router() {
+export default function Router() {
   const { authData, isLoading } = useAuth();
 
   if (isLoading) {

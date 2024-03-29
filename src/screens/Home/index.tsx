@@ -7,7 +7,7 @@ import { styles } from "./styles";
 import { propsStack } from "../../routes/Models";
 import { useTheme } from "../../context/ThemeContext";
 
-const Home = () => {
+function Home() {
   const { navigate } = useNavigation<propsStack>();
   const { theme } = useTheme();
 
@@ -57,5 +57,5 @@ const Home = () => {
       </Animatable.View>
     </View>
   );
-};
+}
 export default Home;

@@ -28,7 +28,7 @@ import Header from "../../components/Header";
 import PublishModalContent from "../../components/ModalPost";
 import { useTheme } from "../../context/ThemeContext";
 
-const Feed = () => {
+function Feed() {
   const { navigate } = useNavigation<propsStack>();
   const auth = getAuth();
   const user: User | null = auth.currentUser;
@@ -85,7 +85,7 @@ const Feed = () => {
 
         if (!userData || Object.keys(userData).length === 0) {
           alert("Por favor, complete seu cadastro antes de publicar um post.");
-          navigate("Perfil");
+          navigate("Profile");
           return;
         }
 
@@ -196,6 +196,6 @@ const Feed = () => {
       />
     </View>
   );
-};
+}
 
 export default Feed;

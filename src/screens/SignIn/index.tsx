@@ -8,7 +8,7 @@ import { enviarRecuperacaoSenha } from "../../api/PasswordRecovery";
 import { useAuth } from "../../context/AuthContext";
 import { useTheme } from "../../context/ThemeContext";
 
-const SignIn = () => {
+function SignIn() {
   const { signIn } = useAuth();
   const { theme } = useTheme();
 
@@ -88,6 +88,6 @@ const SignIn = () => {
       )}
     </View>
   );
-};
+}
 
 export default SignIn;

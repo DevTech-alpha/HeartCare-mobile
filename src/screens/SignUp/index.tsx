@@ -9,7 +9,7 @@ import { propsStack } from "../../routes/Models";
 import CadastroForm from "../../components/SignUpForm";
 import { useTheme } from "../../context/ThemeContext";
 
-const SignUp = () => {
+function SignUp() {
   const { theme } = useTheme();
 
   const [email, setEmail] = useState("");

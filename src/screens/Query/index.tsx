@@ -29,7 +29,7 @@ import AtividadesForm from "../../components/AtividadesForm";
 import AtividadeItem from "../../components/AtividadesItem";
 import { useTheme } from "../../context/ThemeContext";
 
-const Query = () => {
+function Query() {
   const [medicoes, setMedicoes] = useState<Medicao[]>([]);
   const [historicoVisivel, setHistoricoVisivel] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -183,6 +183,6 @@ const Query = () => {
       </Animatable.View>
     </View>
   );
-};
+}
 
 export default Query;
