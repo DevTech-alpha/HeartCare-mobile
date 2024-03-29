@@ -130,26 +130,20 @@ function Feed() {
       const postData = postDoc.data() as Post;
 
       const currentUserLiked = postData.likes?.includes(user?.uid || "");
-      let updatedLikes: string[] = [];
-
-      if (currentUserLiked) {
-        updatedLikes =
-          postData.likes?.filter((userId) => userId !== user?.uid) || [];
-      } else {
-        updatedLikes = [...(postData.likes || []), user?.uid || ""];
-      }
+      const updatedLikes = currentUserLiked
+        ? postData.likes?.filter((userId) => userId !== user?.uid) || []
+        : [...(postData.likes || []), user?.uid || ""];
 
       await updateDoc(postRef, { likes: updatedLikes });
 
-      const updatedPosts = posts.map((post) => {
-        if (post.id === postId) {
-          return { ...post, likes: updatedLikes };
-        }
-        return post;
-      });
+      const updatedPosts = posts.map((post) =>
+        post.id === postId ? { ...post, likes: updatedLikes } : post
+      );
 
       setPosts(updatedPosts);
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error occurred while processing like:", error);
+    }
   };
 
   const abrirModal = () => {

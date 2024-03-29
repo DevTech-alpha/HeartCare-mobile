@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  Platform,
-  FlatList,
-} from "react-native";
+import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { styles as feedStyles } from "./styles";
 import * as Animatable from "react-native-animatable";
@@ -14,6 +7,8 @@ import PostItemProps from "../../props/PostItemProps";
 import { db } from "../../firebase/firebaseConfig";
 import { getDoc, doc } from "firebase/firestore";
 import { useTheme } from "../../context/ThemeContext";
+import { useNavigation } from "@react-navigation/native";
+import { propsStack } from "../../routes/Models";
 
 export default function PostItem({
   item,
@@ -22,13 +17,11 @@ export default function PostItem({
   user,
 }: PostItemProps) {
   const { theme } = useTheme();
-
+  const { navigate } = useNavigation<propsStack>();
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(item.likes.length);
   const [likers, setLikers] = useState<string[]>([]);
-  const [userPhoto, setUserPhoto] = useState<string | null>(null);
-
-  const isIPhone = Platform.OS === 'ios';
+  const [userPhotoLikers, setUserPhotoLikers] = useState<string | null>(null);
 
   useEffect(() => {
     setIsLiked(item.likes.includes(user?.uid || ""));
@@ -40,7 +33,7 @@ export default function PostItem({
       try {
         const userDoc = await getDoc(doc(db, "users", user.uid));
         const userData = userDoc.data();
-        setUserPhoto(userData?.photo || null);
+        setUserPhotoLikers(userData?.photo || null);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -69,8 +62,21 @@ export default function PostItem({
   }, [item.likes, user]);
 
   const toggleLike = async () => {
-    setIsLiked((prev) => !prev);
-    onLikePress(item.id);
+    try {
+      const userDoc = await getDoc(doc(db, "users", user?.uid || ""));
+      const userData = userDoc.data();
+
+      if (!userData || Object.keys(userData).length === 0) {
+        alert("Por favor, complete seu cadastro antes de curtir um post.");
+        navigate("Profile");
+        return;
+      }
+
+      setIsLiked((prev) => !prev);
+      onLikePress(item.id);
+    } catch (error) {
+      console.error("Error occurred while toggling like:", error);
+    }
   };
 
   const renderLiker = ({ item }) => (
@@ -78,9 +84,7 @@ export default function PostItem({
       key={item.id}
       source={item ? { uri: item } : require("../../assets/user.png")}
       style={{ width: 30, height: 30, borderRadius: 15, marginRight: -5 }}
-      {...(Platform.OS === "ios" && {
-        defaultSource: require("../../assets/user.png"),
-      })}
+      defaultSource={require("../../assets/user.png")}
     />
   );
 
@@ -93,19 +97,15 @@ export default function PostItem({
       ]}
     >
       <View style={feedStyles.postHeader}>
-        // Verifica se está no iPhone
-
-// Renderiza o componente de imagem com base na plataforma
-<Image
-  source={
-    userPhoto
-      ? { uri: item.userPhoto }
-      : isIPhone
-        ? require("../../assets/user.png")
-        : item.userPhoto
-  }
-  style={feedStyles.userPhoto}
-/>
+        <Image
+          source={
+            item.userPhoto
+              ? { uri: item.userPhoto }
+              : require("../../assets/user.png")
+          }
+          style={feedStyles.userPhoto}
+          defaultSource={require("../../assets/user.png")}
+        />
         <Text style={[feedStyles.username, { color: theme.COLORS.POST_TITLE }]}>
           {item.username}
         </Text>

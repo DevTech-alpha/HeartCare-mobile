@@ -185,9 +185,15 @@ function Profile() {
         return;
       }
 
+      if (!photo) {
+        Alert.alert("Erro", "Adicione uma foto");
+        setLoading(false);
+        return;
+      }
+
       let photoUrl = photo;
 
-      if (photo && !photo.startsWith("gs://fir-auth-9f9f7.appspot.com")) {
+      if (!photo.startsWith("gs://fir-auth-9f9f7.appspot.com")) {
         const storageRef = ref(storage, `profile_photos/${uid}`);
         const response = await fetch(photo);
         const blob = await response.blob();
