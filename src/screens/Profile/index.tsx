@@ -27,7 +27,7 @@ import { styles } from "./styles";
 import UserProfileForm from "../../components/UserProfileForm";
 import PostItem from "../../components/PostItemProfile";
 import Post from "../../model/Post";
-import { Entypo, FontAwesome } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import { asyncRemoveUser } from "../../utils/storage/AuthStorage";
 import { useTheme } from "../../context/ThemeContext";
 import { useAuth } from "../../context/AuthContext";
