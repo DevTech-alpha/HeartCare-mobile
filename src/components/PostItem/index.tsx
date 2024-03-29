@@ -28,6 +28,8 @@ export default function PostItem({
   const [likers, setLikers] = useState<string[]>([]);
   const [userPhoto, setUserPhoto] = useState<string | null>(null);
 
+  const isIPhone = Platform.OS === 'ios';
+
   useEffect(() => {
     setIsLiked(item.likes.includes(user?.uid || ""));
     setLikeCount(item.likes.length);
@@ -91,14 +93,19 @@ export default function PostItem({
       ]}
     >
       <View style={feedStyles.postHeader}>
-        <Image
-          source={
-            userPhoto
-              ? { uri: item.userPhoto }
-              : require("../../assets/user.png")
-          }
-          style={feedStyles.userPhoto}
-        />
+        // Verifica se está no iPhone
+
+// Renderiza o componente de imagem com base na plataforma
+<Image
+  source={
+    userPhoto
+      ? { uri: item.userPhoto }
+      : isIPhone
+        ? require("../../assets/user.png")
+        : item.userPhoto
+  }
+  style={feedStyles.userPhoto}
+/>
         <Text style={[feedStyles.username, { color: theme.COLORS.POST_TITLE }]}>
           {item.username}
         </Text>
