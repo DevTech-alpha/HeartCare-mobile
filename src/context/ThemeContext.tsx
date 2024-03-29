@@ -13,7 +13,7 @@ export const ThemeContext = createContext<ThemeContextData>(
 export const useTheme = (): ThemeContextData => {
   const context = useContext(ThemeContext);
   if (!context) {
-    throw new Error("useLanguage must be used within a LanguageProvider");
+    throw new Error("useTheme must be used within a ThemeProvider");
   }
   return context;
 };
