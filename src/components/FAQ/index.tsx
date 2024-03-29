@@ -3,14 +3,11 @@ import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { styles } from "./styles";
 import * as Animatable from "react-native-animatable";
 import { useTheme } from "../../context/ThemeContext";
-import { useLanguage } from "../../context/LanguageContext";
 
-
-const FAQ = () => {
+export default function FAQ() {
   const { theme } = useTheme();
-  const { language } = useLanguage();
 
-  const [questionsPortugues] = useState([
+  const [questions] = useState([
     {
       id: 1,
       pergunta: "O que é saúde cardiovascular?",
@@ -73,72 +70,10 @@ const FAQ = () => {
         "A predisposição genética pode influenciar o risco de doenças cardíacas. Compreender a história familiar e realizar avaliações médicas regulares são passos importantes para um cuidado preventivo.",
     },
   ]);
-  const [questionsIngles] = useState([
-    {
-      id: 1,
-      question: "What is cardiovascular health?",
-      answer:
-        "Cardiovascular health refers to the well-being of the heart and blood vessels, involving practices that promote the prevention of heart diseases.",
-    },
-    {
-      id: 2,
-      question: "What are healthy eating habits for the heart?",
-      answer:
-        "A balanced diet, rich in fruits, vegetables, whole grains, and low in saturated fats, helps maintain heart health and reduce the risk of heart diseases.",
-    },
-    {
-      id: 3,
-      question: "How does physical activity contribute to heart health?",
-      answer:
-        "Regular exercise strengthens the heart, improves blood circulation, controls blood pressure, and reduces cholesterol levels, promoting cardiovascular health.",
-    },
-    {
-      id: 4,
-      question: "What are the warning signs of heart problems?",
-      answer:
-        "Symptoms such as chest pain, shortness of breath, palpitations, and unexplained fatigue may indicate heart problems. Consulting a healthcare professional is essential when facing these signs.",
-    },
-    {
-      id: 5,
-      question: "What is the importance of stress management for the heart?",
-      answer:
-        "Chronic stress can negatively impact the heart. Stress management strategies, such as meditation and relaxing activities, are beneficial for cardiovascular health.",
-    },
-    {
-      id: 6,
-      question: "How does sleep quality affect the heart?",
-      answer:
-        "Adequate sleep is vital for heart recovery. Lack of sleep can contribute to the development of heart conditions, so it is essential to maintain a healthy sleep routine.",
-    },
-    {
-      id: 7,
-      question: "What are the benefits of maintaining a healthy weight?",
-      answer:
-        "Maintaining a proper weight reduces the burden on the heart, lowers the risk of heart diseases, and contributes to the overall health of the cardiovascular system.",
-    },
-    {
-      id: 8,
-      question: "How does quitting smoking impact heart health?",
-      answer:
-        "Quitting smoking directly benefits heart health by reducing the risk of cardiovascular diseases. The benefits begin to be noticed shortly after cessation of the habit.",
-    },
-    {
-      id: 9,
-      question: "What are the essential routine tests to monitor heart health?",
-      answer:
-        "Tests such as annual check-ups, blood pressure measurement, cholesterol analysis, and specific tests when indicated are fundamental for monitoring heart health.",
-    },
-    {
-      id: 10,
-      question: "How does genetics influence cardiovascular health?",
-      answer:
-        "Genetic predisposition can influence the risk of heart diseases. Understanding family history and undergoing regular medical assessments are important steps for preventive care.",
-    },
-  ]);
 
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
-  const handleQuestionPress = (id: any) => {
+  const handleQuestionPress = (id) => {
     setSelectedQuestion(id === selectedQuestion ? null : id);
   };
 
@@ -152,105 +87,54 @@ const FAQ = () => {
       ]}
     >
       <ScrollView showsVerticalScrollIndicator={false}>
-        {language.TEXTO.PERGUNTAS === "PORTUGUES" &&
-          questionsPortugues.map((item) => (
-            <Animatable.View
-              key={item.id}
-              animation="fadeInUp"
-              style={[
-                styles.questionContainer,
-                {
-                  backgroundColor: theme.COLORS.BACKGROUND_CARD,
-                },
-              ]}
-            >
-              <TouchableOpacity onPress={() => handleQuestionPress(item.id)}>
-                <View
+        {questions.map((item) => (
+          <Animatable.View
+            key={item.id}
+            animation="fadeInUp"
+            style={[
+              styles.questionContainer,
+              {
+                backgroundColor: theme.COLORS.BACKGROUND_CARD,
+              },
+            ]}
+          >
+            <TouchableOpacity onPress={() => handleQuestionPress(item.id)}>
+              <View
+                style={[
+                  styles.questionHeader,
+                  {
+                    backgroundColor: theme.COLORS.BACKGROUND_CARD,
+                  },
+                ]}
+              >
+                <Text
                   style={[
-                    styles.questionHeader,
+                    styles.questionText,
                     {
-                      backgroundColor: theme.COLORS.BACKGROUND_CARD,
+                      color: theme.COLORS.POST_TITLE,
                     },
                   ]}
                 >
-                  <Text
-                    style={[
-                      styles.questionText,
-                      {
-                        color: theme.COLORS.POST_TITLE,
-                      },
-                    ]}
-                  >
-                    {item.pergunta}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              {selectedQuestion === item.id && (
-                <Animatable.Text
-                  animation="fadeIn"
-                  style={[
-                    styles.answerText,
-                    {
-                      color: theme.COLORS.POST_CONTENT,
-                    },
-                  ]}
-                >
-                  {item.resposta}
-                </Animatable.Text>
-              )}
-            </Animatable.View>
-          ))}
-        {language.TEXTO.PERGUNTAS === "INGLES" &&
-          questionsIngles.map((item) => (
-            <Animatable.View
-              key={item.id}
-              animation="fadeInUp"
-              style={[
-                styles.questionContainer,
-                {
-                  backgroundColor: theme.COLORS.BACKGROUND_CARD,
-                },
-              ]}
-            >
-              <TouchableOpacity onPress={() => handleQuestionPress(item.id)}>
-                <View
-                  style={[
-                    styles.questionHeader,
-                    {
-                      backgroundColor: theme.COLORS.BACKGROUND_CARD,
-                    },
-                  ]}
-                >
-                  <Text
-                    style={[
-                      styles.questionText,
-                      {
-                        color: theme.COLORS.POST_TITLE,
-                      },
-                    ]}
-                  >
-                    {item.question}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              {selectedQuestion === item.id && (
-                <Animatable.Text
-                  animation="fadeIn"
-                  style={[
-                    styles.answerText,
-                    {
-                      color: theme.COLORS.POST_CONTENT,
-                    },
-                  ]}
-                >
-                  {item.answer}
-                </Animatable.Text>
-              )}
-            </Animatable.View>
-          ))}
+                  {item.pergunta}
+                </Text>
+              </View>
+            </TouchableOpacity>
+            {selectedQuestion === item.id && (
+              <Animatable.Text
+                animation="fadeIn"
+                style={[
+                  styles.answerText,
+                  {
+                    color: theme.COLORS.POST_CONTENT,
+                  },
+                ]}
+              >
+                {item.resposta}
+              </Animatable.Text>
+            )}
+          </Animatable.View>
+        ))}
       </ScrollView>
     </View>
   );
-};
-
-export default FAQ;
+}

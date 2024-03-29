@@ -1,16 +1,13 @@
 import React from "react";
 import { AuthProvider } from "./src/hooks/AuthProvider";
 import { ThemeProvider } from "./src/hooks/ThemeProvider";
-import { LanguageProvider } from "./src/hooks/LanguageProvider";
 import { Router } from "./src/routes";
 
-export default function App(): React.JSX.Element {
+export default function App() {
   return (
     <AuthProvider>
       <ThemeProvider>
-        <LanguageProvider>
-          <Router />
-        </LanguageProvider>
+        <Router />
       </ThemeProvider>
     </AuthProvider>
   );

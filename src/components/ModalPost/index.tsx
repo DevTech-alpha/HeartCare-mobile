@@ -13,23 +13,21 @@ import { styles } from "./styles";
 import ModalPostProps from "../../props/ModalPostProps";
 import { AntDesign } from "@expo/vector-icons";
 import { useTheme } from "../../context/ThemeContext";
-import { useLanguage } from "../../context/LanguageContext";
 
-const PublishModalContent: React.FC<ModalPostProps> = ({
+export default function PublishModalContent({
   createNewPost,
   loading,
   fecharModal,
   visivel,
-}) => {
+}: ModalPostProps) {
   const [newTitle, setNewTitle] = useState("");
   const [newContent, setNewContent] = useState("");
 
   const { theme } = useTheme();
-  const { language } = useLanguage();
 
   const validateAndCreatePost = () => {
     if (newTitle.trim() === "" || newContent.trim() === "") {
-      Alert.alert(language.TEXTO.ERRO, language.TEXTO.PRENCHA_CAMPOS);
+      Alert.alert("Erro", "Preencha todos os campos.");
     } else {
       createNewPost(newTitle, newContent);
       fecharModal();
@@ -66,17 +64,17 @@ const PublishModalContent: React.FC<ModalPostProps> = ({
             />
           </View>
           <Text style={[styles.textoModal, { color: theme.COLORS.POST_TITLE }]}>
-            {language.TEXTO.NOVA_PUBLICACAO}
+            Nova Publicação
           </Text>
           <TextInput
-            placeholder={language.TEXTO.TITULO}
+            placeholder="Título"
             placeholderTextColor={theme.COLORS.POST_CONTENT}
             style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
             value={newTitle}
             onChangeText={(text) => setNewTitle(text)}
           />
           <TextInput
-            placeholder={language.TEXTO.CONTEUDO}
+            placeholder="Conteúdo"
             placeholderTextColor={theme.COLORS.POST_CONTENT}
             style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
             value={newContent}
@@ -100,7 +98,7 @@ const PublishModalContent: React.FC<ModalPostProps> = ({
               <Text
                 style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}
               >
-                {language.TEXTO.POSTAR}
+                Postar
               </Text>
             )}
           </TouchableOpacity>
@@ -108,6 +106,4 @@ const PublishModalContent: React.FC<ModalPostProps> = ({
       </View>
     </Modal>
   );
-};
-
-export default PublishModalContent;
+}

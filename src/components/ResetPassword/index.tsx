@@ -9,17 +9,15 @@ import * as Animatable from "react-native-animatable";
 import { styles } from "./styles";
 import ResetPasswordFormProps from "../../props/ResetPassowordProps";
 import { useTheme } from "../../context/ThemeContext";
-import { useLanguage } from "../../context/LanguageContext";
 
-const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
+export default function ResetPasswordForm({
   resetEmail,
   setResetEmail,
   handleResetPassword,
   loading,
   handleBackToLogin,
-}) => {
+}: ResetPasswordFormProps) {
   const { theme } = useTheme();
-  const { language } = useLanguage();
 
   return (
     <Animatable.View
@@ -30,10 +28,10 @@ const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
       ]}
     >
       <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-        {language.TEXTO.RECUPERAR_SENHA}
+        Recuperar Senha
       </Text>
       <TextInput
-        placeholder={language.TEXTO.DIGITE_EMAIL}
+        placeholder="Digite seu e-mail"
         placeholderTextColor={theme.COLORS.TEXT}
         value={resetEmail}
         style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
@@ -50,7 +48,7 @@ const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
           <Text
             style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}
           >
-            {language.TEXTO.RECUPERAR_SENHA_BOTAO}
+            Recuperar Senha
           </Text>
         )}
       </TouchableOpacity>
@@ -59,11 +57,9 @@ const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
         onPress={handleBackToLogin}
       >
         <Text style={[styles.registerText, { color: theme.COLORS.TEXT }]}>
-          {language.TEXTO.VOLTAR_LOGIN}
+          Voltar ao Login
         </Text>
       </TouchableOpacity>
     </Animatable.View>
   );
-};
-
-export default ResetPasswordForm;
+}

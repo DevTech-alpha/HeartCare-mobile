@@ -1,34 +1,31 @@
+import { useState } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  Alert,
+  ActivityIndicator,
+} from "react-native";
+import { useTheme } from "../../context/ThemeContext";
+import { AntDesign } from "@expo/vector-icons";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../firebase/firebaseConfig";
 import { styles } from "./styles";
 import MedicaoFormProps from "../../props/MedicaoFormProps";
 
-import { useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../firebase/firebaseConfig";
-import {
-  ActivityIndicator,
-  Alert,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { useTheme } from "../../context/ThemeContext";
-import { useLanguage } from "../../context/LanguageContext";
-import { AntDesign } from "@expo/vector-icons";
-
-const MedicaoForm: React.FC<MedicaoFormProps> = ({
+export default function MedicaoForm({
   onMedicaoAdicionada,
   loading,
   user,
   MudarCard,
-}) => {
+}: MedicaoFormProps) {
   const [sistolica, setSistolica] = useState("");
   const [diastolica, setDiastolica] = useState("");
   const [pulso, setPulso] = useState("");
   const [isAddingMedicao, setIsAddingMedicao] = useState(false);
 
   const { theme } = useTheme();
-  const { language } = useLanguage();
 
   const adicionarMedicao = async () => {
     if (
@@ -56,15 +53,15 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({
           const docRef = await addDoc(medicoesRef, novaMedicao);
 
           onMedicaoAdicionada();
-          Alert.alert(language.TEXTO.ADICIONADO_COM_SUCESSO);
+          Alert.alert("Adicionado com sucesso");
         } catch (error) {
           console.error("Erro ao adicionar medição:", error);
-          alert(language.TEXTO.ERRO_MEDICAO);
+          Alert.alert("Erro de medição");
         } finally {
           setIsAddingMedicao(false);
         }
       } else {
-        alert(language.TEXTO.VALORES_INVALIDOS);
+        Alert.alert("Valores inválidos");
       }
     }
   };
@@ -85,11 +82,11 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({
         />
       </View>
       <Text style={[styles.label, { color: theme.COLORS.POST_TITLE }]}>
-        {language.TEXTO.SISTOLICA}
+        Sistólica
       </Text>
       <TextInput
         style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-        placeholder={language.TEXTO.DIGITE_DIASTOLICA}
+        placeholder="Digite a sistólica"
         placeholderTextColor={theme.COLORS.TEXT}
         value={sistolica}
         onChangeText={(texto) => setSistolica(texto)}
@@ -97,11 +94,11 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({
       />
 
       <Text style={[styles.label, { color: theme.COLORS.POST_TITLE }]}>
-        {language.TEXTO.DIASTOLICA}
+        Diastólica
       </Text>
       <TextInput
         style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-        placeholder={language.TEXTO.DIGITE_DIASTOLICA}
+        placeholder="Digite a diastólica"
         placeholderTextColor={theme.COLORS.TEXT}
         value={diastolica}
         onChangeText={(texto) => setDiastolica(texto)}
@@ -109,11 +106,11 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({
       />
 
       <Text style={[styles.label, { color: theme.COLORS.POST_TITLE }]}>
-        {language.TEXTO.PULSO}
+        Pulso
       </Text>
       <TextInput
         style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-        placeholder={language.TEXTO.DIGITE_PULSO}
+        placeholder="Digite o pulso"
         placeholderTextColor={theme.COLORS.TEXT}
         value={pulso}
         onChangeText={(texto) => setPulso(texto)}
@@ -136,12 +133,10 @@ const MedicaoForm: React.FC<MedicaoFormProps> = ({
           <Text
             style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}
           >
-            {language.TEXTO.REGISTRAR}
+            Registrar
           </Text>
         )}
       </TouchableOpacity>
     </View>
   );
-};
-
-export default MedicaoForm;
+}

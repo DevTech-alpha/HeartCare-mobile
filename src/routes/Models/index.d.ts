@@ -3,11 +3,10 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 export type propsNavigationStack = {
   Feed: undefined | any;
   Query: undefined | any;
-  Perfil: undefined | any;
+  Profile: undefined | any;
   Home: undefined | any;
-  Login: undefined | any;
-  Cadastrar: undefined | any;
-  Principal: undefined | any;
+  SignIn: undefined | any;
+  SignUp: undefined | any;
   Alert: undefined | any;
 };
 

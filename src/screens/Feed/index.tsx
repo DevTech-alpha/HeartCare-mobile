@@ -24,17 +24,15 @@ import { useNavigation } from "@react-navigation/native";
 import * as Sharing from "expo-sharing";
 import * as FileSystem from "expo-file-system";
 import { propsStack } from "../../routes/Models";
-import { Header } from "../../components/Header";
+import Header from "../../components/Header";
 import PublishModalContent from "../../components/ModalPost";
 import { useTheme } from "../../context/ThemeContext";
-import { useLanguage } from "../../context/LanguageContext";
 
 const Feed = () => {
   const { navigate } = useNavigation<propsStack>();
   const auth = getAuth();
   const user: User | null = auth.currentUser;
   const { theme } = useTheme();
-  const { language } = useLanguage();
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
@@ -86,7 +84,7 @@ const Feed = () => {
         const userData = userDoc.data();
 
         if (!userData || Object.keys(userData).length === 0) {
-          alert(language.TEXTO.COMPLETE_CADASTRO);
+          alert("Por favor, complete seu cadastro antes de publicar um post.");
           navigate("Perfil");
           return;
         }
@@ -102,7 +100,7 @@ const Feed = () => {
 
         const updatedPosts = [...posts, { ...postWithUserId, id: docRef.id }];
         setPosts(updatedPosts as any);
-        Alert.alert(language.TEXTO.CRIADO_COM_SUCESSO);
+        Alert.alert("Post criado com sucesso.");
       }
     } catch (error) {
     } finally {

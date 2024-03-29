@@ -4,15 +4,14 @@ import { styles } from "./styles";
 import MedicaoItemProps from "../../props/MedicaoItemProps";
 import ModalEdicao from "../ModalEdit";
 import { useTheme } from "../../context/ThemeContext";
-import { useLanguage } from "../../context/LanguageContext";
+import { AntDesign } from "@expo/vector-icons";
 
-const MedicaoItem: React.FC<MedicaoItemProps> = ({
+export default function MedicaoItem({
   medicao,
   deleteMedicao,
-}) => {
+}: MedicaoItemProps) {
   const [modalVisivel, setModalVisivel] = useState(false);
   const { theme } = useTheme();
-  const { language } = useLanguage();
 
   const abrirModal = () => {
     setModalVisivel(true);
@@ -32,35 +31,35 @@ const MedicaoItem: React.FC<MedicaoItemProps> = ({
 
     if (!isNaN(sistolica) && !isNaN(diastolica)) {
       if (sistolica < 90 && diastolica < 60) {
-        return language.TEXTO.PRESSAO_BAIXA;
+        return "Pressão baixa";
       } else if (
         sistolica >= 90 &&
         sistolica <= 120 &&
         diastolica >= 60 &&
         diastolica <= 80
       ) {
-        return language.TEXTO.PRESSAO_NORMAL;
+        return "Pressão normal";
       } else if (
         sistolica > 120 &&
         diastolica > 80 &&
         sistolica <= 140 &&
         diastolica <= 90
       ) {
-        return language.TEXTO.PRE_HIPERTENSAO;
+        return "Pré-hipertensão";
       } else if (
         sistolica > 140 &&
         diastolica > 90 &&
         sistolica <= 160 &&
         diastolica <= 100
       ) {
-        return language.TEXTO.HIPERTENSAO_ESTAGIO_1;
+        return "Hipertensão estágio 1";
       } else if (sistolica > 160 && diastolica > 100) {
-        return language.TEXTO.HIPERTENSAO_ESTAGIO_2;
+        return "Hipertensão estágio 2";
       } else {
-        return language.TEXTO.PRESSAO_NAO_CLASSIFICADA;
+        return "Pressão não classificada";
       }
     } else {
-      return language.TEXTO.VALORES_INVALIDOS;
+      return "Valores inválidos";
     }
   };
 
@@ -72,37 +71,37 @@ const MedicaoItem: React.FC<MedicaoItemProps> = ({
       ]}
     >
       <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>
-        {language.TEXTO.SISTOLICA}:{" "}
+        Sistólica:{" "}
         <Text style={{ fontWeight: "bold", fontSize: 13 }}>
           {medicao.sistolica}
         </Text>
       </Text>
       <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>
-        {language.TEXTO.DIASTOLICA}:{" "}
+        Diastólica:{" "}
         <Text style={{ fontWeight: "bold", fontSize: 13 }}>
           {medicao.diastolica}
         </Text>
       </Text>
       <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>
-        {language.TEXTO.PULSO}:{" "}
+        Pulso:{" "}
         <Text style={{ fontWeight: "bold", fontSize: 13 }}>
           {medicao.pulso}
         </Text>
       </Text>
       <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>
-        {language.TEXTO.HORARIO}:{" "}
+        Horário:{" "}
         <Text style={{ fontWeight: "bold", fontSize: 13 }}>
           {new Date(medicao.horario).toLocaleTimeString()}
         </Text>
       </Text>
       <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>
-        {language.TEXTO.DATA}:{" "}
+        Data:{" "}
         <Text style={{ fontWeight: "bold", fontSize: 13 }}>
           {new Date(medicao.data).toLocaleDateString()}
         </Text>
       </Text>
       <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>
-        {language.TEXTO.AVALIACAO}:{" "}
+        Avaliação:{" "}
         <Text style={{ fontWeight: "bold", fontSize: 13 }}>
           {avaliarPressao()}
         </Text>
@@ -115,7 +114,7 @@ const MedicaoItem: React.FC<MedicaoItemProps> = ({
           <Text
             style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}
           >
-            {language.TEXTO.EDITAR}
+            Editar
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -125,7 +124,7 @@ const MedicaoItem: React.FC<MedicaoItemProps> = ({
           <Text
             style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}
           >
-            {language.TEXTO.EXCLUIR}
+            Excluir
           </Text>
         </TouchableOpacity>
       </View>
@@ -138,6 +137,4 @@ const MedicaoItem: React.FC<MedicaoItemProps> = ({
       />
     </View>
   );
-};
-
-export default MedicaoItem;
+}

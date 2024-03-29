@@ -3,10 +3,14 @@ import { Text, TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { styles as feedStyles } from "./styles";
 import * as Animatable from "react-native-animatable";
-import PostItemProps from "../../props/PostItemProfileProps";
 import { useTheme } from "../../context/ThemeContext";
+import PostItemProfileProps from "../../props/PostItemProfileProps";
 
-const PostItem: React.FC<PostItemProps> = ({ item, userUid, deletePost }) => {
+export default function PostItemProfile({
+  item,
+  userUid,
+  deletePost,
+}: PostItemProfileProps) {
   const { theme } = useTheme();
 
   return (
@@ -36,6 +40,4 @@ const PostItem: React.FC<PostItemProps> = ({ item, userUid, deletePost }) => {
       )}
     </Animatable.View>
   );
-};
-
-export default PostItem;
+}

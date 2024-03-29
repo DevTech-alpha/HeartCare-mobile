@@ -7,19 +7,17 @@ import * as Animatable from "react-native-animatable";
 import { enviarRecuperacaoSenha } from "../../api/PasswordRecovery";
 import { useAuth } from "../../context/AuthContext";
 import { useTheme } from "../../context/ThemeContext";
-import { useLanguage } from "../../context/LanguageContext";
 
-const Login = () => {
+const SignIn = () => {
   const { signIn } = useAuth();
+  const { theme } = useTheme();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [resetEmail, setResetEmail] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showResetPassword, setShowResetPassword] = useState(false);
-
-  const { theme } = useTheme();
-  const { language } = useLanguage();
 
   const handleLogin = async () => {
     try {
@@ -36,7 +34,7 @@ const Login = () => {
       setLoading(true);
       await enviarRecuperacaoSenha(resetEmail);
       setLoading(false);
-      alert(language.TEXTO.EMAIL_REC);
+      alert("Email de recuperação enviado com sucesso");
     } catch (error) {
       setLoading(false);
       alert(error);
@@ -62,7 +60,9 @@ const Login = () => {
         delay={500}
         style={styles.containerHeader}
       >
-        <Text style={styles.message}>{language.TEXTO.BEM_VINDO}</Text>
+        <Text style={styles.message}>
+          {showResetPassword ? "Recuperar Senha" : "Seja Bem-vindo(a)"}
+        </Text>
       </Animatable.View>
 
       {showResetPassword ? (
@@ -90,4 +90,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignIn;

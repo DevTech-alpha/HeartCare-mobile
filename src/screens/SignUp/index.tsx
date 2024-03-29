@@ -8,11 +8,9 @@ import { criar } from "../../api/CreateAcount";
 import { propsStack } from "../../routes/Models";
 import CadastroForm from "../../components/SignUpForm";
 import { useTheme } from "../../context/ThemeContext";
-import { useLanguage } from "../../context/LanguageContext";
 
-const Cadastro: React.FC = () => {
+const SignUp = () => {
   const { theme } = useTheme();
-  const { language } = useLanguage();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,7 +29,7 @@ const Cadastro: React.FC = () => {
 
     if (password !== confPassword) {
       setLoading(false);
-      Alert.alert(language.TEXTO.SENHA_NAO_CORRESPONDE);
+      Alert.alert("Senha não corresponde");
       return;
     }
 
@@ -39,8 +37,8 @@ const Cadastro: React.FC = () => {
       .then((userCredentials) => {
         setLoading(false);
         const user = userCredentials.user;
-        Alert.alert(language.TEXTO.REGISTRO_SUCESSO);
-        navigate("Login");
+        Alert.alert("Registro bem-sucedido");
+        navigate("SignIn");
       })
       .catch((error) => {
         setLoading(false);
@@ -55,7 +53,7 @@ const Cadastro: React.FC = () => {
         delay={500}
         style={styles.containerHeader}
       >
-        <Text style={styles.message}>{language.TEXTO.CADASTRO}</Text>
+        <Text style={styles.message}>Faça seu Cadastro</Text>
       </Animatable.View>
 
       <CadastroForm
@@ -74,4 +72,4 @@ const Cadastro: React.FC = () => {
   );
 };
 
-export default Cadastro;
+export default SignUp;

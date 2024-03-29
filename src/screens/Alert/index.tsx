@@ -1,31 +1,27 @@
 import React, { useState } from "react";
 import { View, TouchableOpacity } from "react-native";
 import { estilo } from "./styles";
-import { Header } from "../../components/Header";
 import { AntDesign } from "@expo/vector-icons";
 
 import FAQ from "../../components/FAQ";
 import Chat from "../../components/Chat";
 import { useTheme } from "../../context/ThemeContext";
-import { useLanguage } from "../../context/LanguageContext";
+import Header from "../../components/Header";
 
-export default function Alert() {
+const Alert = () => {
   const { theme } = useTheme();
-  const { language } = useLanguage();
 
-  const [mostrar, setmostrar] = useState(true);
+  const [mostrar, setMostrar] = useState(true);
 
   const toggleChatVisibility = () => {
-    setmostrar(!mostrar);
+    setMostrar(!mostrar);
   };
 
   return (
     <View
       style={[estilo.container, { backgroundColor: theme.COLORS.BACKGROUND }]}
     >
-      <Header
-        title={mostrar ? language.TEXTO.PESQUISA : language.TEXTO.EXPLIQUE}
-      />
+      <Header title={mostrar ? "Pesquisa" : "Explique"} />
       {mostrar ? (
         <TouchableOpacity
           style={[
@@ -47,8 +43,8 @@ export default function Alert() {
           <AntDesign name="arrowleft" size={30} color={theme.COLORS.ICON} />
         </TouchableOpacity>
       )}
-      {mostrar && <Chat />}
-      {!mostrar && <FAQ />}
+      {mostrar ? <Chat /> : <FAQ />}
     </View>
   );
-}
+};
+export default Alert;

@@ -2,26 +2,18 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
 
-import Consulta from "../screens/Query";
-import Perfil from "../screens/Profile";
 import { propsNavigationStack } from "./Models";
 import { StatusBar } from "react-native";
-import Alert from "../screens/Alert";
-import Feed from "../screens/Feed";
 import { useTheme } from "../context/ThemeContext";
+import Feed from "../screens/Feed";
+import Alert from "../screens/Alert";
+import Query from "../screens/Query";
+import Profile from "../screens/Profile";
 
 const { Navigator, Screen } = createBottomTabNavigator<propsNavigationStack>();
 
-export function TabRoutes() {
+export default function TabRoutes() {
   const { theme } = useTheme();
-
-  const getIconSize = (isFocused: boolean, size: number) => {
-    return isFocused ? size + 5 : size;
-  };
-
-  const getIconColor = (isFocused: boolean) => {
-    return isFocused ? theme.COLORS.PRIMARY : theme.COLORS.ICON;
-  };
 
   return (
     <>
@@ -44,8 +36,8 @@ export function TabRoutes() {
             tabBarIcon: ({ focused, size }) => (
               <Feather
                 name="heart"
-                size={getIconSize(focused, size)}
-                color={getIconColor(focused)}
+                size={focused ? size + 5 : size}
+                color={focused ? theme.COLORS.PRIMARY : theme.COLORS.ICON}
               />
             ),
             tabBarLabel: () => null,
@@ -57,7 +49,7 @@ export function TabRoutes() {
           options={{
             tabBarIcon: ({ focused, size }) => (
               <Feather
-                name="alert-octagon"
+                name="alert-circle"
                 size={focused ? size + 5 : size}
                 color={focused ? theme.COLORS.PRIMARY : theme.COLORS.ICON}
               />
@@ -68,7 +60,7 @@ export function TabRoutes() {
 
         <Screen
           name="Query"
-          component={Consulta}
+          component={Query}
           options={{
             tabBarIcon: ({ focused, size }) => (
               <Feather
@@ -81,8 +73,8 @@ export function TabRoutes() {
           }}
         />
         <Screen
-          name="Perfil"
-          component={Perfil}
+          name="Profile"
+          component={Profile}
           options={{
             tabBarIcon: ({ focused, size }) => (
               <Feather

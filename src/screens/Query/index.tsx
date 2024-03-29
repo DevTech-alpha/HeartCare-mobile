@@ -22,15 +22,14 @@ import { db } from "../../firebase/firebaseConfig";
 import { styles } from "./styles";
 import MedicaoItem from "../../components/MedicaoItem";
 import MedicaoForm from "../../components/MedicaoForm";
-import { Header } from "../../components/Header";
+import Header from "../../components/Header";
 import * as Animatable from "react-native-animatable";
 import { AntDesign } from "@expo/vector-icons";
 import AtividadesForm from "../../components/AtividadesForm";
 import AtividadeItem from "../../components/AtividadesItem";
 import { useTheme } from "../../context/ThemeContext";
-import { useLanguage } from "../../context/LanguageContext";
 
-const PressaoArterial = () => {
+const Query = () => {
   const [medicoes, setMedicoes] = useState<Medicao[]>([]);
   const [historicoVisivel, setHistoricoVisivel] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -41,7 +40,6 @@ const PressaoArterial = () => {
   const user: User | null = auth.currentUser;
 
   const { theme } = useTheme();
-  const { language } = useLanguage();
 
   const carregarMedicoes = useCallback(async () => {
     if (user) {
@@ -85,18 +83,18 @@ const PressaoArterial = () => {
       const postRef = doc(db, "medicoes", postId);
 
       Alert.alert(
-        language.TEXTO.CONFIRMA,
-        language.TEXTO.ALERT_MEDI,
+        "Confirmação",
+        "Deseja apagar esta medição?",
         [
           {
-            text: language.TEXTO.CANCELAR_SESSAO,
+            text: "Cancelar",
             style: "cancel",
           },
           {
-            text: language.TEXTO.APAGAR_MEDI,
+            text: "Apagar",
             onPress: async () => {
               await deleteDoc(postRef);
-              Alert.alert(language.TEXTO.EXCLUIDO);
+              Alert.alert("Excluído com sucesso");
               carregarMedicoes();
             },
           },
@@ -117,13 +115,7 @@ const PressaoArterial = () => {
     <View
       style={[styles.container, { backgroundColor: theme.COLORS.BACKGROUND }]}
     >
-      <Header
-        title={
-          historicoVisivel
-            ? language.TEXTO.HISTORICO
-            : language.TEXTO.ATIVIDADES
-        }
-      />
+      <Header title={historicoVisivel ? "Histórico" : "Atividades"} />
       {historicoVisivel ? (
         <TouchableOpacity
           style={[
@@ -175,7 +167,7 @@ const PressaoArterial = () => {
               data={medicoes}
               ListEmptyComponent={
                 <Text style={[styles.textoVazio, { color: theme.COLORS.TEXT }]}>
-                  {language.TEXTO.NENHUMA_MEDICAO}
+                  Nenhuma medição encontrada
                 </Text>
               }
               renderItem={({ item }) => (
@@ -193,4 +185,4 @@ const PressaoArterial = () => {
   );
 };
 
-export default PressaoArterial;
+export default Query;

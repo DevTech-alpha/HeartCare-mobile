@@ -15,12 +15,12 @@ import { db } from "../../firebase/firebaseConfig";
 import { getDoc, doc } from "firebase/firestore";
 import { useTheme } from "../../context/ThemeContext";
 
-const PostItem: React.FC<PostItemProps> = ({
+export default function PostItem({
   item,
   sharePost,
   onLikePress,
   user,
-}) => {
+}: PostItemProps) {
   const { theme } = useTheme();
 
   const [isLiked, setIsLiked] = useState(false);
@@ -148,6 +148,4 @@ const PostItem: React.FC<PostItemProps> = ({
       </TouchableOpacity>
     </Animatable.View>
   );
-};
-
-export default PostItem;
+}

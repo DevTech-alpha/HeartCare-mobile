@@ -14,11 +14,9 @@ import { estilo } from "./styles";
 
 import * as Animatable from "react-native-animatable";
 import { useTheme } from "../../context/ThemeContext";
-import { useLanguage } from "../../context/LanguageContext";
 
 export default function Chat() {
   const { theme } = useTheme();
-  const { language } = useLanguage();
 
   const [sintomasUsuario, setSintomasUsuario] = useState("");
   const [respostaOpenAI, setRespostaOpenAI] = useState("");
@@ -30,7 +28,7 @@ export default function Chat() {
 
   const gerarResposta = async () => {
     if (sintomasUsuario === "") {
-      Alert.alert(language.TEXTO.ALERTA, language.TEXTO.EXPLIQUE_SENTIMENTO);
+      Alert.alert("Alerta", "Por favor, explique o que está sentindo.");
       return;
     }
 
@@ -38,7 +36,7 @@ export default function Chat() {
     setCarregando(true);
     Keyboard.dismiss();
 
-    const prompt = `${language.TEXTO.PROMPT}${sintomasUsuario}${language.TEXTO.PROMPT2}`;
+    const prompt = `Por favor, explique o que está sentindo: ${sintomasUsuario}`;
 
     try {
       const resposta = await fetch(API_OPENAI, {
@@ -68,7 +66,7 @@ export default function Chat() {
       const dados = await resposta.json();
       setRespostaOpenAI(dados.choices[0].message.content);
     } catch (erro) {
-      Alert.alert(language.TEXTO.ERRO, language.TEXTO.ERRO_REPOSTA);
+      Alert.alert("Erro", "Erro ao obter resposta do servidor.");
     } finally {
       setCarregando(false);
     }
@@ -80,10 +78,10 @@ export default function Chat() {
         style={[estilo.form, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}
       >
         <Text style={[estilo.label, { color: theme.COLORS.POST_TITLE }]}>
-          {language.TEXTO.EXPLIQUE_O_QUE_ESTA_SENTINDO}
+          Explique o que está sentindo:
         </Text>
         <TextInput
-          placeholder={language.TEXTO.DESCREVA_SEUS_SINTOMAS}
+          placeholder="Descreva seus sintomas..."
           placeholderTextColor={theme.COLORS.POST_CONTENT}
           style={[estilo.input, { color: theme.COLORS.POST_CONTENT }]}
           value={sintomasUsuario}
@@ -97,7 +95,7 @@ export default function Chat() {
         onPress={gerarResposta}
       >
         <Text style={[estilo.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}>
-          {language.TEXTO.OBTER_REPOSTA}
+          Obter resposta
         </Text>
         <MaterialIcons
           name="favorite"
@@ -118,7 +116,7 @@ export default function Chat() {
             ]}
           >
             <Text style={[estilo.title, { color: theme.COLORS.POST_TITLE }]}>
-              {language.TEXTO.CARREGANDO_REPOSTA}
+              Carregando resposta...
             </Text>
             <ActivityIndicator color={theme.COLORS.ICON} size="small" />
           </View>
@@ -132,7 +130,7 @@ export default function Chat() {
               ]}
             >
               <Text style={[estilo.title, { color: theme.COLORS.POST_TITLE }]}>
-                {language.TEXTO.RESPOSTA_DO_DOCTOR}
+                Resposta do Doctor:
               </Text>
               <Text
                 style={{ lineHeight: 24, color: theme.COLORS.POST_CONTENT }}

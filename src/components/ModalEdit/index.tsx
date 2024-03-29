@@ -15,14 +15,13 @@ import Medicao from "../../model/Medicao";
 import ModalEdicaoProps from "../../props/ModalEditProps";
 import { AntDesign } from "@expo/vector-icons";
 import { useTheme } from "../../context/ThemeContext";
-import { useLanguage } from "../../context/LanguageContext";
 
-const ModalEdicao: React.FC<ModalEdicaoProps> = ({
+export default function ModalEdicao({
   visivel,
   fecharModal,
   medicao,
   salvarEdicao,
-}) => {
+}: ModalEdicaoProps) {
   const [sistolicaEditada, setSistolicaEditada] = useState(medicao.sistolica);
   const [diastolicaEditada, setDiastolicaEditada] = useState(
     medicao.diastolica
@@ -31,7 +30,6 @@ const ModalEdicao: React.FC<ModalEdicaoProps> = ({
   const [loading, setLoading] = useState(false);
 
   const { theme } = useTheme();
-  const { language } = useLanguage();
 
   const handleSalvarEdicao = async () => {
     const novaMedicao: Medicao = {
@@ -54,7 +52,7 @@ const ModalEdicao: React.FC<ModalEdicaoProps> = ({
       await updateDoc(doc(medicoesRef, medicao.id), medicaoParaAtualizar);
 
       setLoading(false);
-      Alert.alert(language.TEXTO.ADICIONADO_COM_SUCESSO);
+      Alert.alert("Adicionado com sucesso");
       salvarEdicao(novaMedicao);
     } catch (error) {
       setLoading(false);
@@ -85,25 +83,25 @@ const ModalEdicao: React.FC<ModalEdicaoProps> = ({
             />
           </View>
           <Text style={[styles.textoModal, { color: theme.COLORS.POST_TITLE }]}>
-            {language.TEXTO.EDITAR_MEDICAO}
+            Editar Medição
           </Text>
           <TextInput
             style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-            placeholder={language.TEXTO.SISTOLICA}
+            placeholder="Sistólica"
             value={sistolicaEditada}
             onChangeText={(texto) => setSistolicaEditada(texto)}
             keyboardType="numeric"
           />
           <TextInput
             style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-            placeholder={language.TEXTO.DIASTOLICA}
+            placeholder="Diastólica"
             value={diastolicaEditada}
             onChangeText={(texto) => setDiastolicaEditada(texto)}
             keyboardType="numeric"
           />
           <TextInput
             style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-            placeholder={language.TEXTO.PULSO}
+            placeholder="Pulso"
             value={pulsoEditado}
             onChangeText={(texto) => setPulsoEditado(texto)}
             keyboardType="numeric"
@@ -122,7 +120,7 @@ const ModalEdicao: React.FC<ModalEdicaoProps> = ({
               <Text
                 style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}
               >
-                {language.TEXTO.SALVAR}
+                Salvar
               </Text>
             )}
           </TouchableOpacity>
@@ -130,6 +128,4 @@ const ModalEdicao: React.FC<ModalEdicaoProps> = ({
       </View>
     </Modal>
   );
-};
-
-export default ModalEdicao;
+}

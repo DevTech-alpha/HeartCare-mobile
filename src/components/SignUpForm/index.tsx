@@ -9,9 +9,8 @@ import {
 import { styles } from "./styles";
 import CadastroFormProps from "../../props/SignUpFormProps";
 import { useTheme } from "../../context/ThemeContext";
-import { useLanguage } from "../../context/LanguageContext";
 
-const CadastroForm: React.FC<CadastroFormProps> = ({
+export default function CadastroForm({
   email,
   setEmail,
   password,
@@ -22,9 +21,8 @@ const CadastroForm: React.FC<CadastroFormProps> = ({
   togglePasswordVisibility,
   handleSignUp,
   loading,
-}) => {
+}: CadastroFormProps) {
   const { theme } = useTheme();
-  const { language } = useLanguage();
 
   return (
     <View
@@ -34,10 +32,10 @@ const CadastroForm: React.FC<CadastroFormProps> = ({
       ]}
     >
       <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-        {language.TEXTO.EMAIL}
+        Email
       </Text>
       <TextInput
-        placeholder={language.TEXTO.DIGITE_SEU_EMAIL}
+        placeholder="Digite seu e-mail"
         placeholderTextColor={theme.COLORS.TEXT}
         style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
         value={email}
@@ -45,10 +43,10 @@ const CadastroForm: React.FC<CadastroFormProps> = ({
       />
 
       <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-        {language.TEXTO.SENHA}
+        Senha
       </Text>
       <TextInput
-        placeholder={language.TEXTO.DIGITE_SUA_SENHA}
+        placeholder="Digite sua senha"
         placeholderTextColor={theme.COLORS.TEXT}
         style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
         value={password}
@@ -57,10 +55,10 @@ const CadastroForm: React.FC<CadastroFormProps> = ({
       />
 
       <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-        {language.TEXTO.CONFIRME_A_SENHA}
+        Confirme a Senha
       </Text>
       <TextInput
-        placeholder={language.TEXTO.DIGITE_SUA_CONFIRMACAO_DE_SENHA}
+        placeholder="Digite sua confirmação de senha"
         placeholderTextColor={theme.COLORS.TEXT}
         style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
         value={confPassword}
@@ -78,9 +76,7 @@ const CadastroForm: React.FC<CadastroFormProps> = ({
             { color: theme.COLORS.TEXT },
           ]}
         >
-          {isPasswordVisible
-            ? language.TEXTO.OCULTAR_SENHA
-            : language.TEXTO.MOSTRAR_SENHA}
+          {isPasswordVisible ? "Ocultar senha" : "Mostrar senha"}
         </Text>
       </TouchableOpacity>
 
@@ -95,12 +91,10 @@ const CadastroForm: React.FC<CadastroFormProps> = ({
           <Text
             style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}
           >
-            {language.TEXTO.REGISTRAR}
+            Registrar
           </Text>
         )}
       </TouchableOpacity>
     </View>
   );
-};
-
-export default CadastroForm;
+}

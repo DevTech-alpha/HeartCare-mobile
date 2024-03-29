@@ -10,7 +10,6 @@ import {
 import UserProfileFormProps from "../../props/UserProfileFormProps";
 import { styles } from "./styles";
 import { Checkbox } from "expo-checkbox";
-import { useLanguage } from "../../context/LanguageContext";
 import { useTheme } from "../../context/ThemeContext";
 
 const bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
@@ -20,17 +19,9 @@ const medicalConditionsPortugues = [
   "Asma",
   "Alergias",
 ];
-const medicalConditionsIngles = [
-  "Diabetes",
-  "Hypertension",
-  "Asthma",
-  "Allergies",
-];
-
 const generoPortugues = ["Masculino", "Feminino", "Prefiro não dizer"];
-const generoIngles = ["Male", "Female", "Prefer not to say"];
 
-const UserProfileForm: React.FC<UserProfileFormProps> = ({
+export default function UserProfileForm({
   username,
   name,
   lastName,
@@ -49,9 +40,8 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
   setGenero,
   handleSaveProfile,
   loading,
-}) => {
+}: UserProfileFormProps) {
   const { theme } = useTheme();
-  const { language } = useLanguage();
 
   const formatBirthdateInput = (inputValue: any) => {
     const formattedValue = inputValue
@@ -71,44 +61,44 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
     >
       <ScrollView>
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-          {language.TEXTO.USUARIO}:
+          Usuário:
         </Text>
         <TextInput
           style={[styles.input, { color: theme.COLORS.TEXT }]}
-          placeholder={language.TEXTO.DIGITE_SEU_USUARIO}
+          placeholder="Digite seu usuário"
           onChangeText={(text) => setUsername(text)}
           value={username}
         />
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-          {language.TEXTO.NOME}:
+          Nome:
         </Text>
         <TextInput
           style={[styles.input, { color: theme.COLORS.TEXT }]}
-          placeholder={language.TEXTO.DIGITE_SEU_NOME}
+          placeholder="Digite seu nome"
           onChangeText={(text) => setName(text)}
           value={name}
         />
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-          {language.TEXTO.SOBRENOME}:
+          Sobrenome:
         </Text>
         <TextInput
           style={[styles.input, { color: theme.COLORS.TEXT }]}
-          placeholder={language.TEXTO.DIGITE_SEU_SOBRENOME}
+          placeholder="Digite seu sobrenome"
           onChangeText={(text) => setLastName(text)}
           value={lastName}
         />
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-          {language.TEXTO.DATA_DE_NASCIMENTO}:
+          Data de Nascimento:
         </Text>
         <TextInput
           style={[styles.input, { color: theme.COLORS.TEXT }]}
-          placeholder={language.TEXTO.DIGITE_SUA_DATA_DE_NASCIMENTO}
+          placeholder="Digite sua data de nascimento"
           onChangeText={(text) => setDob(formatBirthdateInput(text))}
           value={dob}
           keyboardType="numeric"
         />
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-          {language.TEXTO.TIPO_SANGUINEO}:
+          Tipo Sanguíneo:
         </Text>
         <View style={styles.checkboxContainer}>
           {bloodTypes.map((type) => (
@@ -128,105 +118,62 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
           ))}
         </View>
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-          {language.TEXTO.DOENCA_OU_INCAPACIDADE}:
+          Doença ou Incapacidade:
         </Text>
         <View style={styles.checkboxContainerDoc}>
-          {language.TEXTO.PERGUNTAS === "PORTUGUES"
-            ? medicalConditionsPortugues.map((condition) => (
-                <View key={condition}>
-                  <Text style={[styles.label, { color: theme.COLORS.TEXT }]}>
-                    {condition}
-                  </Text>
-                  <Checkbox
-                    value={hasMedicalCondition.includes(condition)}
-                    onValueChange={(checked) => {
-                      if (checked) {
-                        setHasMedicalCondition(
-                          hasMedicalCondition
-                            ? hasMedicalCondition + ", " + condition
-                            : condition
-                        );
-                      } else {
-                        setHasMedicalCondition(
-                          hasMedicalCondition
-                            .split(", ")
-                            .filter((item) => item !== condition)
-                            .join(", ")
-                        );
-                      }
-                    }}
-                    color={theme.COLORS.PRIMARY}
-                    style={styles.checkbox}
-                  />
-                </View>
-              ))
-            : medicalConditionsIngles.map((condition) => (
-                <View key={condition}>
-                  <Text style={[styles.label, { color: theme.COLORS.TEXT }]}>
-                    {condition}
-                  </Text>
-                  <Checkbox
-                    value={hasMedicalCondition.includes(condition)}
-                    onValueChange={(checked) => {
-                      if (checked) {
-                        setHasMedicalCondition(
-                          hasMedicalCondition
-                            ? hasMedicalCondition + ", " + condition
-                            : condition
-                        );
-                      } else {
-                        setHasMedicalCondition(
-                          hasMedicalCondition
-                            .split(", ")
-                            .filter((item) => item !== condition)
-                            .join(", ")
-                        );
-                      }
-                    }}
-                    color={theme.COLORS.PRIMARY}
-                    style={styles.checkbox}
-                  />
-                </View>
-              ))}
+          {medicalConditionsPortugues.map((condition) => (
+            <View key={condition}>
+              <Text style={[styles.label, { color: theme.COLORS.TEXT }]}>
+                {condition}
+              </Text>
+              <Checkbox
+                value={hasMedicalCondition.includes(condition)}
+                onValueChange={(checked) => {
+                  if (checked) {
+                    setHasMedicalCondition(
+                      hasMedicalCondition
+                        ? hasMedicalCondition + ", " + condition
+                        : condition
+                    );
+                  } else {
+                    setHasMedicalCondition(
+                      hasMedicalCondition
+                        .split(", ")
+                        .filter((item) => item !== condition)
+                        .join(", ")
+                    );
+                  }
+                }}
+                color={theme.COLORS.PRIMARY}
+                style={styles.checkbox}
+              />
+            </View>
+          ))}
         </View>
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-          {language.TEXTO.GENERO}:
+          Gênero:
         </Text>
         <View style={styles.checkboxContainerDoc}>
-          {language.TEXTO.PERGUNTAS === "PORTUGUES"
-            ? generoPortugues.map((genderOption) => (
-                <View key={genderOption}>
-                  <Text style={[styles.label, { color: theme.COLORS.TEXT }]}>
-                    {genderOption}
-                  </Text>
-                  <Checkbox
-                    value={genero === genderOption}
-                    onValueChange={() => setGenero(genderOption)}
-                    color={theme.COLORS.PRIMARY}
-                    style={styles.checkbox}
-                  />
-                </View>
-              ))
-            : generoIngles.map((genderOption) => (
-                <View key={genderOption}>
-                  <Text style={[styles.label, { color: theme.COLORS.TEXT }]}>
-                    {genderOption}
-                  </Text>
-                  <Checkbox
-                    value={genero === genderOption}
-                    onValueChange={() => setGenero(genderOption)}
-                    color={theme.COLORS.PRIMARY}
-                    style={styles.checkbox}
-                  />
-                </View>
-              ))}
+          {generoPortugues.map((genderOption) => (
+            <View key={genderOption}>
+              <Text style={[styles.label, { color: theme.COLORS.TEXT }]}>
+                {genderOption}
+              </Text>
+              <Checkbox
+                value={genero === genderOption}
+                onValueChange={() => setGenero(genderOption)}
+                color={theme.COLORS.PRIMARY}
+                style={styles.checkbox}
+              />
+            </View>
+          ))}
         </View>
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-          {language.TEXTO.EMAIL}:
+          Email:
         </Text>
         <TextInput
           style={[styles.input, { color: email.trim() ? "gray" : "black" }]}
-          placeholder={language.TEXTO.DIGITE_SEU_EMAIL}
+          placeholder="Digite seu email"
           value={email}
           pointerEvents={email.trim() ? "none" : "auto"}
           onChangeText={(text) => setEmail(text)}
@@ -243,12 +190,10 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
           <Text
             style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}
           >
-            {language.TEXTO.SALVAR_PERFIL}
+            Salvar Perfil
           </Text>
         )}
       </TouchableOpacity>
     </View>
   );
-};
-
-export default UserProfileForm;
+}

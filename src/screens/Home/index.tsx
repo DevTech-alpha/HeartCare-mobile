@@ -6,13 +6,10 @@ import * as Animatable from "react-native-animatable";
 import { styles } from "./styles";
 import { propsStack } from "../../routes/Models";
 import { useTheme } from "../../context/ThemeContext";
-import { useLanguage } from "../../context/LanguageContext";
 
-export default function Home() {
+const Home = () => {
   const { navigate } = useNavigation<propsStack>();
-
   const { theme } = useTheme();
-  const { language } = useLanguage();
 
   return (
     <View style={[styles.container, { backgroundColor: theme.COLORS.PRIMARY }]}>
@@ -41,7 +38,7 @@ export default function Home() {
         ]}
       >
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-          {language.TEXTO.CUIDE_CORACAO}
+          Cuide do seu coração
         </Text>
 
         <TouchableOpacity
@@ -49,15 +46,16 @@ export default function Home() {
             styles.buttonAcessar,
             { backgroundColor: theme.COLORS.BUTTON },
           ]}
-          onPress={() => navigate("Login")}
+          onPress={() => navigate("SignIn")}
         >
           <Text
             style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}
           >
-            {language.TEXTO.ACESSAR}
+            Acessar
           </Text>
         </TouchableOpacity>
       </Animatable.View>
     </View>
   );
-}
+};
+export default Home;

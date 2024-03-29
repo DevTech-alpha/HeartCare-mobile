@@ -24,24 +24,22 @@ import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { db } from "../../firebase/firebaseConfig";
 import * as ImagePicker from "expo-image-picker";
 import { styles } from "./styles";
-import ProfileImage from "../../components/ProfileImage";
 import UserProfileForm from "../../components/UserProfileForm";
 import PostItem from "../../components/PostItemProfile";
 import Post from "../../model/Post";
 import { Entypo, FontAwesome } from "@expo/vector-icons";
-import { Header } from "../../components/Header";
 import { asyncRemoveUser } from "../../utils/storage/AuthStorage";
-import { useLanguage } from "../../context/LanguageContext";
 import { useTheme } from "../../context/ThemeContext";
 import { useAuth } from "../../context/AuthContext";
+import Header from "../../components/Header";
+import ProfileImage from "../../components/ProfileImage";
 
-const UserProfileScreen = () => {
+const Profile = () => {
   const { setAuthData } = useAuth();
   const auth = getAuth();
   const user: User | null = auth.currentUser;
 
   const { theme, toggleTheme } = useTheme();
-  const { language, toggleLanguage } = useLanguage();
 
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState<Post[]>([]);
@@ -131,7 +129,7 @@ const UserProfileScreen = () => {
         await ImagePicker.requestMediaLibraryPermissionsAsync();
 
       if (permissionResult.granted === false) {
-        Alert.alert(language.TEXTO.PERMISSAO_NEGADA);
+        Alert.alert("Permissão negada");
         return;
       }
 
@@ -154,7 +152,7 @@ const UserProfileScreen = () => {
         if (supportedFormats.includes(fileExtension)) {
           setPhoto(result.assets[0].uri);
         } else {
-          Alert.alert(language.TEXTO.FORMATO_IMAGEM);
+          Alert.alert("Formato de imagem inválido");
         }
       }
     } catch (error) {}
@@ -165,10 +163,7 @@ const UserProfileScreen = () => {
       setLoading(true);
 
       if (!user) {
-        Alert.alert(
-          language.TEXTO.ERRO,
-          language.TEXTO.USUARIO_NAO_AUTENTICADO
-        );
+        Alert.alert("Erro", "Usuário não autenticado");
         setLoading(false);
         return;
       }
@@ -185,7 +180,7 @@ const UserProfileScreen = () => {
         !hasMedicalCondition ||
         !genero
       ) {
-        Alert.alert(language.TEXTO.ERRO, language.TEXTO.PRENCHA_CAMPOS);
+        Alert.alert("Erro", "Preencha todos os campos");
         setLoading(false);
         return;
       }
@@ -233,11 +228,11 @@ const UserProfileScreen = () => {
 
       setLoading(false);
       setEditMode(false);
-      Alert.alert(language.TEXTO.ALTERADO_SUCESSO);
+      Alert.alert("Alterado com sucesso");
     } catch (error) {
       setLoading(false);
       Alert.alert(
-        language.TEXTO.ERRO,
+        "Erro",
         "Houve um erro ao salvar o perfil. Tente novamente mais tarde."
       );
     }
@@ -250,20 +245,20 @@ const UserProfileScreen = () => {
 
       if (postDoc.exists() && postDoc.data()?.idpub === user?.uid) {
         Alert.alert(
-          language.TEXTO.CONFIRMA,
-          language.TEXTO.APAGAR_PUBLICACAO,
+          "Confirmação",
+          "Deseja apagar esta publicação?",
           [
             {
-              text: language.TEXTO.CANCELAR_SESSAO,
+              text: "Cancelar",
               style: "cancel",
             },
             {
-              text: language.TEXTO.APAGAR_MEDI,
+              text: "Apagar",
               onPress: async () => {
                 await deleteDoc(postRef);
                 const updatedPosts = posts.filter((post) => post.id !== postId);
                 setPosts(updatedPosts);
-                Alert.alert(language.TEXTO.APAGADO_SUCESSO);
+                Alert.alert("Apagado com sucesso");
                 fetchUserPosts();
               },
             },
@@ -281,15 +276,15 @@ const UserProfileScreen = () => {
 
   const handleSignOut = async () => {
     Alert.alert(
-      language.TEXTO.CONFIRMA,
-      language.TEXTO.SAIR_SESSAO,
+      "Confirmação",
+      "Deseja sair?",
       [
         {
-          text: language.TEXTO.CANCELAR_SESSAO,
+          text: "Cancelar",
           style: "cancel",
         },
         {
-          text: language.TEXTO.SAIR,
+          text: "Sair",
           onPress: async () => {
             setAuthData(undefined);
             await asyncRemoveUser();
@@ -304,14 +299,11 @@ const UserProfileScreen = () => {
     toggleTheme();
     setIsDayMode(!isDayMode);
   };
-  const handleToggleLanguage = () => {
-    toggleLanguage();
-  };
 
   return (
     <View style={[styles.container, { backgroundColor: theme.COLORS.PRIMARY }]}>
       <View>
-        <Header title={language.TEXTO.PERFIL} />
+        <Header title="Perfil" />
       </View>
 
       <ProfileImage photo={photo} onPress={handleChoosePhoto} />
@@ -321,7 +313,7 @@ const UserProfileScreen = () => {
         onPress={handleEditClick}
       >
         <Text style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}>
-          {editMode ? language.TEXTO.CANCELAR : language.TEXTO.EDITAR_USUARIO}
+          {editMode ? "Cancelar" : "Editar usuário"}
         </Text>
       </TouchableOpacity>
 
@@ -337,15 +329,6 @@ const UserProfileScreen = () => {
           size={25}
           color={theme.COLORS.ICON}
         />
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[
-          styles.languageToggleButton,
-          { backgroundColor: theme.COLORS.BACKGROUND },
-        ]}
-        onPress={handleToggleLanguage}
-      >
-        <Entypo name="language" size={25} color={theme.COLORS.ICON} />
       </TouchableOpacity>
 
       <ScrollView
@@ -404,7 +387,7 @@ const UserProfileScreen = () => {
           ))}
           {userPosts.length === 0 && (
             <Text style={[styles.messageNop, { color: theme.COLORS.TEXT }]}>
-              {language.TEXTO.NENHUMA_PUBLICACAO_ENCONTRADA}
+              Nenhuma publicação
             </Text>
           )}
         </View>
@@ -413,4 +396,4 @@ const UserProfileScreen = () => {
   );
 };
 
-export default UserProfileScreen;
+export default Profile;
