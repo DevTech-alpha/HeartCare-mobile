@@ -14,7 +14,7 @@ import ModalPostProps from "../../props/ModalPostProps";
 import { AntDesign } from "@expo/vector-icons";
 import { useTheme } from "../../context/ThemeContext";
 
-export default function PublishModalContent({
+export default function ModalPost({
   createNewPost,
   loading,
   fecharModal,

@@ -1,14 +1,14 @@
-interface CadastroFormProps {
+interface SignUpFormProps {
   email: string;
-  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  setEmail: (text: string) => void;
   password: string;
-  setPassword: React.Dispatch<React.SetStateAction<string>>;
+  setPassword: (text: string) => void;
   confPassword: string;
-  setConfPassword: React.Dispatch<React.SetStateAction<string>>;
+  setConfPassword: (text: string) => void;
   isPasswordVisible: boolean;
   togglePasswordVisibility: () => void;
   handleSignUp: () => void;
   loading: boolean;
 }
 
-export default CadastroFormProps;
+export default SignUpFormProps;

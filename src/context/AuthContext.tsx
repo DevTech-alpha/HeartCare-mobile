@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from "react";
-import { DB_USER } from "../model/User";
+import { User } from "firebase/auth";
 
 export interface SignCredentials {
   email: string;
@@ -7,8 +7,8 @@ export interface SignCredentials {
 }
 
 interface AuthContextData {
-  authData?: DB_USER;
-  setAuthData: React.Dispatch<React.SetStateAction<DB_USER | undefined>>;
+  authData?: User;
+  setAuthData: React.Dispatch<React.SetStateAction<User | undefined>>;
   signIn: (credentials: SignCredentials) => Promise<void>;
   isLoading: boolean;
 }

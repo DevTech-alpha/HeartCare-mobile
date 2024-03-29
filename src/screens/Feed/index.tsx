@@ -25,7 +25,7 @@ import * as Sharing from "expo-sharing";
 import * as FileSystem from "expo-file-system";
 import { propsStack } from "../../routes/Models";
 import Header from "../../components/Header";
-import PublishModalContent from "../../components/ModalPost";
+import ModalPost from "../../components/ModalPost";
 import { useTheme } from "../../context/ThemeContext";
 
 function Feed() {
@@ -188,7 +188,7 @@ function Feed() {
       >
         <Text style={styles.addButtonText}>+</Text>
       </TouchableOpacity>
-      <PublishModalContent
+      <ModalPost
         fecharModal={fecharModal}
         visivel={modalVisivel}
         createNewPost={createNewPost}

@@ -1,16 +1,16 @@
 import React, { useEffect, useState, ReactNode } from "react";
 import { Alert } from "react-native";
 import { logar } from "../api/LogInToAccount";
-import { DB_USER } from "../model/User";
 import { AuthContext, SignCredentials } from "../context/AuthContext";
 import { asyncGetUser, asyncSetUser } from "../utils/storage/AuthStorage";
+import { User } from "firebase/auth";
 
 interface AuthProviderProps {
   children: ReactNode;
 }
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [authData, setAuthData] = useState<DB_USER>();
+  const [authData, setAuthData] = useState<User>();
   const [isLoading, setIsLoading] = useState(false);
   const [loading, setLoading] = useState(false);
 

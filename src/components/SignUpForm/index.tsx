@@ -7,10 +7,10 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { styles } from "./styles";
-import CadastroFormProps from "../../props/SignUpFormProps";
+import SignUpFormProps from "../../props/SignUpFormProps";
 import { useTheme } from "../../context/ThemeContext";
 
-export default function CadastroForm({
+export default function SignUpForm({
   email,
   setEmail,
   password,
@@ -21,7 +21,7 @@ export default function CadastroForm({
   togglePasswordVisibility,
   handleSignUp,
   loading,
-}: CadastroFormProps) {
+}: SignUpFormProps) {
   const { theme } = useTheme();
 
   return (

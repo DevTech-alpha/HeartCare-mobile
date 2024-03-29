@@ -7,12 +7,12 @@ import {
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { styles } from "./styles";
-import LoginFormProps from "../../props/SignInFormProps";
+import SigInFormProps from "../../props/SignInFormProps";
 import { useNavigation } from "@react-navigation/native";
 import { propsStack } from "../../routes/Models";
 import { useTheme } from "../../context/ThemeContext";
 
-export default function LoginForm({
+export default function SigInForm({
   email,
   setEmail,
   password,
@@ -22,7 +22,7 @@ export default function LoginForm({
   handleLogin,
   loading,
   handleForgotPassword,
-}: LoginFormProps) {
+}: SigInFormProps) {
   const { theme } = useTheme();
   const { navigate } = useNavigation<propsStack>();
 

@@ -5,9 +5,9 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
   },
   containerCartao: {
-    margin: 10,
+    margin: 5,
     borderRadius: 20,
-    padding: 10,
+    padding: 8,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,

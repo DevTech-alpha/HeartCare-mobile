@@ -1,4 +1,4 @@
-interface LoginFormProps {
+interface SignInFormProps {
   email: string;
   setEmail: (email: string) => void;
   password: string;
@@ -9,4 +9,4 @@ interface LoginFormProps {
   loading: boolean;
   handleForgotPassword: () => void;
 }
-export default LoginFormProps;
+export default SignInFormProps;
