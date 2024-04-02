@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { styles } from "./styles";
 import { collection, doc, updateDoc } from "firebase/firestore";
-import { db } from "../../firebase/firebaseConfig";
+import { db } from "../../utils/firebase";
 import Medicao from "../../model/Medicao";
 import ModalEdicaoProps from "../../props/ModalEditProps";
 import { AntDesign } from "@expo/vector-icons";

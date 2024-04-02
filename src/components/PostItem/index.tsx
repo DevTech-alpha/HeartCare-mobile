@@ -4,7 +4,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { styles as feedStyles } from "./styles";
 import * as Animatable from "react-native-animatable";
 import PostItemProps from "../../props/PostItemProps";
-import { db } from "../../firebase/firebaseConfig";
+import { db } from "../../utils/firebase";
 import { getDoc, doc } from "firebase/firestore";
 import { useTheme } from "../../context/ThemeContext";
 import { useNavigation } from "@react-navigation/native";

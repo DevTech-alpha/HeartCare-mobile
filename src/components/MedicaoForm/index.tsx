@@ -10,9 +10,11 @@ import {
 import { useTheme } from "../../context/ThemeContext";
 import { AntDesign } from "@expo/vector-icons";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../firebase/firebaseConfig";
+import { db } from "../../utils/firebase";
 import { styles } from "./styles";
 import MedicaoFormProps from "../../props/MedicaoFormProps";
+
+import * as Animatable from "react-native-animatable";
 
 export default function MedicaoForm({
   onMedicaoAdicionada,
@@ -67,7 +69,8 @@ export default function MedicaoForm({
   };
 
   return (
-    <View
+    <Animatable.View
+      animation="fadeInUp"
       style={[
         styles.container,
         { backgroundColor: theme.COLORS.BACKGROUND_CARD },
@@ -137,6 +140,6 @@ export default function MedicaoForm({
           </Text>
         )}
       </TouchableOpacity>
-    </View>
+    </Animatable.View>
   );
 }

@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   containerLogo: {
-    flex: 3,
+    flex: 2,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -14,16 +14,17 @@ export const styles = StyleSheet.create({
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     padding: "5%",
+    paddingEnd: "5%",
   },
   title: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "bold",
     marginTop: 28,
     marginBottom: 12,
   },
   text: {},
   buttonAcessar: {
-    borderRadius: 20,
+    borderRadius: 50,
     paddingVertical: 8,
     width: "60%",
     alignSelf: "center",

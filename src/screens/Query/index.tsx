@@ -18,12 +18,11 @@ import {
 } from "firebase/firestore";
 import { getAuth, User } from "firebase/auth";
 import Medicao from "../../model/Medicao";
-import { db } from "../../firebase/firebaseConfig";
+import { db } from "../../utils/firebase";
 import { styles } from "./styles";
 import MedicaoItem from "../../components/MedicaoItem";
 import MedicaoForm from "../../components/MedicaoForm";
 import Header from "../../components/Header";
-import * as Animatable from "react-native-animatable";
 import { AntDesign } from "@expo/vector-icons";
 import AtividadesForm from "../../components/AtividadesForm";
 import AtividadeItem from "../../components/AtividadesItem";
@@ -138,8 +137,7 @@ function Query() {
         </TouchableOpacity>
       )}
 
-      <Animatable.View
-        animation="fadeInUp"
+      <View
         style={[
           styles.containerForm,
           { backgroundColor: theme.COLORS.BACKGROUND },
@@ -180,7 +178,7 @@ function Query() {
             />
           </>
         )}
-      </Animatable.View>
+      </View>
     </View>
   );
 }

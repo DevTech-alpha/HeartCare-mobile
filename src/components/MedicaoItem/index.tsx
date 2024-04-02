@@ -4,7 +4,7 @@ import { styles } from "./styles";
 import MedicaoItemProps from "../../props/MedicaoItemProps";
 import ModalEdicao from "../ModalEdit";
 import { useTheme } from "../../context/ThemeContext";
-import { AntDesign } from "@expo/vector-icons";
+import * as Animatable from "react-native-animatable";
 
 export default function MedicaoItem({
   medicao,
@@ -64,7 +64,8 @@ export default function MedicaoItem({
   };
 
   return (
-    <View
+    <Animatable.View
+      animation="fadeInUp"
       style={[
         styles.itemMedicao,
         { backgroundColor: theme.COLORS.BACKGROUND_CARD },
@@ -135,6 +136,6 @@ export default function MedicaoItem({
         medicao={medicao}
         salvarEdicao={salvarEdicao}
       />
-    </View>
+    </Animatable.View>
   );
 }

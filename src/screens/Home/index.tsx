@@ -38,7 +38,10 @@ function Home() {
         ]}
       >
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-          Cuide do seu coração
+          Cuide do seu coração 
+        </Text>
+        <Text style={[styles.text, { color: theme.COLORS.POST_TITLE }]}>
+          Faça login para começar
         </Text>
 
         <TouchableOpacity

@@ -8,12 +8,13 @@ import {
   Alert,
 } from "react-native";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../firebase/firebaseConfig";
+import { db } from "../../utils/firebase";
 import { styles } from "./styles";
 import { Checkbox } from "expo-checkbox";
 import AtividadesFormProps from "../../props/AtividadesFormProps";
 import { AntDesign } from "@expo/vector-icons";
 import { useTheme } from "../../context/ThemeContext";
+import * as Animatable from "react-native-animatable";
 
 export default function AtividadesForm({
   user,
@@ -66,7 +67,8 @@ export default function AtividadesForm({
   };
 
   return (
-    <View
+    <Animatable.View
+      animation="fadeInUp"
       style={[
         styles.container,
         { backgroundColor: theme.COLORS.BACKGROUND_CARD },
@@ -121,6 +123,6 @@ export default function AtividadesForm({
           <Text style={[{ color: theme.COLORS.BUTTON_TEXT }]}>Registrar</Text>
         )}
       </TouchableOpacity>
-    </View>
+    </Animatable.View>
   );
 }

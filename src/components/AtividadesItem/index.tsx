@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../../firebase/firebaseConfig";
+import { db } from "../../utils/firebase";
 import { styles } from "./styles";
 import Atividade from "../../model/Atividade";
 import * as Animatable from "react-native-animatable";

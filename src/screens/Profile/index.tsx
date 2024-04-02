@@ -21,7 +21,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
-import { db } from "../../firebase/firebaseConfig";
+import { db } from "../../utils/firebase";
 import * as ImagePicker from "expo-image-picker";
 import { styles } from "./styles";
 import UserProfileForm from "../../components/UserProfileForm";

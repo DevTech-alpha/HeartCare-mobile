@@ -15,7 +15,7 @@ import {
   getDoc,
   updateDoc,
 } from "firebase/firestore";
-import { db } from "../../firebase/firebaseConfig";
+import { db } from "../../utils/firebase";
 import { User, getAuth } from "firebase/auth";
 import Post from "../../model/Post";
 import PostItem from "../../components/PostItem";
