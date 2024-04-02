@@ -9,7 +9,7 @@ import * as Animatable from "react-native-animatable";
 import { styles } from "./styles";
 import SigInFormProps from "../../props/SignInFormProps";
 import { useNavigation } from "@react-navigation/native";
-import { propsStack } from "../../routes/Models";
+import { propsStack } from "../../routes/@type";
 import { useTheme } from "../../context/ThemeContext";
 
 export default function SigInForm({

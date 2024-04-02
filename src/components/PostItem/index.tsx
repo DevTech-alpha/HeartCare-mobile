@@ -8,7 +8,7 @@ import { db } from "../../utils/firebase";
 import { getDoc, doc } from "firebase/firestore";
 import { useTheme } from "../../context/ThemeContext";
 import { useNavigation } from "@react-navigation/native";
-import { propsStack } from "../../routes/Models";
+import { propsStack } from "../../routes/@type";
 
 export default function PostItem({
   item,

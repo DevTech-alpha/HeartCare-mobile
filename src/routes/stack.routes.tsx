@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { propsNavigationStack } from "./Models";
+import { propsNavigationStack } from "./@type";
 import Home from "../screens/Home";
 import SignIn from "../screens/SignIn";
 import SignUp from "../screens/SignUp";
