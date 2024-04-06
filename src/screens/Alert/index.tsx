@@ -21,7 +21,7 @@ function Alert() {
     <View
       style={[estilo.container, { backgroundColor: theme.COLORS.BACKGROUND }]}
     >
-      <Header title={mostrar ? "Pesquisa" : "Explique"} />
+      <Header title={mostrar ? "Chat-Doctor" : "FAQ"} />
       {mostrar ? (
         <TouchableOpacity
           style={[

@@ -1,4 +1,4 @@
-import Medicao from "../model/Medicao";
+import Medicao from "../models/Medicao";
 
 interface ModalEdicaoProps {
   visivel: boolean;

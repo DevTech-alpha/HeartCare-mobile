@@ -78,7 +78,7 @@ export default function Chat() {
         style={[estilo.form, { backgroundColor: theme.COLORS.BACKGROUND_CARD }]}
       >
         <Text style={[estilo.label, { color: theme.COLORS.POST_TITLE }]}>
-          Explique o que está sentindo:
+          Explique o que está sentindo
         </Text>
         <TextInput
           placeholder="Descreva seus sintomas..."

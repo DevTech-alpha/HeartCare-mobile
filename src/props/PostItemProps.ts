@@ -1,5 +1,5 @@
 import { User } from "firebase/auth";
-import Post from "../model/Post";
+import Post from "../models/Post";
 
 interface PostItemProps {
   item: Post & {

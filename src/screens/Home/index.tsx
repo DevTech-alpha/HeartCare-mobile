@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import * as Animatable from "react-native-animatable";
 
 import { styles } from "./styles";
-import { propsStack } from "../../routes/@type";
+import { propsStack } from "../../routes/@types";
 import { useTheme } from "../../context/ThemeContext";
 
 function Home() {

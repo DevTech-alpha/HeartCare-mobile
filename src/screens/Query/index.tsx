@@ -17,7 +17,7 @@ import {
   where,
 } from "firebase/firestore";
 import { getAuth, User } from "firebase/auth";
-import Medicao from "../../model/Medicao";
+import Medicao from "../../models/Medicao";
 import { db } from "../../utils/firebase";
 import { styles } from "./styles";
 import MedicaoItem from "../../components/MedicaoItem";

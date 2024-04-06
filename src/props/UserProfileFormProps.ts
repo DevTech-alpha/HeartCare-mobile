@@ -4,6 +4,7 @@ interface UserProfileFormProps {
   lastName: string;
   email: string;
   dob: string;
+  number : string;
   bloodType: string;
   hasMedicalCondition: string;
   genero: string;
@@ -12,6 +13,7 @@ interface UserProfileFormProps {
   setLastName: (text: string) => void;
   setEmail: (text: string) => void;
   setDob: (text: string) => void;
+  setNumber: (text: string) => void;
   setBloodType: (text: string) => void;
   setHasMedicalCondition: (text: string) => void;
   setGenero: (text: string) => void;

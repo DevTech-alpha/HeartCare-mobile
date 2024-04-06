@@ -26,7 +26,7 @@ import * as ImagePicker from "expo-image-picker";
 import { styles } from "./styles";
 import UserProfileForm from "../../components/UserProfileForm";
 import PostItem from "../../components/PostItemProfile";
-import Post from "../../model/Post";
+import Post from "../../models/Post";
 import { FontAwesome } from "@expo/vector-icons";
 import { asyncRemoveUser } from "../../utils/storage/AuthStorage";
 import { useTheme } from "../../context/ThemeContext";
@@ -51,6 +51,7 @@ function Profile() {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [dob, setDob] = useState("");
+  const [number, setNumber] = useState("");
   const [bloodType, setBloodType] = useState("");
   const [hasMedicalCondition, setHasMedicalCondition] = useState("");
   const [genero, setGenero] = useState("");
@@ -82,6 +83,7 @@ function Profile() {
             setDob(userData.dob || "");
             setPhoto(userData.photo);
             setBloodType(userData.bloodType || "");
+            setNumber(userData.number || "");
             setGenero(userData.genero || "");
             setHasMedicalCondition(userData.hasMedicalCondition || "");
           }
@@ -178,6 +180,7 @@ function Profile() {
         !email ||
         !bloodType ||
         !hasMedicalCondition ||
+        !number ||
         !genero
       ) {
         Alert.alert("Erro", "Preencha todos os campos");
@@ -211,6 +214,7 @@ function Profile() {
           name,
           lastName,
           dob,
+          number,
           email,
           photo: photoUrl,
           bloodType,
@@ -224,6 +228,7 @@ function Profile() {
           name,
           lastName,
           dob,
+          number,
           email,
           photo: photoUrl,
           bloodType,
@@ -350,6 +355,7 @@ function Profile() {
             name={name}
             lastName={lastName}
             dob={dob}
+            number={number}
             email={email}
             bloodType={bloodType}
             hasMedicalCondition={hasMedicalCondition}
@@ -358,6 +364,7 @@ function Profile() {
             setName={setName}
             setLastName={setLastName}
             setDob={setDob}
+            setNumber={setNumber}
             setBloodType={setBloodType}
             setHasMedicalCondition={setHasMedicalCondition}
             setGenero={setGenero}

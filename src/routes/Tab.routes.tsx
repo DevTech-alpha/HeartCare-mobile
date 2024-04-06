@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
 
-import { propsNavigationStack } from "./@type";
+import { propsNavigationStack } from "./@types";
 import { StatusBar } from "react-native";
 import { useTheme } from "../context/ThemeContext";
 import Feed from "../screens/Feed";

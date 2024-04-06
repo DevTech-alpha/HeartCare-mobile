@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -13,13 +13,13 @@ import { Checkbox } from "expo-checkbox";
 import { useTheme } from "../../context/ThemeContext";
 
 const bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
-const medicalConditionsPortugues = [
+const medicalConditions = [
   "Diabetes",
   "Hipertensão",
   "Asma",
   "Alergias",
 ];
-const generoPortugues = ["Masculino", "Feminino", "Prefiro não dizer"];
+const generoOptions = ["Masculino", "Feminino", "Prefiro não dizer"];
 
 export default function UserProfileForm({
   username,
@@ -27,6 +27,7 @@ export default function UserProfileForm({
   lastName,
   email,
   dob,
+  number,
   bloodType,
   hasMedicalCondition,
   genero,
@@ -35,6 +36,7 @@ export default function UserProfileForm({
   setLastName,
   setEmail,
   setDob,
+  setNumber,
   setBloodType,
   setHasMedicalCondition,
   setGenero,
@@ -43,7 +45,7 @@ export default function UserProfileForm({
 }: UserProfileFormProps) {
   const { theme } = useTheme();
 
-  const formatBirthdateInput = (inputValue: any) => {
+  const formatBirthdateInput = (inputValue : any) => {
     const formattedValue = inputValue
       .replace(/\D/g, "")
       .replace(/(\d{2})(\d)/, "$1/$2")
@@ -52,6 +54,15 @@ export default function UserProfileForm({
     return formattedValue;
   };
 
+  const formatNumberInput = (inputValue: string): string => {
+    const cleaned: string = inputValue.replace(/\D/g, "").slice(0, 11);
+    const match = cleaned.match(/^(\d{0,2})(\d{0,5})(\d{0,4})$/);
+    if (match) {
+        return `(${match[1] || ''})${match[2] || ''}-${match[3] || ''}`;
+    }
+    return inputValue;
+};
+ 
   return (
     <View
       style={[
@@ -98,6 +109,16 @@ export default function UserProfileForm({
           keyboardType="numeric"
         />
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
+          Celular:
+        </Text>
+        <TextInput
+          style={[styles.input, { color: theme.COLORS.TEXT }]}
+          placeholder="Digite seu número de celular"
+          onChangeText={(text) => setNumber(formatNumberInput(text))}
+          value={number}
+          keyboardType="phone-pad"
+        />
+        <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
           Tipo Sanguíneo:
         </Text>
         <View style={styles.checkboxContainer}>
@@ -121,7 +142,7 @@ export default function UserProfileForm({
           Doença ou Incapacidade:
         </Text>
         <View style={styles.checkboxContainerDoc}>
-          {medicalConditionsPortugues.map((condition) => (
+          {medicalConditions.map((condition) => (
             <View key={condition}>
               <Text style={[styles.label, { color: theme.COLORS.TEXT }]}>
                 {condition}
@@ -154,7 +175,7 @@ export default function UserProfileForm({
           Gênero:
         </Text>
         <View style={styles.checkboxContainerDoc}>
-          {generoPortugues.map((genderOption) => (
+          {generoOptions.map((genderOption) => (
             <View key={genderOption}>
               <Text style={[styles.label, { color: theme.COLORS.TEXT }]}>
                 {genderOption}

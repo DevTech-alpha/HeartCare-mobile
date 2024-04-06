@@ -17,13 +17,13 @@ import {
 } from "firebase/firestore";
 import { db } from "../../utils/firebase";
 import { User, getAuth } from "firebase/auth";
-import Post from "../../model/Post";
+import Post from "../../models/Post";
 import PostItem from "../../components/PostItem";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import * as Sharing from "expo-sharing";
 import * as FileSystem from "expo-file-system";
-import { propsStack } from "../../routes/@type";
+import { propsStack } from "../../routes/@types";
 import Header from "../../components/Header";
 import ModalPost from "../../components/ModalPost";
 import { useTheme } from "../../context/ThemeContext";

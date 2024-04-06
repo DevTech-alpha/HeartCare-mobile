@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../utils/firebase";
 import { styles } from "./styles";
-import Atividade from "../../model/Atividade";
+import Atividade from "../../models/Atividade";
 import * as Animatable from "react-native-animatable";
 import AtividadesItemProps from "../../props/AtividadesItemProps";
 import { useTheme } from "../../context/ThemeContext";

@@ -1,4 +1,4 @@
-import Post from "../model/Post";
+import Post from "../models/Post";
 
 interface PostItemProfileProps {
   item: Post & { username: string; userPhoto: string };

@@ -11,7 +11,7 @@ import {
 import { styles } from "./styles";
 import { collection, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../utils/firebase";
-import Medicao from "../../model/Medicao";
+import Medicao from "../../models/Medicao";
 import ModalEdicaoProps from "../../props/ModalEditProps";
 import { AntDesign } from "@expo/vector-icons";
 import { useTheme } from "../../context/ThemeContext";
