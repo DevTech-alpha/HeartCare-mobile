@@ -15,7 +15,6 @@ export const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 10,
   },
-
   label: {
     fontSize: 15,
     fontWeight: "bold",
@@ -27,12 +26,10 @@ export const styles = StyleSheet.create({
     marginBottom: 12,
     fontSize: 16,
   },
-
   botaoAdicionar: {
     borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 8,
   },
-  textoBotao: {},
 });

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import { styles as feedStyles } from "./styles";
+import { styles } from "./styles";
 import * as Animatable from "react-native-animatable";
 import PostItemProps from "../../props/PostItemProps";
 import { db } from "../../utils/firebase";
 import { getDoc, doc } from "firebase/firestore";
 import { useTheme } from "../../context/ThemeContext";
 import { useNavigation } from "@react-navigation/native";
-import { propsStack } from "../../routes/@types";
+import { propsStack } from "../../routes/types";
 
 export default function PostItem({
   item,
@@ -92,37 +92,35 @@ export default function PostItem({
     <Animatable.View
       animation="fadeInUp"
       style={[
-        feedStyles.postContainer,
+        styles.postContainer,
         { backgroundColor: theme.COLORS.BACKGROUND_CARD },
       ]}
     >
-      <View style={feedStyles.postHeader}>
+      <View style={styles.postHeader}>
         <Image
           source={
             item.userPhoto
               ? { uri: item.userPhoto }
               : require("../../assets/user.png")
           }
-          style={feedStyles.userPhoto}
+          style={styles.userPhoto}
           defaultSource={require("../../assets/user.png")}
         />
-        <Text style={[feedStyles.username, { color: theme.COLORS.POST_TITLE }]}>
+        <Text style={[styles.username, { color: theme.COLORS.POST_TITLE }]}>
           {item.username}
         </Text>
       </View>
 
-      <Text style={[feedStyles.postTitle, { color: theme.COLORS.POST_TITLE }]}>
+      <Text style={[styles.postTitle, { color: theme.COLORS.POST_TITLE }]}>
         {item.title}
       </Text>
-      <Text
-        style={[feedStyles.postContent, { color: theme.COLORS.POST_CONTENT }]}
-      >
+      <Text style={[styles.postContent, { color: theme.COLORS.POST_CONTENT }]}>
         {item.content}
       </Text>
 
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <TouchableOpacity
-          style={feedStyles.actionIconContainer}
+          style={styles.actionIconContainer}
           onPress={toggleLike}
         >
           <FontAwesome
@@ -148,7 +146,7 @@ export default function PostItem({
       </View>
 
       <TouchableOpacity
-        style={feedStyles.saveIconContainer}
+        style={styles.saveIconContainer}
         onPress={() => sharePost(item.title, item.content)}
       >
         <FontAwesome name="send-o" size={30} color={theme.COLORS.ICON} />

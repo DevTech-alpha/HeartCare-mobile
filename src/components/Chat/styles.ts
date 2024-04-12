@@ -1,9 +1,6 @@
 import { StyleSheet } from "react-native";
 
 export const estilo = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   form: {
     width: "90%",
     margin: 16,
@@ -30,7 +27,6 @@ export const estilo = StyleSheet.create({
     marginBottom: 12,
     fontSize: 16,
   },
-  days: {},
   button: {
     borderRadius: 20,
     justifyContent: "center",

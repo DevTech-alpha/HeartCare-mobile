@@ -1,21 +1,23 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { User } from "firebase/auth";
-
-export interface SignCredentials {
-  email: string;
-  password: string;
-}
+import Credentials from "../models/Credentials";
 
 interface AuthContextData {
   authData?: User;
   setAuthData: React.Dispatch<React.SetStateAction<User | undefined>>;
-  signIn: (credentials: SignCredentials) => Promise<void>;
+  signIn: (credentials: Credentials) => Promise<void>;
+  signUp: (credentials: Credentials) => Promise<void>;
+  signOut: () => Promise<void>;
   isLoading: boolean;
 }
 
-export const AuthContext = createContext<AuthContextData>(
-  {} as AuthContextData
-);
+export const AuthContext = createContext<AuthContextData>({
+  isLoading: false,
+  setAuthData: () => {},
+  signIn: async () => {},
+  signUp: async () => {},
+  signOut: async () => {},
+});
 
 export const useAuth = (): AuthContextData => {
   const context = useContext(AuthContext);

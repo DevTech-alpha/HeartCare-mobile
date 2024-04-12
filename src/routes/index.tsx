@@ -5,12 +5,8 @@ import StackRoutes from "./stack.routes";
 import { useAuth } from "../context/AuthContext";
 
 export default function Router() {
-  const { authData, isLoading } = useAuth();
-
-  if (isLoading) {
-    return;
-  }
-
+  const { authData } = useAuth();
+  
   return (
     <NavigationContainer independent={true}>
       {authData ? <TabRoutes /> : <StackRoutes />}

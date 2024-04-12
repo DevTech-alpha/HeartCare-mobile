@@ -20,9 +20,7 @@ export default function AtividadesItem({ user }: AtividadesItemProps) {
           where("Usuario", "==", user.uid)
         );
         const querySnapshot = await getDocs(q);
-        const atividadesData = querySnapshot.docs.map(
-          (doc) => doc.data() as Atividade
-        );
+        const atividadesData = querySnapshot.docs.map((doc) => doc.data() as Atividade);
         setAtividades(atividadesData);
       } catch (error) {
         console.error("Erro ao buscar atividades:", error);
@@ -33,10 +31,7 @@ export default function AtividadesItem({ user }: AtividadesItemProps) {
   }, [user]);
 
   return (
-    <Animatable.View
-      animation="slideInLeft"
-      style={styles.containerCardsAtividade}
-    >
+    <Animatable.View animation="slideInLeft" style={styles.containerCardsAtividade}>
       {atividades.slice(-3).map((item, index) => (
         <CartaoAtividade data={item} key={index} theme={theme} />
       ))}
@@ -56,16 +51,14 @@ const CartaoAtividade = ({ data, theme }) => {
       ]}
     >
       <View style={styles.containerProgresso}>
-        <View style={[styles.circle, { borderColor: theme.COLORS.ICON }]}>
+        <View style={[styles.circle, { borderColor: theme.COLORS.PRIMARY }]}>
           <Text style={[styles.number, { color: theme.COLORS.ICON }]}>
             {progresso.toFixed(0)}%
           </Text>
         </View>
       </View>
       <View style={styles.containerDetalhes}>
-        <Text
-          style={[styles.textoDetalhes, { color: theme.COLORS.POST_TITLE }]}
-        >
+        <Text style={[styles.textoDetalhes, { color: theme.COLORS.POST_TITLE }]}>
           Tempo: {data.Tempo} min
         </Text>
       </View>

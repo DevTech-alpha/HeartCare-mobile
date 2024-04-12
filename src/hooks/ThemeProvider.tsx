@@ -1,6 +1,5 @@
 import React, { useState, useEffect, ReactNode } from "react";
-import { themes } from "../utils/theme";
-import { Theme } from "../utils/theme/Models/theme";
+import { Theme, themes } from "../utils/styles";
 import { ThemeContext } from "../context/ThemeContext";
 import { asyncGetTheme, asyncSetTheme } from "../utils/storage/ThemeStorage";
 

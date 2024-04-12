@@ -9,7 +9,8 @@ import { useAuth } from "../../context/AuthContext";
 import { useTheme } from "../../context/ThemeContext";
 
 function SignIn() {
-  const { signIn } = useAuth();
+  const { signIn , isLoading } = useAuth();
+
   const { theme } = useTheme();
 
   const [email, setEmail] = useState("");
@@ -21,12 +22,8 @@ function SignIn() {
 
   const handleLogin = async () => {
     try {
-      setLoading(true);
       await signIn({ email, password });
-    } catch (error) {
-    } finally {
-      setLoading(false);
-    }
+    } catch (error) {}
   };
 
   const handleResetPassword = async () => {
@@ -61,7 +58,7 @@ function SignIn() {
         style={styles.containerHeader}
       >
         <Text style={styles.message}>
-          {showResetPassword ? "Recuperar Senha" : "Seja Bem-vindo(a)"}
+          {showResetPassword ? "" : "Bem-vindo(a)"}
         </Text>
       </Animatable.View>
 
@@ -82,7 +79,7 @@ function SignIn() {
           isPasswordVisible={isPasswordVisible}
           togglePasswordVisibility={togglePasswordVisibility}
           handleLogin={handleLogin}
-          loading={loading}
+          loading={isLoading}
           handleForgotPassword={handleForgotPassword}
         />
       )}

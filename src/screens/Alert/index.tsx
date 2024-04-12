@@ -18,33 +18,20 @@ function Alert() {
   };
 
   return (
-    <View
-      style={[estilo.container, { backgroundColor: theme.COLORS.BACKGROUND }]}
-    >
-      <Header title={mostrar ? "Chat-Doctor" : "FAQ"} />
-      {mostrar ? (
-        <TouchableOpacity
-          style={[
-            estilo.themeToggleButton,
-            { backgroundColor: theme.COLORS.BACKGROUND },
-          ]}
-          onPress={toggleChatVisibility}
-        >
-          <AntDesign name="arrowright" size={30} color={theme.COLORS.ICON} />
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          style={[
-            estilo.themeToggleButton,
-            { backgroundColor: theme.COLORS.BACKGROUND },
-          ]}
-          onPress={toggleChatVisibility}
-        >
-          <AntDesign name="arrowleft" size={30} color={theme.COLORS.ICON} />
-        </TouchableOpacity>
-      )}
+    <View style={[estilo.container, { backgroundColor: theme.COLORS.BACKGROUND }]}>
+      <Header title={mostrar ? "Chat" : "FAQ"} />
+      <TouchableOpacity
+        style={[
+          estilo.themeToggleButton,
+          { backgroundColor: theme.COLORS.BACKGROUND },
+        ]}
+        onPress={toggleChatVisibility}
+      >
+        <AntDesign name={mostrar ? "arrowright" : "arrowleft"} size={30} color={theme.COLORS.ICON} />
+      </TouchableOpacity>
       {mostrar ? <Chat /> : <FAQ />}
     </View>
   );
 }
+
 export default Alert;

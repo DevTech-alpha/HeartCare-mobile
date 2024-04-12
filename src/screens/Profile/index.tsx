@@ -28,14 +28,13 @@ import UserProfileForm from "../../components/UserProfileForm";
 import PostItem from "../../components/PostItemProfile";
 import Post from "../../models/Post";
 import { FontAwesome } from "@expo/vector-icons";
-import { asyncRemoveUser } from "../../utils/storage/AuthStorage";
 import { useTheme } from "../../context/ThemeContext";
 import { useAuth } from "../../context/AuthContext";
 import Header from "../../components/Header";
 import ProfileImage from "../../components/ProfileImage";
 
 function Profile() {
-  const { setAuthData } = useAuth();
+  const { signOut } = useAuth();
   const auth = getAuth();
   const user: User | null = auth.currentUser;
 
@@ -285,27 +284,6 @@ function Profile() {
     setEditMode(!editMode);
   };
 
-  const handleSignOut = async () => {
-    Alert.alert(
-      "Confirmação",
-      "Deseja sair?",
-      [
-        {
-          text: "Cancelar",
-          style: "cancel",
-        },
-        {
-          text: "Sair",
-          onPress: async () => {
-            setAuthData(undefined);
-            await asyncRemoveUser();
-          },
-        },
-      ],
-      { cancelable: false }
-    );
-  };
-
   const handleToggleTheme = () => {
     toggleTheme();
     setIsDayMode(!isDayMode);
@@ -381,7 +359,7 @@ function Profile() {
           ]}
         >
           <View style={styles.botoes}>
-            <TouchableOpacity onPress={handleSignOut}>
+            <TouchableOpacity onPress={signOut}>
               <FontAwesome
                 name="sign-out"
                 size={30}

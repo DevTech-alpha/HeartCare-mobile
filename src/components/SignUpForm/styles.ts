@@ -1,19 +1,6 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  containerHeader: {
-    marginTop: "15%",
-    marginBottom: "10%",
-    paddingStart: "5%",
-  },
-  message: {
-    fontSize: 25,
-    fontWeight: "bold",
-    color: "white",
-  },
   containerForm: {
     flex: 1,
     borderTopLeftRadius: 25,
@@ -22,25 +9,28 @@ export const styles = StyleSheet.create({
     paddingVertical: "5%",
   },
   title: {
-    fontSize: 20,
-    marginTop: 20,
+    fontSize: 16,
+    marginTop: 15,
+    paddingBottom: 8,
   },
   input: {
-    borderBottomWidth: 1,
-    height: 40,
+    height: 50,
     marginBottom: 12,
-    fontSize: 16,
+    borderRadius: 10,
+    fontSize: 12,
+    paddingStart: 10,
   },
   button: {
     width: "100%",
-    borderRadius: 20,
-    paddingVertical: 12,
+    borderRadius: 10,
+    paddingVertical: 8,
     marginTop: 14,
     justifyContent: "center",
     alignItems: "center",
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 12,
+    padding: 5,
     fontWeight: "bold",
   },
   togglePasswordButton: {
@@ -50,9 +40,14 @@ export const styles = StyleSheet.create({
   togglePasswordButtonText: {
     fontSize: 14,
   },
-  backToLogin: {
-    fontSize: 14,
-    marginTop: 16,
-    textAlign: "center",
+  buttonRegister: {
+    alignSelf: "center",
+    width: "100%",
+    borderRadius: 10,
+    borderWidth: 1,
+    paddingVertical: 8,
+    marginTop: 14,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

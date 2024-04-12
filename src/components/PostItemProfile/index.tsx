@@ -1,10 +1,10 @@
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import { styles as feedStyles } from "./styles";
-import * as Animatable from "react-native-animatable";
 import { useTheme } from "../../context/ThemeContext";
 import PostItemProfileProps from "../../props/PostItemProfileProps";
+import { styles } from "./styles";
+import * as Animatable from "react-native-animatable";
 
 export default function PostItemProfile({
   item,
@@ -17,22 +17,20 @@ export default function PostItemProfile({
     <Animatable.View
       animation="fadeInUp"
       style={[
-        feedStyles.postContainer,
+        styles.postContainer,
         { backgroundColor: theme.COLORS.BACKGROUND_CARD },
       ]}
     >
-      <Text style={[feedStyles.postTitle, { color: theme.COLORS.POST_TITLE }]}>
+      <Text style={[styles.postTitle, { color: theme.COLORS.POST_TITLE }]}>
         {item.title}
       </Text>
-      <Text
-        style={[feedStyles.postContent, { color: theme.COLORS.POST_CONTENT }]}
-      >
+      <Text style={[styles.postContent, { color: theme.COLORS.POST_CONTENT }]}>
         {item.content}
       </Text>
 
       {userUid === item.idpub && (
         <TouchableOpacity
-          style={feedStyles.saveIconContainer}
+          style={styles.saveIconContainer}
           onPress={() => deletePost(item.id)}
         >
           <FontAwesome name="trash" size={30} color={theme.COLORS.ICON} />

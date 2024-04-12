@@ -21,19 +21,20 @@ export const styles = StyleSheet.create({
   },
   checkboxContainer: {
     flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 10,
+    marginBottom: 12,
   },
   checkboxContainerDoc: {
     flexDirection: "column",
-    alignItems: "flex-start",
-    marginBottom: 10,
+    marginBottom: 12,
+    borderRadius: 10,
+    padding: 10,
   },
   input: {
-    borderBottomWidth: 1,
-    height: 25,
-    marginBottom: 5,
-    fontSize: 15,
+    height: 50,
+    marginBottom: 12,
+    borderRadius: 10,
+    fontSize: 12,
+    paddingStart: 10,
   },
   button: {
     width: "100%",

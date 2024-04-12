@@ -8,13 +8,13 @@ import {
   ActivityIndicator,
   Alert,
 } from "react-native";
-import { styles } from "./styles";
 import { collection, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../utils/firebase";
 import Medicao from "../../models/Medicao";
 import ModalEdicaoProps from "../../props/ModalEditProps";
 import { AntDesign } from "@expo/vector-icons";
 import { useTheme } from "../../context/ThemeContext";
+import { styles } from "./styles";
 
 export default function ModalEdicao({
   visivel,
@@ -28,7 +28,6 @@ export default function ModalEdicao({
   );
   const [pulsoEditado, setPulsoEditado] = useState(medicao.pulso);
   const [loading, setLoading] = useState(false);
-
   const { theme } = useTheme();
 
   const handleSalvarEdicao = async () => {
@@ -43,7 +42,7 @@ export default function ModalEdicao({
       setLoading(true);
       const medicoesRef = collection(db, "medicoes");
 
-      const medicaoParaAtualizar: { [campo: string]: any } = {
+      const medicaoParaAtualizar = {
         sistolica: novaMedicao.sistolica,
         diastolica: novaMedicao.diastolica,
         pulso: novaMedicao.pulso,
@@ -52,7 +51,7 @@ export default function ModalEdicao({
       await updateDoc(doc(medicoesRef, medicao.id), medicaoParaAtualizar);
 
       setLoading(false);
-      Alert.alert("Adicionado com sucesso");
+      Alert.alert("Editado com sucesso");
       salvarEdicao(novaMedicao);
     } catch (error) {
       setLoading(false);
@@ -71,7 +70,7 @@ export default function ModalEdicao({
         <View
           style={[
             styles.modalContent,
-            { backgroundColor: theme.COLORS.BACKGROUND_CARD },
+            { backgroundColor: theme.COLORS.BACKGROUND },
           ]}
         >
           <View style={{ alignItems: "flex-end" }}>
@@ -86,21 +85,39 @@ export default function ModalEdicao({
             Editar Medição
           </Text>
           <TextInput
-            style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
+            style={[
+              styles.input,
+              {
+                backgroundColor: theme.COLORS.BACKGROUND_CARD,
+                color: theme.COLORS.POST_CONTENT,
+              },
+            ]}
             placeholder="Sistólica"
             value={sistolicaEditada}
             onChangeText={(texto) => setSistolicaEditada(texto)}
             keyboardType="numeric"
           />
           <TextInput
-            style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
+            style={[
+              styles.input,
+              {
+                backgroundColor: theme.COLORS.BACKGROUND_CARD,
+                color: theme.COLORS.POST_CONTENT,
+              },
+            ]}
             placeholder="Diastólica"
             value={diastolicaEditada}
             onChangeText={(texto) => setDiastolicaEditada(texto)}
             keyboardType="numeric"
           />
           <TextInput
-            style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
+            style={[
+              styles.input,
+              {
+                backgroundColor: theme.COLORS.BACKGROUND_CARD,
+                color: theme.COLORS.POST_CONTENT,
+              },
+            ]}
             placeholder="Pulso"
             value={pulsoEditado}
             onChangeText={(texto) => setPulsoEditado(texto)}
@@ -108,14 +125,14 @@ export default function ModalEdicao({
           />
           <TouchableOpacity
             style={[
-              styles.botaoSalvar,
-              { backgroundColor: theme.COLORS.BUTTON },
+              styles.button,
+              { borderColor: theme.COLORS.PRIMARY},
             ]}
             onPress={handleSalvarEdicao}
             disabled={loading}
           >
             {loading ? (
-              <ActivityIndicator size="small" color={"#fff"} />
+              <ActivityIndicator size="small" color="#fff" />
             ) : (
               <Text
                 style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}

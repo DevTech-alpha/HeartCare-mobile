@@ -1,5 +1,18 @@
-import { Theme } from "./Models/theme";
-
+export interface Theme {
+  COLORS: {
+    BACKGROUND_CARD: string;
+    BACKGROUND: string;
+    BUTTON: string;
+    BUTTON_TEXT: string;
+    TEXT: string;
+    ICON: string;
+    PRIMARY: string;
+    WHITE: string;
+    POST_TITLE: string;
+    POST_CONTENT: string;
+    OVERLAY: string;
+  };
+}
 export const themes: { light: Theme; dark: Theme } = {
   light: {
     COLORS: {
@@ -7,7 +20,7 @@ export const themes: { light: Theme; dark: Theme } = {
       BACKGROUND: "#E4E6EF",
       BUTTON: "#9f0a2f",
       BUTTON_TEXT: "#FFF",
-      TEXT: "#818181",
+      TEXT: "#000",
       ICON: "#333",
       PRIMARY: "#800020",
       WHITE: "#FFF",
@@ -22,7 +35,7 @@ export const themes: { light: Theme; dark: Theme } = {
       BACKGROUND: "#111",
       BUTTON: "#9f0a2f",
       BUTTON_TEXT: "#FFF",
-      TEXT: "#c9c9c9",
+      TEXT: "#fff",
       ICON: "#FFF",
       PRIMARY: "#800020",
       WHITE: "#FFF",

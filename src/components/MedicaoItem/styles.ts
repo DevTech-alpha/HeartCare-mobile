@@ -22,7 +22,6 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     margin: 2,
   },
-
   containerBotoes: {
     flexDirection: "row",
   },

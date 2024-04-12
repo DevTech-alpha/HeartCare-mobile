@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { styles } from "./styles";
 import * as Animatable from "react-native-animatable";
 import { useTheme } from "../../context/ThemeContext";
+import { MaterialIcons } from "@expo/vector-icons";
 
 export default function FAQ() {
   const { theme } = useTheme();
@@ -80,7 +81,6 @@ export default function FAQ() {
   return (
     <View
       style={[
-        styles.container,
         {
           backgroundColor: theme.COLORS.BACKGROUND,
         },
@@ -107,6 +107,15 @@ export default function FAQ() {
                   },
                 ]}
               >
+                <MaterialIcons
+                  name={
+                    selectedQuestion === item.id
+                      ? "keyboard-arrow-up"
+                      : "keyboard-arrow-down"
+                  }
+                  size={24}
+                  color={theme.COLORS.POST_TITLE}
+                />
                 <Text
                   style={[
                     styles.questionText,

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -13,7 +13,6 @@ import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../utils/firebase";
 import { styles } from "./styles";
 import MedicaoFormProps from "../../props/MedicaoFormProps";
-
 import * as Animatable from "react-native-animatable";
 
 export default function MedicaoForm({
@@ -26,7 +25,6 @@ export default function MedicaoForm({
   const [diastolica, setDiastolica] = useState("");
   const [pulso, setPulso] = useState("");
   const [isAddingMedicao, setIsAddingMedicao] = useState(false);
-
   const { theme } = useTheme();
 
   const adicionarMedicao = async () => {
@@ -52,7 +50,7 @@ export default function MedicaoForm({
           setIsAddingMedicao(true);
 
           const medicoesRef = collection(db, "medicoes");
-          const docRef = await addDoc(medicoesRef, novaMedicao);
+          await addDoc(medicoesRef, novaMedicao);
 
           onMedicaoAdicionada();
           Alert.alert("Adicionado com sucesso");
@@ -129,12 +127,10 @@ export default function MedicaoForm({
         disabled={loading || isAddingMedicao}
       >
         {isAddingMedicao ? (
-          <View>
-            <ActivityIndicator size="small" color={theme.COLORS.WHITE} />
-          </View>
+          <ActivityIndicator size="small" color={theme.COLORS.WHITE} />
         ) : (
           <Text
-            style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}
+            style={{ color: theme.COLORS.BUTTON_TEXT }}
           >
             Registrar
           </Text>

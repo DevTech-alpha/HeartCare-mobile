@@ -4,19 +4,20 @@ import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
 
 import { styles } from "./styles";
-import { criar } from "../../api/CreateAcount";
-import { propsStack } from "../../routes/@types";
+import { propsStack } from "../../routes/types";
 import CadastroForm from "../../components/SignUpForm";
 import { useTheme } from "../../context/ThemeContext";
+import { useAuth } from "../../context/AuthContext";
 
 function SignUp() {
   const { theme } = useTheme();
+
+  const { signUp, isLoading } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const { navigate } = useNavigation<propsStack>();
 
@@ -24,26 +25,16 @@ function SignUp() {
     setIsPasswordVisible((prev) => !prev);
   };
 
-  const handleSignUp = () => {
-    setLoading(true);
-
+  const handleSignUp = async () => {
     if (password !== confPassword) {
-      setLoading(false);
-      Alert.alert("Senha não corresponde");
+      Alert.alert("Erro", "As senhas não coincidem.");
       return;
     }
 
-    criar(email, password)
-      .then((userCredentials) => {
-        setLoading(false);
-        const user = userCredentials.user;
-        Alert.alert("Registro bem-sucedido");
-        navigate("SignIn");
-      })
-      .catch((error) => {
-        setLoading(false);
-        alert(error.message);
-      });
+    try {
+      await signUp({ email, password });
+      navigate("SignIn");
+    } catch (error) {}
   };
 
   return (
@@ -66,10 +57,10 @@ function SignUp() {
         isPasswordVisible={isPasswordVisible}
         togglePasswordVisibility={togglePasswordVisibility}
         handleSignUp={handleSignUp}
-        loading={loading}
+        loading={isLoading}
       />
     </View>
   );
-};
+}
 
 export default SignUp;

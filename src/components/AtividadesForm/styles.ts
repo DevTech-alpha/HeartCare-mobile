@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
     marginBottom: 12,
     fontSize: 16,
   },
-  botaoAdicionar: {
+  botao: {
     borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",

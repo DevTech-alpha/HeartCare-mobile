@@ -9,12 +9,12 @@ import {
 } from "react-native";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../utils/firebase";
-import { styles } from "./styles";
 import { Checkbox } from "expo-checkbox";
-import AtividadesFormProps from "../../props/AtividadesFormProps";
 import { AntDesign } from "@expo/vector-icons";
 import { useTheme } from "../../context/ThemeContext";
 import * as Animatable from "react-native-animatable";
+import AtividadesFormProps from "../../props/AtividadesFormProps";
+import { styles } from "./styles";
 
 export default function AtividadesForm({
   user,
@@ -111,7 +111,7 @@ export default function AtividadesForm({
       />
       <TouchableOpacity
         style={[
-          styles.botaoAdicionar,
+          styles.botao,
           { backgroundColor: theme.COLORS.BUTTON },
         ]}
         onPress={registrarAtividade}

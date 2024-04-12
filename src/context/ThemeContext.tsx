@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { Theme } from "../utils/theme/Models/theme";
+import { Theme } from "../utils/styles";
 
 interface ThemeContextData {
   theme: Theme;

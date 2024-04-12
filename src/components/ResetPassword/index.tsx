@@ -6,9 +6,9 @@ import {
   ActivityIndicator,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { styles } from "./styles";
-import ResetPasswordFormProps from "../../props/ResetPassowordProps";
 import { useTheme } from "../../context/ThemeContext";
+import ResetPasswordFormProps from "../../props/ResetPassowordProps";
+import { styles } from "./styles";
 
 export default function ResetPasswordForm({
   resetEmail,
@@ -34,7 +34,13 @@ export default function ResetPasswordForm({
         placeholder="Digite seu e-mail"
         placeholderTextColor={theme.COLORS.TEXT}
         value={resetEmail}
-        style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
+        style={[
+          styles.input,
+          {
+            backgroundColor: theme.COLORS.BACKGROUND_CARD,
+            color: theme.COLORS.POST_CONTENT,
+          },
+        ]}
         onChangeText={(text) => setResetEmail(text)}
       />
       <TouchableOpacity
@@ -53,10 +59,10 @@ export default function ResetPasswordForm({
         )}
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.buttonRegister}
+        style={[styles.buttonRegister, { borderColor: theme.COLORS.PRIMARY }]}
         onPress={handleBackToLogin}
       >
-        <Text style={[styles.registerText, { color: theme.COLORS.TEXT }]}>
+        <Text style={[styles.buttonText, { color: theme.COLORS.TEXT }]}>
           Voltar ao Login
         </Text>
       </TouchableOpacity>

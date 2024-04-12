@@ -1,18 +1,13 @@
 import React from "react";
-import {
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ActivityIndicator,
-} from "react-native";
+import { Text, TextInput, TouchableOpacity, ActivityIndicator } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { styles } from "./styles";
-import SigInFormProps from "../../props/SignInFormProps";
 import { useNavigation } from "@react-navigation/native";
-import { propsStack } from "../../routes/@types";
 import { useTheme } from "../../context/ThemeContext";
+import SigInFormProps from "../../props/SignInFormProps";
+import { propsStack } from "../../routes/types";
+import { styles } from "./styles";
 
-export default function SigInForm({
+export default function SignInForm({
   email,
   setEmail,
   password,
@@ -34,23 +29,31 @@ export default function SigInForm({
         { backgroundColor: theme.COLORS.BACKGROUND },
       ]}
     >
-      <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-        Email
-      </Text>
+      <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>Email</Text>
       <TextInput
         placeholder="Digite seu e-mail"
         placeholderTextColor={theme.COLORS.TEXT}
-        style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
+        style={[
+          styles.input,
+          {
+            backgroundColor: theme.COLORS.BACKGROUND_CARD,
+            color: theme.COLORS.POST_CONTENT,
+          },
+        ]}
         onChangeText={(text) => setEmail(text)}
       />
 
-      <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-        Senha
-      </Text>
+      <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>Senha</Text>
       <TextInput
         placeholder="Digite sua senha"
         placeholderTextColor={theme.COLORS.TEXT}
-        style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
+        style={[
+          styles.input,
+          {
+            backgroundColor: theme.COLORS.BACKGROUND_CARD,
+            color: theme.COLORS.POST_CONTENT,
+          },
+        ]}
         value={password}
         secureTextEntry={!isPasswordVisible}
         onChangeText={(text) => setPassword(text)}
@@ -59,13 +62,16 @@ export default function SigInForm({
         onPress={togglePasswordVisibility}
         style={styles.togglePasswordButton}
       >
-        <Text
-          style={[
-            styles.togglePasswordButtonText,
-            { color: theme.COLORS.TEXT },
-          ]}
-        >
+        <Text style={[styles.togglePasswordButtonText, { color: theme.COLORS.TEXT }]}>
           {isPasswordVisible ? "Ocultar senha" : "Mostrar senha"}
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.togglePasswordButton}
+        onPress={handleForgotPassword}
+      >
+        <Text style={[styles.togglePasswordButtonText, { color: theme.COLORS.TEXT }]}>
+          Esqueceu a senha?
         </Text>
       </TouchableOpacity>
 
@@ -77,27 +83,17 @@ export default function SigInForm({
         {loading ? (
           <ActivityIndicator size="small" color={theme.COLORS.WHITE} />
         ) : (
-          <Text
-            style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}
-          >
+          <Text style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}>
             Acessar
           </Text>
         )}
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={styles.buttonRegister}
-        onPress={handleForgotPassword}
+        onPress={() => navigate("SignUp")}
+        style={[styles.buttonRegister, { borderColor: theme.COLORS.PRIMARY }]}
       >
-        <Text style={[styles.registerText, { color: theme.COLORS.TEXT }]}>
-          Esqueceu a senha?
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.buttonRegister}>
-        <Text
-          style={[styles.registerText, { color: theme.COLORS.TEXT }]}
-          onPress={() => navigate("SignUp")}
-        >
+        <Text style={[styles.buttonText, { color: theme.COLORS.TEXT }]}>
           Não possui conta?
         </Text>
       </TouchableOpacity>

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import {
+  Modal,
+  View,
+  Text,
   TextInput,
   TouchableOpacity,
-  Text,
   ActivityIndicator,
-  View,
   Alert,
-  Modal,
 } from "react-native";
 
 import { styles } from "./styles";
@@ -22,7 +22,6 @@ export default function ModalPost({
 }: ModalPostProps) {
   const [newTitle, setNewTitle] = useState("");
   const [newContent, setNewContent] = useState("");
-
   const { theme } = useTheme();
 
   const validateAndCreatePost = () => {
@@ -52,7 +51,7 @@ export default function ModalPost({
         <View
           style={[
             styles.modalContent,
-            { backgroundColor: theme.COLORS.BACKGROUND_CARD },
+            { backgroundColor: theme.COLORS.BACKGROUND },
           ]}
         >
           <View style={{ alignItems: "flex-end" }}>
@@ -69,22 +68,31 @@ export default function ModalPost({
           <TextInput
             placeholder="Título"
             placeholderTextColor={theme.COLORS.POST_CONTENT}
-            style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-            value={newTitle}
+            style={[
+              styles.input,
+              {
+                backgroundColor: theme.COLORS.BACKGROUND_CARD,
+                color: theme.COLORS.POST_CONTENT,
+              },
+            ]}            value={newTitle}
             onChangeText={(text) => setNewTitle(text)}
           />
           <TextInput
             placeholder="Conteúdo"
             placeholderTextColor={theme.COLORS.POST_CONTENT}
-            style={[styles.input, { color: theme.COLORS.POST_CONTENT }]}
-            value={newContent}
+            style={[
+              styles.input,
+              {
+                backgroundColor: theme.COLORS.BACKGROUND_CARD,
+                color: theme.COLORS.POST_CONTENT,
+              },
+            ]}            value={newContent}
             onChangeText={(text) => setNewContent(text)}
           />
-
           <TouchableOpacity
             style={[
-              styles.botaoSalvar,
-              { backgroundColor: theme.COLORS.BUTTON },
+              styles.button,
+              { borderColor: theme.COLORS.PRIMARY },
             ]}
             onPress={validateAndCreatePost}
             disabled={loading}

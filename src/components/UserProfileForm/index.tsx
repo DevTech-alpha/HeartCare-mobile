@@ -7,45 +7,41 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
+import { Checkbox } from "expo-checkbox";
 import UserProfileFormProps from "../../props/UserProfileFormProps";
 import { styles } from "./styles";
-import { Checkbox } from "expo-checkbox";
 import { useTheme } from "../../context/ThemeContext";
 
 const bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
-const medicalConditions = [
-  "Diabetes",
-  "Hipertensão",
-  "Asma",
-  "Alergias",
-];
+const medicalConditions = ["Diabetes", "Hipertensão", "Asma", "Alergias"];
 const generoOptions = ["Masculino", "Feminino", "Prefiro não dizer"];
 
-export default function UserProfileForm({
-  username,
-  name,
-  lastName,
-  email,
-  dob,
-  number,
-  bloodType,
-  hasMedicalCondition,
-  genero,
-  setUsername,
-  setName,
-  setLastName,
-  setEmail,
-  setDob,
-  setNumber,
-  setBloodType,
-  setHasMedicalCondition,
-  setGenero,
-  handleSaveProfile,
-  loading,
-}: UserProfileFormProps) {
+export default function UserProfileForm(props: UserProfileFormProps) {
   const { theme } = useTheme();
+  const {
+    username,
+    name,
+    lastName,
+    email,
+    bloodType,
+    dob,
+    number,
+    hasMedicalCondition,
+    genero,
+    setUsername,
+    setName,
+    setLastName,
+    setEmail,
+    setBloodType,
+    setDob,
+    setNumber,
+    setHasMedicalCondition,
+    setGenero,
+    handleSaveProfile,
+    loading,
+  } = props;
 
-  const formatBirthdateInput = (inputValue : any) => {
+  const formatBirthdateInput = (inputValue: string): string => {
     const formattedValue = inputValue
       .replace(/\D/g, "")
       .replace(/(\d{2})(\d)/, "$1/$2")
@@ -58,11 +54,11 @@ export default function UserProfileForm({
     const cleaned: string = inputValue.replace(/\D/g, "").slice(0, 11);
     const match = cleaned.match(/^(\d{0,2})(\d{0,5})(\d{0,4})$/);
     if (match) {
-        return `(${match[1] || ''})${match[2] || ''}-${match[3] || ''}`;
+      return `(${match[1] || ""})${match[2] || ""}-${match[3] || ""}`;
     }
     return inputValue;
-};
- 
+  };
+
   return (
     <View
       style={[
@@ -75,7 +71,13 @@ export default function UserProfileForm({
           Usuário:
         </Text>
         <TextInput
-          style={[styles.input, { color: theme.COLORS.TEXT }]}
+          style={[
+            styles.input,
+            {
+              backgroundColor: theme.COLORS.BACKGROUND_CARD,
+              color: theme.COLORS.POST_CONTENT,
+            },
+          ]}
           placeholder="Digite seu usuário"
           onChangeText={(text) => setUsername(text)}
           value={username}
@@ -84,7 +86,13 @@ export default function UserProfileForm({
           Nome:
         </Text>
         <TextInput
-          style={[styles.input, { color: theme.COLORS.TEXT }]}
+          style={[
+            styles.input,
+            {
+              backgroundColor: theme.COLORS.BACKGROUND_CARD,
+              color: theme.COLORS.POST_CONTENT,
+            },
+          ]}
           placeholder="Digite seu nome"
           onChangeText={(text) => setName(text)}
           value={name}
@@ -93,7 +101,13 @@ export default function UserProfileForm({
           Sobrenome:
         </Text>
         <TextInput
-          style={[styles.input, { color: theme.COLORS.TEXT }]}
+          style={[
+            styles.input,
+            {
+              backgroundColor: theme.COLORS.BACKGROUND_CARD,
+              color: theme.COLORS.POST_CONTENT,
+            },
+          ]}
           placeholder="Digite seu sobrenome"
           onChangeText={(text) => setLastName(text)}
           value={lastName}
@@ -102,7 +116,13 @@ export default function UserProfileForm({
           Data de Nascimento:
         </Text>
         <TextInput
-          style={[styles.input, { color: theme.COLORS.TEXT }]}
+          style={[
+            styles.input,
+            {
+              backgroundColor: theme.COLORS.BACKGROUND_CARD,
+              color: theme.COLORS.POST_CONTENT,
+            },
+          ]}
           placeholder="Digite sua data de nascimento"
           onChangeText={(text) => setDob(formatBirthdateInput(text))}
           value={dob}
@@ -112,7 +132,13 @@ export default function UserProfileForm({
           Celular:
         </Text>
         <TextInput
-          style={[styles.input, { color: theme.COLORS.TEXT }]}
+          style={[
+            styles.input,
+            {
+              backgroundColor: theme.COLORS.BACKGROUND_CARD,
+              color: theme.COLORS.POST_CONTENT,
+            },
+          ]}
           placeholder="Digite seu número de celular"
           onChangeText={(text) => setNumber(formatNumberInput(text))}
           value={number}
@@ -176,7 +202,8 @@ export default function UserProfileForm({
         </Text>
         <View style={styles.checkboxContainerDoc}>
           {generoOptions.map((genderOption) => (
-            <View key={genderOption}>
+            <View 
+             key={genderOption}>
               <Text style={[styles.label, { color: theme.COLORS.TEXT }]}>
                 {genderOption}
               </Text>

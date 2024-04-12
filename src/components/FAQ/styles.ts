@@ -1,9 +1,6 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   questionContainer: {
     margin: 16,
     borderRadius: 20,
@@ -19,7 +16,7 @@ export const styles = StyleSheet.create({
     elevation: 8,
   },
   questionText: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: "bold",
     padding: 16,
   },
@@ -31,13 +28,8 @@ export const styles = StyleSheet.create({
   },
   questionHeader: {
     flexDirection: "row",
-    justifyContent: "flex-start",
+    justifyContent: "space-between", // Ajustando o alinhamento dos ícones
     alignItems: "center",
     padding: 10,
-  },
-  message: {
-    paddingTop: 20,
-    fontSize: 28,
-    fontWeight: "bold",
   },
 });
