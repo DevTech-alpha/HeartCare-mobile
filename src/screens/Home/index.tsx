@@ -45,7 +45,7 @@ function Home() {
           <AntDesign
             name="arrowright"
             size={30}
-            color={theme.COLORS.ICON}
+            color={theme.COLORS.WHITE}
           />
         </TouchableOpacity>
       </Animatable.View>
