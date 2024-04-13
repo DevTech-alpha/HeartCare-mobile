@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { View, Text, Alert } from "react-native";
-import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
 
 import { styles } from "./styles";
@@ -39,13 +38,7 @@ function SignUp() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.COLORS.PRIMARY }]}>
-      <Animatable.View
-        animation="fadeInLeft"
-        delay={500}
-        style={styles.containerHeader}
-      >
-        <Text style={styles.message}>Faça seu Cadastro</Text>
-      </Animatable.View>
+      <View style={styles.containerHeader}></View>
 
       <CadastroForm
         email={email}

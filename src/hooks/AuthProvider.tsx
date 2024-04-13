@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       await signUpApi(email, password);
       setIsLoading(false);
-      Alert.alert("Registro bem-sucedido");
+      Alert.alert("Sucesso", "Registro bem-sucedido");
     } catch (error) {
       setIsLoading(false);
       Alert.alert("Erro", error.message);

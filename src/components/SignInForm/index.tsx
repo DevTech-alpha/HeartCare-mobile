@@ -3,6 +3,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  View,
   ActivityIndicator,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
@@ -11,6 +12,7 @@ import { useTheme } from "../../context/ThemeContext";
 import SigInFormProps from "../../props/SignInFormProps";
 import { propsStack } from "../../routes/types";
 import { styles } from "./styles";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function SignInForm({
   email,
@@ -53,23 +55,43 @@ export default function SignInForm({
       <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
         Senha
       </Text>
-      <TextInput
-        placeholder="Digite sua senha"
-        placeholderTextColor={theme.COLORS.TEXT}
+      <View
         style={[
-          styles.input,
-          {
-            backgroundColor: theme.COLORS.BACKGROUND_CARD,
-            color: theme.COLORS.POST_CONTENT,
-          },
+          styles.inputArea,
+          { backgroundColor: theme.COLORS.BACKGROUND_CARD },
         ]}
-        value={password}
-        secureTextEntry={!isPasswordVisible}
-        onChangeText={(text) => setPassword(text)}
-      />
+      >
+        <TextInput
+          placeholder="Digite sua senha"
+          placeholderTextColor={theme.COLORS.TEXT}
+          style={[
+            styles.inputPassword,
+            {
+              backgroundColor: theme.COLORS.BACKGROUND_CARD,
+              color: theme.COLORS.POST_CONTENT,
+            },
+          ]}
+          value={password}
+          secureTextEntry={!isPasswordVisible}
+          onChangeText={(text) => setPassword(text)}
+        />
+        <TouchableOpacity
+          style={[
+            styles.icon,
+            { backgroundColor: theme.COLORS.BACKGROUND_CARD },
+          ]}
+          onPress={togglePasswordVisibility}
+        >
+          <Ionicons
+            name={isPasswordVisible ? "eye" : "eye-off"}
+            color={theme.COLORS.TEXT}
+            size={25}
+          />
+        </TouchableOpacity>
+      </View>
       <TouchableOpacity
-        onPress={togglePasswordVisibility}
-        style={styles.togglePasswordButton}
+        style={[styles.button, { alignItems: "flex-end" , paddingBottom: 20 }]}
+        onPress={handleForgotPassword}
       >
         <Text
           style={[
@@ -77,7 +99,7 @@ export default function SignInForm({
             { color: theme.COLORS.TEXT },
           ]}
         >
-          {isPasswordVisible ? "Ocultar senha" : "Mostrar senha"}
+          Esqueceu a senha?
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
@@ -102,16 +124,6 @@ export default function SignInForm({
       >
         <Text style={[styles.buttonText, { color: theme.COLORS.TEXT }]}>
           Não possui conta?
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={handleForgotPassword}>
-        <Text
-          style={[
-            styles.togglePasswordButtonText,
-            { color: theme.COLORS.TEXT },
-          ]}
-        >
-          Esqueceu a senha?
         </Text>
       </TouchableOpacity>
     </Animatable.View>

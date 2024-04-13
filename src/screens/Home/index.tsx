@@ -7,7 +7,8 @@ import { styles } from "./styles";
 import { propsStack } from "../../routes/types";
 import { useTheme } from "../../context/ThemeContext";
 
-import Page from "../../assets/svg/home-page.svg";
+import ImgHome from "../../assets/svg/home-page.svg";
+import { AntDesign } from "@expo/vector-icons";
 
 function Home() {
   const { navigate } = useNavigation<propsStack>();
@@ -15,7 +16,9 @@ function Home() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.COLORS.PRIMARY }]}>
-      <Page width={350} height={300} />
+      <View style={{ padding: 15 }}>
+        <ImgHome width={350} height={300} />
+      </View>
 
       <Animatable.View
         delay={600}
@@ -39,14 +42,15 @@ function Home() {
           ]}
           onPress={() => navigate("SignIn")}
         >
-          <Text
-            style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}
-          >
-            Acessar
-          </Text>
+          <AntDesign
+            name="arrowright"
+            size={30}
+            color={theme.COLORS.ICON}
+          />
         </TouchableOpacity>
       </Animatable.View>
     </View>
   );
 }
+
 export default Home;

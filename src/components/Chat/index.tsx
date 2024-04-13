@@ -81,7 +81,7 @@ export default function Chat() {
           Explique o que está sentindo
         </Text>
         <TextInput
-          placeholder=""
+          placeholder="Descreva o que está sentindo.."
           placeholderTextColor={theme.COLORS.POST_CONTENT}
           style={[estilo.input, { color: theme.COLORS.POST_CONTENT }]}
           value={sintomasUsuario}
