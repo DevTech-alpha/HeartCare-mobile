@@ -16,8 +16,8 @@ export const styles = StyleSheet.create({
     elevation: 8,
   },
   userPhoto: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
     borderRadius: 30,
     marginRight: 15,
   },
@@ -31,12 +31,12 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   postTitle: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: "bold",
     marginBottom: 12,
   },
   postContent: {
-    fontSize: 15,
+    fontSize: 13,
     marginBottom: 12,
   },
   actionIconContainer: {
@@ -46,8 +46,8 @@ export const styles = StyleSheet.create({
     alignSelf: "flex-end",
   },
   likerImage: {
-    width: 24,
-    height: 24,
+    width: 25,
+    height: 25,
     borderRadius: 8,
     marginRight: 2,
   },

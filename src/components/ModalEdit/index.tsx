@@ -135,7 +135,7 @@ export default function ModalEdicao({
               <ActivityIndicator size="small" color="#fff" />
             ) : (
               <Text
-                style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}
+                style={[styles.textoBotao, { color: theme.COLORS.TEXT }]}
               >
                 Salvar
               </Text>

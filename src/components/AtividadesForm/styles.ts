@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     elevation: 10,
   },
   label: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: "bold",
     marginTop: 12,
   },
@@ -24,13 +24,15 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     height: 40,
     marginBottom: 12,
-    fontSize: 16,
+    fontSize: 13,
   },
-  botao: {
-    borderRadius: 20,
+  button: {
+    width: "100%",
+    borderRadius: 10,
+    paddingVertical: 8,
+    marginTop: 14,
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 8,
   },
   checkbox: {
     margin: 8,

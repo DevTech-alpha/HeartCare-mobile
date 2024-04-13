@@ -1,5 +1,10 @@
 import React from "react";
-import { Text, TextInput, TouchableOpacity, ActivityIndicator } from "react-native";
+import {
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "../../context/ThemeContext";
@@ -29,7 +34,9 @@ export default function SignInForm({
         { backgroundColor: theme.COLORS.BACKGROUND },
       ]}
     >
-      <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>Email</Text>
+      <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
+        Email
+      </Text>
       <TextInput
         placeholder="Digite seu e-mail"
         placeholderTextColor={theme.COLORS.TEXT}
@@ -43,7 +50,9 @@ export default function SignInForm({
         onChangeText={(text) => setEmail(text)}
       />
 
-      <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>Senha</Text>
+      <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
+        Senha
+      </Text>
       <TextInput
         placeholder="Digite sua senha"
         placeholderTextColor={theme.COLORS.TEXT}
@@ -62,19 +71,15 @@ export default function SignInForm({
         onPress={togglePasswordVisibility}
         style={styles.togglePasswordButton}
       >
-        <Text style={[styles.togglePasswordButtonText, { color: theme.COLORS.TEXT }]}>
+        <Text
+          style={[
+            styles.togglePasswordButtonText,
+            { color: theme.COLORS.TEXT },
+          ]}
+        >
           {isPasswordVisible ? "Ocultar senha" : "Mostrar senha"}
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.togglePasswordButton}
-        onPress={handleForgotPassword}
-      >
-        <Text style={[styles.togglePasswordButtonText, { color: theme.COLORS.TEXT }]}>
-          Esqueceu a senha?
-        </Text>
-      </TouchableOpacity>
-
       <TouchableOpacity
         style={[styles.button, { backgroundColor: theme.COLORS.BUTTON }]}
         onPress={handleLogin}
@@ -83,7 +88,9 @@ export default function SignInForm({
         {loading ? (
           <ActivityIndicator size="small" color={theme.COLORS.WHITE} />
         ) : (
-          <Text style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}>
+          <Text
+            style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}
+          >
             Acessar
           </Text>
         )}
@@ -95,6 +102,16 @@ export default function SignInForm({
       >
         <Text style={[styles.buttonText, { color: theme.COLORS.TEXT }]}>
           Não possui conta?
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={handleForgotPassword}>
+        <Text
+          style={[
+            styles.togglePasswordButtonText,
+            { color: theme.COLORS.TEXT },
+          ]}
+        >
+          Esqueceu a senha?
         </Text>
       </TouchableOpacity>
     </Animatable.View>

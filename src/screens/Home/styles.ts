@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
   },
   text: {},
   buttonAcessar: {
-    borderRadius: 50,
+    borderRadius: 10,
     paddingVertical: 8,
     width: "60%",
     alignSelf: "center",
@@ -32,6 +32,7 @@ export const styles = StyleSheet.create({
     bottom: "15%",
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 14,
   },
   buttonText: {
     fontSize: 18,

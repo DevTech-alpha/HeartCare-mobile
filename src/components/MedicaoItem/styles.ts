@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     elevation: 8,
   },
   textoMedicao: {
-    fontSize: 15,
+    fontSize: 14,
     margin: 2,
   },
   containerBotoes: {

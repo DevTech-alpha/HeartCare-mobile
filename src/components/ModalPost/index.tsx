@@ -104,7 +104,7 @@ export default function ModalPost({
               />
             ) : (
               <Text
-                style={[styles.textoBotao, { color: theme.COLORS.BUTTON_TEXT }]}
+                style={[styles.textoBotao, { color: theme.COLORS.TEXT }]}
               >
                 Postar
               </Text>

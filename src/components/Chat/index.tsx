@@ -81,7 +81,7 @@ export default function Chat() {
           Explique o que está sentindo
         </Text>
         <TextInput
-          placeholder="Descreva seus sintomas..."
+          placeholder=""
           placeholderTextColor={theme.COLORS.POST_CONTENT}
           style={[estilo.input, { color: theme.COLORS.POST_CONTENT }]}
           value={sintomasUsuario}
@@ -89,20 +89,17 @@ export default function Chat() {
           multiline
           numberOfLines={3}
         />
+        <TouchableOpacity
+          style={[estilo.button, { backgroundColor: theme.COLORS.BUTTON }]}
+          onPress={gerarResposta}
+        >
+          <Text
+            style={[estilo.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}
+          >
+            Obter resposta
+          </Text>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        style={[estilo.button, { backgroundColor: theme.COLORS.BUTTON }]}
-        onPress={gerarResposta}
-      >
-        <Text style={[estilo.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}>
-          Obter resposta
-        </Text>
-        <MaterialIcons
-          name="favorite"
-          size={24}
-          color={theme.COLORS.BUTTON_TEXT}
-        />
-      </TouchableOpacity>
       <ScrollView
         contentContainerStyle={{ paddingBottom: 24, marginTop: 4 }}
         style={estilo.containerScroll}
@@ -130,7 +127,7 @@ export default function Chat() {
               ]}
             >
               <Text style={[estilo.title, { color: theme.COLORS.POST_TITLE }]}>
-                Resposta do Doctor:
+                Resposta do Doutor:
               </Text>
               <Text
                 style={{ lineHeight: 24, color: theme.COLORS.POST_CONTENT }}

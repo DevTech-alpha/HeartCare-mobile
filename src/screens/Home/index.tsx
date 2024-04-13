@@ -7,28 +7,16 @@ import { styles } from "./styles";
 import { propsStack } from "../../routes/types";
 import { useTheme } from "../../context/ThemeContext";
 
+import Page from "../../assets/svg/home-page.svg";
+
 function Home() {
   const { navigate } = useNavigation<propsStack>();
   const { theme } = useTheme();
 
   return (
     <View style={[styles.container, { backgroundColor: theme.COLORS.PRIMARY }]}>
-      <Animatable.View
-        animation="pulse"
-        easing="ease-out"
-        iterationCount="infinite"
-        style={[
-          styles.containerLogo,
-          { backgroundColor: theme.COLORS.PRIMARY },
-        ]}
-      >
-        <Animatable.Image
-          animation="zoomIn"
-          source={require("../../assets/logo.png")}
-          style={{ width: "50%" }}
-          resizeMode="contain"
-        />
-      </Animatable.View>
+      <Page width={350} height={300} />
+
       <Animatable.View
         delay={600}
         animation="fadeInUp"
@@ -38,7 +26,7 @@ function Home() {
         ]}
       >
         <Text style={[styles.title, { color: theme.COLORS.POST_TITLE }]}>
-          Cuide do seu coração 
+          Cuide do seu coração
         </Text>
         <Text style={[styles.text, { color: theme.COLORS.POST_TITLE }]}>
           Faça login para começar

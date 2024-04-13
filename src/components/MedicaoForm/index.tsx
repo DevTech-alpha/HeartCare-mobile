@@ -120,7 +120,7 @@ export default function MedicaoForm({
 
       <TouchableOpacity
         style={[
-          styles.botaoAdicionar,
+          styles.button,
           { backgroundColor: theme.COLORS.BUTTON },
         ]}
         onPress={adicionarMedicao}
@@ -129,9 +129,7 @@ export default function MedicaoForm({
         {isAddingMedicao ? (
           <ActivityIndicator size="small" color={theme.COLORS.WHITE} />
         ) : (
-          <Text
-            style={{ color: theme.COLORS.BUTTON_TEXT }}
-          >
+          <Text style={{ color: theme.COLORS.BUTTON_TEXT, fontWeight: "bold" }}>
             Registrar
           </Text>
         )}

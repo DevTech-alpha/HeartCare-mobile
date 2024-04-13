@@ -110,17 +110,18 @@ export default function AtividadesForm({
         keyboardType="numeric"
       />
       <TouchableOpacity
-        style={[
-          styles.botao,
-          { backgroundColor: theme.COLORS.BUTTON },
-        ]}
+        style={[styles.button, { backgroundColor: theme.COLORS.BUTTON }]}
         onPress={registrarAtividade}
         disabled={loading}
       >
         {loading ? (
           <ActivityIndicator size="small" color={theme.COLORS.BUTTON_TEXT} />
         ) : (
-          <Text style={[{ color: theme.COLORS.BUTTON_TEXT }]}>Registrar</Text>
+          <Text
+            style={[{ color: theme.COLORS.BUTTON_TEXT, fontWeight: "bold" }]}
+          >
+            Registrar
+          </Text>
         )}
       </TouchableOpacity>
     </Animatable.View>

@@ -28,6 +28,7 @@ export const styles = StyleSheet.create({
   nomeAtividade: {
     fontSize: 12,
     fontWeight: "bold",
+    paddingBottom: 15,
   },
   circle: {
     padding: 10,
@@ -40,6 +41,6 @@ export const styles = StyleSheet.create({
   },
   number: {
     fontWeight: "bold",
-    fontSize: 11,
+    fontSize: 12,
   },
 });

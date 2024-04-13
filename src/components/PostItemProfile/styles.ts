@@ -15,29 +15,18 @@ export const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 8,
   },
-  userPhoto: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    marginRight: 16,
-    resizeMode: "contain",
-  },
   postHeader: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 12,
   },
-  username: {
-    fontSize: 18,
-    fontWeight: "bold",
-  },
   postTitle: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: "bold",
     marginBottom: 12,
   },
   postContent: {
-    fontSize: 15,
+    fontSize: 13,
     marginBottom: 12,
   },
   actionIconContainer: {

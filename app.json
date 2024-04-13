@@ -2,7 +2,7 @@
   "expo": {
     "name": "HeartCare",
     "slug": "HeartCare",
-    "version": "3.0.0",
+    "version": "4.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -12,6 +12,16 @@
       "backgroundColor": "#800020"
     },
     "assetBundlePatterns": ["**/*"],
+    "packageOpts": {
+      "config": "metro.config.js",
+      "sourceExts": [
+        "js",
+        "jsx",
+        "ts",
+        "tsx",
+        "svg"
+      ]
+    },
     "ios": {
       "supportsTablet": true,
       "config": {}
@@ -23,9 +33,6 @@
       },
       "package": "com.devsntosx71.HeartCare",
       "config": {}
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {

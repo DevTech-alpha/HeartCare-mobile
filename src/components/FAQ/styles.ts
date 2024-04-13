@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     padding: 16,
   },
   answerText: {
-    fontSize: 15,
+    fontSize: 13,
     paddingHorizontal: 16,
     paddingBottom: 16,
     paddingTop: 8,

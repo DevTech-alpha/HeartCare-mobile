@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     paddingVertical: "5%",
   },
   title: {
-    fontSize: 16,
+    fontSize: 15,
     marginTop: 15,
     paddingBottom: 8,
   },
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     margin: 5,
   },
   label: {
-    fontSize: 15,
+    fontSize: 12,
     paddingLeft: 5,
   },
   checkboxContainer: {
@@ -38,14 +38,14 @@ export const styles = StyleSheet.create({
   },
   button: {
     width: "100%",
-    borderRadius: 20,
-    paddingVertical: 12,
-    marginTop: 10,
+    borderRadius: 10,
+    paddingVertical: 8,
+    marginTop: 14,
     justifyContent: "center",
     alignItems: "center",
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: "bold",
   },
 });

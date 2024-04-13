@@ -1,7 +1,7 @@
 import { StyleSheet, Platform } from "react-native";
 
 const isAndroid = Platform.OS === "android";
-const textFontSize = isAndroid ? 30 : 25;
+const textFontSize = isAndroid ? 25 : 20;
 const borderBottomRadius = isAndroid ? 40 : 30;
 
 export const styles = StyleSheet.create({
