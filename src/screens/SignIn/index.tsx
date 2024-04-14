@@ -9,8 +9,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useTheme } from "../../context/ThemeContext";
 
 function SignIn() {
-  const { signIn , isLoading } = useAuth();
-
+  const { signIn, isLoading } = useAuth();
   const { theme } = useTheme();
 
   const [email, setEmail] = useState("");
@@ -20,10 +19,8 @@ function SignIn() {
   const [loading, setLoading] = useState(false);
   const [showResetPassword, setShowResetPassword] = useState(false);
 
-  const handleLogin = async () => {
-    try {
-      await signIn({ email, password });
-    } catch (error) {}
+  const handleLogin = () => {
+    signIn({ email, password });
   };
 
   const handleResetPassword = async () => {
@@ -49,7 +46,6 @@ function SignIn() {
   const handleBackToLogin = () => {
     setShowResetPassword(false);
   };
-
   return (
     <View style={[styles.container, { backgroundColor: theme.COLORS.PRIMARY }]}>
       <Animatable.View

@@ -6,9 +6,9 @@ import { propsNavigationStack } from "./types";
 import { StatusBar } from "react-native";
 import { useTheme } from "../context/ThemeContext";
 import Feed from "../screens/Feed";
-import Alert from "../screens/Alert";
 import Query from "../screens/Query";
 import Profile from "../screens/Profile";
+import FAQ from "../screens/FAQ";
 
 const { Navigator, Screen } = createBottomTabNavigator<propsNavigationStack>();
 
@@ -44,8 +44,8 @@ export default function TabRoutes() {
           }}
         />
         <Screen
-          name="Alert"
-          component={Alert}
+          name="FAQ"
+          component={FAQ}
           options={{
             tabBarIcon: ({ focused, size }) => (
               <Feather

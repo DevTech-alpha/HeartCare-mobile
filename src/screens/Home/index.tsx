@@ -1,14 +1,14 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import * as Animatable from "react-native-animatable";
+import { AntDesign } from "@expo/vector-icons";
 
 import { styles } from "./styles";
 import { propsStack } from "../../routes/types";
 import { useTheme } from "../../context/ThemeContext";
 
-import ImgHome from "../../assets/svg/home-page.svg";
-import { AntDesign } from "@expo/vector-icons";
+const Img = require("../../assets/home-page.png");
 
 function Home() {
   const { navigate } = useNavigation<propsStack>();
@@ -16,8 +16,8 @@ function Home() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.COLORS.PRIMARY }]}>
-      <View style={{ padding: 15 }}>
-        <ImgHome width={350} height={300} />
+      <View style={{ padding: 25 }}>
+        <Image source={Img} style={{ width: 350, height: 300 }} />
       </View>
 
       <Animatable.View
@@ -42,11 +42,7 @@ function Home() {
           ]}
           onPress={() => navigate("SignIn")}
         >
-          <AntDesign
-            name="arrowright"
-            size={30}
-            color={theme.COLORS.WHITE}
-          />
+          <AntDesign name="arrowright" size={30} color={theme.COLORS.WHITE} />
         </TouchableOpacity>
       </Animatable.View>
     </View>

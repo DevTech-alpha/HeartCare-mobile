@@ -11,13 +11,9 @@ interface AuthContextData {
   isLoading: boolean;
 }
 
-export const AuthContext = createContext<AuthContextData>({
-  isLoading: false,
-  setAuthData: () => {},
-  signIn: async () => {},
-  signUp: async () => {},
-  signOut: async () => {},
-});
+export const AuthContext = createContext<AuthContextData>(
+  {} as AuthContextData
+);
 
 export const useAuth = (): AuthContextData => {
   const context = useContext(AuthContext);
