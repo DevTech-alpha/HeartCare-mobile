@@ -1,14 +1,13 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
-
-import { propsNavigationStack } from "./types";
-import { StatusBar } from "react-native";
+import { StatusBar, StyleSheet } from "react-native";
 import { useTheme } from "../context/ThemeContext";
 import Feed from "../screens/Feed";
 import Query from "../screens/Query";
 import Profile from "../screens/Profile";
 import FAQ from "../screens/FAQ";
+import { propsNavigationStack } from "./types";
 
 const { Navigator, Screen } = createBottomTabNavigator<propsNavigationStack>();
 
@@ -26,6 +25,14 @@ export default function TabRoutes() {
           headerShown: false,
           tabBarStyle: {
             backgroundColor: theme.COLORS.BACKGROUND,
+            position: "absolute",
+            bottom: 25,
+            left: 20,
+            right: 20,
+            elevation: 0,
+            borderRadius: 30,
+            height: 90,
+            ...styles.shadow,
           },
         }}
       >
@@ -36,7 +43,7 @@ export default function TabRoutes() {
             tabBarIcon: ({ focused, size }) => (
               <Feather
                 name="heart"
-                size={focused ? size + 5 : size}
+                size={focused ? size + 10 : size}
                 color={focused ? theme.COLORS.PRIMARY : theme.COLORS.ICON}
               />
             ),
@@ -49,15 +56,14 @@ export default function TabRoutes() {
           options={{
             tabBarIcon: ({ focused, size }) => (
               <Feather
-                name="alert-circle"
-                size={focused ? size + 5 : size}
+                name="alert-triangle"
+                size={focused ? size + 10 : size}
                 color={focused ? theme.COLORS.PRIMARY : theme.COLORS.ICON}
               />
             ),
             tabBarLabel: () => null,
           }}
         />
-
         <Screen
           name="Query"
           component={Query}
@@ -65,7 +71,7 @@ export default function TabRoutes() {
             tabBarIcon: ({ focused, size }) => (
               <Feather
                 name="calendar"
-                size={focused ? size + 5 : size}
+                size={focused ? size + 10 : size}
                 color={focused ? theme.COLORS.PRIMARY : theme.COLORS.ICON}
               />
             ),
@@ -79,7 +85,7 @@ export default function TabRoutes() {
             tabBarIcon: ({ focused, size }) => (
               <Feather
                 name="user"
-                size={focused ? size + 5 : size}
+                size={focused ? size + 10 : size}
                 color={focused ? theme.COLORS.PRIMARY : theme.COLORS.ICON}
               />
             ),
@@ -90,3 +96,13 @@ export default function TabRoutes() {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  shadow: {
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    elevation: 5,
+  },
+});

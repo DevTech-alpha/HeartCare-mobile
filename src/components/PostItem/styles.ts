@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     marginBottom: 12,
   },
   username: {
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: "bold",
   },
   postTitle: {

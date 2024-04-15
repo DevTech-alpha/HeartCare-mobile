@@ -1,8 +1,6 @@
 import { StyleSheet, Platform } from "react-native";
 
 const isAndroid = Platform.OS === "android";
-const textFontSize = isAndroid ? 25 : 20;
-const borderBottomRadius = isAndroid ? 40 : 30;
 
 export const styles = StyleSheet.create({
   contain: {
@@ -15,12 +13,12 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#800020",
-    borderBottomLeftRadius: borderBottomRadius,
-    borderBottomRightRadius: borderBottomRadius,
+    borderBottomLeftRadius: 40,
+    borderBottomRightRadius: 40,
   },
   text: {
     color: "white",
-    fontSize: textFontSize,
+    fontSize: 25,
     fontWeight: "bold",
     paddingBottom: isAndroid ? 10 : 5,
   },
