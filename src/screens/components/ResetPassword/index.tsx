@@ -6,8 +6,8 @@ import {
   ActivityIndicator,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { useTheme } from "../../context/ThemeContext";
-import ResetPasswordFormProps from "../../props/ResetPassowordProps";
+import { useTheme } from "../../../context/ThemeContext";
+import ResetPasswordFormProps from "../../../props/ResetPassowordProps";
 import { styles } from "./styles";
 
 export default function ResetPasswordForm({

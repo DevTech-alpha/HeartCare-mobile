@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
-import MedicaoItemProps from "../../props/MedicaoItemProps";
+import MedicaoItemProps from "../../../props/MedicaoItemProps";
 import ModalEdicao from "../ModalEdit";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "../../../context/ThemeContext";
 import * as Animatable from "react-native-animatable";
 
 export default function MedicaoItem({

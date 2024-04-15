@@ -9,11 +9,11 @@ import {
   Alert,
 } from "react-native";
 import { collection, doc, updateDoc } from "firebase/firestore";
-import { db } from "../../utils/firebase";
-import Medicao from "../../models/Medicao";
-import ModalEdicaoProps from "../../props/ModalEditProps";
+import { db } from "../../../utils/firebase";
+import Medicao from "../../../models/Medicao";
+import ModalEdicaoProps from "../../../props/ModalEditProps";
 import { AntDesign } from "@expo/vector-icons";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "../../../context/ThemeContext";
 import { styles } from "./styles";
 
 export default function ModalEdicao({

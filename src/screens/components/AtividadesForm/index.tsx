@@ -8,12 +8,12 @@ import {
   Alert,
 } from "react-native";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../utils/firebase";
+import { db } from "../../../utils/firebase";
 import { Checkbox } from "expo-checkbox";
 import { AntDesign } from "@expo/vector-icons";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "../../../context/ThemeContext";
 import * as Animatable from "react-native-animatable";
-import AtividadesFormProps from "../../props/AtividadesFormProps";
+import AtividadesFormProps from "../../../props/AtividadesFormProps";
 import { styles } from "./styles";
 
 export default function AtividadesForm({

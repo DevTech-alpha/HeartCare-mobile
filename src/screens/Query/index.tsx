@@ -20,12 +20,12 @@ import { getAuth, User } from "firebase/auth";
 import Medicao from "../../models/Medicao";
 import { db } from "../../utils/firebase";
 import { styles } from "./styles";
-import MedicaoItem from "../../components/MedicaoItem";
-import MedicaoForm from "../../components/MedicaoForm";
-import Header from "../../components/Header";
+import MedicaoItem from "../components/MedicaoItem";
+import MedicaoForm from "../components/MedicaoForm";
+import Header from "../components/Header";
 import { AntDesign } from "@expo/vector-icons";
-import AtividadesForm from "../../components/AtividadesForm";
-import AtividadeItem from "../../components/AtividadesItem";
+import AtividadesForm from "../components/AtividadesForm";
+import AtividadeItem from "../components/AtividadesItem";
 import { useTheme } from "../../context/ThemeContext";
 
 function Query() {

@@ -7,12 +7,12 @@ import {
   Alert,
   ActivityIndicator,
 } from "react-native";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "../../../context/ThemeContext";
 import { AntDesign } from "@expo/vector-icons";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../utils/firebase";
+import { db } from "../../../utils/firebase";
 import { styles } from "./styles";
-import MedicaoFormProps from "../../props/MedicaoFormProps";
+import MedicaoFormProps from "../../../props/MedicaoFormProps";
 import * as Animatable from "react-native-animatable";
 
 export default function MedicaoForm({

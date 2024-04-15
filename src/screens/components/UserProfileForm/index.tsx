@@ -8,9 +8,9 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { Checkbox } from "expo-checkbox";
-import UserProfileFormProps from "../../props/UserProfileFormProps";
+import UserProfileFormProps from "../../../props/UserProfileFormProps";
 import { styles } from "./styles";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "../../../context/ThemeContext";
 
 const bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 const medicalConditions = ["Diabetes", "Hipertensão", "Asma", "Alergias"];

@@ -26,12 +26,13 @@ export default function TabRoutes() {
           tabBarStyle: {
             backgroundColor: theme.COLORS.BACKGROUND,
             position: "absolute",
+            padding: 15,
             bottom: 25,
             left: 20,
             right: 20,
             elevation: 0,
             borderRadius: 30,
-            height: 90,
+            height: 80,
             ...styles.shadow,
           },
         }}

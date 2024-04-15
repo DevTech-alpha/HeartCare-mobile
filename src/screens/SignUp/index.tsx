@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { styles } from "./styles";
 import { propsStack } from "../../routes/types";
-import CadastroForm from "../../components/SignUpForm";
+import CadastroForm from "../components/SignUpForm";
 import { useTheme } from "../../context/ThemeContext";
 import { useAuth } from "../../context/AuthContext";
 

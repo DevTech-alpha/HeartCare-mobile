@@ -24,14 +24,14 @@ import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { db } from "../../utils/firebase";
 import * as ImagePicker from "expo-image-picker";
 import { styles } from "./styles";
-import UserProfileForm from "../../components/UserProfileForm";
-import PostItem from "../../components/PostItemProfile";
+import UserProfileForm from "../components/UserProfileForm";
+import PostItem from "../components/PostItemProfile";
 import Post from "../../models/Post";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "../../context/ThemeContext";
 import { useAuth } from "../../context/AuthContext";
-import Header from "../../components/Header";
-import ProfileImage from "../../components/ProfileImage";
+import Header from "../components/Header";
+import ProfileImage from "../components/ProfileImage";
 
 function Profile() {
   const { signOut } = useAuth();

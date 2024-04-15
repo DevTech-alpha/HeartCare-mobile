@@ -32,49 +32,11 @@ export const styles = StyleSheet.create({
     marginBottom: 12,
     fontSize: 16,
   },
-  toggleHorarioButton: {
-    borderRadius: 4,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingVertical: 8,
-    marginTop: 10,
-  },
-  toggleHorarioButtonText: {},
-  botaoAdicionar: {
-    borderRadius: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingVertical: 8,
-    marginTop: 14,
-  },
-  textoBotao: {},
-  listaContainer: {
-    flex: 1,
-  },
-
   addButtonText: {
     fontSize: 30,
     fontWeight: "bold",
   },
-  textoMedicao: {
-    fontSize: 16,
-    color: "#333",
-    marginBottom: 5,
-  },
-
-  containerBotoes: {
-    flexDirection: "row",
-  },
-  botaoEditar: {
-    borderRadius: 5,
-    padding: 8,
-    marginHorizontal: 5,
-  },
-  botaoExcluir: {
-    borderRadius: 4,
-    padding: 8,
-    marginHorizontal: 5,
-  },
+ 
   addButton: {
     position: "absolute",
     bottom: 24,

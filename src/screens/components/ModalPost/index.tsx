@@ -10,9 +10,9 @@ import {
 } from "react-native";
 
 import { styles } from "./styles";
-import ModalPostProps from "../../props/ModalPostProps";
+import ModalPostProps from "../../../props/ModalPostProps";
 import { AntDesign } from "@expo/vector-icons";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "../../../context/ThemeContext";
 
 export default function ModalPost({
   createNewPost,

@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, TextInput, TouchableOpacity, ActivityIndicator } from "react-native";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "../../../context/ThemeContext";
 import { useNavigation } from "@react-navigation/native";
-import { propsStack } from "../../routes/types";
+import { propsStack } from "../../../routes/types";
 import { styles } from "./styles";
-import SignUpFormProps from "../../props/SignUpFormProps";
+import SignUpFormProps from "../../../props/SignUpFormProps";
 
 export default function SignUpForm({
   email,

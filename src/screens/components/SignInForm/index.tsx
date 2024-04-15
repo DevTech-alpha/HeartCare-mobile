@@ -8,9 +8,9 @@ import {
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
-import { useTheme } from "../../context/ThemeContext";
-import SigInFormProps from "../../props/SignInFormProps";
-import { propsStack } from "../../routes/types";
+import { useTheme } from "../../../context/ThemeContext";
+import SigInFormProps from "../../../props/SignInFormProps";
+import { propsStack } from "../../../routes/types";
 import { styles } from "./styles";
 import { Ionicons } from "@expo/vector-icons";
 

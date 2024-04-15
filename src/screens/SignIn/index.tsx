@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text } from "react-native";
-import LoginForm from "../../components/SignInForm";
-import ResetPasswordForm from "../../components/ResetPassword";
+import LoginForm from "../components/SignInForm";
+import ResetPasswordForm from "../components/ResetPassword";
 import { styles } from "./styles";
 import * as Animatable from "react-native-animatable";
 import { enviarRecuperacaoSenha } from "../../api/PasswordRecovery";

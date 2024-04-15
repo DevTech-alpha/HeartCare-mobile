@@ -10,7 +10,11 @@ const { Screen, Navigator } =
 export default function StackRoutes() {
   return (
     <Navigator screenOptions={{ headerShown: false }}>
-      <Screen name="Home" component={Home} options={{ headerShown: false }} />
+      <Screen 
+       name="Home" 
+       component={Home} 
+       options={{ headerShown: false }} />
+
       <Screen
         name="SignIn"
         component={SignIn}

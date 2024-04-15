@@ -3,12 +3,12 @@ import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { styles } from "./styles";
 import * as Animatable from "react-native-animatable";
-import PostItemProps from "../../props/PostItemProps";
-import { db } from "../../utils/firebase";
+import PostItemProps from "../../../props/PostItemProps";
+import { db } from "../../../utils/firebase";
 import { getDoc, doc } from "firebase/firestore";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "../../../context/ThemeContext";
 import { useNavigation } from "@react-navigation/native";
-import { propsStack } from "../../routes/types";
+import { propsStack } from "../../../routes/types";
 
 export default function PostItem({
   item,
@@ -82,9 +82,9 @@ export default function PostItem({
   const renderLiker = ({ item }) => (
     <Image
       key={item.id}
-      source={item ? { uri: item } : require("../../assets/user.png")}
+      source={item ? { uri: item } : require("../../../assets/user.png")}
       style={{ width: 30, height: 30, borderRadius: 15, marginRight: -5 }}
-      defaultSource={require("../../assets/user.png")}
+      defaultSource={require("../../../assets/user.png")}
     />
   );
 
@@ -101,10 +101,10 @@ export default function PostItem({
           source={
             item.userPhoto
               ? { uri: item.userPhoto }
-              : require("../../assets/user.png")
+              : require("../../../assets/user.png")
           }
           style={styles.userPhoto}
-          defaultSource={require("../../assets/user.png")}
+          defaultSource={require("../../../assets/user.png")}
         />
         <Text style={[styles.username, { color: theme.COLORS.POST_TITLE }]}>
           {item.username}

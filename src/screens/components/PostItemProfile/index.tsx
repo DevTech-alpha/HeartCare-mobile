@@ -1,8 +1,8 @@
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import { useTheme } from "../../context/ThemeContext";
-import PostItemProfileProps from "../../props/PostItemProfileProps";
+import { useTheme } from "../../../context/ThemeContext";
+import PostItemProfileProps from "../../../props/PostItemProfileProps";
 import { styles } from "./styles";
 import * as Animatable from "react-native-animatable";
 
