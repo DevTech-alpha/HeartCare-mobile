@@ -26,6 +26,7 @@ export default function TabRoutes() {
           tabBarStyle: {
             backgroundColor: theme.COLORS.BACKGROUND,
             position: "absolute",
+            borderTopColor: "transparent",
             padding: 15,
             bottom: 25,
             left: 20,

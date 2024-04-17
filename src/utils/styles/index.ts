@@ -22,7 +22,7 @@ export const themes: { light: Theme; dark: Theme } = {
       BUTTON_TEXT: "#FFF",
       TEXT: "#000",
       ICON: "#333",
-      PRIMARY: "#800020",
+      PRIMARY: "#9f0a2f",
       WHITE: "#FFF",
       POST_TITLE: "#333",
       POST_CONTENT: "#555",
@@ -33,7 +33,7 @@ export const themes: { light: Theme; dark: Theme } = {
     COLORS: {
       BACKGROUND_CARD: "#222",
       BACKGROUND: "#111",
-      BUTTON: "#9f0a2f",
+      BUTTON: "#800020",
       BUTTON_TEXT: "#FFF",
       TEXT: "#fff",
       ICON: "#FFF",

@@ -4,7 +4,7 @@ const isAndroid = Platform.OS === "android";
 
 export const styles = StyleSheet.create({
   contain: {
-    marginTop: isAndroid ? -10 : 25,
+    marginTop: isAndroid ? -5 : 25,
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: isAndroid ? 0 : 15,
@@ -12,12 +12,11 @@ export const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#800020",
     borderBottomLeftRadius: 40,
     borderBottomRightRadius: 40,
   },
   text: {
-    color: "white",
+    color: "#fff",
     letterSpacing: 3,
     fontSize: 20,
     fontWeight: "bold",

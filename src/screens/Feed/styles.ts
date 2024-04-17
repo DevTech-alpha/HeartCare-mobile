@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     elevation: 10,
   },
   addButtonText: {
-    fontSize: 30,
+    fontSize: 25,
     color: "white",
     fontWeight: "bold",
   },
