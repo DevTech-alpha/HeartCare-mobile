@@ -8,6 +8,8 @@ import * as Animatable from "react-native-animatable";
 import AtividadesItemProps from "../../../props/AtividadesItemProps";
 import { useTheme } from "../../../context/ThemeContext";
 
+import * as Progress from "react-native-progress";
+
 export default function AtividadesItem({ user }: AtividadesItemProps) {
   const { theme } = useTheme();
   const [atividades, setAtividades] = useState<Atividade[]>([]);
@@ -56,11 +58,14 @@ const CartaoAtividade = ({ data, theme }) => {
       ]}
     >
       <View style={styles.containerProgresso}>
-        <View style={[styles.circle, { borderColor: theme.COLORS.PRIMARY }]}>
-          <Text style={[styles.number, { color: theme.COLORS.ICON }]}>
-            {progresso.toFixed(0)}%
-          </Text>
-        </View>
+        <Progress.Circle
+          progress={progresso / 100}
+          size={60}
+          thickness={5}
+          borderWidth={0}
+          color={theme.COLORS.PRIMARY}
+          unfilledColor={theme.COLORS.BACKGROUND}
+        />
       </View>
       <View style={styles.containerDetalhes}>
         <Text

@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { styles } from "./styles";
 import * as Animatable from "react-native-animatable";
-import { useTheme } from "../../context/ThemeContext";
 import { MaterialIcons } from "@expo/vector-icons";
-import Header from "../components/Header";
+import { useTheme } from "../../../context/ThemeContext";
 
 export default function FAQ() {
   const { theme } = useTheme();
@@ -87,7 +86,7 @@ export default function FAQ() {
         },
       ]}
     >
-     <Header title="FAQ"/>
+
       <ScrollView showsVerticalScrollIndicator={false}>
         {questions.map((item) => (
           <Animatable.View

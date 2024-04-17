@@ -6,8 +6,9 @@ import { useTheme } from "../context/ThemeContext";
 import Feed from "../screens/Feed";
 import Query from "../screens/Query";
 import Profile from "../screens/Profile";
-import FAQ from "../screens/FAQ";
 import { propsNavigationStack } from "./types";
+import Questions from "../screens/Help";
+import Help from "../screens/Help";
 
 const { Navigator, Screen } = createBottomTabNavigator<propsNavigationStack>();
 
@@ -53,12 +54,12 @@ export default function TabRoutes() {
           }}
         />
         <Screen
-          name="FAQ"
-          component={FAQ}
+          name="Help"
+          component={Help}
           options={{
             tabBarIcon: ({ focused, size }) => (
               <Feather
-                name="alert-triangle"
+                name="help-circle"
                 size={focused ? size + 10 : size}
                 color={focused ? theme.COLORS.PRIMARY : theme.COLORS.ICON}
               />

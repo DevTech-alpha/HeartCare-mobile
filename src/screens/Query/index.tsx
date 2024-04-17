@@ -23,7 +23,7 @@ import { styles } from "./styles";
 import MedicaoItem from "../components/MedicaoItem";
 import MedicaoForm from "../components/MedicaoForm";
 import Header from "../components/Header";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import AtividadesForm from "../components/AtividadesForm";
 import AtividadeItem from "../components/AtividadesItem";
 import { useTheme } from "../../context/ThemeContext";
@@ -133,7 +133,11 @@ function Query() {
           ]}
           onPress={toggleChatVisibility}
         >
-          <AntDesign name="calendar" size={30} color={theme.COLORS.ICON} />
+          <MaterialIcons
+            name={"medical-services"}
+            size={24}
+            color={theme.COLORS.POST_TITLE}
+          />
         </TouchableOpacity>
       )}
 

@@ -29,4 +29,12 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
   },
+  button: {
+    width: "100%",
+    borderRadius: 10,
+    paddingVertical: 12,
+    marginTop: 14,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });

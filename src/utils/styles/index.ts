@@ -11,8 +11,10 @@ export interface Theme {
     POST_TITLE: string;
     POST_CONTENT: string;
     OVERLAY: string;
+    DISABLED: string; // Adicionando a cor para o estado disabled
   };
 }
+
 export const themes: { light: Theme; dark: Theme } = {
   light: {
     COLORS: {
@@ -27,6 +29,7 @@ export const themes: { light: Theme; dark: Theme } = {
       POST_TITLE: "#333",
       POST_CONTENT: "#555",
       OVERLAY: "rgba(0,0,0,0.6)",
+      DISABLED: "#A0A0A0", // Cor para botões desativados
     },
   },
   dark: {
@@ -42,6 +45,7 @@ export const themes: { light: Theme; dark: Theme } = {
       POST_TITLE: "#FFF",
       POST_CONTENT: "#DDD",
       OVERLAY: "rgba(0,0,0,0.8)",
+      DISABLED: "#505050", // Cor para botões desativados
     },
   },
 };
