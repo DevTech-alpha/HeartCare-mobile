@@ -8,8 +8,6 @@ import * as Animatable from "react-native-animatable";
 import AtividadesItemProps from "../../../props/AtividadesItemProps";
 import { useTheme } from "../../../context/ThemeContext";
 
-import * as Progress from "react-native-progress";
-
 export default function AtividadesItem({ user }: AtividadesItemProps) {
   const { theme } = useTheme();
   const [atividades, setAtividades] = useState<Atividade[]>([]);
@@ -44,9 +42,12 @@ export default function AtividadesItem({ user }: AtividadesItemProps) {
       ))}
     </Animatable.View>
   );
-}
+};
 
-const CartaoAtividade = ({ data, theme }) => {
+const CartaoAtividade: React.FC<{ data: Atividade; theme: any }> = ({
+  data,
+  theme,
+}) => {
   const calcularPorcentagem = (tempo: number) => (tempo / 120) * 100;
   const progresso = calcularPorcentagem(data.Tempo);
 
@@ -58,14 +59,11 @@ const CartaoAtividade = ({ data, theme }) => {
       ]}
     >
       <View style={styles.containerProgresso}>
-        <Progress.Circle
-          progress={progresso / 100}
-          size={60}
-          thickness={5}
-          borderWidth={0}
-          color={theme.COLORS.PRIMARY}
-          unfilledColor={theme.COLORS.BACKGROUND}
-        />
+        <View style={[styles.circle, { borderColor: theme.COLORS.PRIMARY }]}>
+          <Text style={[styles.number, { color: theme.COLORS.ICON }]}>
+            {progresso.toFixed(0)}%
+          </Text>
+        </View>
       </View>
       <View style={styles.containerDetalhes}>
         <Text

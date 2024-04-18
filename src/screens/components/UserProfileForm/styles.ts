@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     elevation: 5,
   },
   title: {
-    fontSize: 15,
+    fontSize: 13,
     marginTop: 15,
     paddingBottom: 8,
   },

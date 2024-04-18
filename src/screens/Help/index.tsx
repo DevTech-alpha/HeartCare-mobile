@@ -1,54 +1,34 @@
 import React, { useState } from "react";
 import { View, TouchableOpacity } from "react-native";
-import { styles } from "./styles";
-import { AntDesign, MaterialIcons } from "@expo/vector-icons";
-
 import { useTheme } from "../../context/ThemeContext";
+import { AntDesign } from "@expo/vector-icons";
 import FAQ from "../components/FAQ";
 import Header from "../components/Header";
-import AnamneseQuestionary from "../components/AnamneseQuestionary";
+import { styles } from "./styles";
+import Questionary from "../components/Questionary";
 
 function Help() {
   const { theme } = useTheme();
-
   const [mostrar, setMostrar] = useState(true);
 
-  const toggleChatVisibility = () => {
+  const mudarTela = () => {
     setMostrar(!mostrar);
   };
 
   return (
-    <View
-      style={[styles.container, { backgroundColor: theme.COLORS.BACKGROUND }]}
-    >
+    <View style={[styles.container, { backgroundColor: theme.COLORS.BACKGROUND }]}>
       <Header title={mostrar ? "FAQ" : "Anamnese"} />
-      {mostrar ? (
+      {!mostrar && (
         <TouchableOpacity
-          style={[
-            styles.themeToggleButton,
-            { backgroundColor: theme.COLORS.BACKGROUND },
-          ]}
-          onPress={toggleChatVisibility}
-        >
-          <MaterialIcons
-            name={"question-answer"}
-            size={24}
-            color={theme.COLORS.POST_TITLE}
-          />
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          style={[
-            styles.themeToggleButton,
-            { backgroundColor: theme.COLORS.BACKGROUND },
-          ]}
-          onPress={toggleChatVisibility}
+          style={[styles.themeToggleButton, { backgroundColor: theme.COLORS.BACKGROUND }]}
+          onPress={mudarTela}
         >
           <AntDesign name="arrowleft" size={30} color={theme.COLORS.ICON} />
         </TouchableOpacity>
       )}
-      {mostrar ? <FAQ /> : <AnamneseQuestionary />}
+      {mostrar ? <FAQ  mudarTela={mudarTela}/> : <Questionary />}
     </View>
   );
 }
+
 export default Help;

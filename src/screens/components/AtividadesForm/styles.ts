@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     elevation: 5,
   },
   label: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: "bold",
     marginTop: 12,
   },
@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     height: 40,
     marginBottom: 12,
-    fontSize: 13,
+    fontSize: 12,
   },
   button: {
     width: "100%",

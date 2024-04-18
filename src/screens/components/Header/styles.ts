@@ -4,7 +4,7 @@ const isAndroid = Platform.OS === "android";
 
 export const styles = StyleSheet.create({
   contain: {
-    marginTop: isAndroid ? -5 : 25,
+    marginTop: isAndroid ? 0 : 25,
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: isAndroid ? 0 : 15,

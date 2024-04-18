@@ -4,8 +4,9 @@ import { styles } from "./styles";
 import * as Animatable from "react-native-animatable";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "../../../context/ThemeContext";
+import FAQProps from "../../../props/FAQprops";
 
-export default function FAQ() {
+export default function FAQ({ mudarTela } : FAQProps) {
   const { theme } = useTheme();
 
   const [questions] = useState([
@@ -86,7 +87,19 @@ export default function FAQ() {
         },
       ]}
     >
-
+      <TouchableOpacity
+        onPress={mudarTela}
+        style={[styles.buttonToggle, { backgroundColor: theme.COLORS.BUTTON }]}
+      >
+        <Text style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}>
+          <MaterialIcons
+            name={"check-box"}
+            size={20}
+            color={theme.COLORS.POST_TITLE}
+          />
+          Questionario de Anamnese
+        </Text>
+      </TouchableOpacity>
       <ScrollView showsVerticalScrollIndicator={false}>
         {questions.map((item) => (
           <Animatable.View

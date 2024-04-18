@@ -17,8 +17,12 @@ export const styles = StyleSheet.create({
     elevation: 5,
   },
   questionText: {
-    fontSize: 15,
+    fontSize: 13,
     marginBottom: 16,
+  },
+  progressBar: {
+    height: 5,
+    marginBottom: 10,
   },
   button: {
     width: "100%",
@@ -39,7 +43,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: 12,
     fontWeight: "bold",
   },
   navigation: {

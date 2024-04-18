@@ -13,19 +13,19 @@ export const styles = StyleSheet.create({
     elevation: 5,
   },
   questionText: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: "bold",
     padding: 16,
   },
   answerText: {
-    fontSize: 13,
+    fontSize: 12,
     paddingHorizontal: 16,
     paddingBottom: 16,
     paddingTop: 8,
   },
   questionHeader: {
     flexDirection: "row",
-    justifyContent: "space-between", // Ajustando o alinhamento dos ícones
+    justifyContent: "space-between",
     alignItems: "center",
     padding: 10,
   },
@@ -36,5 +36,18 @@ export const styles = StyleSheet.create({
     marginTop: 14,
     justifyContent: "center",
     alignItems: "center",
+  },
+  buttonToggle: {
+    width: "100%",
+    marginTop: 20,
+    marginBottom: 20,
+    padding: 10,
+    borderRadius: 50,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonText: {
+    fontSize: 14,
+    fontWeight: "bold",
   },
 });

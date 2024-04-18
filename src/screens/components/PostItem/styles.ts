@@ -24,16 +24,16 @@ export const styles = StyleSheet.create({
     marginBottom: 12,
   },
   username: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: "bold",
   },
   postTitle: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: "bold",
     marginBottom: 12,
   },
   postContent: {
-    fontSize: 13,
+    fontSize: 12,
     marginBottom: 12,
   },
   actionIconContainer: {

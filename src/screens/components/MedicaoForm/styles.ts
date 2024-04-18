@@ -15,13 +15,13 @@ export const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontWeight: "bold",
-    marginTop: 12,
+    marginTop: 13,
   },
   input: {
     borderBottomWidth: 1,
     height: 40,
     marginBottom: 12,
-    fontSize: 13,
+    fontSize: 12,
   },
   button: {
     width: "100%",

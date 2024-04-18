@@ -134,7 +134,7 @@ function Query() {
           onPress={toggleChatVisibility}
         >
           <MaterialIcons
-            name={"medical-services"}
+            name={"calendar-today"}
             size={24}
             color={theme.COLORS.POST_TITLE}
           />

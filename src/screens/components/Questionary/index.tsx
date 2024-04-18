@@ -3,31 +3,34 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { getCardiologyQuestions } from "../../../utils/questions";
 import { useTheme } from "../../../context/ThemeContext";
 import { styles } from "./styles";
-import * as Progress from "react-native-progress";
 
-function AnamneseQuestionary() {
+function Questionary() {
   const { theme } = useTheme();
   const [currentStep, setCurrentStep] = useState(0);
   const questions = getCardiologyQuestions();
   const totalSteps = questions.length;
 
-  const [answers, setAnswers] = useState(Array(totalSteps).fill(null));
+  const [answers, setAnswers] = useState<number[]>(
+    Array(totalSteps).fill(null)
+  );
 
   const handleNextStep = () => {
-    setCurrentStep(currentStep + 1);
+    setCurrentStep((prevStep) => prevStep + 1);
   };
 
   const handlePreviousStep = () => {
-    setCurrentStep(currentStep - 1);
+    setCurrentStep((prevStep) => prevStep - 1);
   };
 
-  const handleAnswer = (index) => {
-    const newAnswers = [...answers];
-    newAnswers[currentStep] = index;
-    setAnswers(newAnswers);
+  const handleAnswer = (index: number) => {
+    setAnswers((prevAnswers) => {
+      const newAnswers = [...prevAnswers];
+      newAnswers[currentStep] = index;
+      return newAnswers;
+    });
   };
 
-  const progress = (currentStep + 1) / totalSteps;
+  const progress = ((currentStep + 1) / totalSteps) * 100;
 
   return (
     <View style={styles.container}>
@@ -37,13 +40,11 @@ function AnamneseQuestionary() {
           { backgroundColor: theme.COLORS.BACKGROUND_CARD },
         ]}
       >
-        <Progress.Bar
-          progress={progress}
-          width={null}
-          color={theme.COLORS.PRIMARY}
-          borderColor={theme.COLORS.BACKGROUND_CARD}
-          unfilledColor={theme.COLORS.BACKGROUND}
-          style={{ margin: 10 }}
+        <View
+          style={[
+            styles.progressBar,
+            { backgroundColor: theme.COLORS.PRIMARY, width: `${progress}%` },
+          ]}
         />
         <Text style={[styles.questionText, { color: theme.COLORS.TEXT }]}>
           {questions[currentStep].question}
@@ -121,4 +122,4 @@ function AnamneseQuestionary() {
   );
 }
 
-export default AnamneseQuestionary;
+export default Questionary;

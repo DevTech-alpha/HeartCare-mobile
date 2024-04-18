@@ -18,12 +18,12 @@ export const styles = StyleSheet.create({
     marginBottom: 12,
   },
   postTitle: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: "bold",
     marginBottom: 12,
   },
   postContent: {
-    fontSize: 13,
+    fontSize: 12,
     marginBottom: 12,
   },
   actionIconContainer: {

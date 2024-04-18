@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     paddingEnd: "5%",
   },
   title: {
-    fontSize: 15,
+    fontSize: 13,
     marginTop: 28,
     marginBottom: 10,
   },
