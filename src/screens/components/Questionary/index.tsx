@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { useTheme } from "../../../context/ThemeContext";
 import { styles } from "./styles";
-import shadow from '../../../utils/styles/index';
+import shadow from "../../../utils/styles/index";
 import { questionary } from "../../../models/CardiologyQuestion";
 
 export default function Questionary() {
@@ -37,11 +37,16 @@ export default function Questionary() {
       <View
         style={[
           styles.questionContainer,
-          { backgroundColor: theme.COLORS.BACKGROUND_CARD,
-            ...shadow.shadowOverlay
-           },
+          {
+            backgroundColor: theme.COLORS.BACKGROUND_CARD,
+            ...shadow.shadowOverlay,
+          },
         ]}
       >
+        <Text style={[styles.Text , {color: theme.COLORS.TEXT}]}>{`${
+          currentStep + 1
+        }/${totalSteps}`}</Text>
+
         <View
           style={[
             styles.progressBar,

@@ -15,14 +15,20 @@ export const styles = StyleSheet.create({
     fontSize: 13,
     marginBottom: 16,
   },
+  Text: {
+    fontSize: 13,
+    fontWeight: "bold",
+    marginBottom: 15,
+  },
   progressBar: {
     height: 5,
     marginBottom: 10,
   },
   button: {
+    alignSelf: "center",
     width: "100%",
     borderRadius: 10,
-    paddingVertical: 12,
+    paddingVertical: 8,
     marginTop: 14,
     justifyContent: "center",
     alignItems: "center",

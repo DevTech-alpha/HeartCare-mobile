@@ -40,6 +40,7 @@ export const styles = StyleSheet.create({
   },
   buttonToggle: {
     width: "90%",
+    height: 50,
     borderRadius: 10,
     paddingVertical: 8,
     marginTop: 14,

@@ -8,7 +8,7 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const [theme, setTheme] = useState<Theme>(themes.dark);
+  const [theme, setTheme] = useState<Theme>(themes.light);
 
   useEffect(() => {
     loadThemeFromStorage();
@@ -19,6 +19,8 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
       const storedTheme = await asyncGetTheme();
       if (storedTheme !== null) {
         setTheme(storedTheme === "dark" ? themes.dark : themes.light);
+      } else {
+        setTheme(themes.light);
       }
     } catch (error) {
       console.error("Error loading theme from storage:", error);
