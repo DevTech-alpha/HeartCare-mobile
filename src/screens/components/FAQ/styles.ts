@@ -2,15 +2,10 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   questionContainer: {
-    margin: 16,
+    margin: 15,
     borderRadius: 20,
     padding: 5,
-    marginBottom: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.5,
-    elevation: 5,
+    marginBottom: 5,
   },
   questionText: {
     fontSize: 13,
@@ -32,20 +27,26 @@ export const styles = StyleSheet.create({
   button: {
     width: "100%",
     borderRadius: 10,
-    paddingVertical: 12,
     marginTop: 14,
     justifyContent: "center",
     alignItems: "center",
   },
-  buttonToggle: {
+  buttonToggleContainer: {
     width: "100%",
-    marginTop: 20,
-    marginBottom: 20,
-    padding: 10,
-    borderRadius: 50,
+    marginTop: 10,
+    marginBottom: 10,
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  buttonToggle: {
+    width: "90%",
+    borderRadius: 10,
+    paddingVertical: 8,
+    marginTop: 14,
     justifyContent: "center",
     alignItems: "center",
   },
+
   buttonText: {
     fontSize: 14,
     fontWeight: "bold",

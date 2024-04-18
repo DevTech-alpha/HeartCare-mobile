@@ -7,6 +7,7 @@ import Atividade from "../../../models/Atividade";
 import * as Animatable from "react-native-animatable";
 import AtividadesItemProps from "../../../props/AtividadesItemProps";
 import { useTheme } from "../../../context/ThemeContext";
+import shadow from "../../../utils/styles";
 
 export default function AtividadesItem({ user }: AtividadesItemProps) {
   const { theme } = useTheme();
@@ -42,7 +43,7 @@ export default function AtividadesItem({ user }: AtividadesItemProps) {
       ))}
     </Animatable.View>
   );
-};
+}
 
 const CartaoAtividade: React.FC<{ data: Atividade; theme: any }> = ({
   data,
@@ -55,7 +56,9 @@ const CartaoAtividade: React.FC<{ data: Atividade; theme: any }> = ({
     <View
       style={[
         styles.containerCartao,
-        { backgroundColor: theme.COLORS.BACKGROUND_CARD },
+        { backgroundColor: theme.COLORS.BACKGROUND_CARD,
+          ...shadow.shadowOverlay
+         },
       ]}
     >
       <View style={styles.containerProgresso}>

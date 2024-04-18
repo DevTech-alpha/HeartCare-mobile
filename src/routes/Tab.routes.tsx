@@ -7,8 +7,8 @@ import Feed from "../screens/Feed";
 import Query from "../screens/Query";
 import Profile from "../screens/Profile";
 import { propsNavigationStack } from "./types";
-import Questions from "../screens/Help";
-import Help from "../screens/Help";
+import Help from "../screens/Doubts";
+import styles from '../utils/styles/index';
 
 const { Navigator, Screen } = createBottomTabNavigator<propsNavigationStack>();
 
@@ -35,7 +35,7 @@ export default function TabRoutes() {
             elevation: 0,
             borderRadius: 30,
             height: 80,
-            ...styles.shadow,
+            ...styles.shadowOverlay,
           },
         }}
       >
@@ -99,13 +99,3 @@ export default function TabRoutes() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  shadow: {
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.5,
-    elevation: 5,
-  },
-});

@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 20,
     fontSize: 16,
-    color: "#555",
   },
   containerHeader: {
     marginTop: "15%",
@@ -25,29 +24,6 @@ export const styles = StyleSheet.create({
   label: {
     fontSize: 15,
     marginTop: 12,
-  },
-  input: {
-    borderBottomWidth: 1,
-    height: 40,
-    marginBottom: 12,
-    fontSize: 16,
-  },
-  addButtonText: {
-    fontSize: 30,
-    fontWeight: "bold",
-  },
- 
-  addButton: {
-    position: "absolute",
-    bottom: 24,
-    right: 24,
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    textAlign: "center",
-    alignItems: "center",
-    justifyContent: "center",
-    elevation: 10,
   },
   themeToggleButton: {
     position: "absolute",

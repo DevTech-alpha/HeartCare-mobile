@@ -13,6 +13,7 @@ import { styles } from "./styles";
 import ModalPostProps from "../../../props/ModalPostProps";
 import { AntDesign } from "@expo/vector-icons";
 import { useTheme } from "../../../context/ThemeContext";
+import shadow from '../../../utils/styles/index';
 
 export default function ModalPost({
   createNewPost,
@@ -51,7 +52,9 @@ export default function ModalPost({
         <View
           style={[
             styles.modalContent,
-            { backgroundColor: theme.COLORS.BACKGROUND },
+            { backgroundColor: theme.COLORS.BACKGROUND ,
+              ...shadow.shadowOverlay
+            },
           ]}
         >
           <View style={{ alignItems: "flex-end" }}>

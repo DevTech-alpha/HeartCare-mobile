@@ -10,11 +10,6 @@ export const styles = StyleSheet.create({
     marginVertical: 16,
     borderRadius: 20,
     padding: 16,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.5,
-    elevation: 5,
   },
   questionText: {
     fontSize: 13,

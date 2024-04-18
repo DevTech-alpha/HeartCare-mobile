@@ -22,7 +22,6 @@ export const styles = StyleSheet.create({
     marginTop: 28,
     marginBottom: 12,
   },
-  text: {},
   buttonAcessar: {
     borderRadius: 10,
     paddingVertical: 8,

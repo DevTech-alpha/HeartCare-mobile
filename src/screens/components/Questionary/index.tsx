@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import { getCardiologyQuestions } from "../../../utils/questions";
 import { useTheme } from "../../../context/ThemeContext";
 import { styles } from "./styles";
+import shadow from '../../../utils/styles/index';
+import { questionary } from "../../../models/CardiologyQuestion";
 
-function Questionary() {
+export default function Questionary() {
   const { theme } = useTheme();
   const [currentStep, setCurrentStep] = useState(0);
-  const questions = getCardiologyQuestions();
-  const totalSteps = questions.length;
+  const totalSteps = questionary.length;
 
   const [answers, setAnswers] = useState<number[]>(
     Array(totalSteps).fill(null)
@@ -37,7 +37,9 @@ function Questionary() {
       <View
         style={[
           styles.questionContainer,
-          { backgroundColor: theme.COLORS.BACKGROUND_CARD },
+          { backgroundColor: theme.COLORS.BACKGROUND_CARD,
+            ...shadow.shadowOverlay
+           },
         ]}
       >
         <View
@@ -47,9 +49,9 @@ function Questionary() {
           ]}
         />
         <Text style={[styles.questionText, { color: theme.COLORS.TEXT }]}>
-          {questions[currentStep].question}
+          {questionary[currentStep].question}
         </Text>
-        {questions[currentStep].answers.map((answer, index) => (
+        {questionary[currentStep].answers.map((answer, index) => (
           <TouchableOpacity
             key={index}
             onPress={() => handleAnswer(index)}
@@ -121,5 +123,3 @@ function Questionary() {
     </View>
   );
 }
-
-export default Questionary;

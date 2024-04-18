@@ -103,7 +103,7 @@ function Query() {
     } catch (error) {}
   };
 
-  const toggleChatVisibility = () => {
+  const toggleScreen = () => {
     setHistoricoVisivel(!historicoVisivel);
   };
   const toggleAtividades = () => {
@@ -121,7 +121,7 @@ function Query() {
             styles.themeToggleButton,
             { backgroundColor: theme.COLORS.BACKGROUND },
           ]}
-          onPress={toggleChatVisibility}
+          onPress={toggleScreen}
         >
           <AntDesign name="arrowleft" size={30} color={theme.COLORS.ICON} />
         </TouchableOpacity>
@@ -131,11 +131,11 @@ function Query() {
             styles.themeToggleButton,
             { backgroundColor: theme.COLORS.BACKGROUND },
           ]}
-          onPress={toggleChatVisibility}
+          onPress={toggleScreen}
         >
           <MaterialIcons
             name={"calendar-today"}
-            size={24}
+            size={30}
             color={theme.COLORS.POST_TITLE}
           />
         </TouchableOpacity>

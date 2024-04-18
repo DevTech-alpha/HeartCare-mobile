@@ -6,11 +6,6 @@ export const styles = StyleSheet.create({
     borderRadius: 25,
     paddingHorizontal: "5%",
     paddingVertical: "5%",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.5,
-    elevation: 5,
   },
   title: {
     fontSize: 13,

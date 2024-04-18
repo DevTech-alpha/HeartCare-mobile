@@ -5,6 +5,7 @@ import { useTheme } from "../../../context/ThemeContext";
 import PostItemProfileProps from "../../../props/PostItemProfileProps";
 import { styles } from "./styles";
 import * as Animatable from "react-native-animatable";
+import shadow from '../../../utils/styles/index';
 
 export default function PostItemProfile({
   item,
@@ -18,7 +19,9 @@ export default function PostItemProfile({
       animation="fadeInUp"
       style={[
         styles.postContainer,
-        { backgroundColor: theme.COLORS.BACKGROUND_CARD },
+        { backgroundColor: theme.COLORS.BACKGROUND_CARD ,
+          ...shadow.shadowOverlay
+        },
       ]}
     >
       <Text style={[styles.postTitle, { color: theme.COLORS.POST_TITLE }]}>

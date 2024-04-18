@@ -1,20 +1,15 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  containerCardsAtividade: {
-    flexDirection: "row",
-    borderBottomLeftRadius: 80,
-    borderBottomRightRadius: 80,
-  },
   containerCartao: {
     margin: 5,
     borderRadius: 20,
     padding: 8,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.5,
-    elevation: 5,
+  },
+  containerCardsAtividade: {
+    flexDirection: "row",
+    borderBottomLeftRadius: 80,
+    borderBottomRightRadius: 80,
   },
   containerProgresso: {
     alignSelf: "center",

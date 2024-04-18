@@ -9,6 +9,7 @@ import { getDoc, doc } from "firebase/firestore";
 import { useTheme } from "../../../context/ThemeContext";
 import { useNavigation } from "@react-navigation/native";
 import { propsStack } from "../../../routes/types";
+import shadow from '../../../utils/styles/index';
 
 export default function PostItem({
   item,
@@ -93,7 +94,9 @@ export default function PostItem({
       animation="fadeInUp"
       style={[
         styles.postContainer,
-        { backgroundColor: theme.COLORS.BACKGROUND_CARD },
+        { backgroundColor: theme.COLORS.BACKGROUND_CARD,
+          ...shadow.shadowOverlay
+         },
       ]}
     >
       <View style={styles.postHeader}>

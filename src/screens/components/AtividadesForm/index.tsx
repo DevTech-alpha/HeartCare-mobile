@@ -15,6 +15,7 @@ import { useTheme } from "../../../context/ThemeContext";
 import * as Animatable from "react-native-animatable";
 import AtividadesFormProps from "../../../props/AtividadesFormProps";
 import { styles } from "./styles";
+import shadow from "../../../utils/styles/index";
 
 export default function AtividadesForm({
   user,
@@ -71,7 +72,10 @@ export default function AtividadesForm({
       animation="fadeInUp"
       style={[
         styles.container,
-        { backgroundColor: theme.COLORS.BACKGROUND_CARD },
+        {
+          backgroundColor: theme.COLORS.BACKGROUND_CARD,
+          ...shadow.shadowOverlay,
+        },
       ]}
     >
       <View style={{ alignItems: "flex-end" }}>

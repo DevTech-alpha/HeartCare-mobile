@@ -7,11 +7,11 @@ import Header from "../components/Header";
 import { styles } from "./styles";
 import Questionary from "../components/Questionary";
 
-function Help() {
+function Doubts() {
   const { theme } = useTheme();
   const [mostrar, setMostrar] = useState(true);
 
-  const mudarTela = () => {
+  const toggleScreen = () => {
     setMostrar(!mostrar);
   };
 
@@ -20,15 +20,15 @@ function Help() {
       <Header title={mostrar ? "FAQ" : "Anamnese"} />
       {!mostrar && (
         <TouchableOpacity
-          style={[styles.themeToggleButton, { backgroundColor: theme.COLORS.BACKGROUND }]}
-          onPress={mudarTela}
+          style={[styles.mudarTela, { backgroundColor: theme.COLORS.BACKGROUND }]}
+          onPress={toggleScreen}
         >
           <AntDesign name="arrowleft" size={30} color={theme.COLORS.ICON} />
         </TouchableOpacity>
       )}
-      {mostrar ? <FAQ  mudarTela={mudarTela}/> : <Questionary />}
+      {mostrar ? <FAQ  toggleScreen={toggleScreen}/> : <Questionary />}
     </View>
   );
 }
 
-export default Help;
+export default Doubts;

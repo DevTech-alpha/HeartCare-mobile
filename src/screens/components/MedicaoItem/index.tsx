@@ -5,6 +5,7 @@ import MedicaoItemProps from "../../../props/MedicaoItemProps";
 import ModalEdicao from "../ModalEdit";
 import { useTheme } from "../../../context/ThemeContext";
 import * as Animatable from "react-native-animatable";
+import shadow from '../../../utils/styles/index';
 
 export default function MedicaoItem({
   medicao,
@@ -67,8 +68,10 @@ export default function MedicaoItem({
     <Animatable.View
       animation="fadeInUp"
       style={[
-        styles.itemMedicao,
-        { backgroundColor: theme.COLORS.BACKGROUND_CARD },
+        styles.container,
+        { backgroundColor: theme.COLORS.BACKGROUND_CARD,
+          ...shadow.shadowOverlay
+         },
       ]}
     >
       <Text style={[styles.textoMedicao, { color: theme.COLORS.POST_CONTENT }]}>

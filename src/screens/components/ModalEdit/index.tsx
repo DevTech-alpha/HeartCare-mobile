@@ -15,6 +15,7 @@ import ModalEdicaoProps from "../../../props/ModalEditProps";
 import { AntDesign } from "@expo/vector-icons";
 import { useTheme } from "../../../context/ThemeContext";
 import { styles } from "./styles";
+import shadow from '../../../utils/styles/index';
 
 export default function ModalEdicao({
   visivel,
@@ -70,7 +71,9 @@ export default function ModalEdicao({
         <View
           style={[
             styles.modalContent,
-            { backgroundColor: theme.COLORS.BACKGROUND },
+            { backgroundColor: theme.COLORS.BACKGROUND ,
+              ...shadow.shadowOverlay
+            },
           ]}
         >
           <View style={{ alignItems: "flex-end" }}>

@@ -14,6 +14,7 @@ import { db } from "../../../utils/firebase";
 import { styles } from "./styles";
 import MedicaoFormProps from "../../../props/MedicaoFormProps";
 import * as Animatable from "react-native-animatable";
+import shadow from '../../../utils/styles/index';
 
 export default function MedicaoForm({
   onMedicaoAdicionada,
@@ -71,7 +72,9 @@ export default function MedicaoForm({
       animation="fadeInUp"
       style={[
         styles.container,
-        { backgroundColor: theme.COLORS.BACKGROUND_CARD },
+        { backgroundColor: theme.COLORS.BACKGROUND_CARD,
+          ...shadow.shadowOverlay
+         },
       ]}
     >
       <View style={{ alignItems: "flex-end" }}>

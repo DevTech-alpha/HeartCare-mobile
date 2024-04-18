@@ -1,4 +1,4 @@
 interface FAQProps {
-  mudarTela: () => void;
+  toggleScreen: () => void;
 }
 export default FAQProps;

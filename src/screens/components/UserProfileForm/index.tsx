@@ -11,6 +11,7 @@ import { Checkbox } from "expo-checkbox";
 import UserProfileFormProps from "../../../props/UserProfileFormProps";
 import { styles } from "./styles";
 import { useTheme } from "../../../context/ThemeContext";
+import shadow from '../../../utils/styles/index';
 
 const bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 const medicalConditions = ["Diabetes", "Hipertensão", "Asma", "Alergias"];
@@ -63,7 +64,9 @@ export default function UserProfileForm(props: UserProfileFormProps) {
     <View
       style={[
         styles.containerForm,
-        { backgroundColor: theme.COLORS.BACKGROUND },
+        { backgroundColor: theme.COLORS.BACKGROUND ,
+          ...shadow.shadowOverlay
+        },
       ]}
     >
       <ScrollView>
