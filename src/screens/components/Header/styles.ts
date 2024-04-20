@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
   },
   text: {
     color: "#fff",
-    letterSpacing: 3,
+    letterSpacing: 2,
     fontSize: 20,
     fontWeight: "bold",
     paddingBottom: isAndroid ? 10 : 5,

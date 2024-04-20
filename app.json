@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#800020"
+      "backgroundColor": "#f5295a"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
@@ -19,7 +19,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#800020"
+        "backgroundColor": "#f5295a"
       },
       "package": "com.devsntosx71.HeartCare",
       "config": {}

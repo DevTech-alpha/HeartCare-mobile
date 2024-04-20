@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { styles } from "./styles";
 import * as Animatable from "react-native-animatable";
-import { MaterialIcons } from "@expo/vector-icons";
+import {MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "../../../context/ThemeContext";
 import FAQProps from "../../../props/FAQprops";
 import shadow from '../../../utils/styles/index';
@@ -21,19 +21,15 @@ export default function FAQ({ toggleScreen }: FAQProps) {
   return (
     <View style={{ backgroundColor: theme.COLORS.BACKGROUND }}>
       <View style={styles.buttonToggleContainer}>
-        <TouchableOpacity
-          onPress={toggleScreen}
-          style={[
-            styles.buttonToggle,
-            { backgroundColor: theme.COLORS.BUTTON },
-          ]}
-        >
-          <Text
-            style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}
-          >
-            Questionário de Anamnese
-          </Text>
-        </TouchableOpacity>
+      <TouchableOpacity
+      onPress={toggleScreen}
+      style={[styles.buttonToggle, { backgroundColor: theme.COLORS.BUTTON }]}
+    >
+      <MaterialIcons  name="question-answer" size={20} color={theme.COLORS.BUTTON_TEXT} style={styles.icon} />
+      <Text style={[styles.buttonText, { color: theme.COLORS.BUTTON_TEXT }]}>
+        Questionário de Anamnese
+      </Text>
+    </TouchableOpacity>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         {commonQuestions.map((item) => (

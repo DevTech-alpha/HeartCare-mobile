@@ -46,6 +46,10 @@ export const styles = StyleSheet.create({
     marginTop: 14,
     justifyContent: "center",
     alignItems: "center",
+    flexDirection: 'row', // Ajusta o layout para linha
+  },
+  icon: {
+    marginRight: 10, // Adiciona espaço entre o ícone e o texto
   },
 
   buttonText: {

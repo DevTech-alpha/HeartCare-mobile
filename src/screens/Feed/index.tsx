@@ -177,7 +177,7 @@ function Feed() {
         }
       />
       <TouchableOpacity
-        style={[styles.addButton, { backgroundColor: theme.COLORS.PRIMARY }]}
+        style={[styles.addButton, { backgroundColor: theme.COLORS.BUTTON }]}
         onPress={abrirModal}
       >
         <Text style={styles.addButtonText}>+</Text>
