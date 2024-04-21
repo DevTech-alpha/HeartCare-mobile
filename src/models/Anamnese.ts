@@ -1,10 +1,10 @@
-export interface CardiologyQuestion {
+export interface AnamneseQuestion {
   question: string;
   answers: string[];
   correctAnswerIndexes: number[];
 }
 
-export const questionary: CardiologyQuestion[] = [
+export const anamnse: AnamneseQuestion[] = [
   {
     question:
       "Você já teve algum episódio de dor no peito ou desconforto torácico?",

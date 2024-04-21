@@ -4,11 +4,11 @@ import { styles } from "./styles";
 import * as Animatable from "react-native-animatable";
 import {MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "../../../context/ThemeContext";
-import FAQProps from "../../../props/FAQprops";
 import shadow from '../../../utils/styles/index';
-import { commonQuestions } from "../../../models/FAQ";
+import { commonQuestions } from "../../../models/Duvidas";
+import DuvidasProps from "../../../props/Duvidasprops";
 
-export default function FAQ({ toggleScreen }: FAQProps) {
+export default function Duvidas({ toggleScreen }: DuvidasProps) {
   const { theme } = useTheme();
 
 

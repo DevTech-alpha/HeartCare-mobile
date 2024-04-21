@@ -3,12 +3,12 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { useTheme } from "../../../context/ThemeContext";
 import { styles } from "./styles";
 import shadow from "../../../utils/styles/index";
-import { questionary } from "../../../models/CardiologyQuestion";
+import { anamnse } from '../../../models/Anamnese';
 
-export default function Questionary() {
+export default function AnamneseQuestionary() {
   const { theme } = useTheme();
   const [currentStep, setCurrentStep] = useState(0);
-  const totalSteps = questionary.length;
+  const totalSteps = anamnse.length;
 
   const [answers, setAnswers] = useState<number[]>(
     Array(totalSteps).fill(null)
@@ -54,9 +54,9 @@ export default function Questionary() {
           ]}
         />
         <Text style={[styles.questionText, { color: theme.COLORS.TEXT }]}>
-          {questionary[currentStep].question}
+          {anamnse[currentStep].question}
         </Text>
-        {questionary[currentStep].answers.map((answer, index) => (
+        {anamnse[currentStep].answers.map((answer, index) => (
           <TouchableOpacity
             key={index}
             onPress={() => handleAnswer(index)}

@@ -1,10 +1,10 @@
-interface FAQ {
+interface Duvidas {
   id: number;
   pergunta: string;
   resposta: string;
 }
 
-export const commonQuestions: FAQ[] = [
+export const commonQuestions: Duvidas[] = [
   {
     id: 1,
     pergunta: "O que é saúde cardiovascular?",

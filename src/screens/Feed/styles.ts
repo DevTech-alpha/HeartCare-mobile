@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,7 +8,13 @@ export const styles = StyleSheet.create({
   overlay: {
     flex: 1,
   },
-
+  themeToggleButton: {
+    position: "absolute",
+    top: Platform.OS === "android" ? 0 : 40,
+    right: 20,
+    padding: 5,
+    borderRadius: 20,
+  },
   addButton: {
     position: "absolute",
     bottom: 120,

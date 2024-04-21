@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { View, TouchableOpacity } from "react-native";
 import { useTheme } from "../../context/ThemeContext";
 import { AntDesign } from "@expo/vector-icons";
-import FAQ from "../components/FAQ";
 import Header from "../components/Header";
 import { styles } from "./styles";
-import Questionary from "../components/Questionary";
+import Duvidas from "../components/Duvidas";
+import AnamneseQuestionary from "../components/AnamneseQuestionary";
 
-function Doubts() {
+function Info() {
   const { theme } = useTheme();
   const [mostrar, setMostrar] = useState(true);
 
@@ -17,7 +17,7 @@ function Doubts() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.COLORS.BACKGROUND }]}>
-      <Header title={mostrar ? "FAQ" : "Anamnese"} />
+    <Header title={mostrar ? "Dúvidas" : "Anamnese"} />
       {!mostrar && (
         <TouchableOpacity
           style={[styles.mudarTela, { backgroundColor: theme.COLORS.BACKGROUND }]}
@@ -26,9 +26,9 @@ function Doubts() {
           <AntDesign name="arrowleft" size={30} color={theme.COLORS.ICON} />
         </TouchableOpacity>
       )}
-      {mostrar ? <FAQ  toggleScreen={toggleScreen}/> : <Questionary />}
+      {mostrar ? <Duvidas  toggleScreen={toggleScreen}/> : <AnamneseQuestionary />}
     </View>
   );
 }
 
-export default Doubts;
+export default Info;
