@@ -1,6 +1,9 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   questionContainer: {
     margin: 15,
     borderRadius: 20,
@@ -46,10 +49,10 @@ export const styles = StyleSheet.create({
     marginTop: 14,
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: 'row', // Ajusta o layout para linha
+    flexDirection: "row",
   },
   icon: {
-    marginRight: 10, // Adiciona espaço entre o ícone e o texto
+    marginRight: 10,
   },
 
   buttonText: {

@@ -1,14 +1,14 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
-import { StatusBar} from "react-native";
+import { StatusBar } from "react-native";
 import { useTheme } from "../context/ThemeContext";
 import Feed from "../screens/Feed";
 import Query from "../screens/Query";
 import Profile from "../screens/Profile";
 import { propsNavigationStack } from "./types";
-import styles from '../utils/styles/index';
-import Info from "../screens/Info";
+import styles from "../utils/styles/index";
+import Duvidas from "../screens/Duvidas";
 
 const { Navigator, Screen } = createBottomTabNavigator<propsNavigationStack>();
 
@@ -54,8 +54,8 @@ export default function TabRoutes() {
           }}
         />
         <Screen
-          name="Info"
-          component={Info}
+          name="Duvidas"
+          component={Duvidas}
           options={{
             tabBarIcon: ({ focused, size }) => (
               <Feather
