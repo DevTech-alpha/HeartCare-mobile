@@ -16,8 +16,8 @@ function Home() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.COLORS.PRIMARY }]}>
-      <View style={{ padding: 25 }}>
-        <Image source={Img} style={{ width: 350, height: 300 }} />
+      <View style={{ padding: 85 }}>
+        <Image source={Img} style={{ width: 200, height: 200 }} />
       </View>
 
       <Animatable.View
